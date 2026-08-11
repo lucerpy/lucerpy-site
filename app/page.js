@@ -2,6 +2,7 @@ import styles from './page.module.css';
 import Button from '@/components/Button/Button';
 import Card from '@/components/Card/Card';
 import Link from 'next/link';
+import Hero22 from '@/components/originkit/hero-22';
 const faqs = [
   {
     question: "Quanto tempo leva para desenvolver um site ou landing page?",
@@ -37,56 +38,7 @@ const faqJsonLd = {
 export default function Home() {
   return (
     <>
-      <section className={`${styles.hero} container`}>
-        <div className={styles.heroContent}>
-          <div className={styles.tagline}>AGÊNCIA DIGITAL</div>
-          <h1 className={styles.heroTitle}>
-            Seu digital no <span className="text-primary">próximo nível</span>
-          </h1>
-          <p className={styles.heroDescription}>
-            UX/UI, sites, landing pages e automações construídas com estratégia para transformar visitantes em clientes reais.
-          </p>
-          <div className={styles.heroButtons}>
-            <Button href="#contato">Começar projeto</Button>
-            <Button href="/projetos" variant="secondary">Ver portfólio</Button>
-          </div>
-          
-          <div className={styles.heroStats}>
-            <div className={styles.avatars}>
-              <div className={styles.avatar} style={{backgroundColor: '#333'}}></div>
-              <div className={styles.avatar} style={{backgroundColor: '#444'}}></div>
-              <div className={styles.avatar} style={{backgroundColor: '#555'}}></div>
-            </div>
-            <div>
-              <strong>50+ projetos entregues</strong>
-              <span>98% de clientes satisfeitos</span>
-            </div>
-          </div>
-        </div>
-        
-        <div className={styles.heroVisual}>
-          <div className={styles.floatingCard1}>
-            <div className={styles.floatingTag}>🚀 50+ <br/>projetos entregues</div>
-            <div className={styles.floatingInner}>
-              <div className={styles.floatingPlaceholder}></div>
-              <h4>Landing Page</h4>
-              <p>Lançamento imobiliário</p>
-            </div>
-          </div>
-          <div className={styles.floatingCard2}>
-            <div className={styles.floatingTagSecondary}>⚡ 98% <br/>clientes satisfeitos</div>
-            <div className={styles.floatingInner2}>
-              <div className={styles.floatingPlaceholder2}></div>
-              <h4>Institucional</h4>
-              <p>Cavent Engenharia</p>
-              <div className={styles.floatingMetrics}>
-                <span>+180%</span>
-                <small>leads qualificados</small>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <Hero22 />
 
       <section className="section-padding">
         <div className="container">

@@ -1,0 +1,25 @@
+/* hero-22 — Lucerpy (adaptado do Originkit Hero 22) */
+
+@theme {
+  --font-outfit: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-inter: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --animate-logo-marquee: logo-marquee 28s linear infinite;
+}
+
+@keyframes logo-marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  @keyframes logo-marquee {
+    from,
+    to {
+      transform: none;
+    }
+  }
+}
