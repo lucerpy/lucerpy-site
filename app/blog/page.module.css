@@ -1,9 +1,6 @@
 .hero {
-  padding: 80px 24px;
+  padding: 140px 24px 80px 24px;
   text-align: left;
-  max-width: 800px;
-  margin: 0 auto;
-  padding-top: 120px;
 }
 
 .tagline {

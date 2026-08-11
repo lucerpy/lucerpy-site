@@ -3,6 +3,7 @@ title: "Por que o seu site afasta clientes (e como corrigir isso)"
 description: "Um site lento, confuso ou feio custa mais do que parece. Os erros mais comuns e como corrigi-los."
 date: "2026-08-10"
 tag: "DESIGN"
+image: "/og-image.jpg"
 gradient: "linear-gradient(45deg, #0f172a, #1e293b)"
 ---
 

@@ -1,6 +1,7 @@
 import { getPostData, getSortedPostsData } from '@/lib/blog';
 import styles from './post.module.css';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
@@ -25,11 +26,13 @@ export async function generateMetadata({ params }) {
       type: 'article',
       publishedTime: postData.date,
       authors: ['Lucerpy Digital'],
+      images: postData.image ? [{ url: postData.image, alt: postData.title }] : [],
     },
     twitter: {
       card: 'summary_large_image',
       title: postData.title,
       description: postData.description,
+      images: postData.image ? [postData.image] : [],
     },
   };
 }
@@ -60,6 +63,7 @@ export default async function Post({ params }) {
     "headline": postData.title,
     "description": postData.description,
     "datePublished": postData.date,
+    "image": postData.image ? [`https://lucerpy.com.br${postData.image}`] : undefined,
     "author": {
       "@type": "Organization",
       "name": "Lucerpy Digital",
@@ -96,6 +100,21 @@ export default async function Post({ params }) {
           </div>
         </div>
       </header>
+
+      {postData.image && (
+        <div className="container" style={{ marginBottom: '48px' }}>
+          <div style={{ position: 'relative', width: '100%', height: '400px', borderRadius: 'var(--radius-lg)', overflow: 'hidden', border: '1px solid rgba(255, 255, 255, 0.05)' }}>
+            <Image 
+              src={postData.image} 
+              alt={postData.title} 
+              fill 
+              priority 
+              sizes="(max-width: 1200px) 100vw, 1200px" 
+              style={{ objectFit: 'cover' }} 
+            />
+          </div>
+        </div>
+      )}
 
       <div className="container">
         <div className={styles.content} dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />

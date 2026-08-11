@@ -54,6 +54,7 @@ export default function Blog() {
                 title={post.title}
                 description={post.description}
                 href={`/blog/${post.slug}`}
+                image={post.image}
                 imagePlaceholder={post.gradient || "linear-gradient(45deg, #1e293b, #0f172a)"}
               />
             ))}
