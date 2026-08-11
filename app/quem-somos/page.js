@@ -1,6 +1,7 @@
 import styles from './page.module.css';
 import Button from '@/components/Button/Button';
 import Card from '@/components/Card/Card';
+import Image from 'next/image';
 
 export const metadata = {
   title: 'Quem Somos | Lucerpy',
@@ -31,7 +32,15 @@ export default function QuemSomos() {
       <section className="section-padding">
         <div className="container">
           <div className={styles.aboutGrid}>
-            <div className={styles.aboutImagePlaceholder}></div>
+            <div className={styles.aboutImageContainer} style={{ position: 'relative', width: '100%', aspectRatio: '4/3', borderRadius: 'var(--radius-lg)', overflow: 'hidden' }}>
+              <Image 
+                src="/quem-somos-team.jpg" 
+                alt="Equipe Lucerpy Digital" 
+                fill 
+                sizes="(max-width: 992px) 100vw, 50vw" 
+                style={{ objectFit: 'cover' }} 
+              />
+            </div>
             <div className={styles.aboutContent}>
               <div className={styles.sectionTag}>QUEM SOMOS</div>
               <h2 className={styles.sectionTitle}>Uma equipe movida por resultados reais</h2>

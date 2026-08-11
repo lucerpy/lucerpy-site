@@ -146,6 +146,7 @@ export default function Home() {
               tag="LANDING PAGE"
               title="Lançamento imobiliário"
               description="Alta conversão com integração CRM. Taxa 2x acima da média do setor."
+              image="/cases/imobiliario.jpg"
               imagePlaceholder="linear-gradient(45deg, #2e1065, #4c1d95)"
               href="/projetos"
             />
@@ -154,6 +155,7 @@ export default function Home() {
               tag="E-COMMERCE"
               title="Loja Streetwear"
               description="E-commerce completo com integrações de pagamento e logística automatizada."
+              image="/cases/streetwear.jpg"
               imagePlaceholder="linear-gradient(45deg, #064e3b, #047857)"
               href="/projetos"
             />

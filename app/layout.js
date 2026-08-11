@@ -34,11 +34,20 @@ export const metadata = {
     siteName: "Lucerpy",
     locale: "pt_BR",
     type: "website",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Lucerpy Digital Agency",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Lucerpy | Agência Digital",
     description: "Desenvolvimento de sites, landing pages e automações construídas com estratégia para transformar visitantes em clientes reais.",
+    images: ["/og-image.jpg"],
   },
   robots: {
     index: true,

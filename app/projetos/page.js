@@ -63,6 +63,7 @@ export default function Projetos() {
               tag="LANDING PAGE"
               title="Lançamento imobiliário"
               description="Alta conversão para lançamento residencial com integração CRM e automação de leads."
+              image="/cases/imobiliario.jpg"
               imagePlaceholder="linear-gradient(45deg, #2e1065, #4c1d95)"
             />
             <Card 
@@ -70,6 +71,7 @@ export default function Projetos() {
               tag="E-COMMERCE"
               title="Loja Streetwear"
               description="E-commerce completo com integrações de pagamento e logística automatizada."
+              image="/cases/streetwear.jpg"
               imagePlaceholder="linear-gradient(45deg, #064e3b, #047857)"
             />
             <Card 
@@ -77,6 +79,7 @@ export default function Projetos() {
               tag="INSTITUCIONAL"
               title="Escritório de Advocacia"
               description="Presença digital sóbria e confiável para área jurídica, com foco em autoridade."
+              image="/cases/advocacia.jpg"
               imagePlaceholder="linear-gradient(45deg, #78350f, #451a03)"
             />
             <Card 
@@ -84,6 +87,7 @@ export default function Projetos() {
               tag="APP"
               title="Clínica de Estética"
               description="Interface mobile-first para agendamento e gestão de clientes com notificações automáticas."
+              image="/cases/estetica.jpg"
               imagePlaceholder="linear-gradient(45deg, #1e3a8a, #172554)"
             />
             <Card 
@@ -91,6 +95,7 @@ export default function Projetos() {
               tag="SAAS"
               title="SaaS B2B"
               description="Landing page de alta performance para produto de software com trial gratuito e onboarding."
+              image="/cases/saas.jpg"
               imagePlaceholder="linear-gradient(45deg, #4c1d95, #2e1065)"
             />
             <Card 
@@ -98,6 +103,7 @@ export default function Projetos() {
               tag="INSTITUCIONAL"
               title="Consultoria Financeira"
               description="Site institucional com portal do cliente e integração com sistema de gestão patrimonial."
+              image="/cases/saas.jpg"
               imagePlaceholder="linear-gradient(45deg, #14532d, #064e3b)"
             />
           </div>
