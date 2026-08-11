@@ -1,0 +1,135 @@
+.hero {
+  padding: 80px 24px;
+  text-align: left;
+  max-width: 800px;
+  margin: 0 auto;
+  padding-top: 120px;
+}
+
+.tagline {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-text-muted);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 6px 12px;
+  border-radius: 4px;
+  margin-bottom: 24px;
+  letter-spacing: 0.05em;
+}
+
+.heroTitle {
+  font-size: 3rem;
+  margin-bottom: 24px;
+  line-height: 1.1;
+}
+
+@media (min-width: 768px) {
+  .heroTitle {
+    font-size: 4rem;
+  }
+}
+
+.heroDescription {
+  font-size: 1.125rem;
+  color: var(--color-text-muted);
+  margin-bottom: 40px;
+}
+
+.heroButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 48px;
+}
+
+.filterBtn {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-full);
+  padding: 8px 16px;
+  transition: all 0.2s ease;
+}
+
+.filterBtn:hover, .filterBtn.active {
+  color: var(--color-text);
+  border-color: var(--color-primary);
+  background: rgba(201, 255, 66, 0.05);
+}
+
+.cardsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 768px) {
+  .cardsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .cardsGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.ctaSection {
+  background-color: var(--color-primary);
+  color: var(--color-bg);
+  padding: 80px 0;
+  text-align: center;
+  border-radius: 24px;
+  margin: 0 24px 80px 24px;
+}
+
+.ctaTitle {
+  font-size: 3rem;
+  margin-bottom: 16px;
+}
+
+.ctaDescription {
+  font-size: 1.125rem;
+  margin-bottom: 40px;
+}
+
+.newsletterForm {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .newsletterForm {
+    flex-direction: row;
+    max-width: 500px;
+  }
+}
+
+.input {
+  flex: 1;
+  padding: 14px 24px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(12, 13, 17, 0.2);
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--color-bg);
+  font-family: var(--font-body);
+  font-size: 1rem;
+}
+
+.input:focus {
+  outline: 2px solid var(--color-bg);
+  outline-offset: 2px;
+}
