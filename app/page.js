@@ -2,6 +2,37 @@ import styles from './page.module.css';
 import Button from '@/components/Button/Button';
 import Card from '@/components/Card/Card';
 import Link from 'next/link';
+const faqs = [
+  {
+    question: "Quanto tempo leva para desenvolver um site ou landing page?",
+    answer: "O prazo médio varia de 2 a 4 semanas para landing pages de alta conversão e de 4 a 8 semanas para sites institucionais completos, dependendo do escopo e das integrações necessárias."
+  },
+  {
+    question: "Por que escolher a Lucerpy em vez de plataformas como Wix ou WordPress?",
+    answer: "Desenvolvemos aplicações em Next.js com código limpo e moderno. Isso garante carregamento instantâneo (LCP baixo), segurança nativa, otimização SEO avançada e controle total sobre o design sem dependência de plugins pesados."
+  },
+  {
+    question: "Vocês realizam integrações com CRMs e sistemas de vendas?",
+    answer: "Sim! Conectamos seu site a qualquer plataforma: RD Station, HubSpot, Pipedrive, WhatsApp Webhooks, gateways de pagamento e sistemas internos customizados."
+  },
+  {
+    question: "Como funciona a primeira conversa de diagnóstico?",
+    answer: "A primeira reunião é 100% gratuita. Analisamos os objetivos do seu negócio, identificamos gargalos de conversão no seu digital e apresentamos um plano de ação claro com prazos e investimento transparente."
+  }
+];
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer
+    }
+  }))
+};
 
 export default function Home() {
   return (
@@ -188,6 +219,33 @@ export default function Home() {
               imagePlaceholder="linear-gradient(45deg, #064e3b, #047857)"
               href="/projetos/cavent-engenharia"
             />
+          </div>
+        </div>
+      </section>
+
+      <section className="section-padding" style={{ backgroundColor: 'var(--color-bg-light)' }}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        />
+        <div className="container">
+          <div className={styles.faqContainer}>
+            <div className="text-center" style={{ textAlign: 'center', marginBottom: '48px' }}>
+              <div className={styles.tagline}>PERGUNTAS FREQUENTES</div>
+              <h2 className={styles.sectionTitle}>Dúvidas sobre nossos serviços</h2>
+              <p className={styles.heroDescription} style={{ margin: '0 auto' }}>
+                Respostas diretas para as perguntas mais comuns de quem quer elevar o nível do seu digital.
+              </p>
+            </div>
+
+            <div className={styles.faqGrid}>
+              {faqs.map((faq, index) => (
+                <div key={index} className={styles.faqItem}>
+                  <h3 className={styles.faqQuestion}>{faq.question}</h3>
+                  <p className={styles.faqAnswer}>{faq.answer}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

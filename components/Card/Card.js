@@ -1,5 +1,6 @@
 import styles from './Card.module.css';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Card({ 
   type = 'service', // 'service' | 'project' | 'post'
@@ -19,7 +20,13 @@ export default function Card({
       {!isService && (
         <div className={styles.imageWrapper}>
            {image ? (
-             <img src={image} alt={title} className={styles.image} />
+             <Image 
+               src={image} 
+               alt={title} 
+               fill 
+               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" 
+               className={styles.image} 
+             />
            ) : (
              <div className={styles.imagePlaceholder} style={{ background: imagePlaceholder || 'linear-gradient(to bottom right, #1a1c23, #0C0D11)' }}></div>
            )}

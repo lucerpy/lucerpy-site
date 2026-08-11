@@ -6,6 +6,14 @@ import { getSortedPostsData } from '@/lib/blog';
 export const metadata = {
   title: 'Blog | Lucerpy',
   description: 'Conteúdo que realmente agrega: design, tecnologia e estratégia digital.',
+  alternates: {
+    canonical: 'https://lucerpy.com.br/blog',
+  },
+  openGraph: {
+    title: 'Blog | Lucerpy',
+    description: 'Conteúdo que realmente agrega: design, tecnologia e estratégia digital.',
+    url: 'https://lucerpy.com.br/blog',
+  },
 };
 
 export default function Blog() {

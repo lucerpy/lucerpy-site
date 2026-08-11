@@ -5,6 +5,14 @@ import Card from '@/components/Card/Card';
 export const metadata = {
   title: 'Quem Somos | Lucerpy',
   description: 'Uma equipe movida por resultados reais. Conheça a Lucerpy e nossos valores.',
+  alternates: {
+    canonical: 'https://lucerpy.com.br/quem-somos',
+  },
+  openGraph: {
+    title: 'Quem Somos | Lucerpy',
+    description: 'Uma equipe movida por resultados reais. Conheça a Lucerpy e nossos valores.',
+    url: 'https://lucerpy.com.br/quem-somos',
+  },
 };
 
 export default function QuemSomos() {

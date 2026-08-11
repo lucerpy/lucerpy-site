@@ -1,0 +1,33 @@
+# Lucerpy Digital
+
+> Lucerpy é uma agência digital brasileira especializada em UX/UI Design, desenvolvimento web de alta performance (Next.js, React), landing pages de alta conversão, e automações de processos B2B.
+
+## Informações Gerais
+- **Website Oficial**: https://lucerpy.com.br
+- **Contato**: lucerpy@lucerpy.com.br
+- **Redes Sociais**:
+  - Instagram: https://instagram.com/lucerpy
+  - LinkedIn: https://linkedin.com/company/lucerpy
+
+## Principais Serviços
+1. **UX/UI Design**: Interfaces focadas em usabilidade e taxa de conversão.
+2. **Sites & Landing Pages**: Desenvolvimento rápido em Next.js, 100% responsivo e otimizado para SEO.
+3. **Integrações & APIs**: Conexão entre sites, CRMs, ERPs e gateways de pagamento.
+4. **Automações**: Automação de fluxos de trabalho e nutrição de leads.
+5. **Consultoria Digital**: Diagnóstico e estratégia digital orientada a ROI.
+
+## Case em Destaque
+- **Cavent Engenharia**: Redesign institucional para empresa de engenharia B2B.
+  - **Resultados**: +180% de leads qualificados em 3 meses, ROI acelerado e site 3x mais rápido.
+  - URL do Case: https://lucerpy.com.br/projetos/cavent-engenharia
+
+## Páginas Importantes
+- Home: https://lucerpy.com.br/
+- Serviços: https://lucerpy.com.br/servicos
+- Portfólio de Projetos: https://lucerpy.com.br/projetos
+- Quem Somos: https://lucerpy.com.br/quem-somos
+- Blog: https://lucerpy.com.br/blog
+- Política de Privacidade: https://lucerpy.com.br/privacidade
+
+## Artigos Recentes do Blog
+- [Por que o seu site afasta clientes](https://lucerpy.com.br/blog/por-que-seu-site-afasta-clientes): Análise dos principais erros de UX/UI, tempo de carregamento e falta de clareza em sites empresariais.

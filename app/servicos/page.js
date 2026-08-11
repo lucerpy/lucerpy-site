@@ -5,6 +5,14 @@ import Card from '@/components/Card/Card';
 export const metadata = {
   title: 'Serviços | Lucerpy',
   description: 'Conheça nossas soluções digitais: UX/UI, sites, landing pages, integrações e automações.',
+  alternates: {
+    canonical: 'https://lucerpy.com.br/servicos',
+  },
+  openGraph: {
+    title: 'Serviços | Lucerpy',
+    description: 'Conheça nossas soluções digitais: UX/UI, sites, landing pages, integrações e automações.',
+    url: 'https://lucerpy.com.br/servicos',
+  },
 };
 
 export default function Servicos() {

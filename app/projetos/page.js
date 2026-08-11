@@ -5,6 +5,14 @@ import Card from '@/components/Card/Card';
 export const metadata = {
   title: 'Projetos | Lucerpy',
   description: 'Cases que mostram o que acontece quando estratégia e design se encontram de verdade.',
+  alternates: {
+    canonical: 'https://lucerpy.com.br/projetos',
+  },
+  openGraph: {
+    title: 'Projetos | Lucerpy',
+    description: 'Cases que mostram o que acontece quando estratégia e design se encontram de verdade.',
+    url: 'https://lucerpy.com.br/projetos',
+  },
 };
 
 export default function Projetos() {

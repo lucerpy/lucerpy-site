@@ -10,9 +10,27 @@ export async function generateMetadata({ params }) {
     return { title: 'Post não encontrado' };
   }
 
+  const postUrl = `https://lucerpy.com.br/blog/${slug}`;
+
   return {
     title: `${postData.title} | Lucerpy Blog`,
     description: postData.description,
+    alternates: {
+      canonical: postUrl,
+    },
+    openGraph: {
+      title: postData.title,
+      description: postData.description,
+      url: postUrl,
+      type: 'article',
+      publishedTime: postData.date,
+      authors: ['Lucerpy Digital'],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: postData.title,
+      description: postData.description,
+    },
   };
 }
 
@@ -36,8 +54,37 @@ export default async function Post({ params }) {
     );
   }
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": postData.title,
+    "description": postData.description,
+    "datePublished": postData.date,
+    "author": {
+      "@type": "Organization",
+      "name": "Lucerpy Digital",
+      "url": "https://lucerpy.com.br"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Lucerpy Digital",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://lucerpy.com.br/favicon.ico"
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://lucerpy.com.br/blog/${slug}`
+    }
+  };
+
   return (
     <article className={styles.article}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <header className={styles.header}>
         <div className="container">
           <Link href="/blog" className={styles.backLink}>← Voltar para o blog</Link>

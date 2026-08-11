@@ -252,3 +252,41 @@
 .ctaLink:hover {
   text-decoration: underline;
 }
+
+.faqContainer {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.faqGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 48px;
+}
+
+.faqItem {
+  background-color: var(--color-bg-light);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-md);
+  padding: 24px 28px;
+  transition: border-color 0.3s ease;
+}
+
+.faqItem:hover {
+  border-color: rgba(201, 255, 66, 0.2);
+}
+
+.faqQuestion {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 12px;
+}
+
+.faqAnswer {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+

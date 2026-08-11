@@ -6,6 +6,22 @@ import Image from 'next/image';
 export const metadata = {
   title: 'Case Cavent Engenharia | Lucerpy',
   description: 'Redesign completo focado em conversão de leads B2B para a Cavent Engenharia.',
+  alternates: {
+    canonical: 'https://lucerpy.com.br/projetos/cavent-engenharia',
+  },
+  openGraph: {
+    title: 'Case Cavent Engenharia | Lucerpy',
+    description: 'Redesign completo focado em conversão de leads B2B para a Cavent Engenharia.',
+    url: 'https://lucerpy.com.br/projetos/cavent-engenharia',
+    images: [
+      {
+        url: 'https://lucerpy.com.br/cases/cavent/tela1.jpeg',
+        width: 1200,
+        height: 800,
+        alt: 'Case Cavent Engenharia',
+      },
+    ],
+  },
 };
 
 export default function CaventEngenharia() {
@@ -47,7 +63,15 @@ export default function CaventEngenharia() {
             {/* Imagem 1 - Resultados sólidos */}
             <div className={styles.presentationItem}>
               <div className={styles.imagePlaceholder}>
-                <img src="/cases/cavent/tela1.jpeg" alt="Cavent Engenharia - Resultados Sólidos" className={styles.caseImage} />
+                <Image 
+                  src="/cases/cavent/tela1.jpeg" 
+                  alt="Cavent Engenharia - Resultados Sólidos" 
+                  width={1200}
+                  height={800}
+                  sizes="(max-width: 768px) 100vw, 1200px"
+                  priority
+                  className={styles.caseImage} 
+                />
               </div>
               <div className={styles.itemInfo}>
                 <h3>Clareza nos Diferenciais</h3>
@@ -58,7 +82,14 @@ export default function CaventEngenharia() {
             {/* Imagem 2 - Hero / Home */}
             <div className={styles.presentationItem}>
               <div className={styles.imagePlaceholder}>
-                <img src="/cases/cavent/tela2.jpeg" alt="Cavent Engenharia - Hero Section" className={styles.caseImage} />
+                <Image 
+                  src="/cases/cavent/tela2.jpeg" 
+                  alt="Cavent Engenharia - Hero Section" 
+                  width={1200}
+                  height={800}
+                  sizes="(max-width: 768px) 100vw, 1200px"
+                  className={styles.caseImage} 
+                />
               </div>
               <div className={styles.itemInfo}>
                 <h3>Primeira Impressão Impactante</h3>
@@ -69,7 +100,14 @@ export default function CaventEngenharia() {
             {/* Imagem 3 - Serviços */}
             <div className={styles.presentationItem}>
               <div className={styles.imagePlaceholder}>
-                <img src="/cases/cavent/tela3.jpeg" alt="Cavent Engenharia - Serviços de Engenharia" className={styles.caseImage} />
+                <Image 
+                  src="/cases/cavent/tela3.jpeg" 
+                  alt="Cavent Engenharia - Serviços de Engenharia" 
+                  width={1200}
+                  height={800}
+                  sizes="(max-width: 768px) 100vw, 1200px"
+                  className={styles.caseImage} 
+                />
               </div>
               <div className={styles.itemInfo}>
                 <h3>Exibição de Portfólio Integrada</h3>

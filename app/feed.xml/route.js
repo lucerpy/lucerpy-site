@@ -1,9 +1,11 @@
 import { getSortedPostsData } from '@/lib/blog';
 import { NextResponse } from 'next/server';
 
+export const revalidate = 3600; // Cache de 1 hora
+
 export async function GET() {
   const posts = getSortedPostsData();
-  const site_url = 'https://lucerpy.com.br'; // Change this to actual URL
+  const site_url = 'https://lucerpy.com.br';
 
   const feedItems = posts.map(post => `
     <item>
@@ -34,3 +36,4 @@ export async function GET() {
     },
   });
 }
+
