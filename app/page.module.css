@@ -5,6 +5,29 @@
   max-width: 480px;
 }
 
+.aboutGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px;
+  align-items: center;
+}
+
+@media (min-width: 992px) {
+  .aboutGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+  }
+}
+
+.aboutText {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  color: var(--color-text-muted);
+  font-size: 1.05rem;
+  margin: 24px 0 32px;
+}
+
 .heroStats {
   display: flex;
   align-items: center;
@@ -285,6 +308,7 @@
   aspect-ratio: 1 / 1;
   max-width: 340px;
   margin: 0 auto;
+  overflow: hidden;
 }
 
 @media (min-width: 768px) {
