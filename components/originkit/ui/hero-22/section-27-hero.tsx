@@ -36,7 +36,7 @@ export const Section27Hero = () => (
       {/* Headline + CTAs */}
       <section className="z-20 mt-12 flex w-full max-w-[367px] flex-col items-center gap-5 px-4 ipad:mt-[74px] ipad:max-w-[603px] desktop-sm:mt-20 ipad:gap-[50px] ipad:p-[10px]">
         <div className="flex w-full flex-col items-center gap-3.5 ipad:gap-2">
-          <p className="fade-in fade-in-1 inline-block mb-7 rounded-full border border-[var(--color-primary)]/35 bg-[var(--color-primary)]/10 px-6 py-3.5 font-outfit text-[12px] font-semibold tracking-[0.1em] text-primary uppercase ipad:mb-9 ipad:px-7 ipad:py-4">
+          <p className="fade-in fade-in-1 inline-block mb-5 rounded-full border border-[var(--color-primary)]/35 bg-[var(--color-primary)]/10 px-5 py-2.5 font-outfit text-[12px] font-semibold tracking-[0.1em] text-primary uppercase ipad:mb-6 ipad:px-6 ipad:py-3">
             Agência digital
           </p>
 
