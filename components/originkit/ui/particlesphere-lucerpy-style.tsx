@@ -876,8 +876,73 @@ function __OriginkitBase_ParticleSphereRefactor(__props: ParticleSphereRefactorP
             document.addEventListener("mouseup", handleMouseUp)
         }
 
+        // Touch drag-to-rotate — mirrors handleMouseDown/Move/Up above, since
+        // touch devices never fire mouse events for a finger drag.
+        const handleTouchDragStart = (event: TouchEvent) => {
+            if (!drag) return
+            const touch = event.touches[0]
+            if (!touch) return
+            isDragging = true
+            velocity.x = 0
+            velocity.y = 0
+            lastMouseX = touch.clientX
+            lastMouseY = touch.clientY
+            lastDragTime = performance.now()
+            startAnimation()
+
+            const handleTouchDragMove = (moveEvent: TouchEvent) => {
+                const moveTouch = moveEvent.touches[0]
+                if (!moveTouch) return
+                const currentTime = performance.now()
+                const timeSinceLastMove = currentTime - lastDragTime
+
+                const sensitivity = mapLinear(dragN, 0, 1, 0.001, 0.02)
+                const dx = moveTouch.clientX - lastMouseX
+                const dy = moveTouch.clientY - lastMouseY
+
+                targetRotation.x += dx * sensitivity
+                targetRotation.y += dy * sensitivity
+                targetRotation.y = Math.max(
+                    -Math.PI / 2,
+                    Math.min(Math.PI / 2, targetRotation.y)
+                )
+
+                if (timeSinceLastMove > 0) {
+                    const timeNormalization =
+                        targetDeltaTime / timeSinceLastMove
+                    velocity.x = dx * sensitivity * 0.3 * timeNormalization
+                    velocity.y = dy * sensitivity * 0.3 * timeNormalization
+                }
+
+                lastMouseX = moveTouch.clientX
+                lastMouseY = moveTouch.clientY
+                lastDragTime = currentTime
+            }
+
+            const handleTouchDragEnd = () => {
+                document.removeEventListener("touchmove", handleTouchDragMove)
+                document.removeEventListener("touchend", handleTouchDragEnd)
+                document.removeEventListener(
+                    "touchcancel",
+                    handleTouchDragEnd
+                )
+                isDragging = false
+            }
+
+            // Passive: the canvas-level touchmove handler below already calls
+            // preventDefault() to stop the page from scrolling while dragging.
+            document.addEventListener("touchmove", handleTouchDragMove, {
+                passive: true,
+            })
+            document.addEventListener("touchend", handleTouchDragEnd)
+            document.addEventListener("touchcancel", handleTouchDragEnd)
+        }
+
         if (drag) {
             canvas.addEventListener("mousedown", handleMouseDown)
+            canvas.addEventListener("touchstart", handleTouchDragStart, {
+                passive: true,
+            })
         }
 
         // Handle hover to stop auto-rotation (only when cursor is over the sphere)
@@ -1323,6 +1388,10 @@ function __OriginkitBase_ParticleSphereRefactor(__props: ParticleSphereRefactorP
                 }
                 if (drag) {
                     canvas.removeEventListener("mousedown", handleMouseDown)
+                    canvas.removeEventListener(
+                        "touchstart",
+                        handleTouchDragStart
+                    )
                 }
                 if (stopOnHover) {
                     canvas.removeEventListener(
@@ -1386,6 +1455,10 @@ function __OriginkitBase_ParticleSphereRefactor(__props: ParticleSphereRefactorP
             }
             if (drag) {
                 canvas.removeEventListener("mousedown", handleMouseDown)
+                canvas.removeEventListener(
+                    "touchstart",
+                    handleTouchDragStart
+                )
             }
             if (stopOnHover) {
                 canvas.removeEventListener("mousemove", handleMouseMoveHover)
