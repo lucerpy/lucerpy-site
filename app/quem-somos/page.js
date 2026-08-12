@@ -20,11 +20,11 @@ export default function QuemSomos() {
   return (
     <>
       <section className={`${styles.hero} container`}>
-        <div className={styles.tagline}>NOSSA HISTÓRIA</div>
-        <h1 className={styles.heroTitle}>
+        <div className={`${styles.tagline} fade-in fade-in-1`}>NOSSA HISTÓRIA</div>
+        <h1 className={`${styles.heroTitle} fade-in fade-in-2`}>
           Nascemos para <span className="text-primary">fazer diferente</span>
         </h1>
-        <p className={styles.heroDescription}>
+        <p className={`${styles.heroDescription} fade-in fade-in-3`}>
           Uma agência que une estratégia, design e tecnologia para transformar negócios em experiências memoráveis.
         </p>
       </section>

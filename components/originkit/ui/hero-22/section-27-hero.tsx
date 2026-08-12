@@ -36,21 +36,21 @@ export const Section27Hero = () => (
       {/* Headline + CTAs */}
       <section className="z-20 mt-12 flex w-full max-w-[367px] flex-col items-center gap-5 px-4 ipad:mt-[74px] ipad:max-w-[603px] desktop-sm:mt-20 ipad:gap-[50px] ipad:p-[10px]">
         <div className="flex w-full flex-col items-center gap-3.5 ipad:gap-2">
-          <p className="inline-block mb-7 rounded-full border border-[var(--color-primary)]/35 bg-[var(--color-primary)]/10 px-6 py-3.5 font-outfit text-[12px] font-semibold tracking-[0.1em] text-primary uppercase ipad:mb-9 ipad:px-7 ipad:py-4">
+          <p className="fade-in fade-in-1 inline-block mb-7 rounded-full border border-[var(--color-primary)]/35 bg-[var(--color-primary)]/10 px-6 py-3.5 font-outfit text-[12px] font-semibold tracking-[0.1em] text-primary uppercase ipad:mb-9 ipad:px-7 ipad:py-4">
             Agência digital
           </p>
 
-          <h1 className="relative w-full text-center font-outfit text-[32px] sm:text-[40px] leading-[38px] sm:leading-[48px] font-bold tracking-[-0.8px] text-white ipad:text-[48px] ipad:leading-[57.6px] ipad:tracking-[-0.96px]">
+          <h1 className="fade-in fade-in-2 relative w-full text-center font-outfit text-[32px] sm:text-[40px] leading-[38px] sm:leading-[48px] font-bold tracking-[-0.8px] text-white ipad:text-[48px] ipad:leading-[57.6px] ipad:tracking-[-0.96px]">
             Seu digital no <span className="text-primary">próximo nível.</span>
           </h1>
 
-          <p className="w-full max-w-[320px] text-center font-inter text-[15px] sm:text-[16px] leading-[1.5] font-normal tracking-[-0.32px] text-[#A1A1AA] ipad:max-w-none ipad:w-full ipad:text-[17px] ipad:tracking-[-0.34px]">
+          <p className="fade-in fade-in-3 w-full max-w-[320px] text-center font-inter text-[15px] sm:text-[16px] leading-[1.5] font-normal tracking-[-0.32px] text-[#A1A1AA] ipad:max-w-none ipad:w-full ipad:text-[17px] ipad:tracking-[-0.34px]">
             UX/UI, sites, landing pages e automações construídas com estratégia
             para transformar visitantes em clientes reais.
           </p>
         </div>
 
-        <div className="flex w-full max-w-[320px] flex-col items-center gap-4 ipad:max-w-none ipad:w-auto ipad:flex-row ipad:items-start">
+        <div className="fade-in fade-in-4 flex w-full max-w-[320px] flex-col items-center gap-4 ipad:max-w-none ipad:w-auto ipad:flex-row ipad:items-start">
           <Button
             href="#contato"
             variant="primary"
