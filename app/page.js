@@ -3,6 +3,7 @@ import Button from '@/components/Button/Button';
 import Card from '@/components/Card/Card';
 import Link from 'next/link';
 import Hero22 from '@/components/originkit/hero-22';
+import ParticleSphere from '@/components/originkit/ui/particlesphere-lucerpy-style';
 import { getSortedPostsData } from '@/lib/blog';
 const faqs = [
   {
@@ -72,6 +73,26 @@ export default function Home() {
               title="Automações & CRMs"
               description="Conectamos suas ferramentas de vendas e marketing para você não perder nenhum lead e otimizar processos."
             />
+          </div>
+        </div>
+      </section>
+
+      <section className="section-padding">
+        <div className="container">
+          <div className={styles.orbGrid}>
+            <div className={styles.orbContent}>
+              <div className={styles.sectionTag}>INTELIGÊNCIA APLICADA</div>
+              <h2 className={styles.sectionTitle}>
+                Cada decisão, guiada por <span className="text-primary">dados e estratégia</span>.
+              </h2>
+              <p className={styles.orbText}>
+                Da primeira linha de código à automação mais avançada, unimos tecnologia de ponta e visão de negócio para transformar complexidade em resultado simples e mensurável.
+              </p>
+              <Button href="#contato" variant="primary">Vamos conversar →</Button>
+            </div>
+            <div className={styles.orbVisual}>
+              <ParticleSphere />
+            </div>
           </div>
         </div>
       </section>

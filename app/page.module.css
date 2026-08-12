@@ -314,3 +314,46 @@
   line-height: 1.6;
 }
 
+.orbGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px;
+  align-items: center;
+}
+
+@media (min-width: 992px) {
+  .orbGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+  }
+}
+
+.orbText {
+  font-size: 1.05rem;
+  color: var(--color-text-muted);
+  line-height: 1.7;
+  margin: 24px 0 32px;
+  max-width: 480px;
+}
+
+.orbVisual {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  max-width: 340px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .orbVisual {
+    max-width: 420px;
+  }
+}
+
+@media (min-width: 992px) {
+  .orbVisual {
+    max-width: 480px;
+    margin: 0;
+  }
+}
+
