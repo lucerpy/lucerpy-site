@@ -1,7 +1,7 @@
 import { Outfit, Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar/Navbar";
-import Footer from "@/components/Footer/Footer";
+import Footer from "@/components/originkit/footer-02";
 
 const outfit = Outfit({
   variable: "--font-outfit",

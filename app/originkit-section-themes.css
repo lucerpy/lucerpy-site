@@ -34,3 +34,9 @@
   --font-inter: "Inter", ui-sans-serif, system-ui, sans-serif;
   --animate-logo-marquee: logo-marquee 28s linear infinite;
 }
+
+/* originkit:footer-02 */
+/* components/originkit/footer-02.css */
+@theme {
+  --animate-social-slide-up: social-slide-up 800ms cubic-bezier(0.215, 0.61, 0.355, 1) both;
+}
