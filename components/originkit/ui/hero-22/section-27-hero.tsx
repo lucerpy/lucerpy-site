@@ -77,7 +77,7 @@ export const Section27Hero = () => (
       </div>
 
       {/* Faixa de confiança */}
-      <section className="z-20 flex w-full flex-col items-center overflow-hidden border-t border-[#2D3039] bg-[#16181F] py-4 ipad:py-6">
+      <section className="z-20 flex w-full flex-col items-center overflow-hidden border-t border-[#2D3039] bg-[#16181F] py-2 ipad:py-3">
         <LogoMarquee />
       </section>
     </div>

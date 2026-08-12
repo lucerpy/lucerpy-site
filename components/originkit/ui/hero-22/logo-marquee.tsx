@@ -29,7 +29,7 @@ export const LogoMarquee = () => (
           {TECH_STACK.map((name) => (
             <span
               key={`${copy}-${name}`}
-              className="flex h-[52.5px] w-[140px] shrink-0 items-center justify-center ipad:w-[160px] desktop-sm:h-[70px] desktop-sm:w-[200px]"
+              className="flex h-[38px] w-[140px] shrink-0 items-center justify-center ipad:w-[160px] desktop-sm:h-[52px] desktop-sm:w-[200px]"
             >
               <span className="font-outfit text-[14px] font-semibold tracking-[-0.28px] whitespace-nowrap text-[#646568] desktop-sm:text-[16px]">
                 {name}
