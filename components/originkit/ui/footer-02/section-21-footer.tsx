@@ -20,7 +20,7 @@ export function Section21Footer() {
       {/* Soft multi-color wash behind the footer card */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-0 z-0 flex h-[55%] min-h-[280px] w-full justify-center overflow-hidden ipad:h-[60%] desktop-sm:h-[70%] desktop-sm:min-h-[320px]"
+        className="pointer-events-none absolute inset-x-0 top-0 z-0 flex h-[240px] w-full justify-center overflow-hidden ipad:h-[320px] desktop-sm:h-[400px]"
         style={{
           maskImage:
             "linear-gradient(to bottom, #000 0%, #000 35%, transparent 100%)",
