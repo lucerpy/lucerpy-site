@@ -255,32 +255,39 @@ export const NeuralDiagram = () => {
       );
     };
 
-    // Auto-assemble when entering viewport on mobile or desktop
+    // On touch: scatter first, then reassemble — gives visible reset effect
+    let touchTimer: ReturnType<typeof setTimeout> | null = null;
+    const handleTouch = () => {
+      if (touchTimer) clearTimeout(touchTimer);
+      scatter();
+      touchTimer = setTimeout(assemble, 180);
+    };
+
+    // Auto-assemble when entering viewport
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            assemble();
-          }
+          if (entry.isIntersecting) assemble();
         });
       },
       { threshold: 0.25 }
     );
     observer.observe(block);
 
-    // Initial assembly trigger after load
+    // Initial assembly after load
     const timer = setTimeout(assemble, 400);
 
     block.addEventListener("pointerenter", assemble);
-    block.addEventListener("touchstart", assemble, { passive: true });
     block.addEventListener("pointerleave", scatter);
+    block.addEventListener("touchstart", handleTouch, { passive: true });
 
     return () => {
       clearTimeout(timer);
+      if (touchTimer) clearTimeout(touchTimer);
       observer.disconnect();
       block.removeEventListener("pointerenter", assemble);
-      block.removeEventListener("touchstart", assemble);
       block.removeEventListener("pointerleave", scatter);
+      block.removeEventListener("touchstart", handleTouch);
     };
   }, []);
 
