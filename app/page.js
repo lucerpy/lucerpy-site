@@ -3,6 +3,7 @@ import Button from '@/components/Button/Button';
 import Card from '@/components/Card/Card';
 import Link from 'next/link';
 import Hero22 from '@/components/originkit/hero-22';
+import { getSortedPostsData } from '@/lib/blog';
 const faqs = [
   {
     question: "Quanto tempo leva para desenvolver um site ou landing page?",
@@ -36,6 +37,8 @@ const faqJsonLd = {
 };
 
 export default function Home() {
+  const latestPosts = getSortedPostsData().slice(0, 2);
+
   return (
     <>
       <Hero22 />
@@ -162,22 +165,18 @@ export default function Home() {
           </div>
           
           <div className={styles.cardsGrid}>
-            <Card 
-              type="post"
-              tag="ENGENHARIA & TECNOLOGIA"
-              title="Next.js vs WordPress: Qual o melhor para o seu site?"
-              description="Entenda as diferenças reais de performance, segurança e SEO entre a plataforma legada e o framework moderno."
-              href="/blog/nextjs-vs-wordpress-qual-escolher"
-              imagePlaceholder="linear-gradient(45deg, #0f172a, #334155)"
-            />
-            <Card 
-              type="post"
-              tag="CONVERSÃO & UX"
-              title="Por que o seu site atual está afastando clientes"
-              description="Os 5 erros mais comuns de UX/UI e performance que destroem a taxa de conversão do seu negócio."
-              href="/blog/por-que-seu-site-afasta-clientes"
-              imagePlaceholder="linear-gradient(45deg, #1e1b4b, #312e81)"
-            />
+            {latestPosts.map((post) => (
+              <Card
+                key={post.slug}
+                type="post"
+                tag={post.tag || "ARTIGO"}
+                title={post.title}
+                description={post.description}
+                href={`/blog/${post.slug}`}
+                image={post.image}
+                imagePlaceholder={post.gradient || "linear-gradient(45deg, #1e293b, #0f172a)"}
+              />
+            ))}
           </div>
         </div>
       </section>
