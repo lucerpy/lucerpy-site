@@ -10,6 +10,7 @@ export default function sitemap() {
     '/projetos/cavent-engenharia',
     '/quem-somos',
     '/blog',
+    '/contato',
     '/privacidade',
   ].map((route) => ({
     url: `${baseUrl}${route}`,
