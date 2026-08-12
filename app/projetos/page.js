@@ -1,6 +1,6 @@
 import styles from './page.module.css';
 import Button from '@/components/Button/Button';
-import Card from '@/components/Card/Card';
+import ProjectsSection from './ProjectsSection';
 
 export const metadata = {
   title: 'Projetos | Lucerpy',
@@ -33,80 +33,7 @@ export default function Projetos() {
 
       <section className="section-padding">
         <div className="container">
-          <div className={styles.filters}>
-            <button className={`${styles.filterBtn} ${styles.active}`}>Todos</button>
-            <button className={styles.filterBtn}>Institucional</button>
-            <button className={styles.filterBtn}>E-commerce</button>
-            <button className={styles.filterBtn}>Landing Page</button>
-            <button className={styles.filterBtn}>App</button>
-          </div>
-          
-          <div className={styles.cardsGrid}>
-            <div className={styles.featuredCard}>
-              <Card 
-                type="project"
-                tag="DESTAQUE"
-                title="Cavent Engenharia"
-                description="Redesign completo do site institucional focado em conversão de leads B2B. Resultado: +180% em contatos qualificados em apenas 3 meses após o lançamento."
-                image="/cases/cavent/tela1.jpeg"
-                imagePlaceholder="linear-gradient(45deg, #0f172a, #1e293b)"
-                href="/projetos/cavent-engenharia"
-                metrics={[
-                  { value: '+180%', label: 'leads qualificados' },
-                  { value: '3x', label: 'mais rápido' }
-                ]}
-              />
-            </div>
-            
-            <Card 
-              type="project"
-              tag="LANDING PAGE"
-              title="Lançamento imobiliário"
-              description="Alta conversão para lançamento residencial com integração CRM e automação de leads."
-              image="/cases/imobiliario.jpg"
-              imagePlaceholder="linear-gradient(45deg, #2e1065, #4c1d95)"
-            />
-            <Card 
-              type="project"
-              tag="E-COMMERCE"
-              title="Loja Streetwear"
-              description="E-commerce completo com integrações de pagamento e logística automatizada."
-              image="/cases/streetwear.jpg"
-              imagePlaceholder="linear-gradient(45deg, #064e3b, #047857)"
-            />
-            <Card 
-              type="project"
-              tag="INSTITUCIONAL"
-              title="Escritório de Advocacia"
-              description="Presença digital sóbria e confiável para área jurídica, com foco em autoridade."
-              image="/cases/advocacia.jpg"
-              imagePlaceholder="linear-gradient(45deg, #78350f, #451a03)"
-            />
-            <Card 
-              type="project"
-              tag="APP"
-              title="Clínica de Estética"
-              description="Interface mobile-first para agendamento e gestão de clientes com notificações automáticas."
-              image="/cases/estetica.jpg"
-              imagePlaceholder="linear-gradient(45deg, #1e3a8a, #172554)"
-            />
-            <Card 
-              type="project"
-              tag="SAAS"
-              title="SaaS B2B"
-              description="Landing page de alta performance para produto de software com trial gratuito e onboarding."
-              image="/cases/saas.jpg"
-              imagePlaceholder="linear-gradient(45deg, #4c1d95, #2e1065)"
-            />
-            <Card 
-              type="project"
-              tag="INSTITUCIONAL"
-              title="Consultoria Financeira"
-              description="Site institucional com portal do cliente e integração com sistema de gestão patrimonial."
-              image="/cases/saas.jpg"
-              imagePlaceholder="linear-gradient(45deg, #14532d, #064e3b)"
-            />
-          </div>
+          <ProjectsSection />
         </div>
       </section>
 
