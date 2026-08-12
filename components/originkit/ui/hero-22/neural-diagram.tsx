@@ -99,7 +99,7 @@ type Node = {
 const NODES: Node[] = [
   {
     label: "UX/UI Design",
-    color: "#C9FF42",
+    color: "#A3E635",
     pill: { left: 147, top: 40, width: 107.75 },
     pillTablet: { left: 72, top: 73.5, width: 128.597 },
     pillDesktop: { left: 374, top: 69, width: 152 },

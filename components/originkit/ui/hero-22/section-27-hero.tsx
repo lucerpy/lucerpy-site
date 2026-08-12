@@ -36,19 +36,12 @@ export const Section27Hero = () => (
       {/* Headline + CTAs */}
       <section className="z-20 mt-12 flex w-full max-w-[367px] flex-col items-center gap-5 px-4 ipad:mt-[74px] ipad:max-w-[603px] desktop-sm:mt-20 ipad:gap-[50px] ipad:p-[10px]">
         <div className="flex w-full flex-col items-center gap-3.5 ipad:gap-2">
-          <p className="inline-block mb-3 rounded-full border border-[#C9FF42]/35 bg-[#C9FF42]/10 px-4 py-2 font-outfit text-[12px] font-semibold tracking-[0.08em] text-[#C9FF42] uppercase">
+          <p className="inline-block mb-3 rounded-full border border-[var(--color-primary)]/35 bg-[var(--color-primary)]/10 px-4 py-2 font-outfit text-[12px] font-semibold tracking-[0.08em] text-primary uppercase">
             Agência digital
           </p>
 
           <h1 className="relative w-full text-center font-outfit text-[32px] sm:text-[40px] leading-[38px] sm:leading-[48px] font-bold tracking-[-0.8px] text-white ipad:text-[48px] ipad:leading-[57.6px] ipad:tracking-[-0.96px]">
-            <span className="relative">Seu digital no </span>
-            <span className="relative inline-block px-1">
-              <span
-                aria-hidden
-                className="absolute top-[6px] right-0 left-0 h-[calc(100%-8px)] bg-[#C9FF42]/35"
-              />
-              <span className="relative text-[#0C0D11]">próximo nível.</span>
-            </span>
+            Seu digital no <span className="text-primary">próximo nível.</span>
           </h1>
 
           <p className="w-full max-w-[320px] text-center font-inter text-[15px] sm:text-[16px] leading-[1.5] font-normal tracking-[-0.32px] text-[#A1A1AA] ipad:max-w-none ipad:w-full ipad:text-[17px] ipad:tracking-[-0.34px]">
