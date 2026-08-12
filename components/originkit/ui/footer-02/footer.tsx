@@ -2,6 +2,7 @@
 "use client";
 
 import Link from "next/link";
+import Logo from "@/components/Logo/Logo";
 import Tetris from "@/components/originkit/ui/footer-02/tetris";
 
 function asset(file: string) {
@@ -66,9 +67,7 @@ export function Footer() {
         {/* Brand */}
         <div className="flex w-full flex-col gap-6 ipad:gap-8 desktop-sm:w-[220px] desktop-sm:shrink-0 desktop-sm:justify-between desktop-sm:gap-0">
           <div className="flex flex-col gap-2 ipad:gap-4">
-            <p className="font-outfit text-[24px] leading-[1.1] tracking-[-0.96px] text-white/90">
-              Lucerpy<span className="text-primary">.</span>
-            </p>
+            <Logo />
             <p className="font-sans text-[14px] leading-[1.4] text-[#c2c2c2]">
               Agência digital focada em UX/UI, desenvolvimento web e automações que entregam resultado real.
             </p>

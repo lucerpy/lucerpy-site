@@ -15,7 +15,7 @@ export function Section21Footer() {
     <section
       id="contato"
       aria-label="Rodapé Lucerpy"
-      className="relative isolate flex min-h-svh w-full flex-col items-center justify-end overflow-hidden bg-[var(--color-bg)] px-4 pb-8 pt-12 ipad:px-10 ipad:pt-16 desktop-sm:px-12 desktop-sm:pt-24"
+      className="relative isolate flex min-h-svh w-full flex-col items-center justify-end overflow-hidden bg-[var(--color-bg)] px-6 pb-10 pt-16 ipad:px-10 ipad:pt-24 desktop-sm:px-16 desktop-sm:pt-32"
     >
       {/* Soft multi-color wash behind the footer card */}
       <div
@@ -37,7 +37,7 @@ export function Section21Footer() {
         />
       </div>
 
-      <div className="relative z-10 mx-auto w-full max-w-[95dvw] wide-lg:max-w-[1440px]">
+      <div className="relative z-10 mx-auto w-full wide-lg:max-w-[1440px]">
         <Footer />
       </div>
     </section>

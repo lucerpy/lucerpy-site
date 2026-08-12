@@ -16,14 +16,6 @@
   height: 80px;
 }
 
-.logo {
-  font-family: var(--font-heading);
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--color-text);
-  letter-spacing: -0.03em;
-}
-
 .nav {
   display: none;
 }
