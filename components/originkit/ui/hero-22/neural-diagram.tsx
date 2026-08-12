@@ -226,27 +226,10 @@ const BOX_CLASS =
 
 export const NeuralDiagram = () => {
   const blockRef = useRef<HTMLDivElement>(null);
-  /** Hover assembly is a desktop affordance; touch has no hover to give. */
-  const [isDesktop, setIsDesktop] = useState(false);
 
-  useEffect(() => {
-    const query = window.matchMedia("(min-width: 1280px)");
-    const sync = () => setIsDesktop(query.matches);
-    sync();
-    query.addEventListener("change", sync);
-    return () => query.removeEventListener("change", sync);
-  }, []);
-
-  /**
-   * The particle field only assembles while its own canvas is hovered, and the
-   * canvas is offset inside a padded box. Entering the diagram block forwards a
-   * mousemove to the canvas centre; leaving forwards a mouseout — so the
-   * component runs its own assemble/scatter transitions rather than being
-   * re-initialised, and the hover area is the diagram itself, not the page.
-   */
   useEffect(() => {
     const block = blockRef.current;
-    if (!block || !isDesktop) return;
+    if (!block) return;
 
     const canvas = () => block.querySelector("canvas");
 
@@ -264,9 +247,6 @@ export const NeuralDiagram = () => {
     };
 
     const scatter = () => {
-      // React synthesises onMouseLeave from a native mouseout whose
-      // relatedTarget sits outside the element; a dispatched "mouseleave"
-      // never reaches it, which is why the field stayed assembled.
       canvas()?.dispatchEvent(
         new MouseEvent("mouseout", {
           bubbles: true,
@@ -275,25 +255,46 @@ export const NeuralDiagram = () => {
       );
     };
 
+    // Auto-assemble when entering viewport on mobile or desktop
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            assemble();
+          }
+        });
+      },
+      { threshold: 0.25 }
+    );
+    observer.observe(block);
+
+    // Initial assembly trigger after load
+    const timer = setTimeout(assemble, 400);
+
     block.addEventListener("pointerenter", assemble);
+    block.addEventListener("touchstart", assemble, { passive: true });
     block.addEventListener("pointerleave", scatter);
+
     return () => {
+      clearTimeout(timer);
+      observer.disconnect();
       block.removeEventListener("pointerenter", assemble);
+      block.removeEventListener("touchstart", assemble);
       block.removeEventListener("pointerleave", scatter);
     };
-  }, [isDesktop]);
+  }, []);
 
   return (
     <div
       ref={blockRef}
       className="relative h-[423px] w-[402px] max-w-none shrink-0 ipad:h-[402px] ipad:w-[744px] desktop-sm:h-[468px] desktop-sm:w-[1440px]"
     >
-      {/* Background arcs — iPad only */}
+      {/* Background arcs */}
       {ARCS.map((arc) => (
         <svg
           key={arc.id}
           aria-hidden
-          className="pointer-events-none absolute top-[var(--t-i)] left-[var(--l-i)] hidden h-[var(--h-i)] w-[var(--w-i)] ipad:block desktop-sm:top-[var(--t-d)] desktop-sm:left-[var(--l-d)] desktop-sm:h-[var(--h-d)] desktop-sm:w-[var(--w-d)]"
+          className="pointer-events-none absolute top-[var(--t-i)] left-[var(--l-i)] h-[var(--h-i)] w-[var(--w-i)] opacity-60 ipad:opacity-100"
           style={
             {
               "--l-i": `${arc.box.left}px`,
@@ -319,12 +320,12 @@ export const NeuralDiagram = () => {
         </svg>
       ))}
 
-      {/* Waypoint dots on the arcs — iPad and desktop only */}
+      {/* Waypoint dots on the arcs */}
       {ARC_DOTS.map((dot) => (
         <span
           key={dot.id}
           aria-hidden
-          className="pointer-events-none absolute top-[var(--t-i)] left-[var(--l-i)] hidden size-[8.438px] rounded-full border-[1.688px] border-solid border-[#0C0D11] bg-[#c8c8cc] ipad:block desktop-sm:top-[var(--t-d)] desktop-sm:left-[var(--l-d)] desktop-sm:size-[10px] desktop-sm:border-2"
+          className="pointer-events-none absolute top-[var(--t-i)] left-[var(--l-i)] size-[8.438px] rounded-full border-[1.688px] border-solid border-[#0C0D11] bg-[#c8c8cc] opacity-60 ipad:opacity-100 desktop-sm:top-[var(--t-d)] desktop-sm:left-[var(--l-d)] desktop-sm:size-[10px] desktop-sm:border-2"
           style={
             {
               "--l-i": `${dot.tablet.left}px`,
@@ -351,7 +352,7 @@ export const NeuralDiagram = () => {
           particleShape="circle"
           particleColor="single"
           singleColor="#d9d9d9"
-          hoverEnabled={isDesktop}
+          hoverEnabled={true}
           hoverConfig={{
             hoverType: "roam",
             // Default roam area is a rectangle, which reads as a box of dots.
@@ -359,12 +360,6 @@ export const NeuralDiagram = () => {
             roamOpacity: 0.5,
             transition: { duration: 0.8, ease: "easeInOut" },
           }}
-          // repulsionEnabled
-          // repulsionConfig={{
-          //   repulsionMode: "random",
-          //   repulsionForce: 8,
-          //   repulsionRadius: 55,
-          // }}
           imageConfig={{
             image: asset("Vector.png"),
             mode: "fit",
