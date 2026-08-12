@@ -1,6 +1,6 @@
 import styles from './page.module.css';
 import Button from '@/components/Button/Button';
-import Card from '@/components/Card/Card';
+import BlogPostsSection from './BlogPostsSection';
 import { getSortedPostsData } from '@/lib/blog';
 
 export const metadata = {
@@ -37,32 +37,11 @@ export default function Blog() {
 
       <section className="section-padding" id="artigos">
         <div className="container">
-          <div className={styles.filters}>
-            <button className={`${styles.filterBtn} ${styles.active}`}>Todos</button>
-            <button className={styles.filterBtn}>Design</button>
-            <button className={styles.filterBtn}>Tecnologia</button>
-            <button className={styles.filterBtn}>Estratégia</button>
-            <button className={styles.filterBtn}>Cases</button>
-          </div>
-          
-          <div className={styles.cardsGrid}>
-            {posts.map((post) => (
-              <Card 
-                key={post.slug}
-                type="post"
-                tag={post.tag || "ARTIGO"}
-                title={post.title}
-                description={post.description}
-                href={`/blog/${post.slug}`}
-                image={post.image}
-                imagePlaceholder={post.gradient || "linear-gradient(45deg, #1e293b, #0f172a)"}
-              />
-            ))}
-            
-            {posts.length === 0 && (
-              <p>Nenhum artigo publicado ainda.</p>
-            )}
-          </div>
+          {posts.length === 0 ? (
+            <p>Nenhum artigo publicado ainda.</p>
+          ) : (
+            <BlogPostsSection posts={posts} />
+          )}
         </div>
       </section>
 
@@ -73,7 +52,7 @@ export default function Blog() {
             <p className={styles.ctaDescription}>Assine a newsletter e receba insights exclusivos sobre design e digital.</p>
             <form className={styles.newsletterForm}>
                <input type="email" placeholder="Seu melhor e-mail" className={styles.input} required />
-               <Button type="submit" variant="primary">Assinar newsletter →</Button>
+               <Button type="submit" variant="secondary">Assinar newsletter →</Button>
             </form>
           </div>
         </div>
