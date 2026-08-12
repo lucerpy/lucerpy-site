@@ -47,7 +47,7 @@ export default function Home() {
               <div className={styles.sectionTag}>O QUE FAZEMOS</div>
               <h2 className={styles.sectionTitle}>Tudo que o seu digital precisa</h2>
             </div>
-            <Button href="/servicos" variant="secondary">Ver todos os serviços →</Button>
+            <Button href="/servicos" variant="link">Ver todos os serviços →</Button>
           </div>
           
           <div className={styles.cardsGrid}>
@@ -60,14 +60,14 @@ export default function Home() {
             <Card 
               type="service"
               number="02"
-              title="Sites & Landing Pages"
-              description="Do portfólio institucional à landing de alta conversão. Rápidos, responsivos e otimizados para SEO desde o primeiro deploy."
+              title="Desenvolvimento Web"
+              description="Sites institucionais, landing pages e aplicações web ultra rápidas usando Next.js. Performance real e código limpo."
             />
             <Card 
               type="service"
               number="03"
-              title="Integrações & Automações"
-              description="Conectamos tudo e automatizamos processos para sua equipe focar no que realmente importa."
+              title="Automações & CRMs"
+              description="Conectamos suas ferramentas de vendas e marketing para você não perder nenhum lead e otimizar processos."
             />
           </div>
         </div>
@@ -77,30 +77,33 @@ export default function Home() {
         <div className="container">
           <div className={styles.sectionHeader}>
             <div>
-              <div className={styles.sectionTag}>PROJETOS</div>
-              <h2 className={styles.sectionTitle}>Projetos que falam por si</h2>
+              <div className={styles.sectionTag}>PORTFÓLIO</div>
+              <h2 className={styles.sectionTitle}>Projetos em destaque</h2>
             </div>
-            <Button href="/projetos" variant="secondary">Ver todos →</Button>
+            <Button href="/projetos" variant="link">Ver todos →</Button>
           </div>
           
           <div className={styles.cardsGrid}>
             <Card 
               type="project"
-              tag="INSTITUCIONAL"
+              tag="DESTAQUE"
               title="Cavent Engenharia"
-              description="Redesign de site institucional para conversão. +180% em leads qualificados em 3 meses."
+              description="Redesign completo do site institucional focado em conversão de leads B2B. Resultado: +180% em contatos qualificados."
               image="/cases/cavent/tela1.jpeg"
               imagePlaceholder="linear-gradient(45deg, #0f172a, #1e293b)"
               href="/projetos/cavent-engenharia"
+              metrics={[
+                { value: '+180%', label: 'leads qualificados' },
+                { value: '3x', label: 'mais rápido' }
+              ]}
             />
             <Card 
               type="project"
               tag="LANDING PAGE"
               title="Lançamento imobiliário"
-              description="Alta conversão com integração CRM. Taxa 2x acima da média do setor."
+              description="Alta conversão para lançamento residencial com integração CRM e automação de leads."
               image="/cases/imobiliario.jpg"
               imagePlaceholder="linear-gradient(45deg, #2e1065, #4c1d95)"
-              href="/projetos"
             />
             <Card 
               type="project"
@@ -109,7 +112,6 @@ export default function Home() {
               description="E-commerce completo com integrações de pagamento e logística automatizada."
               image="/cases/streetwear.jpg"
               imagePlaceholder="linear-gradient(45deg, #064e3b, #047857)"
-              href="/projetos"
             />
           </div>
         </div>
@@ -117,78 +119,81 @@ export default function Home() {
 
       <section className="section-padding">
         <div className="container">
-          <div className={styles.statsGrid}>
-            <div className={styles.statItem}>
-              <span className={styles.statNumber}>50+</span>
-              <span className={styles.statLabel}>Projetos entregues</span>
+          <div className={styles.aboutGrid}>
+            <div className={styles.aboutContent}>
+              <div className={styles.sectionTag}>SOBRE A LUCERPY</div>
+              <h2 className={styles.sectionTitle}>Estratégia e execução no mesmo lugar</h2>
+              <div className={styles.aboutText}>
+                <p>Não somos uma agência tradicional que só entrega telas bonitas. Somos parceiros de tecnologia e crescimento.</p>
+                <p>Unimos design focado em conversão, desenvolvimento de alta performance e automações inteligentes para fazer seu negócio crescer de verdade.</p>
+              </div>
+              <Button href="/quem-somos" variant="primary">Conheça nossa história →</Button>
             </div>
-            <div className={styles.statItem}>
-              <span className={styles.statNumber}>98%</span>
-              <span className={styles.statLabel}>Clientes satisfeitos</span>
+            <div className={styles.statsGrid}>
+              <div className={styles.statItem}>
+                <span className={styles.statNumber}>50<small>+</small></span>
+                <span className={styles.statLabel}>Projetos entregues</span>
+              </div>
+              <div className={styles.statItem}>
+                <span className={styles.statNumber}>98<small>%</small></span>
+                <span className={styles.statLabel}>Clientes satisfeitos</span>
+              </div>
+              <div className={styles.statItem}>
+                <span className={styles.statNumber}>3x</span>
+                <span className={styles.statLabel}>Média de ROI</span>
+              </div>
+              <div className={styles.statItem}>
+                <span className={styles.statNumber}>24/7</span>
+                <span className={styles.statLabel}>Suporte dedicado</span>
+              </div>
             </div>
-            <div className={styles.statItem}>
-              <span className={styles.statNumber}>3<small>yr</small></span>
-              <span className={styles.statLabel}>No mercado digital</span>
-            </div>
-            <div className={styles.statItem}>
-              <span className={styles.statNumber}>12</span>
-              <span className={styles.statLabel}>Premiações</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="section-padding">
-        <div className="container">
-          <div className={styles.sectionHeader}>
-            <div>
-              <div className={styles.sectionTag}>BLOG</div>
-              <h2 className={styles.sectionTitle}>Conteúdo que<br/><span className="text-primary">agrega de verdade</span></h2>
-            </div>
-            <Button href="/blog" variant="secondary">Ver todos →</Button>
-          </div>
-          
-          <div className={styles.cardsGrid}>
-            <Card 
-              type="post"
-              tag="DESIGN"
-              title="Por que o seu site afasta clientes"
-              description="Um site lento, confuso ou feio custa mais do que parece. Os erros mais comuns e como corrigi-los."
-              imagePlaceholder="linear-gradient(45deg, #0f172a, #1e293b)"
-              href="/blog/por-que-seu-site-afasta-clientes"
-            />
-            <Card 
-              type="post"
-              tag="TECNOLOGIA"
-              title="Next.js vs WordPress: qual escolher?"
-              description="A escolha da tecnologia impacta SEO, performance e custo. Analisamos os dois cenários."
-              imagePlaceholder="linear-gradient(45deg, #2e1065, #4c1d95)"
-              href="/blog"
-            />
-            <Card 
-              type="post"
-              tag="CASES"
-              title="Como triplicamos leads da Cavent em 3 meses"
-              description="Caso de estudo de como um redesign estratégico com otimizações SEO gerou resultados reais."
-              imagePlaceholder="linear-gradient(45deg, #064e3b, #047857)"
-              href="/projetos/cavent-engenharia"
-            />
           </div>
         </div>
       </section>
 
       <section className="section-padding" style={{ backgroundColor: 'var(--color-bg-light)' }}>
+        <div className="container">
+          <div className={styles.sectionHeader}>
+            <div>
+              <div className={styles.sectionTag}>BLOG</div>
+              <h2 className={styles.sectionTitle}>Últimos artigos</h2>
+            </div>
+            <Button href="/blog" variant="link">Ver todos →</Button>
+          </div>
+          
+          <div className={styles.cardsGrid}>
+            <Card 
+              type="post"
+              tag="ENGENHARIA & TECNOLOGIA"
+              title="Next.js vs WordPress: Qual o melhor para o seu site?"
+              description="Entenda as diferenças reais de performance, segurança e SEO entre a plataforma legada e o framework moderno."
+              href="/blog/nextjs-vs-wordpress-qual-escolher"
+              imagePlaceholder="linear-gradient(45deg, #0f172a, #334155)"
+            />
+            <Card 
+              type="post"
+              tag="CONVERSÃO & UX"
+              title="Por que o seu site atual está afastando clientes"
+              description="Os 5 erros mais comuns de UX/UI e performance que destroem a taxa de conversão do seu negócio."
+              href="/blog/por-que-seu-site-afasta-clientes"
+              imagePlaceholder="linear-gradient(45deg, #1e1b4b, #312e81)"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section className="section-padding">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
         />
         <div className="container">
           <div className={styles.faqContainer}>
-            <div className="text-center" style={{ textAlign: 'center', marginBottom: '48px' }}>
-              <div className={styles.tagline}>PERGUNTAS FREQUENTES</div>
-              <h2 className={styles.sectionTitle}>Dúvidas sobre nossos serviços</h2>
+            <div className="text-center" style={{ textAlign: 'center' }}>
+              <div className={styles.sectionTag} style={{ display: 'inline-block' }}>DÚVIDAS FREQUENTES</div>
+              <h2 className={styles.sectionTitle}>Perguntas Frequentes</h2>
               <p className={styles.heroDescription} style={{ margin: '0 auto' }}>
-                Respostas diretas para as perguntas mais comuns de quem quer elevar o nível do seu digital.
+                Tudo o que você precisa saber antes de iniciar seu projeto com a gente.
               </p>
             </div>
 
@@ -210,8 +215,8 @@ export default function Home() {
             <h2 className={styles.ctaTitle}>Pronto para o próximo<br/>nível?</h2>
             <p className={styles.ctaDescription}>Vamos conversar sobre o seu projeto. A primeira call é por nossa conta.</p>
             <div className={styles.ctaButtons}>
-              <Button href="#contato" variant="secondary" style={{ borderColor: 'var(--color-bg)', color: 'var(--color-bg)' }}>Falar com a Lucerpy →</Button>
-              <Link href="/projetos" className={styles.ctaLink}>Ver portfólio</Link>
+              <Button href="#contato" variant="secondary">Falar com a Lucerpy →</Button>
+              <Button href="/projetos" variant="link" style={{ color: '#0C0D11' }}>Ver portfólio</Button>
             </div>
           </div>
         </div>

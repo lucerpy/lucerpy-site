@@ -119,7 +119,7 @@ export default function Servicos() {
             <h2 className={styles.ctaTitle}>Pronto para começar?</h2>
             <p className={styles.ctaDescription}>Vamos conversar sobre o seu projeto e encontrar a melhor solução juntos.</p>
             <div className={styles.ctaButtons}>
-              <Button href="#contato" variant="secondary" style={{ borderColor: 'var(--color-bg)', color: 'var(--color-bg)' }}>Falar com a Lucerpy →</Button>
+              <Button href="#contato" variant="secondary">Falar com a Lucerpy →</Button>
             </div>
           </div>
         </div>

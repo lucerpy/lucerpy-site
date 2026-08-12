@@ -116,7 +116,7 @@ export default function Projetos() {
             <h2 className={styles.ctaTitle}>Quer fazer parte desse<br/>portfólio?</h2>
             <p className={styles.ctaDescription}>Vamos criar algo incrível juntos.</p>
             <div className={styles.ctaButtons}>
-              <Button href="#contato" variant="secondary" style={{ borderColor: 'var(--color-bg)', color: 'var(--color-bg)' }}>Iniciar projeto →</Button>
+              <Button href="#contato" variant="secondary">Iniciar projeto →</Button>
             </div>
           </div>
         </div>

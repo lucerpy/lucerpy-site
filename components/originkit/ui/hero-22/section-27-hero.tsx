@@ -2,6 +2,7 @@
 "use client";
 
 import Link from "next/link";
+import Button from "@/components/Button/Button";
 
 import { LogoMarquee } from "@/components/originkit/ui/hero-22/logo-marquee";
 import { NeuralDiagram } from "@/components/originkit/ui/hero-22/neural-diagram";
@@ -57,30 +58,21 @@ export const Section27Hero = () => (
         </div>
 
         <div className="flex w-full max-w-[320px] flex-col items-center gap-4 ipad:max-w-none ipad:w-auto ipad:flex-row ipad:items-start">
-          <Link
+          <Button
             href="#contato"
-            className="group flex w-full max-w-[323px] cursor-pointer items-center justify-center gap-1 rounded-md bg-[#C9FF42] py-2.5 pr-2 pl-5 shadow-[2px_2px_0px_0px_#0C0D11,3px_3px_0px_0px_#b0e530] transition-[transform,box-shadow] duration-200 ease-out ipad:w-auto [@media(hover:hover)]:hover:-translate-x-px [@media(hover:hover)]:hover:-translate-y-px [@media(hover:hover)]:hover:shadow-[3px_3px_0px_0px_#0C0D11,5px_5px_0px_0px_#b0e530] active:translate-x-px active:translate-y-px active:shadow-[1px_1px_0px_0px_#0C0D11,2px_2px_0px_0px_#b0e530]"
+            variant="primary"
+            className="w-full ipad:w-auto"
           >
-            <span className="font-outfit text-[15px] leading-[1.5] font-semibold tracking-[-0.3px] whitespace-nowrap text-[#0C0D11]">
-              Começar projeto
-            </span>
-            <span className="relative block size-[23px] shrink-0 transition-transform duration-200 ease-out group-hover:translate-x-0.5">
-              <img
-                src={asset("arrow.svg")}
-                alt=""
-                className="absolute top-0 left-1/2 block h-[23px] w-[11.5px] max-w-none -translate-x-1/2 brightness-0"
-              />
-            </span>
-          </Link>
+            Começar projeto →
+          </Button>
 
-          <Link
+          <Button
             href="/projetos"
-            className="flex w-full max-w-[323px] cursor-pointer items-center justify-center rounded-md border border-[#2D3039] bg-[#16181F] px-5 py-2.5 shadow-[2px_2px_0px_0px_#0C0D11,3px_3px_0px_0px_#20232D] transition-[transform,box-shadow,background-color] duration-200 ease-out ipad:w-auto [@media(hover:hover)]:hover:-translate-x-px [@media(hover:hover)]:hover:-translate-y-px [@media(hover:hover)]:hover:bg-[#20232D] [@media(hover:hover)]:hover:shadow-[3px_3px_0px_0px_#0C0D11,5px_5px_0px_0px_#20232D] active:translate-x-px active:translate-y-px active:shadow-[1px_1px_0px_0px_#0C0D11,2px_2px_0px_0px_#20232D]"
+            variant="secondary"
+            className="w-full ipad:w-auto"
           >
-            <span className="font-outfit text-[15px] leading-[1.5] font-semibold tracking-[-0.3px] whitespace-nowrap text-white">
-              Ver portfólio
-            </span>
-          </Link>
+            Ver portfólio
+          </Button>
         </div>
       </section>
 
@@ -92,10 +84,7 @@ export const Section27Hero = () => (
       </div>
 
       {/* Faixa de confiança */}
-      <section className="z-20 flex w-full flex-col items-center gap-6 overflow-hidden border-t border-[#2D3039] bg-[#16181F] px-4 py-6 ipad:px-0 ipad:py-10">
-        <p className="w-full max-w-[280px] text-center font-outfit text-[12px] sm:text-[13px] leading-[1.4] font-semibold tracking-[0.08em] text-[#A1A1AA] uppercase ipad:max-w-none ipad:w-full">
-          50+ projetos entregues · 98% de clientes satisfeitos
-        </p>
+      <section className="z-20 flex w-full flex-col items-center overflow-hidden border-t border-[#2D3039] bg-[#16181F] py-4 ipad:py-6">
         <LogoMarquee />
       </section>
     </div>

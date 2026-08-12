@@ -73,7 +73,7 @@ export default function Blog() {
             <p className={styles.ctaDescription}>Assine a newsletter e receba insights exclusivos sobre design e digital.</p>
             <form className={styles.newsletterForm}>
                <input type="email" placeholder="Seu melhor e-mail" className={styles.input} required />
-               <Button type="submit" variant="secondary" style={{ borderColor: 'var(--color-bg)', color: 'var(--color-bg)' }}>Assinar newsletter →</Button>
+               <Button type="submit" variant="primary">Assinar newsletter →</Button>
             </form>
           </div>
         </div>

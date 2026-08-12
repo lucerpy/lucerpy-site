@@ -125,7 +125,7 @@ export default function QuemSomos() {
             <h2 className={styles.ctaTitle}>Vamos trabalhar juntos?</h2>
             <p className={styles.ctaDescription}>Conta pra gente o que você precisa. A primeira conversa é por nossa conta.</p>
             <div className={styles.ctaButtons}>
-              <Button href="#contato" variant="secondary" style={{ borderColor: 'var(--color-bg)', color: 'var(--color-bg)' }}>Agendar conversa →</Button>
+              <Button href="#contato" variant="secondary">Agendar conversa →</Button>
             </div>
           </div>
         </div>

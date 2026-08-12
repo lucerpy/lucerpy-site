@@ -2,34 +2,84 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 12px 24px;
-  border-radius: var(--radius-full);
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 6px;
   font-weight: 600;
-  font-size: 0.95rem;
-  transition: all 0.3s ease;
+  font-size: 0.9375rem;
+  font-family: var(--font-outfit, var(--font-body, sans-serif));
+  text-decoration: none;
+  cursor: pointer;
   white-space: nowrap;
-  font-family: var(--font-body);
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out, background-color 0.2s ease-out, color 0.2s ease-out, border-color 0.2s ease-out;
 }
 
+/* 1. Primary: Fundo verde (#C9FF42), texto escuro (#0C0D11) */
 .primary {
-  background-color: var(--color-primary);
-  color: var(--color-bg);
+  background-color: var(--color-primary, #C9FF42);
+  color: #0C0D11;
+  border: none;
+  box-shadow: 2px 2px 0px 0px #0C0D11, 3px 3px 0px 0px #b0e530;
 }
 
-.primary:hover {
-  background-color: var(--color-primary-hover);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(201, 255, 66, 0.2);
+@media (hover: hover) {
+  .primary:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 3px 3px 0px 0px #0C0D11, 5px 5px 0px 0px #b0e530;
+  }
 }
 
+.primary:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0px 0px #0C0D11, 2px 2px 0px 0px #b0e530;
+}
+
+/* 2. Secondary: Fundo transparente / escuro com borda */
 .secondary {
-  background-color: transparent;
-  color: var(--color-text);
-  border: 1px solid var(--color-border);
+  background-color: #16181F;
+  color: #FFFFFF;
+  border: 1px solid #2D3039;
+  box-shadow: 2px 2px 0px 0px #0C0D11, 3px 3px 0px 0px #20232D;
 }
 
-.secondary:hover {
-  background-color: var(--color-bg-lighter);
-  border-color: var(--color-primary);
-  color: var(--color-primary);
+@media (hover: hover) {
+  .secondary:hover {
+    background-color: #20232D;
+    border-color: #3f4350;
+    color: #FFFFFF;
+    transform: translate(-1px, -1px);
+    box-shadow: 3px 3px 0px 0px #0C0D11, 5px 5px 0px 0px #20232D;
+  }
+}
+
+.secondary:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0px 0px #0C0D11, 2px 2px 0px 0px #20232D;
+}
+
+/* 3. Link: Somente o link (texto sem fundo nem borda) */
+.link {
+  background-color: transparent;
+  color: #A1A1AA;
+  border: none;
+  padding: 8px 12px;
+  box-shadow: none;
+}
+
+@media (hover: hover) {
+  .link:hover {
+    color: var(--color-primary, #C9FF42);
+    transform: translateX(2px);
+  }
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease-out;
+}
+
+.btn:hover .icon {
+  transform: translateX(2px);
 }
