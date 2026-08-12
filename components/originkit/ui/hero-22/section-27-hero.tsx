@@ -40,7 +40,7 @@ export const Section27Hero = () => (
             Agência digital
           </p>
 
-          <h1 className="fade-in fade-in-2 relative w-full text-center font-outfit text-[32px] min-[480px]:text-[40px] leading-[38px] min-[480px]:leading-[48px] font-bold tracking-[-0.8px] text-white ipad:text-[52px] ipad:leading-[57.6px] ipad:tracking-[-0.96px]">
+          <h1 className="fade-in fade-in-2 relative w-full text-balance text-center font-outfit text-[32px] min-[480px]:text-[40px] leading-[38px] min-[480px]:leading-[48px] font-bold tracking-[-0.8px] text-white ipad:text-[52px] ipad:leading-[57.6px] ipad:tracking-[-0.96px]">
             Seu digital no <span className="text-primary">próximo nível.</span>
           </h1>
 
