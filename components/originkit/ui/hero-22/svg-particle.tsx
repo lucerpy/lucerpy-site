@@ -162,6 +162,7 @@ function __OriginkitBase_ParticleImage(__props) {
     repulsionConfig = {},
     width,
     height,
+    backgroundColor,
     style,
     ...props
   } = { ...COMPONENT_DEFAULTS, ...__props };
@@ -797,6 +798,7 @@ function __OriginkitBase_ParticleImage(__props) {
         position: "relative",
         width,
         height,
+        backgroundColor,
         overflow: "hidden",
         ...style,
       }}
