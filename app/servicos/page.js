@@ -71,10 +71,14 @@ export default function Servicos() {
         <div className="container">
           <div className={styles.sectionTag}>PROCESSO</div>
           <h2 className={styles.sectionTitle}>Como trabalhamos</h2>
-          <p className={styles.sectionDescription} style={{ marginBottom: '64px' }}>
+          <p className={styles.sectionDescription} style={{ marginBottom: '40px' }}>
             Um processo claro do briefing à entrega, com você presente em cada etapa decisiva.
           </p>
-          
+
+          <div className={styles.miniBanner}>
+            <Image src="/servicos/mini-banner.jpg" alt="" fill sizes="100vw" className={styles.miniBannerImage} />
+          </div>
+
           <div className={styles.processGrid}>
             <div className={styles.processStep}>
               <span className={styles.processNumber}>01</span>

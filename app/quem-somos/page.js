@@ -31,15 +31,32 @@ export default function QuemSomos() {
 
       <section className="section-padding">
         <div className="container">
-          <div className={styles.aboutSolo}>
-            <div className={styles.sectionTag}>QUEM SOMOS</div>
-            <h2 className={styles.sectionTitle}>Uma equipe movida por resultados reais</h2>
-            <div className={styles.aboutText}>
-              <p>A Lucerpy nasceu da convicção de que o digital pode ser mais humano, estratégico e eficaz. Não acreditamos em fórmulas prontas.</p>
-              <p>Cada projeto começa com escuta ativa: entendemos o negócio, o público e os objetivos antes de criar qualquer pixel ou linha de código.</p>
-              <p>O resultado é um produto digital que não só parece bonito — mas que converte visitantes em clientes e ideias em receita concreta.</p>
+          <div className={styles.aboutBentoGrid}>
+            <div>
+              <div className={styles.sectionTag}>QUEM SOMOS</div>
+              <h2 className={styles.sectionTitle}>Uma equipe movida por resultados reais</h2>
+              <div className={styles.aboutText}>
+                <p>A Lucerpy nasceu da convicção de que o digital pode ser mais humano, estratégico e eficaz. Não acreditamos em fórmulas prontas.</p>
+                <p>Cada projeto começa com escuta ativa: entendemos o negócio, o público e os objetivos antes de criar qualquer pixel ou linha de código.</p>
+                <p>O resultado é um produto digital que não só parece bonito — mas que converte visitantes em clientes e ideias em receita concreta.</p>
+              </div>
+              <Button href="/projetos" variant="primary">Ver nosso portfólio →</Button>
             </div>
-            <Button href="/projetos" variant="primary">Ver nosso portfólio →</Button>
+
+            <div className={styles.bentoGrid}>
+              <div className={`${styles.bentoCell} ${styles.bentoBig}`}>
+                <Image src="/quem-somos/bento-1.jpg" alt="" fill sizes="(max-width: 992px) 100vw, 40vw" className={styles.bentoImage} />
+              </div>
+              <div className={`${styles.bentoCell} ${styles.bentoWide}`}>
+                <Image src="/quem-somos/bento-2.jpg" alt="" fill sizes="(max-width: 992px) 50vw, 20vw" className={styles.bentoImage} />
+              </div>
+              <div className={`${styles.bentoCell} ${styles.bentoSmall}`}>
+                <Image src="/quem-somos/bento-3.jpg" alt="" fill sizes="(max-width: 992px) 50vw, 20vw" className={styles.bentoImage} />
+              </div>
+              <div className={`${styles.bentoCell} ${styles.bentoSmall}`}>
+                <Image src="/quem-somos/bento-4.jpg" alt="" fill sizes="(max-width: 992px) 50vw, 20vw" className={styles.bentoImage} />
+              </div>
+            </div>
           </div>
         </div>
       </section>

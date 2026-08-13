@@ -1,5 +1,6 @@
 import styles from './page.module.css';
 import ContactForm from './ContactForm';
+import Image from 'next/image';
 
 export const metadata = {
   title: 'Contato',
@@ -26,6 +27,12 @@ export default function Contato() {
           Conta pra gente o que você precisa. A primeira conversa é por nossa conta, sem compromisso.
         </p>
       </section>
+
+      <div className="container">
+        <div className={styles.banner}>
+          <Image src="/contato/banner.jpg" alt="" fill sizes="100vw" priority className={styles.bannerImage} />
+        </div>
+      </div>
 
       <section className="section-padding">
         <div className="container">
