@@ -255,12 +255,59 @@ export const NeuralDiagram = () => {
       );
     };
 
-    // On touch: scatter first, then reassemble — gives visible reset effect
-    let touchTimer: ReturnType<typeof setTimeout> | null = null;
-    const handleTouch = () => {
-      if (touchTimer) clearTimeout(touchTimer);
-      scatter();
-      touchTimer = setTimeout(assemble, 180);
+    // On touch: the dots should stay assembled/roaming by default and only
+    // scatter once the finger holds roughly still for a beat — a touch that's
+    // actually the start of a scroll swipe (passing over this section) must
+    // never trigger the reset. Releasing always reassembles.
+    const TOUCH_HOLD_DELAY_MS = 180;
+    const TOUCH_MOVE_CANCEL_PX = 10;
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let touchHoldTimer: ReturnType<typeof setTimeout> | null = null;
+    let touchScattered = false;
+
+    const clearTouchHoldTimer = () => {
+      if (touchHoldTimer !== null) {
+        clearTimeout(touchHoldTimer);
+        touchHoldTimer = null;
+      }
+    };
+
+    const handleTouchStart = (event: TouchEvent) => {
+      const touch = event.touches[0];
+      if (!touch) return;
+      touchStartX = touch.clientX;
+      touchStartY = touch.clientY;
+      clearTouchHoldTimer();
+      touchHoldTimer = setTimeout(() => {
+        touchHoldTimer = null;
+        touchScattered = true;
+        scatter();
+      }, TOUCH_HOLD_DELAY_MS);
+    };
+
+    const handleTouchMove = (event: TouchEvent) => {
+      if (touchHoldTimer === null) return;
+      const touch = event.touches[0];
+      if (!touch) return;
+      const dx = touch.clientX - touchStartX;
+      const dy = touch.clientY - touchStartY;
+      if (
+        Math.abs(dx) > TOUCH_MOVE_CANCEL_PX ||
+        Math.abs(dy) > TOUCH_MOVE_CANCEL_PX
+      ) {
+        // Moved before the hold engaged — this is a scroll swipe, not a
+        // press-and-hold, so cancel without ever having scattered.
+        clearTouchHoldTimer();
+      }
+    };
+
+    const handleTouchEnd = () => {
+      clearTouchHoldTimer();
+      if (touchScattered) {
+        touchScattered = false;
+        assemble();
+      }
     };
 
     // Auto-assemble when entering viewport
@@ -279,15 +326,21 @@ export const NeuralDiagram = () => {
 
     block.addEventListener("pointerenter", assemble);
     block.addEventListener("pointerleave", scatter);
-    block.addEventListener("touchstart", handleTouch, { passive: true });
+    block.addEventListener("touchstart", handleTouchStart, { passive: true });
+    block.addEventListener("touchmove", handleTouchMove, { passive: true });
+    block.addEventListener("touchend", handleTouchEnd, { passive: true });
+    block.addEventListener("touchcancel", handleTouchEnd, { passive: true });
 
     return () => {
       clearTimeout(timer);
-      if (touchTimer) clearTimeout(touchTimer);
+      clearTouchHoldTimer();
       observer.disconnect();
       block.removeEventListener("pointerenter", assemble);
       block.removeEventListener("pointerleave", scatter);
-      block.removeEventListener("touchstart", handleTouch);
+      block.removeEventListener("touchstart", handleTouchStart);
+      block.removeEventListener("touchmove", handleTouchMove);
+      block.removeEventListener("touchend", handleTouchEnd);
+      block.removeEventListener("touchcancel", handleTouchEnd);
     };
   }, []);
 
