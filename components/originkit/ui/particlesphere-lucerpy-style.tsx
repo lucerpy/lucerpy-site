@@ -1587,7 +1587,7 @@ const __originkitPresetProps = {
   "cursorRadiusUI": 100,
   "cursorStrengthUI": 10,
   "clickForce": 10,
-  "sphereColor": "#A3E635"
+  "sphereColor": "#CCEC7B"
 };
 
 export default function ParticleSphereRefactor(props: Record<string, unknown>) {

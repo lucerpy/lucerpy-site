@@ -164,7 +164,7 @@ export function Footer() {
       >
         <Tetris
           boardColor="#16181F"
-          colors={["#A3E635"]}
+          colors={["#CCEC7B"]}
           cellSize={20}
           gap={0}
           rounded={20}

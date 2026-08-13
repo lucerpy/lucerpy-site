@@ -14,25 +14,25 @@
   transition: transform 0.2s ease-out, box-shadow 0.2s ease-out, background-color 0.2s ease-out, color 0.2s ease-out, border-color 0.2s ease-out;
 }
 
-/* 1. Primary: Fundo verde (#A3E635), texto escuro (#0C0D11) */
+/* 1. Primary: Fundo verde (#CCEC7B), texto escuro (#0C0D11) */
 .primary {
-  background-color: var(--color-primary, #A3E635);
+  background-color: var(--color-primary, #CCEC7B);
   color: #0C0D11;
   border: none;
-  box-shadow: 2px 2px 0px 0px #0C0D11, 3px 3px 0px 0px #8ce01b;
+  box-shadow: 2px 2px 0px 0px #0C0D11, 3px 3px 0px 0px #B8DE5A;
 }
 
 @media (hover: hover) {
   .primary:hover {
-    background-color: var(--color-primary-hover, #8ce01b);
+    background-color: var(--color-primary-hover, #B8DE5A);
     transform: translate(-1px, -1px);
-    box-shadow: 3px 3px 0px 0px #0C0D11, 5px 5px 0px 0px #8ce01b;
+    box-shadow: 3px 3px 0px 0px #0C0D11, 5px 5px 0px 0px #B8DE5A;
   }
 }
 
 .primary:active {
   transform: translate(1px, 1px);
-  box-shadow: 1px 1px 0px 0px #0C0D11, 2px 2px 0px 0px #8ce01b;
+  box-shadow: 1px 1px 0px 0px #0C0D11, 2px 2px 0px 0px #B8DE5A;
 }
 
 /* 2. Secondary: Fundo transparente / escuro com borda */
@@ -69,7 +69,7 @@
 
 @media (hover: hover) {
   .link:hover {
-    color: var(--color-primary, #A3E635);
+    color: var(--color-primary, #CCEC7B);
     transform: translateX(2px);
   }
 }
