@@ -16,13 +16,14 @@ export default function PageTransition({ children }) {
       return;
     }
 
-    // Next.js's own scroll-to-top on navigation fires instantly and isn't
-    // synced with the page-fade transition, so from a scrolled position
-    // (e.g. the footer, which looks identical on every page) it reads as a
-    // jarring, disconnected jump instead of "we went to a new page". Take
-    // over the scroll ourselves so it happens smoothly, together with the
-    // fade, instead of before it.
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Next.js's own scroll-to-top on navigation isn't synced with the
+    // page-fade transition, so from a scrolled position (e.g. the footer,
+    // which looks identical on every page) it fires at an unpredictable
+    // moment and reads as a disconnected jump instead of "we went to a new
+    // page". Take over the scroll ourselves: snap to top instantly so the
+    // fade is the only visible motion, with the new page already starting
+    // from the top underneath it.
+    window.scrollTo({ top: 0, behavior: 'instant' });
   }, [pathname]);
 
   return (
