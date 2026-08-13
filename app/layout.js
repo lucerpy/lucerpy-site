@@ -3,7 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/originkit/footer-02";
 import PageTransition from "@/components/PageTransition";
-import { LogoVariantProvider } from "@/components/Logo/LogoVariantContext";
+import { LogoRevealProvider } from "@/components/Logo/LogoRevealContext";
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -96,11 +96,11 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body suppressHydrationWarning>
-        <LogoVariantProvider>
+        <LogoRevealProvider>
           <Navbar />
           <main><PageTransition>{children}</PageTransition></main>
           <Footer />
-        </LogoVariantProvider>
+        </LogoRevealProvider>
       </body>
     </html>
   );

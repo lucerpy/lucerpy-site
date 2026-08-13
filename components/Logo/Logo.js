@@ -1,70 +1,31 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
-import { useEffect, useRef, useState } from 'react';
 import styles from './Logo.module.css';
-import { useLogoVariant, LOGO_VARIANTS } from './LogoVariantContext';
+import { useLogoReveal } from './LogoRevealContext';
 
-// Builds the reveal path from plain white up to whichever variant this page
-// load landed on — so the dot (and, on the lime pick, the whole mark)
-// visibly turns green instead of just appearing already-colored.
-const REVEAL_SEQUENCE = {
-  [LOGO_VARIANTS.white]: [LOGO_VARIANTS.white],
-  [LOGO_VARIANTS.whiteDot]: [LOGO_VARIANTS.white, LOGO_VARIANTS.whiteDot],
-  [LOGO_VARIANTS.lime]: [
-    LOGO_VARIANTS.white,
-    LOGO_VARIANTS.whiteDot,
-    LOGO_VARIANTS.lime,
-  ],
-};
-
-const STEP_MS = 480;
+const WHITE_DOT = '/logo/lucerpy-wordmark-white-lime-dot-transparent.png';
+const LIME = '/logo/lucerpy-wordmark-lime-transparent.png';
 
 export default function Logo({ className }) {
-  const { variant, ready } = useLogoVariant();
-  const [step, setStep] = useState(0);
-  const hasPlayed = useRef(false);
-
-  useEffect(() => {
-    if (!ready || hasPlayed.current) return;
-    hasPlayed.current = true;
-
-    const sequence = REVEAL_SEQUENCE[variant] ?? [variant];
-
-    const prefersReducedMotion = window.matchMedia(
-      '(prefers-reduced-motion: reduce)'
-    ).matches;
-    if (prefersReducedMotion) {
-      setStep(sequence.length - 1);
-      return;
-    }
-
-    const timers = sequence
-      .slice(1)
-      .map((_, i) => setTimeout(() => setStep(i + 1), (i + 1) * STEP_MS));
-
-    return () => timers.forEach(clearTimeout);
-  }, [ready, variant]);
-
-  const sequence = REVEAL_SEQUENCE[variant] ?? [variant];
-  const activeSrc = sequence[Math.min(step, sequence.length - 1)];
+  const { wiped, bounced } = useLogoReveal();
 
   return (
     <Link href="/" className={className ? `${styles.logo} ${className}` : styles.logo}>
       <span className={styles.logoStack}>
-        {sequence.map((src) => (
-          <Image
-            key={src}
-            src={src}
-            alt="Lucerpy"
-            width={151}
-            height={44}
-            priority
-            className={styles.logoImage}
-            style={{ opacity: src === activeSrc ? 1 : 0 }}
-          />
-        ))}
+        {/* Resting state underneath: white letters, lime dot */}
+        <img src={WHITE_DOT} alt="Lucerpy" className={styles.logoImage} loading="eager" />
+        {/* Full-lime layer on top, wiped away left-to-right; clipped short of
+            the dot so the wipe never touches it. */}
+        <img
+          src={LIME}
+          alt=""
+          aria-hidden="true"
+          loading="eager"
+          className={`${styles.logoImage} ${styles.logoWipe} ${wiped ? styles.logoWipeDone : ''}`}
+        />
+        {/* Dot bounce flourish, positioned over the real dot */}
+        <span className={`${styles.logoDot} ${bounced ? styles.logoDotBounce : ''}`} />
       </span>
     </Link>
   );
