@@ -8,10 +8,14 @@ const WHITE_DOT = '/logo/lucerpy-wordmark-white-lime-dot-transparent.png';
 const LIME = '/logo/lucerpy-wordmark-lime-transparent.png';
 
 export default function Logo({ className }) {
-  const { wiped, bounced } = useLogoReveal();
+  const { wiped, bounced, bounceKey, replay } = useLogoReveal();
 
   return (
-    <Link href="/" className={className ? `${styles.logo} ${className}` : styles.logo}>
+    <Link
+      href="/"
+      className={className ? `${styles.logo} ${className}` : styles.logo}
+      onClick={replay}
+    >
       <span className={styles.logoStack}>
         {/* Resting state underneath: white letters, lime dot */}
         <img src={WHITE_DOT} alt="Lucerpy" className={styles.logoImage} loading="eager" />
@@ -24,8 +28,13 @@ export default function Logo({ className }) {
           loading="eager"
           className={`${styles.logoImage} ${styles.logoWipe} ${wiped ? styles.logoWipeDone : ''}`}
         />
-        {/* Dot bounce flourish, positioned over the real dot */}
-        <span className={`${styles.logoDot} ${bounced ? styles.logoDotBounce : ''}`} />
+        {/* Dot bounce flourish, positioned over the real dot. Keyed on
+            bounceKey so each replay remounts it, restarting the CSS
+            animation instead of no-opping on an already-applied class. */}
+        <span
+          key={bounceKey}
+          className={`${styles.logoDot} ${bounced ? styles.logoDotBounce : ''}`}
+        />
       </span>
     </Link>
   );

@@ -51,7 +51,7 @@
 }
 
 .logoDotBounce {
-  animation: logoDotBounce 750ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  animation: logoDotBounce 450ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
 @keyframes logoDotBounce {
