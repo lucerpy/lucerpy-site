@@ -1,7 +1,6 @@
 import styles from './page.module.css';
 import Button from '@/components/Button/Button';
 import Card from '@/components/Card/Card';
-import Hero14 from '@/components/originkit/hero-14';
 
 export const metadata = {
   title: 'Serviços | Lucerpy',
@@ -19,7 +18,19 @@ export const metadata = {
 export default function Servicos() {
   return (
     <>
-      <Hero14 />
+      <section className={`${styles.hero} container`}>
+        <div className={`${styles.tagline} fade-in fade-in-1`}>O QUE FAZEMOS</div>
+        <h1 className={`${styles.heroTitle} fade-in fade-in-2`}>
+          Soluções digitais que entregam <span className="text-primary">resultado</span>
+        </h1>
+        <p className={`${styles.heroDescription} fade-in fade-in-3`}>
+          UX/UI, sites, landing pages, integrações e automações construídos com estratégia e cuidado para o seu negócio.
+        </p>
+        <div className={`${styles.heroButtons} fade-in fade-in-4`}>
+          <Button href="#contato" variant="primary">Fale conosco</Button>
+          <Button href="/projetos" variant="secondary">Ver projetos</Button>
+        </div>
+      </section>
 
       <section className="section-padding">
         <div className="container">

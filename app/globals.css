@@ -126,8 +126,8 @@
 
 ::view-transition-old(.page-fade),
 ::view-transition-new(.page-fade) {
-  animation-duration: 260ms;
-  animation-timing-function: ease;
+  animation-duration: 450ms;
+  animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
 ::view-transition-old(.page-fade) {
@@ -136,27 +136,28 @@
 
 ::view-transition-new(.page-fade) {
   animation-name: page-fade-in;
+  animation-delay: 120ms;
 }
 
 @keyframes page-fade-out {
   from {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
   to {
     opacity: 0;
-    transform: translateY(-8px);
+    transform: translateY(-24px) scale(0.98);
   }
 }
 
 @keyframes page-fade-in {
   from {
     opacity: 0;
-    transform: translateY(8px);
+    transform: translateY(24px) scale(0.98);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 }
 
