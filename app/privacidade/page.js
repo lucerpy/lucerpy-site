@@ -1,7 +1,7 @@
 import styles from './page.module.css';
 
 export const metadata = {
-  title: 'Política de Privacidade | Lucerpy',
+  title: 'Política de Privacidade',
   description: 'Política de privacidade e proteção de dados da Lucerpy Digital. Entenda como coletamos, usamos e protegemos suas informações.',
   alternates: {
     canonical: 'https://lucerpy.com.br/privacidade',

@@ -2,7 +2,7 @@ import styles from './page.module.css';
 import ContactForm from './ContactForm';
 
 export const metadata = {
-  title: 'Contato | Lucerpy',
+  title: 'Contato',
   description: 'Fale com a Lucerpy sobre o seu projeto. Preencha o formulário ou entre em contato direto por e-mail e redes sociais.',
   alternates: {
     canonical: 'https://lucerpy.com.br/contato',

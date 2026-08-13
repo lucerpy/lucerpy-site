@@ -3,7 +3,7 @@ import Button from '@/components/Button/Button';
 import Card from '@/components/Card/Card';
 
 export const metadata = {
-  title: 'Serviços | Lucerpy',
+  title: 'Serviços',
   description: 'Conheça nossas soluções digitais: UX/UI, sites, landing pages, integrações e automações.',
   alternates: {
     canonical: 'https://lucerpy.com.br/servicos',

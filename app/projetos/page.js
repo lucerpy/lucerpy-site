@@ -3,7 +3,7 @@ import Button from '@/components/Button/Button';
 import ProjectsSection from './ProjectsSection';
 
 export const metadata = {
-  title: 'Projetos | Lucerpy',
+  title: 'Projetos',
   description: 'Cases que mostram o que acontece quando estratégia e design se encontram de verdade.',
   alternates: {
     canonical: 'https://lucerpy.com.br/projetos',

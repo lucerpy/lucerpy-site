@@ -4,7 +4,7 @@ import BlogPostsSection from './BlogPostsSection';
 import { getSortedPostsData } from '@/lib/blog';
 
 export const metadata = {
-  title: 'Blog | Lucerpy',
+  title: 'Blog',
   description: 'Conteúdo que realmente agrega: design, tecnologia e estratégia digital.',
   alternates: {
     canonical: 'https://lucerpy.com.br/blog',

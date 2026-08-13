@@ -14,7 +14,7 @@ export async function generateMetadata({ params }) {
   const postUrl = `https://lucerpy.com.br/blog/${slug}`;
 
   return {
-    title: `${postData.title} | Lucerpy Blog`,
+    title: postData.title,
     description: postData.description,
     alternates: {
       canonical: postUrl,

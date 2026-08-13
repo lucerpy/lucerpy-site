@@ -4,7 +4,7 @@ import Card from '@/components/Card/Card';
 import Image from 'next/image';
 
 export const metadata = {
-  title: 'Quem Somos | Lucerpy',
+  title: 'Quem Somos',
   description: 'Uma equipe movida por resultados reais. Conheça a Lucerpy e nossos valores.',
   alternates: {
     canonical: 'https://lucerpy.com.br/quem-somos',

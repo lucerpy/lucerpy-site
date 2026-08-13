@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 export const metadata = {
-  title: 'Case Cavent Engenharia | Lucerpy',
+  title: 'Case Cavent Engenharia',
   description: 'Redesign completo focado em conversão de leads B2B para a Cavent Engenharia.',
   alternates: {
     canonical: 'https://lucerpy.com.br/projetos/cavent-engenharia',
