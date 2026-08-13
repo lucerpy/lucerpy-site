@@ -11,7 +11,7 @@ export function Section21Footer() {
     <section
       id="contato"
       aria-label="Rodapé Lucerpy"
-      className="relative isolate flex min-h-svh w-full flex-col items-center justify-end overflow-hidden bg-[var(--color-bg)] pt-16 ipad:pt-24 desktop-sm:pt-32"
+      className="relative isolate flex w-full flex-col items-center overflow-hidden bg-[var(--color-bg)] pt-16 ipad:pt-24 desktop-sm:pt-32"
     >
       <div className="relative z-10 w-full">
         <Footer />

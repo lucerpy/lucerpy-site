@@ -56,14 +56,14 @@ export function Footer() {
   return (
     <footer
       aria-label="Lucerpy"
-      className="relative isolate mx-auto w-full min-h-[778px] overflow-hidden bg-[var(--color-bg-light)]"
+      className="relative isolate mx-auto w-full overflow-hidden bg-[var(--color-bg-light)]"
     >
       {/*
         Mobile (Figma 2168:524): stacked brand → 2-col links (Legal wraps)
         iPad   (Figma 2168:264): stacked brand → 3-col links
         Desktop (Figma 2168:5):  brand | links side-by-side
       */}
-      <div className="relative z-10 flex flex-col gap-8 px-6 pt-10 pb-[300px] ipad:gap-12 ipad:px-12 ipad:pt-12 ipad:pb-[320px] desktop-sm:flex-row desktop-sm:items-stretch desktop-sm:justify-between desktop-sm:gap-0 desktop-sm:px-16 desktop-sm:pt-[72px] desktop-sm:pb-[300px]">
+      <div className="relative z-10 flex flex-col gap-8 px-6 pt-10 pb-[210px] ipad:gap-12 ipad:px-12 ipad:pt-12 ipad:pb-[220px] desktop-sm:flex-row desktop-sm:items-stretch desktop-sm:justify-between desktop-sm:gap-0 desktop-sm:px-16 desktop-sm:pt-[72px] desktop-sm:pb-[210px]">
         {/* Brand */}
         <div className="flex w-full flex-col gap-6 ipad:gap-8 desktop-sm:w-[220px] desktop-sm:shrink-0 desktop-sm:justify-between desktop-sm:gap-0">
           <div className="flex flex-col gap-2 ipad:gap-4">
@@ -161,7 +161,7 @@ export function Footer() {
       {/* Tetris board — decorative stack along the bottom */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-[268px] overflow-hidden"
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-[200px] overflow-hidden"
       >
         <Tetris
           boardColor="#16181F"
