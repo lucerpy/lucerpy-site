@@ -1,7 +1,9 @@
 .logo {
-  font-family: var(--font-heading);
-  font-size: 1.75rem;
-  font-weight: 700;
-  color: var(--color-text);
-  letter-spacing: -0.03em;
+  display: inline-flex;
+  align-items: center;
+}
+
+.logoImage {
+  height: 32px;
+  width: auto;
 }
