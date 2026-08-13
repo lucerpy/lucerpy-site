@@ -1,0 +1,40 @@
+.button {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: #25d366;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+@media (min-width: 768px) {
+  .button {
+    right: 32px;
+    bottom: 32px;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .button:hover {
+    transform: scale(1.08);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+  }
+}
+
+.icon {
+  width: 28px;
+  height: 28px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    transition: none;
+  }
+}
