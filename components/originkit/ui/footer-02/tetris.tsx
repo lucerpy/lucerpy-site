@@ -172,6 +172,9 @@ function __OriginkitBase_Tetris(props: TetrisProps) {
     let raf = 0;
     let last = 0;
     let dropAcc = 0;
+    // Off-screen for most of a page visit (it's the footer): don't spend a
+    // 2D redraw of the whole grid every frame while nobody can see it.
+    let isVisible = false;
     let dpr = 1;
     let cols = 0;
     let rows = 0;
@@ -567,6 +570,10 @@ function __OriginkitBase_Tetris(props: TetrisProps) {
 
     function loop(time: number) {
       if (!alive) return;
+      if (!isVisible) {
+        raf = 0;
+        return;
+      }
       const dt = last ? Math.min(time - last, 200) : 0;
       last = time;
 
@@ -624,10 +631,27 @@ function __OriginkitBase_Tetris(props: TetrisProps) {
     });
     ro.observe(canvas);
 
-    raf = requestAnimationFrame(loop);
+    // Pause the loop entirely while the footer is off-screen, resume (with
+    // a fresh `last` so dt doesn't jump) once it's back within a screen or
+    // so of the viewport.
+    const visibilityObserver = new IntersectionObserver(
+      ([entry]) => {
+        const nowVisible = entry.isIntersecting;
+        if (nowVisible && !isVisible) {
+          isVisible = true;
+          last = 0;
+          if (!raf) raf = requestAnimationFrame(loop);
+        } else if (!nowVisible) {
+          isVisible = false;
+        }
+      },
+      { rootMargin: "200px 0px" }
+    );
+    visibilityObserver.observe(canvas);
 
     return () => {
       alive = false;
+      visibilityObserver.disconnect();
       cancelAnimationFrame(raf);
       ro.disconnect();
     };

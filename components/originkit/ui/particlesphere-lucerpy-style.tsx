@@ -484,6 +484,11 @@ function __OriginkitBase_ParticleSphereRefactor(__props: ParticleSphereRefactorP
         let lastMouseY = 0
         let lastDragTime = 0
         let animationFrameId: number | null = null
+        // The sphere sits well below the fold; without this, its 10k-particle
+        // loop and WebGL render keep running at 60fps for the entire time
+        // the page is open, off-screen or not, competing with scroll for the
+        // main thread. Gate the loop on actual viewport visibility instead.
+        let isVisible = false
 
         // Delta time tracking for frame-rate independent animation
         let lastFrameTime = performance.now()
@@ -799,7 +804,7 @@ function __OriginkitBase_ParticleSphereRefactor(__props: ParticleSphereRefactorP
                 hasLerpDelta ||
                 hasCursorInteraction
 
-            if (needsContinue) {
+            if (needsContinue && isVisible) {
                 animationFrameId = requestAnimationFrame(animate)
                 animationFrameRef.current = animationFrameId
             } else {
@@ -826,6 +831,19 @@ function __OriginkitBase_ParticleSphereRefactor(__props: ParticleSphereRefactorP
         // Always start animation to ensure component is visible and interactive
         // In canvas mode, rotation will be controlled by preview state
         startAnimation()
+
+        // Pauses the whole loop while the sphere is off-screen (see isVisible
+        // above) and resumes it once it's back within about a screen's worth
+        // of the viewport, so idle scrolling elsewhere on the page doesn't
+        // pay for a render this section isn't showing.
+        const visibilityObserver = new IntersectionObserver(
+            ([entry]) => {
+                isVisible = entry.isIntersecting
+                if (isVisible) startAnimation()
+            },
+            { rootMargin: "300px 0px" }
+        )
+        visibilityObserver.observe(container)
 
         // Mouse interaction handlers (only if drag is enabled)
         const handleMouseDown = (event: MouseEvent) => {
@@ -1380,6 +1398,7 @@ function __OriginkitBase_ParticleSphereRefactor(__props: ParticleSphereRefactorP
             // Cleanup for canvas mode
             return () => {
                 cancelAnimationFrame(rafId)
+                visibilityObserver.disconnect()
                 if (animationFrameId !== null) {
                     cancelAnimationFrame(animationFrameId)
                 }
@@ -1446,6 +1465,7 @@ function __OriginkitBase_ParticleSphereRefactor(__props: ParticleSphereRefactorP
         // Cleanup for preview/live mode
         return () => {
             resizeObserver.disconnect()
+            visibilityObserver.disconnect()
             window.removeEventListener("resize", handleResize)
             if (animationFrameId !== null) {
                 cancelAnimationFrame(animationFrameId)
