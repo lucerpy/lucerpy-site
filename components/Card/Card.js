@@ -2,7 +2,7 @@ import styles from './Card.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
 
-export default function Card({ 
+export default function Card({
   type = 'service', // 'service' | 'project' | 'post'
   number,
   tag,
@@ -10,13 +10,18 @@ export default function Card({
   description,
   image,
   imagePlaceholder,
-  href = '#',
+  href,
   metrics
 }) {
   const isService = type === 'service';
+  // Cards without a real destination (service cards, concept projects with
+  // no case page) render as a plain div — a card that looks clickable but
+  // leads to "#" is a false affordance, not a real link.
+  const Wrapper = href ? Link : 'div';
+  const wrapperProps = href ? { href } : {};
 
   return (
-    <Link href={href} className={`${styles.card} ${styles[type]}`}>
+    <Wrapper {...wrapperProps} className={`${styles.card} ${styles[type]}`}>
       {!isService && (
         <div className={styles.imageWrapper}>
            {image ? (
@@ -51,6 +56,6 @@ export default function Card({
           </div>
         )}
       </div>
-    </Link>
+    </Wrapper>
   );
 }

@@ -13,46 +13,49 @@ const FILTERS = [
   { label: 'SaaS', tag: 'SAAS' },
 ];
 
+// Exercícios autorais — não têm cliente real por trás nem case a mostrar,
+// por isso levam "CONCEITO" na tag e não abrem link nenhum (Card.js só
+// renderiza como link quando recebe href de verdade).
 const PROJECTS = [
   {
-    tag: 'LANDING PAGE',
+    tag: 'CONCEITO · LANDING PAGE',
     title: 'Lançamento imobiliário',
-    description: 'Alta conversão para lançamento residencial com integração CRM e automação de leads.',
+    description: 'Exercício autoral: alta conversão para lançamento residencial com integração CRM e automação de leads.',
     image: '/cases/imobiliario.jpg',
     imagePlaceholder: 'linear-gradient(45deg, #2e1065, #4c1d95)',
   },
   {
-    tag: 'E-COMMERCE',
+    tag: 'CONCEITO · E-COMMERCE',
     title: 'Loja Streetwear',
-    description: 'E-commerce completo com integrações de pagamento e logística automatizada.',
+    description: 'Exercício autoral: e-commerce completo com integrações de pagamento e logística automatizada.',
     image: '/cases/streetwear.jpg',
     imagePlaceholder: 'linear-gradient(45deg, #064e3b, #047857)',
   },
   {
-    tag: 'INSTITUCIONAL',
+    tag: 'CONCEITO · INSTITUCIONAL',
     title: 'Escritório de Advocacia',
-    description: 'Presença digital sóbria e confiável para área jurídica, com foco em autoridade.',
+    description: 'Exercício autoral: presença digital sóbria e confiável para área jurídica, com foco em autoridade.',
     image: '/cases/advocacia.jpg',
     imagePlaceholder: 'linear-gradient(45deg, #78350f, #451a03)',
   },
   {
-    tag: 'APP',
+    tag: 'CONCEITO · APP',
     title: 'Clínica de Estética',
-    description: 'Interface mobile-first para agendamento e gestão de clientes com notificações automáticas.',
+    description: 'Exercício autoral: interface mobile-first para agendamento e gestão de clientes com notificações automáticas.',
     image: '/cases/estetica.jpg',
     imagePlaceholder: 'linear-gradient(45deg, #1e3a8a, #172554)',
   },
   {
-    tag: 'SAAS',
+    tag: 'CONCEITO · SAAS',
     title: 'SaaS B2B',
-    description: 'Landing page de alta performance para produto de software com trial gratuito e onboarding.',
+    description: 'Exercício autoral: landing page de alta performance para produto de software com trial gratuito e onboarding.',
     image: '/cases/saas.jpg',
     imagePlaceholder: 'linear-gradient(45deg, #4c1d95, #2e1065)',
   },
   {
-    tag: 'INSTITUCIONAL',
+    tag: 'CONCEITO · INSTITUCIONAL',
     title: 'Consultoria Financeira',
-    description: 'Site institucional com portal do cliente e integração com sistema de gestão patrimonial.',
+    description: 'Exercício autoral: site institucional com portal do cliente e integração com sistema de gestão patrimonial.',
     image: '/cases/saas.jpg',
     imagePlaceholder: 'linear-gradient(45deg, #14532d, #064e3b)',
   },

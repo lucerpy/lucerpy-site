@@ -128,19 +128,19 @@ export default function Home() {
                 { value: '3x', label: 'mais rápido' }
               ]}
             />
-            <Card 
+            <Card
               type="project"
-              tag="LANDING PAGE"
+              tag="CONCEITO · LANDING PAGE"
               title="Lançamento imobiliário"
-              description="Alta conversão para lançamento residencial com integração CRM e automação de leads."
+              description="Exercício autoral: alta conversão para lançamento residencial com integração CRM e automação de leads."
               image="/cases/imobiliario.jpg"
               imagePlaceholder="linear-gradient(45deg, #2e1065, #4c1d95)"
             />
-            <Card 
+            <Card
               type="project"
-              tag="E-COMMERCE"
+              tag="CONCEITO · E-COMMERCE"
               title="Loja Streetwear"
-              description="E-commerce completo com integrações de pagamento e logística automatizada."
+              description="Exercício autoral: e-commerce completo com integrações de pagamento e logística automatizada."
               image="/cases/streetwear.jpg"
               imagePlaceholder="linear-gradient(45deg, #064e3b, #047857)"
             />
@@ -162,20 +162,20 @@ export default function Home() {
             </div>
             <div className={styles.statsGrid}>
               <div className={styles.statItem}>
-                <span className={styles.statNumber}>50<small>+</small></span>
-                <span className={styles.statLabel}>Projetos entregues</span>
-              </div>
-              <div className={styles.statItem}>
-                <span className={styles.statNumber}>98<small>%</small></span>
-                <span className={styles.statLabel}>Clientes satisfeitos</span>
+                <span className={styles.statNumber}>+180<small>%</small></span>
+                <span className={styles.statLabel}>Leads qualificados (Cavent)</span>
               </div>
               <div className={styles.statItem}>
                 <span className={styles.statNumber}>3x</span>
-                <span className={styles.statLabel}>Média de ROI</span>
+                <span className={styles.statLabel}>Mais rápido que o site anterior</span>
               </div>
               <div className={styles.statItem}>
-                <span className={styles.statNumber}>24/7</span>
-                <span className={styles.statLabel}>Suporte dedicado</span>
+                <span className={styles.statNumber}>3</span>
+                <span className={styles.statLabel}>Meses até o resultado</span>
+              </div>
+              <div className={styles.statItem}>
+                <span className={styles.statNumber}>100<small>%</small></span>
+                <span className={styles.statLabel}>Dedicação em cada projeto</span>
               </div>
             </div>
           </div>

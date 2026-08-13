@@ -94,20 +94,20 @@ export default function Servicos() {
         <div className="container">
           <div className={styles.statsGrid}>
             <div className={styles.statItem}>
-              <span className={styles.statNumber}>50+</span>
-              <span className={styles.statLabel}>Projetos entregues</span>
+              <span className={styles.statNumber}>+180%</span>
+              <span className={styles.statLabel}>Leads qualificados (Cavent)</span>
             </div>
             <div className={styles.statItem}>
-              <span className={styles.statNumber}>98%</span>
-              <span className={styles.statLabel}>Clientes satisfeitos</span>
+              <span className={styles.statNumber}>3x</span>
+              <span className={styles.statLabel}>Mais rápido que o site anterior</span>
             </div>
             <div className={styles.statItem}>
               <span className={styles.statNumber}>3</span>
-              <span className={styles.statLabel}>Anos no mercado</span>
+              <span className={styles.statLabel}>Meses até o resultado</span>
             </div>
             <div className={styles.statItem}>
-              <span className={styles.statNumber}>12</span>
-              <span className={styles.statLabel}>Premiações</span>
+              <span className={styles.statNumber}>100%</span>
+              <span className={styles.statLabel}>Dedicação em cada projeto</span>
             </div>
           </div>
         </div>
