@@ -25,7 +25,7 @@ export default function Navbar() {
 
         <nav className={styles.nav}>
           {LINKS.map((link) => (
-            <Link key={link.href} href={link.href} className={styles.navLink}>
+            <Link key={link.href} href={link.href} scroll={false} className={styles.navLink}>
               {link.label}
             </Link>
           ))}
@@ -53,6 +53,7 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
+                scroll={false}
                 className={styles.mobileNavLink}
                 onClick={() => setIsOpen(false)}
               >

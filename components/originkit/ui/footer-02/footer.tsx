@@ -141,6 +141,7 @@ export function Footer() {
                       ) : (
                         <Link
                           href={link.href}
+                          scroll={false}
                           tabIndex={0}
                           aria-label={link.label}
                           className={linkClassName}
