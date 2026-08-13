@@ -94,7 +94,7 @@ export default function RootLayout({ children }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body>
+      <body suppressHydrationWarning>
         <Navbar />
         <main><PageTransition>{children}</PageTransition></main>
         <Footer />
