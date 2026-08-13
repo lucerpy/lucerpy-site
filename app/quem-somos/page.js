@@ -78,6 +78,7 @@ export default function QuemSomos() {
               </div>
               <h3 className={styles.teamName}>Lucas Pereira</h3>
               <p className={styles.teamRole}>Especialista em automação e dados</p>
+              <p className={styles.teamBio}>Formado pela PUCRS - Pontifícia Universidade Católica do Rio Grande do Sul.</p>
             </div>
           </div>
         </div>
