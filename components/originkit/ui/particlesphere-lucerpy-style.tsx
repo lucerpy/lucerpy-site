@@ -876,12 +876,37 @@ function __OriginkitBase_ParticleSphereRefactor(__props: ParticleSphereRefactorP
             document.addEventListener("mouseup", handleMouseUp)
         }
 
+        // Distinguishes "the user wants to scroll past this section" from
+        // "the user wants to play with the sphere" on the first ~10px of a
+        // touch gesture, so the section never traps a vertical scroll under
+        // a finger the way a plain preventDefault-on-touchmove would.
+        let touchGestureStartX = 0
+        let touchGestureStartY = 0
+        let touchIntent: "pending" | "scroll" | "interact" = "pending"
+        const TOUCH_INTENT_THRESHOLD = 10
+        const resolveTouchIntent = (touch: Touch) => {
+            if (touchIntent !== "pending") return touchIntent
+            const dx = touch.clientX - touchGestureStartX
+            const dy = touch.clientY - touchGestureStartY
+            if (
+                Math.abs(dx) < TOUCH_INTENT_THRESHOLD &&
+                Math.abs(dy) < TOUCH_INTENT_THRESHOLD
+            ) {
+                return "pending"
+            }
+            touchIntent = Math.abs(dy) > Math.abs(dx) ? "scroll" : "interact"
+            return touchIntent
+        }
+
         // Touch drag-to-rotate — mirrors handleMouseDown/Move/Up above, since
         // touch devices never fire mouse events for a finger drag.
         const handleTouchDragStart = (event: TouchEvent) => {
             if (!drag) return
             const touch = event.touches[0]
             if (!touch) return
+            touchGestureStartX = touch.clientX
+            touchGestureStartY = touch.clientY
+            touchIntent = "pending"
             isDragging = true
             velocity.x = 0
             velocity.y = 0
@@ -893,6 +918,7 @@ function __OriginkitBase_ParticleSphereRefactor(__props: ParticleSphereRefactorP
             const handleTouchDragMove = (moveEvent: TouchEvent) => {
                 const moveTouch = moveEvent.touches[0]
                 if (!moveTouch) return
+                if (resolveTouchIntent(moveTouch) === "scroll") return
                 const currentTime = performance.now()
                 const timeSinceLastMove = currentTime - lastDragTime
 
@@ -995,34 +1021,44 @@ function __OriginkitBase_ParticleSphereRefactor(__props: ParticleSphereRefactorP
 
         // Track touch position for particle repulsion
         const handleTouchMove = (event: TouchEvent) => {
-            event.preventDefault() // Prevent scrolling
-            const containerRect = container.getBoundingClientRect()
             const touch = event.touches[0]
-            if (touch) {
-                const touchXInContainer = touch.clientX - containerRect.left
-                const touchYInContainer = touch.clientY - containerRect.top
-                // Only track if touch is over the logical container area
-                if (
-                    touchXInContainer >= 0 &&
-                    touchXInContainer <= containerRect.width &&
-                    touchYInContainer >= 0 &&
-                    touchYInContainer <= containerRect.height
-                ) {
-                    // Convert container coordinates to canvas coordinates (add offset)
-                    mouseRef.current = {
-                        x: touchXInContainer + offsetX,
-                        y: touchYInContainer + offsetY,
-                    }
-                    // Start animation if not running (needed for cursor interaction to work)
-                    startAnimation()
-                } else {
-                    mouseRef.current = null
+            if (!touch) return
+
+            const intent = resolveTouchIntent(touch)
+            if (intent === "scroll") {
+                // Vertical swipe: let the page scroll, don't fight the gesture.
+                mouseRef.current = null
+                return
+            }
+            if (intent === "interact") {
+                event.preventDefault()
+            }
+
+            const containerRect = container.getBoundingClientRect()
+            const touchXInContainer = touch.clientX - containerRect.left
+            const touchYInContainer = touch.clientY - containerRect.top
+            // Only track if touch is over the logical container area
+            if (
+                touchXInContainer >= 0 &&
+                touchXInContainer <= containerRect.width &&
+                touchYInContainer >= 0 &&
+                touchYInContainer <= containerRect.height
+            ) {
+                // Convert container coordinates to canvas coordinates (add offset)
+                mouseRef.current = {
+                    x: touchXInContainer + offsetX,
+                    y: touchYInContainer + offsetY,
                 }
+                // Start animation if not running (needed for cursor interaction to work)
+                startAnimation()
+            } else {
+                mouseRef.current = null
             }
         }
 
         const handleTouchEnd = () => {
             mouseRef.current = null
+            touchIntent = "pending"
         }
 
         // Click scatter effect handler
@@ -1147,14 +1183,20 @@ function __OriginkitBase_ParticleSphereRefactor(__props: ParticleSphereRefactorP
         const handleTouchStart = (event: TouchEvent) => {
             if (!cursorConfig.enabled || !cursorConfig.clickForce) return
 
-            event.preventDefault()
+            const touch = event.touches[0]
+            if (!touch) return
+
+            // A tap alone never conflicts with scrolling (only a subsequent
+            // move can), so no preventDefault here — just seed the gesture
+            // so handleTouchMove can tell a scroll swipe from a sphere drag.
+            touchGestureStartX = touch.clientX
+            touchGestureStartY = touch.clientY
+            touchIntent = "pending"
 
             // Update matrix to ensure it's current
             particlesGroup.updateMatrixWorld(true)
 
             const containerRect = container.getBoundingClientRect()
-            const touch = event.touches[0]
-            if (!touch) return
 
             // Convert container coordinates to canvas coordinates (add offset)
             const touchX = touch.clientX - containerRect.left + offsetX
@@ -1275,7 +1317,7 @@ function __OriginkitBase_ParticleSphereRefactor(__props: ParticleSphereRefactorP
                 passive: false,
             })
             canvas.addEventListener("touchstart", handleTouchStart, {
-                passive: false,
+                passive: true,
             })
             canvas.addEventListener("touchend", handleTouchEnd)
             canvas.addEventListener("touchcancel", handleTouchEnd)
