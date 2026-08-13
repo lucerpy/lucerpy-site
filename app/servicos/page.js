@@ -103,7 +103,7 @@ export default function Servicos() {
             </div>
             <div className={styles.statItem}>
               <span className={styles.statNumber}>Limpo</span>
-              <span className={styles.statLabel}>Código enxuto em Next.js, fácil de manter</span>
+              <span className={styles.statLabel}>Código enxuto, organizado e fácil de evoluir</span>
             </div>
             <div className={styles.statItem}>
               <span className={styles.statNumber}>SEO</span>

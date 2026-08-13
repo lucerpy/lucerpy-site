@@ -19,7 +19,7 @@ const faqs = [
   },
   {
     question: "Por que escolher a Lucerpy em vez de plataformas como Wix ou WordPress?",
-    answer: "Desenvolvemos aplicações em Next.js com código limpo e moderno. Isso garante carregamento instantâneo (LCP baixo), segurança nativa, otimização SEO avançada e controle total sobre o design sem dependência de plugins pesados."
+    answer: "Desenvolvemos aplicações com tecnologia moderna e código limpo. Isso garante carregamento instantâneo, segurança nativa, otimização SEO avançada e controle total sobre o design sem dependência de plugins pesados."
   },
   {
     question: "Vocês realizam integrações com CRMs e sistemas de vendas?",
@@ -72,7 +72,7 @@ export default function Home() {
               type="service"
               number="02"
               title="Desenvolvimento Web"
-              description="Sites institucionais, landing pages e aplicações web ultra rápidas usando Next.js. Performance real e código limpo."
+              description="Sites institucionais, landing pages e aplicações web ultra rápidas. Performance real e código limpo."
             />
             <Card 
               type="service"
@@ -171,7 +171,7 @@ export default function Home() {
               </div>
               <div className={styles.statItem}>
                 <span className={styles.statNumber}>Limpo</span>
-                <span className={styles.statLabel}>Código enxuto em Next.js, fácil de manter</span>
+                <span className={styles.statLabel}>Código enxuto, organizado e fácil de evoluir</span>
               </div>
               <div className={styles.statItem}>
                 <span className={styles.statNumber}>SEO</span>
