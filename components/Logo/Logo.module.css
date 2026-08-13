@@ -6,15 +6,15 @@
 .logoStack {
   position: relative;
   display: inline-block;
-  width: 151px;
-  height: 44px;
+  width: 179px;
+  height: 52px;
 }
 
 .logoImage {
   position: absolute;
   inset: 0;
-  width: 151px;
-  height: 44px;
+  width: 179px;
+  height: 52px;
 }
 
 /* Covers everything left of the dot at start; clip-path eats it away from
@@ -31,15 +31,15 @@
 }
 
 /* Positioned exactly over the dot in the wordmark art (measured: center at
-   88.7%/61.5% of the 151x44 box). Pops in with a bounce once the wipe
+   88.7%/61.5% of the 179x52 box). Pops in with a bounce once the wipe
    finishes, landing on the same lime that's already sitting underneath it
    in the white-lime-dot base layer. */
 .logoDot {
   position: absolute;
-  left: 130px;
-  top: 24px;
-  width: 7px;
-  height: 7px;
+  left: 155px;
+  top: 28px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   background: var(--color-primary, #CCEC7B);
   opacity: 0;
