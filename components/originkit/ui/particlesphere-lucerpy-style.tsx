@@ -989,33 +989,32 @@ function __OriginkitBase_ParticleSphereRefactor(__props: ParticleSphereRefactorP
             container.addEventListener("mousemove", handleMouseMoveHover)
         }
 
-        // Track cursor position for particle repulsion
-        // Mouse coordinates need to be relative to the container center, then offset to canvas coordinates
+        // Track cursor position for particle repulsion. Checked against the
+        // full visual canvas (not just the logical container) so hovering
+        // near — or just past — the sphere's edge still repels particles
+        // drifting in the overflow zone. Safe to listen this broadly
+        // because it's global and passive: hovering never consumes a click,
+        // so it can't block anything else on the page the way the discrete
+        // click/touch handlers below (rightly) are now scoped not to.
         const handleMouseMoveCursor = (event: MouseEvent) => {
-            const containerRect = container.getBoundingClientRect()
-            const mouseXInContainer = event.clientX - containerRect.left
-            const mouseYInContainer = event.clientY - containerRect.top
-            // Only track if mouse is over the logical container area
+            const canvasRect = canvas.getBoundingClientRect()
+            const mouseXInCanvas = event.clientX - canvasRect.left
+            const mouseYInCanvas = event.clientY - canvasRect.top
             if (
-                mouseXInContainer >= 0 &&
-                mouseXInContainer <= containerRect.width &&
-                mouseYInContainer >= 0 &&
-                mouseYInContainer <= containerRect.height
+                mouseXInCanvas >= 0 &&
+                mouseXInCanvas <= canvasRect.width &&
+                mouseYInCanvas >= 0 &&
+                mouseYInCanvas <= canvasRect.height
             ) {
-                // Convert container coordinates to canvas coordinates (add offset)
                 mouseRef.current = {
-                    x: mouseXInContainer + offsetX,
-                    y: mouseYInContainer + offsetY,
+                    x: mouseXInCanvas,
+                    y: mouseYInCanvas,
                 }
                 // Start animation if not running (needed for cursor interaction to work)
                 startAnimation()
             } else {
                 mouseRef.current = null
             }
-        }
-
-        const handleMouseLeaveCursor = () => {
-            mouseRef.current = null
         }
 
         // Track touch position for particle repulsion
@@ -1293,8 +1292,7 @@ function __OriginkitBase_ParticleSphereRefactor(__props: ParticleSphereRefactorP
 
         // Only add cursor interaction event listeners if enabled
         if (cursorConfig.enabled) {
-            container.addEventListener("mousemove", handleMouseMoveCursor)
-            container.addEventListener("mouseleave", handleMouseLeaveCursor)
+            window.addEventListener("mousemove", handleMouseMoveCursor)
             container.addEventListener("click", handleClick)
             container.addEventListener("touchmove", handleTouchMove, {
                 passive: false,
@@ -1427,13 +1425,9 @@ function __OriginkitBase_ParticleSphereRefactor(__props: ParticleSphereRefactorP
                 }
                 // Remove cursor interaction event listeners if they were added
                 if (cursorConfig.enabled) {
-                    container.removeEventListener(
+                    window.removeEventListener(
                         "mousemove",
                         handleMouseMoveCursor
-                    )
-                    container.removeEventListener(
-                        "mouseleave",
-                        handleMouseLeaveCursor
                     )
                     container.removeEventListener("click", handleClick)
                     container.removeEventListener("touchmove", handleTouchMove)
@@ -1492,8 +1486,7 @@ function __OriginkitBase_ParticleSphereRefactor(__props: ParticleSphereRefactorP
             }
             // Remove cursor interaction event listeners if they were added
             if (cursorConfig.enabled) {
-                container.removeEventListener("mousemove", handleMouseMoveCursor)
-                container.removeEventListener("mouseleave", handleMouseLeaveCursor)
+                window.removeEventListener("mousemove", handleMouseMoveCursor)
                 container.removeEventListener("click", handleClick)
                 container.removeEventListener("touchmove", handleTouchMove)
                 container.removeEventListener("touchstart", handleTouchStart)
