@@ -64,13 +64,13 @@ export default function QuemSomos() {
               </div>
               <h3 className={styles.teamName}>Eduardo Serpa</h3>
               <p className={styles.teamRole}>Especialista em soluções web</p>
-              <p className={styles.teamBio}>Cinco anos de e-commerce com Shopify e desenvolvimento assistido por IA. Pós-graduado em Inteligência Artificial pela UFPR, certificado em &quot;Do Figma ao Framer com IA&quot;.</p>
+              <p className={styles.teamBio}>Cinco anos de e-commerce com Shopify, criando temas e interfaces sob medida com foco em UX/UI e conversão. Certificado em &quot;Do Figma ao Framer com IA&quot; e pós-graduado em Inteligência Artificial pela UFPR.</p>
               <ul className={styles.teamStack}>
-                <li>TypeScript</li>
-                <li>React</li>
-                <li>Node.js</li>
-                <li>Shopify</li>
+                <li>UI/UX</li>
                 <li>Figma</li>
+                <li>React</li>
+                <li>TypeScript</li>
+                <li>Shopify</li>
               </ul>
             </div>
             <div className={styles.teamCard}>
