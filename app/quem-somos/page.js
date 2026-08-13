@@ -64,7 +64,7 @@ export default function QuemSomos() {
               </div>
               <h3 className={styles.teamName}>Eduardo Serpa</h3>
               <p className={styles.teamRole}>Especialista em soluções web</p>
-              <p className={styles.teamBio}>Cinco anos de e-commerce com Shopify, criando temas e interfaces sob medida com foco em UX/UI e conversão. Certificado em &quot;Do Figma ao Framer com IA&quot; e pós-graduado em Inteligência Artificial pela UFPR.</p>
+              <p className={styles.teamBio}>Cinco anos de e-commerce com Shopify, criando temas e interfaces sob medida com foco em UX/UI e conversão. Já projetou painéis administrativos completos dentro do Shopify Admin, do wireframe à entrega.</p>
               <ul className={styles.teamStack}>
                 <li>UI/UX</li>
                 <li>Figma</li>
