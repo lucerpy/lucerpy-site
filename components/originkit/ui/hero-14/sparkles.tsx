@@ -32,7 +32,7 @@ const PARTICLES: [number, number, number][] = [
   [28.37, 34.52, 1.55], [30.66, 53.81, 1.55], [70.03, 45.95, 1.55], [57.92, 60.45, 1.55], [86.76, 43.3, 1.55],
 ];
 
-const COLORS = ["#E9FD81", "#DCFC36", "#FFFFFF"];
+const COLORS = ["#CCEC7B", "#B8DE5A", "#FFFFFF"];
 
 export default function Sparkles() {
   const reduce = useReducedMotion();

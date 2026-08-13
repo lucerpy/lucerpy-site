@@ -139,7 +139,7 @@ const NODES: Node[] = [
   },
   {
     label: "Automações",
-    color: "#b0e530",
+    color: "#CCEC7B",
     pill: { left: 249, top: 92, width: 125.75 },
     pillTablet: { left: 534, top: 156, width: 148.597 },
     pillDesktop: { left: 983, top: 130, width: 175 },
