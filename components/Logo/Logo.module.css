@@ -31,15 +31,17 @@
 }
 
 /* Positioned exactly over the dot in the wordmark art (measured: center at
-   88.7%/61.5% of the 179x52 box). Pops in with a bounce once the wipe
-   finishes, landing on the same lime that's already sitting underneath it
-   in the white-lime-dot base layer. */
+   88.7%/61.5% of the 179x52 box), but drawn a bit bigger than the art's own
+   dot so it reads as a deliberately larger full-stop once the bounce
+   settles. Pops in with a bounce once the wipe finishes, landing on the
+   same lime that's already sitting underneath it in the white-lime-dot
+   base layer. */
 .logoDot {
   position: absolute;
-  left: 155px;
-  top: 28px;
-  width: 8px;
-  height: 8px;
+  left: 153px;
+  top: 26px;
+  width: 11px;
+  height: 11px;
   border-radius: 50%;
   background: var(--color-primary, #CCEC7B);
   opacity: 0;
