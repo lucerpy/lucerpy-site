@@ -31,31 +31,58 @@ export default function QuemSomos() {
 
       <section className="section-padding">
         <div className="container">
-          <div className={styles.aboutGrid}>
-            <div className={styles.aboutImageContainer} style={{ position: 'relative', width: '100%', aspectRatio: '4/3', borderRadius: 'var(--radius-lg)', overflow: 'hidden' }}>
-              <Image 
-                src="/quem-somos-team.jpg" 
-                alt="Equipe Lucerpy Digital" 
-                fill 
-                sizes="(max-width: 992px) 100vw, 50vw" 
-                style={{ objectFit: 'cover' }} 
-              />
+          <div className={styles.aboutSolo}>
+            <div className={styles.sectionTag}>QUEM SOMOS</div>
+            <h2 className={styles.sectionTitle}>Uma equipe movida por resultados reais</h2>
+            <div className={styles.aboutText}>
+              <p>A Lucerpy nasceu da convicção de que o digital pode ser mais humano, estratégico e eficaz. Não acreditamos em fórmulas prontas.</p>
+              <p>Cada projeto começa com escuta ativa: entendemos o negócio, o público e os objetivos antes de criar qualquer pixel ou linha de código.</p>
+              <p>O resultado é um produto digital que não só parece bonito — mas que converte visitantes em clientes e ideias em receita concreta.</p>
             </div>
-            <div className={styles.aboutContent}>
-              <div className={styles.sectionTag}>QUEM SOMOS</div>
-              <h2 className={styles.sectionTitle}>Uma equipe movida por resultados reais</h2>
-              <div className={styles.aboutText}>
-                <p>A Lucerpy nasceu da convicção de que o digital pode ser mais humano, estratégico e eficaz. Não acreditamos em fórmulas prontas.</p>
-                <p>Cada projeto começa com escuta ativa: entendemos o negócio, o público e os objetivos antes de criar qualquer pixel ou linha de código.</p>
-                <p>O resultado é um produto digital que não só parece bonito — mas que converte visitantes em clientes e ideias em receita concreta.</p>
-              </div>
-              <Button href="/projetos" variant="primary">Ver nosso portfólio →</Button>
-            </div>
+            <Button href="/projetos" variant="primary">Ver nosso portfólio →</Button>
           </div>
         </div>
       </section>
 
       <section className="section-padding" style={{ backgroundColor: 'var(--color-bg-light)' }}>
+        <div className="container">
+          <div className={styles.sectionHeader}>
+            <div className={styles.sectionTag}>NOSSO TIME</div>
+            <h2 className={styles.sectionTitle}>Quem faz acontecer</h2>
+          </div>
+
+          <div className={styles.teamGrid}>
+            <div className={styles.teamCard}>
+              <div className={styles.teamPhotoWrap}>
+                <Image
+                  src="/team/eduardo-serpa.png"
+                  alt="Eduardo Serpa"
+                  width={320}
+                  height={320}
+                  className={styles.teamPhoto}
+                />
+              </div>
+              <h3 className={styles.teamName}>Eduardo Serpa</h3>
+              <p className={styles.teamRole}>Especialista em soluções web</p>
+            </div>
+            <div className={styles.teamCard}>
+              <div className={styles.teamPhotoWrap}>
+                <Image
+                  src="/team/lucas-pereira.png"
+                  alt="Lucas Pereira"
+                  width={320}
+                  height={320}
+                  className={styles.teamPhoto}
+                />
+              </div>
+              <h3 className={styles.teamName}>Lucas Pereira</h3>
+              <p className={styles.teamRole}>Especialista em automação e dados</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-padding">
         <div className="container">
           <div className={styles.sectionHeader}>
             <div className={styles.sectionTag}>O QUE NOS GUIA</div>
