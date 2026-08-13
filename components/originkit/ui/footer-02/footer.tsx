@@ -69,7 +69,7 @@ export function Footer() {
         iPad   (Figma 2168:264): stacked brand → 3-col links
         Desktop (Figma 2168:5):  brand | links side-by-side
       */}
-      <div className="relative z-10 flex flex-col gap-8 px-6 pt-10 pb-[210px] ipad:gap-12 ipad:px-12 ipad:pt-12 ipad:pb-[220px] desktop-sm:flex-row desktop-sm:items-stretch desktop-sm:justify-between desktop-sm:gap-0 desktop-sm:px-16 desktop-sm:pt-[72px] desktop-sm:pb-[210px]">
+      <div className="relative z-10 flex flex-col gap-8 px-6 pt-10 pb-[240px] ipad:gap-12 ipad:px-12 ipad:pt-12 ipad:pb-[250px] desktop-sm:flex-row desktop-sm:items-stretch desktop-sm:justify-between desktop-sm:gap-0 desktop-sm:px-16 desktop-sm:pt-[72px] desktop-sm:pb-[240px]">
         {/* Brand */}
         <div className="flex w-full flex-col gap-6 ipad:gap-8 desktop-sm:w-[220px] desktop-sm:shrink-0 desktop-sm:justify-between desktop-sm:gap-0">
           <div className="flex flex-col gap-2 ipad:gap-4">
