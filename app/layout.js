@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/originkit/footer-02";
 import PageTransition from "@/components/PageTransition";
+import WhatsAppButton from "@/components/WhatsAppButton/WhatsAppButton";
 import { LogoRevealProvider } from "@/components/Logo/LogoRevealContext";
 
 const outfit = Outfit({
@@ -72,7 +73,7 @@ const jsonLd = {
   "logo": "https://lucerpy.com.br/favicon.ico",
   "description": "Agência digital focada em UX/UI, desenvolvimento web de alta performance e automações para negócios.",
   "sameAs": [
-    "https://instagram.com/lucerpy",
+    "https://www.instagram.com/lucerpy.agencia/",
     "https://linkedin.com/company/lucerpy"
   ],
   "address": {
@@ -82,6 +83,7 @@ const jsonLd = {
   "contactPoint": {
     "@type": "ContactPoint",
     "email": "lucerpy@lucerpy.com.br",
+    "telephone": "+55-19-93629-6268",
     "contactType": "customer service"
   }
 };
@@ -100,6 +102,7 @@ export default function RootLayout({ children }) {
           <Navbar />
           <main><PageTransition>{children}</PageTransition></main>
           <Footer />
+          <WhatsAppButton />
         </LogoRevealProvider>
       </body>
     </html>

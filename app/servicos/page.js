@@ -27,7 +27,7 @@ export default function Servicos() {
           UX/UI, sites, landing pages, integrações e automações construídos com estratégia e cuidado para o seu negócio.
         </p>
         <div className={`${styles.heroButtons} fade-in fade-in-4`}>
-          <Button href="#contato" variant="primary">Fale conosco</Button>
+          <Button href="/contato" variant="primary">Fale conosco</Button>
           <Button href="/projetos" variant="secondary">Ver projetos</Button>
         </div>
       </section>
@@ -119,7 +119,7 @@ export default function Servicos() {
             <h2 className={styles.ctaTitle}>Pronto para começar?</h2>
             <p className={styles.ctaDescription}>Vamos conversar sobre o seu projeto e encontrar a melhor solução juntos.</p>
             <div className={styles.ctaButtons}>
-              <Button href="#contato" variant="secondary">Falar com a Lucerpy →</Button>
+              <Button href="/contato" variant="secondary">Falar com a Lucerpy →</Button>
             </div>
           </div>
         </div>

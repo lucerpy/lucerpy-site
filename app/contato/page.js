@@ -39,8 +39,13 @@ export default function Contato() {
               </div>
 
               <div className={styles.infoBlock}>
+                <span className={styles.infoLabel}>WhatsApp</span>
+                <a href="https://wa.me/5519936296268" target="_blank" rel="noopener noreferrer">+55 19 93629-6268</a>
+              </div>
+
+              <div className={styles.infoBlock}>
                 <span className={styles.infoLabel}>Redes sociais</span>
-                <a href="https://instagram.com/lucerpy" target="_blank" rel="noopener noreferrer">@lucerpy (Instagram)</a>
+                <a href="https://www.instagram.com/lucerpy.agencia/" target="_blank" rel="noopener noreferrer">@lucerpy.agencia (Instagram)</a>
                 <a href="https://linkedin.com/company/lucerpy" target="_blank" rel="noopener noreferrer">Lucerpy Digital (LinkedIn)</a>
               </div>
 

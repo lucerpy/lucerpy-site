@@ -52,7 +52,7 @@ export const Section27Hero = () => (
 
         <div className="fade-in fade-in-4 flex w-full max-w-[320px] flex-col items-center gap-4 ipad:max-w-none ipad:w-auto ipad:flex-row ipad:items-start">
           <Button
-            href="#contato"
+            href="/contato"
             variant="primary"
             className="w-full ipad:w-auto"
           >

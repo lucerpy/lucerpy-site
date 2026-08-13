@@ -23,9 +23,10 @@ const LINK_COLUMNS = [
   {
     title: "Contato",
     links: [
-      { label: "lucerpy@lucerpy.com.br", href: "mailto:lucerpy@lucerpy.com.br", external: true },
-      { label: "@lucerpy (Instagram)", href: "https://instagram.com/lucerpy", external: true },
-      { label: "Lucerpy Digital (LinkedIn)", href: "https://linkedin.com/company/lucerpy", external: true },
+      { label: "lucerpy@lucerpy.com.br", href: "mailto:lucerpy@lucerpy.com.br", external: true, icon: "envelope.svg" },
+      { label: "+55 19 93629-6268", href: "https://wa.me/5519936296268", external: true, icon: "whatsapp.svg" },
+      { label: "@lucerpy.agencia", href: "https://www.instagram.com/lucerpy.agencia/", external: true, icon: "instagram.svg" },
+      { label: "Lucerpy Digital", href: "https://linkedin.com/company/lucerpy", external: true, icon: "linkedin.svg" },
     ],
   },
   {
@@ -38,8 +39,13 @@ const LINK_COLUMNS = [
 
 const SOCIAL_LINKS = [
   {
+    label: "WhatsApp",
+    href: "https://wa.me/5519936296268",
+    icon: "whatsapp.svg",
+  },
+  {
     label: "Instagram",
-    href: "https://instagram.com/lucerpy",
+    href: "https://www.instagram.com/lucerpy.agencia/",
     icon: "instagram.svg",
   },
   {
@@ -109,7 +115,7 @@ export function Footer() {
         {/* Link columns */}
         <nav
           aria-label="Rodapé"
-          className="grid w-full grid-cols-2 gap-x-8 gap-y-8 ipad:grid-cols-3 ipad:gap-8 desktop-sm:flex desktop-sm:w-[541px] desktop-sm:shrink-0 desktop-sm:gap-14"
+          className="grid w-full grid-cols-2 gap-x-8 gap-y-8 ipad:grid-cols-3 ipad:gap-8 desktop-sm:flex desktop-sm:w-[680px] desktop-sm:shrink-0 desktop-sm:gap-14"
         >
           {LINK_COLUMNS.map((column) => (
             <div
@@ -122,8 +128,26 @@ export function Footer() {
               <ul className="flex flex-col gap-4">
                 {column.links.map((link) => {
                   const isExternal = "external" in link && link.external;
+                  const icon = "icon" in link ? link.icon : undefined;
                   const linkClassName =
-                    "relative inline-block max-w-full break-words font-sans text-[16px] leading-normal text-white/80 touch-manipulation transition-opacity duration-200 ease before:absolute before:-inset-y-2 before:-inset-x-1 before:content-[''] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white desktop-sm:text-[14px] [-webkit-tap-highlight-color:transparent] [@media(hover:hover)_and_(pointer:fine)]:hover:text-white";
+                    "relative inline-flex max-w-full items-start gap-2 break-words font-sans text-[16px] leading-normal text-white/80 touch-manipulation transition-opacity duration-200 ease before:absolute before:-inset-y-2 before:-inset-x-1 before:content-[''] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white desktop-sm:text-[14px] [-webkit-tap-highlight-color:transparent] [@media(hover:hover)_and_(pointer:fine)]:hover:text-white";
+
+                  const content = (
+                    <>
+                      {icon && (
+                        <img
+                          src={asset(icon)}
+                          alt=""
+                          width={16}
+                          height={16}
+                          loading="lazy"
+                          className="mt-[3px] size-4 shrink-0 opacity-80"
+                          aria-hidden="true"
+                        />
+                      )}
+                      <span className="desktop-sm:whitespace-nowrap">{link.label}</span>
+                    </>
+                  );
 
                   return (
                     <li key={link.label}>
@@ -136,7 +160,7 @@ export function Footer() {
                           aria-label={link.label}
                           className={linkClassName}
                         >
-                          {link.label}
+                          {content}
                         </a>
                       ) : (
                         <Link
@@ -146,7 +170,7 @@ export function Footer() {
                           aria-label={link.label}
                           className={linkClassName}
                         >
-                          {link.label}
+                          {content}
                         </Link>
                       )}
                     </li>

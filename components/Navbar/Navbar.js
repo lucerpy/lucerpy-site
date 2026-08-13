@@ -32,7 +32,7 @@ export default function Navbar() {
         </nav>
 
         <div className={styles.actions}>
-          <Button href="#contato" variant="primary" className={styles.desktopCta}>Fale conosco</Button>
+          <Button href="/contato" variant="primary" className={styles.desktopCta}>Fale conosco</Button>
 
           <button
             type="button"
@@ -62,7 +62,7 @@ export default function Navbar() {
             ))}
           </nav>
           <Button
-            href="#contato"
+            href="/contato"
             variant="primary"
             className={styles.mobileCta}
             onClick={() => setIsOpen(false)}

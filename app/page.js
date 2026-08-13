@@ -95,7 +95,7 @@ export default function Home() {
               <p className={styles.orbText}>
                 Da primeira linha de código à automação mais avançada, unimos tecnologia de ponta e visão de negócio para transformar complexidade em resultado simples e mensurável.
               </p>
-              <Button href="#contato" variant="primary">Vamos conversar →</Button>
+              <Button href="/contato" variant="primary">Vamos conversar →</Button>
             </div>
             <div className={styles.orbVisual}>
               <ParticleSphere />
@@ -242,7 +242,7 @@ export default function Home() {
             <h2 className={styles.ctaTitle}>Pronto para o próximo<br/>nível?</h2>
             <p className={styles.ctaDescription}>Vamos conversar sobre o seu projeto. A primeira call é por nossa conta.</p>
             <div className={styles.ctaButtons}>
-              <Button href="#contato" variant="secondary">Falar com a Lucerpy →</Button>
+              <Button href="/contato" variant="secondary">Falar com a Lucerpy →</Button>
               <Button href="/projetos" variant="link" style={{ color: '#0C0D11' }}>Ver portfólio</Button>
             </div>
           </div>

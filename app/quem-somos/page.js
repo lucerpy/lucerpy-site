@@ -162,7 +162,7 @@ export default function QuemSomos() {
             Acreditamos que toda empresa, independente do tamanho, merece um digital bem feito — estratégico, bonito e que converte. Esse é o nosso propósito.
           </p>
           <div className={styles.heroButtons} style={{ justifyContent: 'center' }}>
-            <Button href="#contato" variant="primary">Falar com a equipe →</Button>
+            <Button href="/contato" variant="primary">Falar com a equipe →</Button>
             <Button href="/projetos" variant="secondary">Ver projetos</Button>
           </div>
         </div>
@@ -174,7 +174,7 @@ export default function QuemSomos() {
             <h2 className={styles.ctaTitle}>Vamos trabalhar juntos?</h2>
             <p className={styles.ctaDescription}>Conta pra gente o que você precisa. A primeira conversa é por nossa conta.</p>
             <div className={styles.ctaButtons}>
-              <Button href="#contato" variant="secondary">Agendar conversa →</Button>
+              <Button href="/contato" variant="secondary">Agendar conversa →</Button>
             </div>
           </div>
         </div>

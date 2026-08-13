@@ -27,7 +27,7 @@ export default function Projetos() {
           Cases que mostram o que acontece quando estratégia e design se encontram de verdade.
         </p>
         <div className={`${styles.heroButtons} fade-in fade-in-4`}>
-          <Button href="#contato" variant="primary">Quero um projeto assim →</Button>
+          <Button href="/contato" variant="primary">Quero um projeto assim →</Button>
         </div>
       </section>
 
@@ -43,7 +43,7 @@ export default function Projetos() {
             <h2 className={styles.ctaTitle}>Quer fazer parte desse<br/>portfólio?</h2>
             <p className={styles.ctaDescription}>Vamos criar algo incrível juntos.</p>
             <div className={styles.ctaButtons}>
-              <Button href="#contato" variant="secondary">Iniciar projeto →</Button>
+              <Button href="/contato" variant="secondary">Iniciar projeto →</Button>
             </div>
           </div>
         </div>

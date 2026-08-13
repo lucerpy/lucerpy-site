@@ -124,7 +124,7 @@ export default function CaventEngenharia() {
             <h2 className={styles.ctaTitle}>Quer resultados como este?</h2>
             <p className={styles.ctaDescription}>Vamos conversar sobre as metas da sua empresa e como o design pode te ajudar a alcançá-las.</p>
             <div className={styles.ctaButtons}>
-              <Button href="#contato" variant="secondary" style={{ borderColor: 'var(--color-bg)', color: 'var(--color-bg)' }}>Falar com a equipe →</Button>
+              <Button href="/contato" variant="secondary" style={{ borderColor: 'var(--color-bg)', color: 'var(--color-bg)' }}>Falar com a equipe →</Button>
             </div>
           </div>
         </div>
