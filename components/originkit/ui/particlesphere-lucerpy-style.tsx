@@ -328,6 +328,13 @@ function __OriginkitBase_ParticleSphereRefactor(__props: ParticleSphereRefactorP
         canvas.style.width = `${canvasWidth}px`
         canvas.style.height = `${canvasHeight}px`
         canvas.style.display = "block"
+        // The canvas is oversized so particles can visually fly past the
+        // sphere's edge, but the click/drag/hover target should stay
+        // exactly where the sphere looks like it is. Canvas never receives
+        // pointer events itself; container (the correctly-sized element
+        // underneath it) does instead, so hovering/clicking the overflow
+        // area falls through to whatever's actually there on the page.
+        canvas.style.pointerEvents = "none"
         container.appendChild(canvas)
         rendererRef.current = renderer
 
@@ -957,8 +964,8 @@ function __OriginkitBase_ParticleSphereRefactor(__props: ParticleSphereRefactorP
         }
 
         if (drag) {
-            canvas.addEventListener("mousedown", handleMouseDown)
-            canvas.addEventListener("touchstart", handleTouchDragStart, {
+            container.addEventListener("mousedown", handleMouseDown)
+            container.addEventListener("touchstart", handleTouchDragStart, {
                 passive: true,
             })
         }
@@ -979,7 +986,7 @@ function __OriginkitBase_ParticleSphereRefactor(__props: ParticleSphereRefactorP
         }
 
         if (stopOnHover) {
-            canvas.addEventListener("mousemove", handleMouseMoveHover)
+            container.addEventListener("mousemove", handleMouseMoveHover)
         }
 
         // Track cursor position for particle repulsion
@@ -1286,17 +1293,17 @@ function __OriginkitBase_ParticleSphereRefactor(__props: ParticleSphereRefactorP
 
         // Only add cursor interaction event listeners if enabled
         if (cursorConfig.enabled) {
-            canvas.addEventListener("mousemove", handleMouseMoveCursor)
-            canvas.addEventListener("mouseleave", handleMouseLeaveCursor)
-            canvas.addEventListener("click", handleClick)
-            canvas.addEventListener("touchmove", handleTouchMove, {
+            container.addEventListener("mousemove", handleMouseMoveCursor)
+            container.addEventListener("mouseleave", handleMouseLeaveCursor)
+            container.addEventListener("click", handleClick)
+            container.addEventListener("touchmove", handleTouchMove, {
                 passive: false,
             })
-            canvas.addEventListener("touchstart", handleTouchStart, {
+            container.addEventListener("touchstart", handleTouchStart, {
                 passive: false,
             })
-            canvas.addEventListener("touchend", handleTouchEnd)
-            canvas.addEventListener("touchcancel", handleTouchEnd)
+            container.addEventListener("touchend", handleTouchEnd)
+            container.addEventListener("touchcancel", handleTouchEnd)
         }
 
         // Resize handler
@@ -1406,33 +1413,33 @@ function __OriginkitBase_ParticleSphereRefactor(__props: ParticleSphereRefactorP
                     cancelAnimationFrame(animationFrameRef.current)
                 }
                 if (drag) {
-                    canvas.removeEventListener("mousedown", handleMouseDown)
-                    canvas.removeEventListener(
+                    container.removeEventListener("mousedown", handleMouseDown)
+                    container.removeEventListener(
                         "touchstart",
                         handleTouchDragStart
                     )
                 }
                 if (stopOnHover) {
-                    canvas.removeEventListener(
+                    container.removeEventListener(
                         "mousemove",
                         handleMouseMoveHover
                     )
                 }
                 // Remove cursor interaction event listeners if they were added
                 if (cursorConfig.enabled) {
-                    canvas.removeEventListener(
+                    container.removeEventListener(
                         "mousemove",
                         handleMouseMoveCursor
                     )
-                    canvas.removeEventListener(
+                    container.removeEventListener(
                         "mouseleave",
                         handleMouseLeaveCursor
                     )
-                    canvas.removeEventListener("click", handleClick)
-                    canvas.removeEventListener("touchmove", handleTouchMove)
-                    canvas.removeEventListener("touchstart", handleTouchStart)
-                    canvas.removeEventListener("touchend", handleTouchEnd)
-                    canvas.removeEventListener("touchcancel", handleTouchEnd)
+                    container.removeEventListener("click", handleClick)
+                    container.removeEventListener("touchmove", handleTouchMove)
+                    container.removeEventListener("touchstart", handleTouchStart)
+                    container.removeEventListener("touchend", handleTouchEnd)
+                    container.removeEventListener("touchcancel", handleTouchEnd)
                 }
                 if (rendererRef.current) {
                     rendererRef.current.dispose()
@@ -1474,24 +1481,24 @@ function __OriginkitBase_ParticleSphereRefactor(__props: ParticleSphereRefactorP
                 cancelAnimationFrame(animationFrameRef.current)
             }
             if (drag) {
-                canvas.removeEventListener("mousedown", handleMouseDown)
-                canvas.removeEventListener(
+                container.removeEventListener("mousedown", handleMouseDown)
+                container.removeEventListener(
                     "touchstart",
                     handleTouchDragStart
                 )
             }
             if (stopOnHover) {
-                canvas.removeEventListener("mousemove", handleMouseMoveHover)
+                container.removeEventListener("mousemove", handleMouseMoveHover)
             }
             // Remove cursor interaction event listeners if they were added
             if (cursorConfig.enabled) {
-                canvas.removeEventListener("mousemove", handleMouseMoveCursor)
-                canvas.removeEventListener("mouseleave", handleMouseLeaveCursor)
-                canvas.removeEventListener("click", handleClick)
-                canvas.removeEventListener("touchmove", handleTouchMove)
-                canvas.removeEventListener("touchstart", handleTouchStart)
-                canvas.removeEventListener("touchend", handleTouchEnd)
-                canvas.removeEventListener("touchcancel", handleTouchEnd)
+                container.removeEventListener("mousemove", handleMouseMoveCursor)
+                container.removeEventListener("mouseleave", handleMouseLeaveCursor)
+                container.removeEventListener("click", handleClick)
+                container.removeEventListener("touchmove", handleTouchMove)
+                container.removeEventListener("touchstart", handleTouchStart)
+                container.removeEventListener("touchend", handleTouchEnd)
+                container.removeEventListener("touchcancel", handleTouchEnd)
             }
             if (rendererRef.current) {
                 rendererRef.current.dispose()
