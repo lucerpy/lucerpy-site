@@ -181,7 +181,15 @@
 
 .ctaButtons {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 24px;
+  gap: 16px;
+}
+
+@media (min-width: 480px) {
+  .ctaButtons {
+    flex-direction: row;
+    gap: 24px;
+  }
 }
