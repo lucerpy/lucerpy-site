@@ -104,7 +104,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section-padding" style={{ backgroundColor: 'var(--color-bg-light)' }}>
+      <section className="section-padding" style={{ backgroundColor: 'var(--color-bg-light)', position: 'relative', zIndex: 1 }}>
         <div className="container">
           <div className={styles.sectionHeader}>
             <div>
