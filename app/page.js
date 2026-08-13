@@ -162,20 +162,20 @@ export default function Home() {
             </div>
             <div className={styles.statsGrid}>
               <div className={styles.statItem}>
-                <span className={styles.statNumber}>+180<small>%</small></span>
-                <span className={styles.statLabel}>Leads qualificados (Cavent)</span>
+                <span className={styles.statNumber}>Rápido</span>
+                <span className={styles.statLabel}>Performance otimizada, sem código inchado</span>
               </div>
               <div className={styles.statItem}>
-                <span className={styles.statNumber}>3x</span>
-                <span className={styles.statLabel}>Mais rápido que o site anterior</span>
+                <span className={styles.statNumber}>Atual</span>
+                <span className={styles.statLabel}>Design moderno, sem templates genéricos</span>
               </div>
               <div className={styles.statItem}>
-                <span className={styles.statNumber}>3</span>
-                <span className={styles.statLabel}>Meses até o resultado</span>
+                <span className={styles.statNumber}>Limpo</span>
+                <span className={styles.statLabel}>Código enxuto em Next.js, fácil de manter</span>
               </div>
               <div className={styles.statItem}>
-                <span className={styles.statNumber}>100<small>%</small></span>
-                <span className={styles.statLabel}>Dedicação em cada projeto</span>
+                <span className={styles.statNumber}>SEO</span>
+                <span className={styles.statLabel}>Otimizado desde a primeira linha de código</span>
               </div>
             </div>
           </div>
