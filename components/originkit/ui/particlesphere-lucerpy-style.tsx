@@ -876,33 +876,12 @@ function __OriginkitBase_ParticleSphereRefactor(__props: ParticleSphereRefactorP
             document.addEventListener("mouseup", handleMouseUp)
         }
 
-        // Touch: the sphere should always keep its idle motion going and
-        // only react once the finger holds roughly still for a beat — never
-        // to a passing scroll swipe. The first TOUCH_HOLD_DELAY_MS of every
-        // touch are a "pending" window: if the finger moves past the cancel
-        // threshold before that timer fires, nothing engages and the browser
-        // scrolls the page like normal; if it stays put, the hold "grabs"
-        // the sphere (drag-rotate + repel + a one-off scatter nudge) for the
-        // rest of the gesture. Releasing always hands control back to the
-        // idle animation.
-        const TOUCH_HOLD_DELAY_MS = 180
-        const TOUCH_MOVE_CANCEL_PX = 10
-        let touchStartX = 0
-        let touchStartY = 0
-        let touchHoldTimer: ReturnType<typeof setTimeout> | null = null
-        let touchHeld = false
-
-        const clearTouchHoldTimer = () => {
-            if (touchHoldTimer !== null) {
-                clearTimeout(touchHoldTimer)
-                touchHoldTimer = null
-            }
-        }
-
-        // Mirrors handleMouseDown's drag-to-rotate setup, since touch
-        // devices never fire mouse events for a finger drag.
-        const beginTouchDrag = (touch: Touch) => {
+        // Touch drag-to-rotate — mirrors handleMouseDown/Move/Up above, since
+        // touch devices never fire mouse events for a finger drag.
+        const handleTouchDragStart = (event: TouchEvent) => {
             if (!drag) return
+            const touch = event.touches[0]
+            if (!touch) return
             isDragging = true
             velocity.x = 0
             velocity.y = 0
@@ -910,10 +889,60 @@ function __OriginkitBase_ParticleSphereRefactor(__props: ParticleSphereRefactorP
             lastMouseY = touch.clientY
             lastDragTime = performance.now()
             startAnimation()
+
+            const handleTouchDragMove = (moveEvent: TouchEvent) => {
+                const moveTouch = moveEvent.touches[0]
+                if (!moveTouch) return
+                const currentTime = performance.now()
+                const timeSinceLastMove = currentTime - lastDragTime
+
+                const sensitivity = mapLinear(dragN, 0, 1, 0.001, 0.02)
+                const dx = moveTouch.clientX - lastMouseX
+                const dy = moveTouch.clientY - lastMouseY
+
+                targetRotation.x += dx * sensitivity
+                targetRotation.y += dy * sensitivity
+                targetRotation.y = Math.max(
+                    -Math.PI / 2,
+                    Math.min(Math.PI / 2, targetRotation.y)
+                )
+
+                if (timeSinceLastMove > 0) {
+                    const timeNormalization =
+                        targetDeltaTime / timeSinceLastMove
+                    velocity.x = dx * sensitivity * 0.3 * timeNormalization
+                    velocity.y = dy * sensitivity * 0.3 * timeNormalization
+                }
+
+                lastMouseX = moveTouch.clientX
+                lastMouseY = moveTouch.clientY
+                lastDragTime = currentTime
+            }
+
+            const handleTouchDragEnd = () => {
+                document.removeEventListener("touchmove", handleTouchDragMove)
+                document.removeEventListener("touchend", handleTouchDragEnd)
+                document.removeEventListener(
+                    "touchcancel",
+                    handleTouchDragEnd
+                )
+                isDragging = false
+            }
+
+            // Passive: the canvas-level touchmove handler below already calls
+            // preventDefault() to stop the page from scrolling while dragging.
+            document.addEventListener("touchmove", handleTouchDragMove, {
+                passive: true,
+            })
+            document.addEventListener("touchend", handleTouchDragEnd)
+            document.addEventListener("touchcancel", handleTouchDragEnd)
         }
 
         if (drag) {
             canvas.addEventListener("mousedown", handleMouseDown)
+            canvas.addEventListener("touchstart", handleTouchDragStart, {
+                passive: true,
+            })
         }
 
         // Handle hover to stop auto-rotation (only when cursor is over the sphere)
@@ -964,96 +993,35 @@ function __OriginkitBase_ParticleSphereRefactor(__props: ParticleSphereRefactorP
             mouseRef.current = null
         }
 
-        // Touch start only arms the hold timer — nothing engages yet.
-        const handleTouchStart = (event: TouchEvent) => {
-            const touch = event.touches[0]
-            if (!touch) return
-            touchStartX = touch.clientX
-            touchStartY = touch.clientY
-            touchHeld = false
-            clearTouchHoldTimer()
-            touchHoldTimer = setTimeout(() => {
-                touchHoldTimer = null
-                touchHeld = true
-                beginTouchDrag(touch)
-                applyTouchScatter(touch)
-            }, TOUCH_HOLD_DELAY_MS)
-        }
-
-        // Drag-rotate + particle repulsion, but only once the hold above has
-        // engaged. Before that, any movement means the finger is scrolling,
-        // not interacting, so we cancel the hold and back off entirely —
-        // never preventDefault, never touch the particles.
+        // Track touch position for particle repulsion
         const handleTouchMove = (event: TouchEvent) => {
-            const touch = event.touches[0]
-            if (!touch) return
-
-            if (!touchHeld) {
-                const dx = touch.clientX - touchStartX
-                const dy = touch.clientY - touchStartY
-                if (
-                    Math.abs(dx) > TOUCH_MOVE_CANCEL_PX ||
-                    Math.abs(dy) > TOUCH_MOVE_CANCEL_PX
-                ) {
-                    clearTouchHoldTimer()
-                }
-                return
-            }
-
-            event.preventDefault()
-
-            if (drag) {
-                const currentTime = performance.now()
-                const timeSinceLastMove = currentTime - lastDragTime
-                const sensitivity = mapLinear(dragN, 0, 1, 0.001, 0.02)
-                const dx = touch.clientX - lastMouseX
-                const dy = touch.clientY - lastMouseY
-
-                targetRotation.x += dx * sensitivity
-                targetRotation.y += dy * sensitivity
-                targetRotation.y = Math.max(
-                    -Math.PI / 2,
-                    Math.min(Math.PI / 2, targetRotation.y)
-                )
-
-                if (timeSinceLastMove > 0) {
-                    const timeNormalization =
-                        targetDeltaTime / timeSinceLastMove
-                    velocity.x = dx * sensitivity * 0.3 * timeNormalization
-                    velocity.y = dy * sensitivity * 0.3 * timeNormalization
-                }
-
-                lastMouseX = touch.clientX
-                lastMouseY = touch.clientY
-                lastDragTime = currentTime
-            }
-
+            event.preventDefault() // Prevent scrolling
             const containerRect = container.getBoundingClientRect()
-            const touchXInContainer = touch.clientX - containerRect.left
-            const touchYInContainer = touch.clientY - containerRect.top
-            // Only track if touch is over the logical container area
-            if (
-                touchXInContainer >= 0 &&
-                touchXInContainer <= containerRect.width &&
-                touchYInContainer >= 0 &&
-                touchYInContainer <= containerRect.height
-            ) {
-                // Convert container coordinates to canvas coordinates (add offset)
-                mouseRef.current = {
-                    x: touchXInContainer + offsetX,
-                    y: touchYInContainer + offsetY,
+            const touch = event.touches[0]
+            if (touch) {
+                const touchXInContainer = touch.clientX - containerRect.left
+                const touchYInContainer = touch.clientY - containerRect.top
+                // Only track if touch is over the logical container area
+                if (
+                    touchXInContainer >= 0 &&
+                    touchXInContainer <= containerRect.width &&
+                    touchYInContainer >= 0 &&
+                    touchYInContainer <= containerRect.height
+                ) {
+                    // Convert container coordinates to canvas coordinates (add offset)
+                    mouseRef.current = {
+                        x: touchXInContainer + offsetX,
+                        y: touchYInContainer + offsetY,
+                    }
+                    // Start animation if not running (needed for cursor interaction to work)
+                    startAnimation()
+                } else {
+                    mouseRef.current = null
                 }
-                // Start animation if not running (needed for cursor interaction to work)
-                startAnimation()
-            } else {
-                mouseRef.current = null
             }
         }
 
         const handleTouchEnd = () => {
-            clearTouchHoldTimer()
-            touchHeld = false
-            isDragging = false
             mouseRef.current = null
         }
 
@@ -1175,15 +1143,18 @@ function __OriginkitBase_ParticleSphereRefactor(__props: ParticleSphereRefactorP
             startAnimation()
         }
 
-        // Touch scatter effect — a one-off nudge applied once a hold engages
-        // (see handleTouchStart/handleTouchMove above), not on raw touch.
-        const applyTouchScatter = (touch: Touch) => {
+        // Touch scatter effect handler
+        const handleTouchStart = (event: TouchEvent) => {
             if (!cursorConfig.enabled || !cursorConfig.clickForce) return
+
+            event.preventDefault()
 
             // Update matrix to ensure it's current
             particlesGroup.updateMatrixWorld(true)
 
             const containerRect = container.getBoundingClientRect()
+            const touch = event.touches[0]
+            if (!touch) return
 
             // Convert container coordinates to canvas coordinates (add offset)
             const touchX = touch.clientX - containerRect.left + offsetX
@@ -1300,15 +1271,10 @@ function __OriginkitBase_ParticleSphereRefactor(__props: ParticleSphereRefactorP
             canvas.addEventListener("mousemove", handleMouseMoveCursor)
             canvas.addEventListener("mouseleave", handleMouseLeaveCursor)
             canvas.addEventListener("click", handleClick)
-        }
-
-        // Touch listeners power both drag-rotate and repel/scatter, so they
-        // register whenever either feature is on.
-        if (drag || cursorConfig.enabled) {
-            canvas.addEventListener("touchstart", handleTouchStart, {
-                passive: true,
-            })
             canvas.addEventListener("touchmove", handleTouchMove, {
+                passive: false,
+            })
+            canvas.addEventListener("touchstart", handleTouchStart, {
                 passive: false,
             })
             canvas.addEventListener("touchend", handleTouchEnd)
@@ -1420,9 +1386,12 @@ function __OriginkitBase_ParticleSphereRefactor(__props: ParticleSphereRefactorP
                 if (animationFrameRef.current) {
                     cancelAnimationFrame(animationFrameRef.current)
                 }
-                clearTouchHoldTimer()
                 if (drag) {
                     canvas.removeEventListener("mousedown", handleMouseDown)
+                    canvas.removeEventListener(
+                        "touchstart",
+                        handleTouchDragStart
+                    )
                 }
                 if (stopOnHover) {
                     canvas.removeEventListener(
@@ -1441,10 +1410,8 @@ function __OriginkitBase_ParticleSphereRefactor(__props: ParticleSphereRefactorP
                         handleMouseLeaveCursor
                     )
                     canvas.removeEventListener("click", handleClick)
-                }
-                if (drag || cursorConfig.enabled) {
-                    canvas.removeEventListener("touchstart", handleTouchStart)
                     canvas.removeEventListener("touchmove", handleTouchMove)
+                    canvas.removeEventListener("touchstart", handleTouchStart)
                     canvas.removeEventListener("touchend", handleTouchEnd)
                     canvas.removeEventListener("touchcancel", handleTouchEnd)
                 }
@@ -1486,9 +1453,12 @@ function __OriginkitBase_ParticleSphereRefactor(__props: ParticleSphereRefactorP
             if (animationFrameRef.current) {
                 cancelAnimationFrame(animationFrameRef.current)
             }
-            clearTouchHoldTimer()
             if (drag) {
                 canvas.removeEventListener("mousedown", handleMouseDown)
+                canvas.removeEventListener(
+                    "touchstart",
+                    handleTouchDragStart
+                )
             }
             if (stopOnHover) {
                 canvas.removeEventListener("mousemove", handleMouseMoveHover)
@@ -1498,10 +1468,8 @@ function __OriginkitBase_ParticleSphereRefactor(__props: ParticleSphereRefactorP
                 canvas.removeEventListener("mousemove", handleMouseMoveCursor)
                 canvas.removeEventListener("mouseleave", handleMouseLeaveCursor)
                 canvas.removeEventListener("click", handleClick)
-            }
-            if (drag || cursorConfig.enabled) {
-                canvas.removeEventListener("touchstart", handleTouchStart)
                 canvas.removeEventListener("touchmove", handleTouchMove)
+                canvas.removeEventListener("touchstart", handleTouchStart)
                 canvas.removeEventListener("touchend", handleTouchEnd)
                 canvas.removeEventListener("touchcancel", handleTouchEnd)
             }
