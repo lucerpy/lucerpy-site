@@ -255,16 +255,19 @@ export const NeuralDiagram = () => {
       );
     };
 
-    // On touch: the dots should stay assembled/roaming by default and only
-    // scatter once the finger holds roughly still for a beat — a touch that's
-    // actually the start of a scroll swipe (passing over this section) must
-    // never trigger the reset. Releasing always reassembles.
+    // `hoverType: "roam"` means "scattered" is the one that keeps moving —
+    // particles wander at reduced opacity — while "assembled" is the static,
+    // full-opacity head shape. So the resting state here is scattered/roaming
+    // (dots always drifting), and only a deliberate press-and-hold assembles
+    // them into the head for a beat; releasing sends them back to roaming. A
+    // touch that's actually the start of a scroll swipe must never trigger
+    // the assemble.
     const TOUCH_HOLD_DELAY_MS = 180;
     const TOUCH_MOVE_CANCEL_PX = 10;
     let touchStartX = 0;
     let touchStartY = 0;
     let touchHoldTimer: ReturnType<typeof setTimeout> | null = null;
-    let touchScattered = false;
+    let touchAssembled = false;
 
     const clearTouchHoldTimer = () => {
       if (touchHoldTimer !== null) {
@@ -281,8 +284,8 @@ export const NeuralDiagram = () => {
       clearTouchHoldTimer();
       touchHoldTimer = setTimeout(() => {
         touchHoldTimer = null;
-        touchScattered = true;
-        scatter();
+        touchAssembled = true;
+        assemble();
       }, TOUCH_HOLD_DELAY_MS);
     };
 
@@ -297,46 +300,70 @@ export const NeuralDiagram = () => {
         Math.abs(dy) > TOUCH_MOVE_CANCEL_PX
       ) {
         // Moved before the hold engaged — this is a scroll swipe, not a
-        // press-and-hold, so cancel without ever having scattered.
+        // press-and-hold, so cancel without ever having assembled.
         clearTouchHoldTimer();
       }
     };
 
-    const handleTouchEnd = () => {
+    const handleTouchEnd = (event: TouchEvent) => {
+      // Suppresses the browser's ~300ms-later compatibility mousemove/click
+      // it would otherwise synthesize from this touch — without this, that
+      // ghost mousemove hits the canvas's own onMouseMove directly and
+      // reassembles it, undoing the scatter below right after it runs.
+      // event.cancelable is false while a scroll from this gesture is in
+      // flight, so this never fights the swipe-to-scroll path above.
+      if (event.cancelable) event.preventDefault();
       clearTouchHoldTimer();
-      if (touchScattered) {
-        touchScattered = false;
-        assemble();
+      if (touchAssembled) {
+        touchAssembled = false;
+        scatter();
       }
     };
 
-    // Auto-assemble when entering viewport
+    // Scattered/roaming is the resting state — scatter once entering
+    // viewport instead of assembling, so the dots are always moving by
+    // default.
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) assemble();
+          if (entry.isIntersecting) scatter();
         });
       },
       { threshold: 0.25 }
     );
     observer.observe(block);
 
-    // Initial assembly after load
-    const timer = setTimeout(assemble, 400);
+    // Start roaming after load
+    const timer = setTimeout(scatter, 400);
 
-    block.addEventListener("pointerenter", assemble);
-    block.addEventListener("pointerleave", scatter);
-    block.addEventListener("touchstart", handleTouchStart, { passive: true });
+    // Touch fires pointerenter/pointerleave too — mouse-only here so it
+    // doesn't race the dedicated hold-to-assemble touch logic above.
+    const handlePointerEnter = (event: PointerEvent) => {
+      if (event.pointerType === "touch") return;
+      assemble();
+    };
+    const handlePointerLeave = (event: PointerEvent) => {
+      if (event.pointerType === "touch") return;
+      scatter();
+    };
+
+    block.addEventListener("pointerenter", handlePointerEnter);
+    block.addEventListener("pointerleave", handlePointerLeave);
+    block.addEventListener("touchstart", handleTouchStart, {
+      passive: true,
+    });
     block.addEventListener("touchmove", handleTouchMove, { passive: true });
-    block.addEventListener("touchend", handleTouchEnd, { passive: true });
-    block.addEventListener("touchcancel", handleTouchEnd, { passive: true });
+    block.addEventListener("touchend", handleTouchEnd, { passive: false });
+    block.addEventListener("touchcancel", handleTouchEnd, {
+      passive: false,
+    });
 
     return () => {
       clearTimeout(timer);
       clearTouchHoldTimer();
       observer.disconnect();
-      block.removeEventListener("pointerenter", assemble);
-      block.removeEventListener("pointerleave", scatter);
+      block.removeEventListener("pointerenter", handlePointerEnter);
+      block.removeEventListener("pointerleave", handlePointerLeave);
       block.removeEventListener("touchstart", handleTouchStart);
       block.removeEventListener("touchmove", handleTouchMove);
       block.removeEventListener("touchend", handleTouchEnd);
