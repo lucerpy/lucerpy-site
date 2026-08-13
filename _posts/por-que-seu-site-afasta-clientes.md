@@ -3,8 +3,8 @@ title: "Por que o seu site afasta clientes (e como corrigir isso)"
 description: "Um site lento, confuso ou feio custa mais do que parece. Os erros mais comuns e como corrigi-los."
 date: "2026-08-10"
 tag: "DESIGN"
-image: "/cases/advocacia.jpg"
-gradient: "linear-gradient(45deg, #78350f, #451a03)"
+image: "/blog/por-que-seu-site-afasta-clientes.jpg"
+gradient: "linear-gradient(45deg, #2e1065, #0C0D11)"
 ---
 
 O seu site é o primeiro vendedor que o seu cliente encontra. Se ele não passar confiança, você perdeu a venda antes mesmo de falar o seu nome.

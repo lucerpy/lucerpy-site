@@ -3,8 +3,8 @@ title: "Next.js vs WordPress: qual a melhor escolha para a sua empresa?"
 description: "A escolha da tecnologia impacta diretamente em SEO, velocidade de carregamento, segurança e retenção de clientes. Analisamos os dois cenários."
 date: "2026-08-11"
 tag: "TECNOLOGIA"
-image: "/cases/saas.jpg"
-gradient: "linear-gradient(45deg, #2e1065, #4c1d95)"
+image: "/blog/nextjs-vs-wordpress.jpg"
+gradient: "linear-gradient(45deg, #0f2942, #1a0a0a)"
 ---
 
 Na hora de criar a presença digital da sua empresa, uma das primeiras decisões técnicas é: qual tecnologia utilizar? Enquanto o WordPress domina a web tradicional, frameworks modernos baseados em React como o **Next.js** tornaram-se o padrão de ouro para empresas que buscam alta performance e máxima conversão.
