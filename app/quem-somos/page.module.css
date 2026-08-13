@@ -141,6 +141,13 @@
   margin-top: -12px;
 }
 
+.teamBio {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+  max-width: 320px;
+}
+
 .sectionTag {
   font-size: 0.75rem;
   font-weight: 700;

@@ -64,6 +64,7 @@ export default function QuemSomos() {
               </div>
               <h3 className={styles.teamName}>Eduardo Serpa</h3>
               <p className={styles.teamRole}>Especialista em soluções web</p>
+              <p className={styles.teamBio}>Foco em e-commerce, automação e IA aplicada. Formado pela Universidade Federal do Paraná.</p>
             </div>
             <div className={styles.teamCard}>
               <div className={styles.teamPhotoWrap}>
