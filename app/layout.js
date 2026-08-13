@@ -2,6 +2,7 @@ import { Outfit, Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/originkit/footer-02";
+import PageTransition from "@/components/PageTransition";
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -95,7 +96,7 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         <Navbar />
-        <main>{children}</main>
+        <main><PageTransition>{children}</PageTransition></main>
         <Footer />
       </body>
     </html>

@@ -236,7 +236,7 @@ function Hero14() {
           {/* heading */}
           <motion.h1
             variants={seqRise(1)}
-            className="m-0 max-w-[760px] text-balance text-center text-[28px] font-bold leading-[1.2] text-white sm:text-[28px] lg:text-[48px] xl:text-[54px]"
+            className="m-0 max-w-[760px] text-balance text-center text-[32px] font-bold leading-[1.2] text-white min-[480px]:text-[40px] ipad:text-[52px]"
           >
             Soluções digitais que entregam resultado
           </motion.h1>

@@ -19,7 +19,7 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className={styles.header}>
+    <header className={styles.header} style={{ viewTransitionName: 'site-header' }}>
       <div className={`container ${styles.navContainer}`}>
         <Logo />
 
