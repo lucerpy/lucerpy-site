@@ -148,6 +148,27 @@
   max-width: 320px;
 }
 
+.teamStack {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+  margin: 4px 0 0 0;
+  max-width: 320px;
+}
+
+.teamStack li {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: var(--color-text-muted);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  padding: 4px 10px;
+}
+
 .sectionTag {
   font-size: 0.75rem;
   font-weight: 700;

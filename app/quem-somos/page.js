@@ -64,7 +64,14 @@ export default function QuemSomos() {
               </div>
               <h3 className={styles.teamName}>Eduardo Serpa</h3>
               <p className={styles.teamRole}>Especialista em soluções web</p>
-              <p className={styles.teamBio}>Foco em e-commerce, automação e IA aplicada. Formado pela Universidade Federal do Paraná.</p>
+              <p className={styles.teamBio}>Cinco anos de e-commerce com Shopify e desenvolvimento assistido por IA. Pós-graduado em Inteligência Artificial pela UFPR, certificado em &quot;Do Figma ao Framer com IA&quot;.</p>
+              <ul className={styles.teamStack}>
+                <li>TypeScript</li>
+                <li>React</li>
+                <li>Node.js</li>
+                <li>Shopify</li>
+                <li>Figma</li>
+              </ul>
             </div>
             <div className={styles.teamCard}>
               <div className={styles.teamPhotoWrap}>
@@ -78,7 +85,14 @@ export default function QuemSomos() {
               </div>
               <h3 className={styles.teamName}>Lucas Pereira</h3>
               <p className={styles.teamRole}>Especialista em automação e dados</p>
-              <p className={styles.teamBio}>Formado pela PUCRS - Pontifícia Universidade Católica do Rio Grande do Sul.</p>
+              <p className={styles.teamBio}>Automação de processos com n8n e Python, aplicando IA a fluxos reais de dados. Cursando MBA em AI, Data Science e Big Data pela PUCRS.</p>
+              <ul className={styles.teamStack}>
+                <li>Python</li>
+                <li>n8n</li>
+                <li>SQL</li>
+                <li>Power BI</li>
+                <li>IA Generativa</li>
+              </ul>
             </div>
           </div>
         </div>
