@@ -7,8 +7,8 @@ import { createContext, useContext, useEffect, useState } from 'react';
 // similar, it's the same clock.
 const LogoRevealContext = createContext({ wiped: false, bounced: false });
 
-const WIPE_DELAY_MS = 60;
-const WIPE_DURATION_MS = 700;
+const WIPE_DELAY_MS = 100;
+const WIPE_DURATION_MS = 950;
 
 export function LogoRevealProvider({ children }) {
   const [state, setState] = useState({ wiped: false, bounced: false });
