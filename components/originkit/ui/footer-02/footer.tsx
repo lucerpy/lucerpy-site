@@ -95,6 +95,7 @@ export function Footer() {
                       alt=""
                       width={20}
                       height={20}
+                      loading="lazy"
                       className="size-full"
                       aria-hidden="true"
                     />

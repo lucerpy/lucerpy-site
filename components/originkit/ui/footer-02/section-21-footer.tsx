@@ -33,6 +33,7 @@ export function Section21Footer() {
           alt=""
           width={2238}
           height={545}
+          loading="lazy"
           className="absolute top-[-30%] left-1/2 h-auto w-[280%] max-w-none -translate-x-1/2 scale-110 opacity-90 blur-[40px] ipad:top-[-40%] ipad:w-[220%] ipad:blur-[60px] desktop-sm:top-[-55%] desktop-sm:w-[200%] desktop-sm:scale-125 desktop-sm:blur-[80px] full-hd:w-[240%] full-hd:scale-150 full-hd:blur-[90px] ultrawide:top-[-60%] ultrawide:w-[280%] ultrawide:scale-[1.75] ultrawide:blur-[100px]"
         />
       </div>
