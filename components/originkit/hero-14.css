@@ -1,0 +1,21 @@
+/* hero-14 — adaptado para a hero de Servicos da Lucerpy */
+
+@theme {
+  --font-grotesk: var(--font-outfit), sans-serif;
+
+  /* Tokens remapeados para a paleta da marca */
+  --color-yellow75: #b6f04f;
+  --color-yellow60: #A3E635;
+  --color-grey90: #e6e6e6;
+  --color-grey80: #cccccc;
+  --color-grey50: #A1A1AA;
+  --color-dark02: #0C0D11;
+  --color-dark04: #16181F;
+  --color-dark06: #16181F;
+  --color-dark10: #20232D;
+  --color-dark12: #2D3039;
+}
+
+.hero-14 {
+  min-height: 640px;
+}
