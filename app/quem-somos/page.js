@@ -71,6 +71,9 @@ export default function QuemSomos() {
                 <li>React</li>
                 <li>TypeScript</li>
                 <li>Shopify</li>
+                <li>Node.js</li>
+                <li>GraphQL</li>
+                <li>SEO</li>
               </ul>
             </div>
             <div className={styles.teamCard}>
@@ -92,6 +95,9 @@ export default function QuemSomos() {
                 <li>SQL</li>
                 <li>Power BI</li>
                 <li>IA Generativa</li>
+                <li>FastAPI</li>
+                <li>PostgreSQL</li>
+                <li>JavaScript</li>
               </ul>
             </div>
           </div>
