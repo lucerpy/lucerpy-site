@@ -5,12 +5,13 @@ import { motion } from 'motion/react';
 import Image from 'next/image';
 import styles from './BentoGrid.module.css';
 
-// Four rotations of the same 4-col x 3-row tiling (a 2x2 "big" cell in one
-// corner, a 2x1 "wide" cell, two 1x1 cells, another 1x1 pair, and a second
-// wide cell) — big corner walks top-left -> top-right -> bottom-left ->
-// bottom-right so the whole shape of the grid changes, not just which photo
-// sits where.
+// Four genuinely different 4-col x 3-row tilings — not just the same shape
+// rotated to a different corner. Some have one big cell, some have two
+// medium verticals, some have two medium horizontals, some have none at all
+// (just a mosaic of mid and small pieces), so the grid's whole rhythm
+// changes between ticks, not just which photo happens to be the big one.
 const TEMPLATES = [
+  // One big 2x2 cell (top-left), rest wide + small.
   [
     { gridColumn: '1 / 3', gridRow: '1 / 3' },
     { gridColumn: '3 / 5', gridRow: '1 / 2' },
@@ -20,32 +21,35 @@ const TEMPLATES = [
     { gridColumn: '2 / 3', gridRow: '3 / 4' },
     { gridColumn: '3 / 5', gridRow: '3 / 4' },
   ],
+  // Two tall verticals on the left, no single dominant cell.
   [
-    { gridColumn: '3 / 5', gridRow: '1 / 3' },
-    { gridColumn: '1 / 3', gridRow: '1 / 2' },
-    { gridColumn: '1 / 2', gridRow: '2 / 3' },
-    { gridColumn: '2 / 3', gridRow: '2 / 3' },
-    { gridColumn: '3 / 4', gridRow: '3 / 4' },
-    { gridColumn: '4 / 5', gridRow: '3 / 4' },
-    { gridColumn: '1 / 3', gridRow: '3 / 4' },
-  ],
-  [
-    { gridColumn: '1 / 3', gridRow: '2 / 4' },
-    { gridColumn: '3 / 5', gridRow: '3 / 4' },
+    { gridColumn: '1 / 2', gridRow: '1 / 4' },
+    { gridColumn: '2 / 3', gridRow: '1 / 4' },
+    { gridColumn: '3 / 5', gridRow: '1 / 2' },
     { gridColumn: '3 / 4', gridRow: '2 / 3' },
     { gridColumn: '4 / 5', gridRow: '2 / 3' },
-    { gridColumn: '1 / 2', gridRow: '1 / 2' },
-    { gridColumn: '2 / 3', gridRow: '1 / 2' },
-    { gridColumn: '3 / 5', gridRow: '1 / 2' },
+    { gridColumn: '3 / 4', gridRow: '3 / 4' },
+    { gridColumn: '4 / 5', gridRow: '3 / 4' },
   ],
+  // Two horizontal (landscape) mediums stacked on the left.
   [
-    { gridColumn: '3 / 5', gridRow: '2 / 4' },
+    { gridColumn: '1 / 3', gridRow: '1 / 2' },
+    { gridColumn: '1 / 3', gridRow: '2 / 3' },
+    { gridColumn: '3 / 5', gridRow: '1 / 2' },
+    { gridColumn: '3 / 4', gridRow: '2 / 3' },
+    { gridColumn: '4 / 5', gridRow: '2 / 3' },
     { gridColumn: '1 / 3', gridRow: '3 / 4' },
+    { gridColumn: '3 / 5', gridRow: '3 / 4' },
+  ],
+  // Mosaic: two mediums up top, four tiny squares, one full-width strip.
+  [
+    { gridColumn: '1 / 3', gridRow: '1 / 2' },
+    { gridColumn: '3 / 5', gridRow: '1 / 2' },
     { gridColumn: '1 / 2', gridRow: '2 / 3' },
     { gridColumn: '2 / 3', gridRow: '2 / 3' },
-    { gridColumn: '3 / 4', gridRow: '1 / 2' },
-    { gridColumn: '4 / 5', gridRow: '1 / 2' },
-    { gridColumn: '1 / 3', gridRow: '1 / 2' },
+    { gridColumn: '3 / 4', gridRow: '2 / 3' },
+    { gridColumn: '4 / 5', gridRow: '2 / 3' },
+    { gridColumn: '1 / 5', gridRow: '3 / 4' },
   ],
 ];
 
