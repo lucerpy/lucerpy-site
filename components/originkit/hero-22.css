@@ -24,15 +24,3 @@
   }
 }
 
-/* Responsive scaling for NeuralDiagram on mobile screens (< 410px) */
-.neural-diagram-wrapper {
-  transform-origin: top center;
-}
-
-@media (max-width: 410px) {
-  .neural-diagram-wrapper {
-    transform: scale(calc((100vw - 16px) / 402));
-    margin-bottom: calc((100vw - 402px) * 0.85);
-  }
-}
-

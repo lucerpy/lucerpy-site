@@ -5,7 +5,7 @@ import Link from "next/link";
 import Button from "@/components/Button/Button";
 
 import { LogoMarquee } from "@/components/originkit/ui/hero-22/logo-marquee";
-import { NeuralDiagram } from "@/components/originkit/ui/hero-22/neural-diagram";
+import { DottedBackground } from "@/components/originkit/ui/hero-26/dotmatrix-hero";
 
 /** Public asset under /originkit/hero-22/ */
 function asset(file: string) {
@@ -69,11 +69,17 @@ export const Section27Hero = () => (
         </div>
       </section>
 
-      {/* Diagrama neural */}
-      <div className="z-10 flex w-full max-w-full justify-center overflow-hidden px-1 py-2">
-        <div className="neural-diagram-wrapper relative flex justify-center">
-          <NeuralDiagram />
-        </div>
+      {/* Painel de fundo pontilhado (Originkit hero-26, recolorido no verde da marca) */}
+      <div className="fade-in fade-in-4 z-10 mt-10 h-[280px] w-[calc(100%-32px)] max-w-[1440px] overflow-hidden rounded-2xl border border-[#2D3039] ipad:mt-14 ipad:h-[360px] ipad:w-[calc(100%-64px)] desktop-sm:mt-16 desktop-sm:h-[420px] desktop-sm:w-[calc(100%-128px)]">
+        <DottedBackground
+          bgColor="#0C0D11"
+          colors={["#0C0D11", "#2B3D12", "#CCEC7B"]}
+          frequency={1.5}
+          speed={2}
+          cellSize={10}
+          gamma={3}
+          paletteBias={8}
+        />
       </div>
 
       {/* Faixa de confiança */}
