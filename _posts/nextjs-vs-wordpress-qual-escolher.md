@@ -13,7 +13,7 @@ Não existe resposta certa para todo mundo — existe a tecnologia certa para o 
 
 ## 1. Desempenho e Core Web Vitals (velocidade extrema)
 
-A velocidade do seu site é um dos fatores de rankeamento mais importantes no Google, medido através dos [Core Web Vitals](https://web.dev/articles/vitals): LCP (carregamento), INP (interatividade) e CLS (estabilidade visual). Como já detalhamos no artigo [Por que o seu site afasta clientes](/blog/por-que-seu-site-afasta-clientes), a lentidão é uma das principais razões de abandono de página.
+A velocidade do seu site é um dos fatores de rankeamento mais importantes no Google, medido através dos [Core Web Vitals](/blog/core-web-vitals-performance): LCP (carregamento), INP (interatividade) e CLS (estabilidade visual). Como já detalhamos no artigo [Por que o seu site afasta clientes](/blog/por-que-seu-site-afasta-clientes), a lentidão é uma das principais razões de abandono de página.
 
 Sites em Next.js geram HTML estático pré-renderizado (SSG/SSR), carregando de forma quase instantânea, sem depender de consultas a banco de dados a cada requisição. Recursos como otimização automática de imagens (AVIF/WebP), divisão de código por rota e cache de borda via CDN vêm prontos por padrão.
 
@@ -33,7 +33,7 @@ Um projeto em Next.js bem estruturado tende a exigir menos manutenção reativa 
 
 ## 4. SEO e GEO (Generative Engine Optimization)
 
-Com as versões mais recentes do Next.js, a geração de metadados, sitemaps dinâmicos, Open Graph e dados estruturados (JSON-LD) é totalmente nativa da própria arquitetura do framework — sem depender de plugins de SEO para funcionar corretamente. Isso permite que motores de busca tradicionais e motores de IA (Perplexity, AI Overviews, ChatGPT) leiam e citem a sua empresa com mais precisão, algo cada vez mais relevante conforme a busca por IA generativa cresce como canal de aquisição.
+Com as versões mais recentes do Next.js, a geração de metadados, sitemaps dinâmicos, Open Graph e dados estruturados (JSON-LD) é totalmente nativa da própria arquitetura do framework — sem depender de plugins de SEO para funcionar corretamente. Isso permite que motores de busca tradicionais e motores de IA (Perplexity, AI Overviews, ChatGPT) leiam e citem a sua empresa com mais precisão, algo cada vez mais relevante conforme a busca por IA generativa cresce como canal de aquisição — entramos em detalhe sobre isso em [GEO: como aparecer nas respostas de IA](/blog/geo-otimizacao-para-ia).
 
 ## Conclusão: qual escolher?
 

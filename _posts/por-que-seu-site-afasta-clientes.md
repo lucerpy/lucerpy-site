@@ -15,7 +15,7 @@ Isso vale para qualquer negócio: e-commerce, prestador de serviço, indústria,
 
 Estudos do Google mostram que a probabilidade de abandono de página aumenta drasticamente conforme o tempo de carregamento passa de 1 para 3 segundos. Ninguém espera. Se o seu site demora, o cliente fecha a aba e vai direto para o concorrente que carregou mais rápido.
 
-A causa mais comum é técnica: imagens não otimizadas, excesso de scripts de terceiros, hospedagem barata e, principalmente, plataformas genéricas que carregam muito mais código do que o necessário para exibir uma página simples. É exatamente esse tipo de gargalo que detalhamos no artigo sobre [Next.js vs WordPress](/blog/nextjs-vs-wordpress-qual-escolher), onde comparamos o impacto real de cada tecnologia na velocidade e nos [Core Web Vitals](https://web.dev/articles/vitals) — as métricas de performance que o próprio Google usa para rankear páginas nos resultados de busca.
+A causa mais comum é técnica: imagens não otimizadas, excesso de scripts de terceiros, hospedagem barata e, principalmente, plataformas genéricas que carregam muito mais código do que o necessário para exibir uma página simples. É exatamente esse tipo de gargalo que detalhamos no artigo sobre [Next.js vs WordPress](/blog/nextjs-vs-wordpress-qual-escolher), onde comparamos o impacto real de cada tecnologia na velocidade — e explicamos com mais detalhe o que são as [Core Web Vitals](/blog/core-web-vitals-performance), as métricas de performance que o próprio Google usa para rankear páginas nos resultados de busca.
 
 ## 2. Design amador
 
@@ -37,7 +37,7 @@ Menus com termos internos da empresa, páginas órfãs sem link nenhum apontando
 
 ## 5. Nenhuma prova social
 
-Depoimentos, cases reais e números concretos reduzem o risco percebido pelo visitante antes de ele tomar uma decisão. Um site sem nenhuma evidência de que a empresa já entregou resultado para outras pessoas parece — e muitas vezes é — mais arriscado de contratar. Vale a pena conferir como estruturamos isso na prática nos nossos [projetos e cases](/projetos).
+Depoimentos, cases reais e números concretos reduzem o risco percebido pelo visitante antes de ele tomar uma decisão. Um site sem nenhuma evidência de que a empresa já entregou resultado para outras pessoas parece — e muitas vezes é — mais arriscado de contratar. Vale a pena conferir como estruturamos isso na prática nos nossos [projetos e cases](/projetos), ou ver a [anatomia completa de uma landing page que converte](/blog/anatomia-landing-page-alta-conversao) elemento por elemento.
 
 ## Como corrigir
 
