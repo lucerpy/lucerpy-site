@@ -65,6 +65,14 @@ const PROJECTS = [
     image: '/cases/financeira.jpg',
     imagePlaceholder: 'linear-gradient(45deg, #14532d, #064e3b)',
   },
+  {
+    category: 'SAAS',
+    tag: 'CONCEITO · SAAS',
+    title: 'Inventário de TI',
+    description: 'Exercício autoral: dashboard para controle de ativos de TI em tempo real, com gestão de colaboradores, kits de boas-vindas e devoluções.',
+    image: '/cases/inventario-ti.jpg',
+    imagePlaceholder: 'linear-gradient(45deg, #1e3a8a, #0f172a)',
+  },
 ];
 
 export default function ProjectsSection() {
