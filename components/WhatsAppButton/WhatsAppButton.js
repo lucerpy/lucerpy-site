@@ -1,9 +1,10 @@
 import styles from './WhatsAppButton.module.css';
+import { buildWhatsAppUrl } from '@/lib/whatsapp';
 
 export default function WhatsAppButton() {
   return (
     <a
-      href="https://wa.me/5519936296268"
+      href={buildWhatsAppUrl()}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Falar no WhatsApp"

@@ -4,6 +4,7 @@
 import Link from "next/link";
 import Logo from "@/components/Logo/Logo";
 import Tetris from "@/components/originkit/ui/footer-02/tetris";
+import { buildWhatsAppUrl } from "@/lib/whatsapp";
 
 function asset(file: string) {
   return `/originkit/footer-02/${file}`;
@@ -24,7 +25,7 @@ const LINK_COLUMNS = [
     title: "Contato",
     links: [
       { label: "lucerpy@lucerpy.com.br", href: "mailto:lucerpy@lucerpy.com.br", external: true, icon: "envelope.svg" },
-      { label: "+55 19 93629-6268", href: "https://wa.me/5519936296268", external: true, icon: "whatsapp.svg" },
+      { label: "+55 19 93629-6268", href: buildWhatsAppUrl(), external: true, icon: "whatsapp.svg" },
       { label: "@lucerpy.agencia", href: "https://www.instagram.com/lucerpy.agencia/", external: true, icon: "instagram.svg" },
       { label: "Lucerpy Digital", href: "https://linkedin.com/company/lucerpy", external: true, icon: "linkedin.svg" },
     ],
@@ -85,10 +86,10 @@ export function Footer() {
                         <img
                           src={asset(icon)}
                           alt=""
-                          width={16}
-                          height={16}
+                          width={20}
+                          height={20}
                           loading="lazy"
-                          className="mt-[3px] size-4 shrink-0 opacity-80"
+                          className="mt-[1px] size-5 shrink-0 opacity-80"
                           aria-hidden="true"
                         />
                       )}

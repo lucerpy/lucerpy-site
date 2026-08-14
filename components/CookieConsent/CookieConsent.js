@@ -2,6 +2,28 @@
 
 import Script from 'next/script';
 
+// Silktide keeps a small floating icon around after the banner is dismissed,
+// so visitors can reopen preferences later - by design, not a bug. The user
+// asked for it to go away once a decision is made instead, so this hides it
+// as soon as any of the three action buttons is clicked. Matched by the
+// exact button text set in the `text` config below, since Silktide doesn't
+// expose a "decision made" callback of its own to hook into.
+const DECISION_BUTTON_LABELS = ['Aceitar todos', 'Rejeitar não essenciais', 'Salvar e fechar'];
+
+function hideIconOnDecision() {
+  document.addEventListener('click', (event) => {
+    const target = event.target instanceof Element ? event.target.closest('button') : null;
+    if (!target) return;
+    const text = target.textContent?.trim();
+    if (!text || !DECISION_BUTTON_LABELS.some((label) => text.includes(label))) return;
+
+    const icon = document.querySelector('#stcm-icon');
+    if (icon instanceof HTMLElement) {
+      icon.style.display = 'none';
+    }
+  });
+}
+
 function initSilktide() {
   window.silktideConsentManager.init({
     backdrop: {
@@ -74,6 +96,8 @@ function initSilktide() {
       },
     },
   });
+
+  hideIconOnDecision();
 }
 
 export default function CookieConsent() {

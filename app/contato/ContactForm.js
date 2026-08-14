@@ -3,7 +3,10 @@
 import { useState } from 'react';
 import Button from '@/components/Button/Button';
 import { submitHubspotForm, HUBSPOT_FORMS } from '@/lib/hubspot';
+import { buildWhatsAppUrl } from '@/lib/whatsapp';
 import styles from './page.module.css';
+
+const FORM_ERROR_WHATSAPP_MESSAGE = 'Olá! Tentei preencher o formulário do site mas não consegui enviar. Gostaria de falar sobre o meu projeto.';
 
 export default function ContactForm() {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
@@ -108,7 +111,7 @@ export default function ContactForm() {
       {status === 'error' && (
         <p className={styles.formError}>
           Não foi possível enviar sua mensagem. Tente novamente ou fale pelo{' '}
-          <a href="https://wa.me/5519936296268" target="_blank" rel="noopener noreferrer">WhatsApp</a>.
+          <a href={buildWhatsAppUrl(FORM_ERROR_WHATSAPP_MESSAGE)} target="_blank" rel="noopener noreferrer">WhatsApp</a>.
         </p>
       )}
     </form>
