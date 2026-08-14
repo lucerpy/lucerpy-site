@@ -8,6 +8,7 @@ import CookieConsent from "@/components/CookieConsent/CookieConsent";
 import Preloader from "@/components/Preloader/Preloader";
 import { LogoRevealProvider } from "@/components/Logo/LogoRevealContext";
 import ConsoleEasterEgg from "@/components/ConsoleEasterEgg/ConsoleEasterEgg";
+import TrustedSiteBadge from "@/components/TrustedSiteBadge/TrustedSiteBadge";
 
 // Overrides Silktide's default theme with the site's own palette.
 const SILKTIDE_THEME_CSS = `
@@ -150,6 +151,7 @@ export default function RootLayout({ children }) {
           <Footer />
           <WhatsAppButton />
         </LogoRevealProvider>
+        <TrustedSiteBadge />
       </body>
     </html>
   );
