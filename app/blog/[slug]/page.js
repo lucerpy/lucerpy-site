@@ -2,6 +2,7 @@ import { getPostData, getSortedPostsData } from '@/lib/blog';
 import styles from './post.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
+import ShareButtons from './ShareButtons';
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
@@ -98,6 +99,7 @@ export default async function Post({ params }) {
           <div className={styles.meta}>
             Publicado em: {new Date(postData.date).toLocaleDateString('pt-BR')}
           </div>
+          <ShareButtons title={postData.title} url={`https://lucerpy.com.br/blog/${slug}`} />
         </div>
       </header>
 

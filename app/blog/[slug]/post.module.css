@@ -59,6 +59,54 @@
   color: var(--color-text-muted);
 }
 
+.share {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.shareLabel {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-text-muted);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.shareButtons {
+  display: flex;
+  gap: 8px;
+}
+
+.shareButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: var(--color-bg);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.shareButton:hover {
+  border-color: var(--color-primary);
+  background-color: rgba(204, 236, 123, 0.08);
+}
+
+.shareIcon {
+  width: 16px;
+  height: 16px;
+  fill: var(--color-text-muted);
+  transition: fill 0.2s ease;
+}
+
+.shareButton:hover .shareIcon {
+  fill: var(--color-primary);
+}
+
 .content {
   max-width: 800px;
   margin: 0 auto;
