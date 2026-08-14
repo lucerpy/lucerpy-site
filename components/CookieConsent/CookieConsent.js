@@ -78,12 +78,28 @@ function initSilktide() {
 
 export default function CookieConsent() {
   return (
-    <Script
-      src="https://cdn.jsdelivr.net/gh/silktide/consent-manager@v2.0.1/silktide-consent-manager.js"
-      integrity="sha384-5Pt34uiIbCsvfiiZXoLi4HRf/YBXjr9c8e+gYeVo9smUaInNHYVtc8NZ8wUnXJIq"
-      crossOrigin="anonymous"
-      strategy="afterInteractive"
-      onLoad={initSilktide}
-    />
+    <>
+      {/* media="print" -> swapped to "all" onLoad keeps this stylesheet from
+          blocking the initial render, since the banner isn't needed for
+          first paint. */}
+      <link
+        rel="stylesheet"
+        id="silktide-consent-manager-css"
+        href="https://cdn.jsdelivr.net/gh/silktide/consent-manager@v2.0.1/silktide-consent-manager.css"
+        integrity="sha384-EdMq+R+YOnsbelo08wPenoTlnxbAyxI11NMIxzugx/qAsbh64KcOkqxYqq6pfvO/"
+        crossOrigin="anonymous"
+        media="print"
+        onLoad={(e) => {
+          e.currentTarget.media = 'all';
+        }}
+      />
+      <Script
+        src="https://cdn.jsdelivr.net/gh/silktide/consent-manager@v2.0.1/silktide-consent-manager.js"
+        integrity="sha384-5Pt34uiIbCsvfiiZXoLi4HRf/YBXjr9c8e+gYeVo9smUaInNHYVtc8NZ8wUnXJIq"
+        crossOrigin="anonymous"
+        strategy="afterInteractive"
+        onLoad={initSilktide}
+      />
+    </>
   );
 }
