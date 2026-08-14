@@ -113,6 +113,13 @@ export default function RootLayout({ children }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <link rel="preconnect" href="https://cdn.jsdelivr.net" crossOrigin="anonymous" />
+        <link
+          rel="stylesheet"
+          id="silktide-consent-manager-css"
+          href="https://cdn.jsdelivr.net/gh/silktide/consent-manager@v2.0.1/silktide-consent-manager.css"
+          integrity="sha384-EdMq+R+YOnsbelo08wPenoTlnxbAyxI11NMIxzugx/qAsbh64KcOkqxYqq6pfvO/"
+          crossOrigin="anonymous"
+        />
         <style
           id="silktide-consent-manager-overrides"
           dangerouslySetInnerHTML={{ __html: SILKTIDE_THEME_CSS }}
