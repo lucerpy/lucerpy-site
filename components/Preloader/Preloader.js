@@ -1,0 +1,87 @@
+'use client';
+
+import { useEffect, useRef, useState } from 'react';
+import styles from './Preloader.module.css';
+
+const WHITE_DOT = '/logo/lucerpy-wordmark-white-lime-dot-transparent.png';
+const LIME = '/logo/lucerpy-wordmark-lime-transparent.png';
+
+// Timeline (ms from mount):
+//   0     overlay + big centered logo fade/scale in
+//   400   hold
+//   1000  fly toward the real header logo's measured position, crossfading
+//         white -> lime and fading the backdrop out at the same time
+//   1700  overlay removed entirely
+const HOLD_UNTIL = 1000;
+const FLY_DURATION = 700;
+
+export default function Preloader() {
+  const [phase, setPhase] = useState('pending'); // pending | intro | flying | done
+  const logoRef = useRef(null);
+  // React StrictMode re-runs effects twice in development - without this
+  // guard, the 2nd run would see the sessionStorage flag the 1st run just
+  // set and immediately decide "already shown", cancelling the intro before
+  // it ever renders. The ref survives that double-invocation since it's the
+  // same component instance.
+  const decided = useRef(false);
+
+  useEffect(() => {
+    if (decided.current) return;
+    decided.current = true;
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setPhase('done');
+      return;
+    }
+    if (sessionStorage.getItem('lucerpy-intro-shown')) {
+      setPhase('done');
+      return;
+    }
+    sessionStorage.setItem('lucerpy-intro-shown', '1');
+    setPhase('intro');
+  }, []);
+
+  useEffect(() => {
+    if (phase !== 'intro') return;
+
+    const flyTimer = setTimeout(() => {
+      const target = document.querySelector('header a[href="/"]');
+      const logo = logoRef.current;
+      if (target && logo) {
+        const targetRect = target.getBoundingClientRect();
+        const logoRect = logo.getBoundingClientRect();
+        const scale = targetRect.width / logoRect.width;
+        const dx = targetRect.left + targetRect.width / 2 - (logoRect.left + logoRect.width / 2);
+        const dy = targetRect.top + targetRect.height / 2 - (logoRect.top + logoRect.height / 2);
+        logo.style.setProperty('--tx', `${dx}px`);
+        logo.style.setProperty('--ty', `${dy}px`);
+        logo.style.setProperty('--scale', String(scale));
+      }
+      setPhase('flying');
+    }, HOLD_UNTIL);
+
+    return () => clearTimeout(flyTimer);
+  }, [phase]);
+
+  useEffect(() => {
+    if (phase !== 'flying') return;
+    const doneTimer = setTimeout(() => setPhase('done'), FLY_DURATION);
+    return () => clearTimeout(doneTimer);
+  }, [phase]);
+
+  if (phase === 'pending' || phase === 'done') return null;
+
+  return (
+    <div className={`${styles.overlay} ${phase === 'flying' ? styles.overlayHidden : ''}`}>
+      <div ref={logoRef} className={`${styles.logo} ${phase === 'flying' ? styles.logoFlying : ''}`}>
+        <img src={WHITE_DOT} alt="Lucerpy" className={styles.logoImage} />
+        <img
+          src={LIME}
+          alt=""
+          aria-hidden="true"
+          className={`${styles.logoImage} ${styles.logoLime}`}
+        />
+      </div>
+    </div>
+  );
+}

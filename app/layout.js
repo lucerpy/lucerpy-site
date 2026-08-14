@@ -5,6 +5,7 @@ import Footer from "@/components/originkit/footer-02";
 import PageTransition from "@/components/PageTransition";
 import WhatsAppButton from "@/components/WhatsAppButton/WhatsAppButton";
 import CookieConsent from "@/components/CookieConsent/CookieConsent";
+import Preloader from "@/components/Preloader/Preloader";
 import { LogoRevealProvider } from "@/components/Logo/LogoRevealContext";
 
 // Overrides Silktide's default theme with the site's own palette.
@@ -126,6 +127,7 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body suppressHydrationWarning>
+        <Preloader />
         <CookieConsent />
         <LogoRevealProvider>
           <Navbar />
