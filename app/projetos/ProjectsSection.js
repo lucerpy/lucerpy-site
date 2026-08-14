@@ -18,6 +18,7 @@ const FILTERS = [
 // renderiza como link quando recebe href de verdade).
 const PROJECTS = [
   {
+    category: 'LANDING PAGE',
     tag: 'CONCEITO · LANDING PAGE',
     title: 'Lançamento imobiliário',
     description: 'Exercício autoral: alta conversão para lançamento residencial com integração CRM e automação de leads.',
@@ -25,6 +26,7 @@ const PROJECTS = [
     imagePlaceholder: 'linear-gradient(45deg, #2e1065, #4c1d95)',
   },
   {
+    category: 'E-COMMERCE',
     tag: 'CONCEITO · E-COMMERCE',
     title: 'Loja Streetwear',
     description: 'Exercício autoral: e-commerce completo com integrações de pagamento e logística automatizada.',
@@ -32,6 +34,7 @@ const PROJECTS = [
     imagePlaceholder: 'linear-gradient(45deg, #064e3b, #047857)',
   },
   {
+    category: 'INSTITUCIONAL',
     tag: 'CONCEITO · INSTITUCIONAL',
     title: 'Escritório de Advocacia',
     description: 'Exercício autoral: presença digital sóbria e confiável para área jurídica, com foco em autoridade.',
@@ -39,6 +42,7 @@ const PROJECTS = [
     imagePlaceholder: 'linear-gradient(45deg, #78350f, #451a03)',
   },
   {
+    category: 'APP',
     tag: 'CONCEITO · APP',
     title: 'Clínica de Estética',
     description: 'Exercício autoral: interface mobile-first para agendamento e gestão de clientes com notificações automáticas.',
@@ -46,6 +50,7 @@ const PROJECTS = [
     imagePlaceholder: 'linear-gradient(45deg, #1e3a8a, #172554)',
   },
   {
+    category: 'SAAS',
     tag: 'CONCEITO · SAAS',
     title: 'SaaS B2B',
     description: 'Exercício autoral: landing page de alta performance para produto de software com trial gratuito e onboarding.',
@@ -53,6 +58,7 @@ const PROJECTS = [
     imagePlaceholder: 'linear-gradient(45deg, #4c1d95, #2e1065)',
   },
   {
+    category: 'INSTITUCIONAL',
     tag: 'CONCEITO · INSTITUCIONAL',
     title: 'Consultoria Financeira',
     description: 'Exercício autoral: site institucional com portal do cliente e integração com sistema de gestão patrimonial.',
@@ -65,7 +71,7 @@ export default function ProjectsSection() {
   const [activeTag, setActiveTag] = useState(null);
 
   const filteredProjects = activeTag
-    ? PROJECTS.filter((project) => project.tag === activeTag)
+    ? PROJECTS.filter((project) => project.category === activeTag)
     : PROJECTS;
 
   return (
