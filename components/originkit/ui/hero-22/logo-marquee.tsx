@@ -1,6 +1,8 @@
 // Delivered by Originkit · stack: nextjs · styling: tailwind
 "use client";
 
+import { preload } from "react-dom";
+
 const TECH_STACK = [
   { name: "Next.js", file: "nextdotjs.svg" },
   { name: "React", file: "react.svg" },
@@ -27,7 +29,18 @@ function maskStyle(file) {
   };
 }
 
-export const LogoMarquee = () => (
+export const LogoMarquee = () => {
+  // The logos are painted via a CSS mask-image, not an <img> — the browser's
+  // preload scanner doesn't discover mask-image URLs from the initial HTML
+  // the way it does <img src>, so on a real network (unlike local dev) they
+  // can still be mid-fetch by the time the marquee scrolls them into view,
+  // leaving a blank gap until they pop in. Preloading forces an early,
+  // high-priority fetch for all of them.
+  TECH_STACK.forEach(({ file }) => {
+    preload(`/logos/${file}`, { as: "image" });
+  });
+
+  return (
   <div
     className="relative w-full overflow-hidden"
     style={{ maskImage: EDGE_MASK, WebkitMaskImage: EDGE_MASK }}
@@ -58,4 +71,5 @@ export const LogoMarquee = () => (
       ))}
     </div>
   </div>
-);
+  );
+};
