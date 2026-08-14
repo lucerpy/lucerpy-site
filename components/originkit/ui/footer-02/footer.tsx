@@ -28,7 +28,6 @@ const LINK_COLUMNS = [
       { label: "lucerpy@lucerpy.com.br", href: "mailto:lucerpy@lucerpy.com.br", external: true, icon: "envelope.svg" },
       { label: "+55 19 93629-6268", href: buildWhatsAppUrl(), external: true, icon: "whatsapp.svg" },
       { label: "@lucerpy.agencia", href: "https://www.instagram.com/lucerpy.agencia/", external: true, icon: "instagram.svg" },
-      { label: "Lucerpy Digital", href: "https://linkedin.com/company/lucerpy", external: true, icon: "linkedin.svg" },
     ],
   },
   {

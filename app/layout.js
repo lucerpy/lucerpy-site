@@ -100,8 +100,7 @@ const jsonLd = {
   "logo": "https://lucerpy.com.br/favicon.ico",
   "description": "Agência digital focada em UX/UI, desenvolvimento web de alta performance e automações para negócios.",
   "sameAs": [
-    "https://www.instagram.com/lucerpy.agencia/",
-    "https://linkedin.com/company/lucerpy"
+    "https://www.instagram.com/lucerpy.agencia/"
   ],
   "address": {
     "@type": "PostalAddress",

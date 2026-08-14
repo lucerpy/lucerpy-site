@@ -66,10 +66,6 @@ export default function Contato() {
                   <img src="/originkit/footer-02/instagram.svg" alt="" width={20} height={20} className={styles.infoIcon} aria-hidden="true" />
                   @lucerpy.agencia
                 </a>
-                <a href="https://linkedin.com/company/lucerpy" target="_blank" rel="noopener noreferrer" className={styles.infoLink}>
-                  <img src="/originkit/footer-02/linkedin.svg" alt="" width={20} height={20} className={styles.infoIcon} aria-hidden="true" />
-                  Lucerpy Digital
-                </a>
               </div>
 
               <div className={styles.infoBlock}>
