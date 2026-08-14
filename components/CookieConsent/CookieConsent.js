@@ -42,9 +42,6 @@ function initSilktide() {
         description:
           '<p>Esses cookies são necessários para o funcionamento correto do site e não podem ser desativados. Eles ajudam em coisas como login e a definição das suas preferências de privacidade.</p>',
         required: true,
-        onAccept: function () {
-          console.log('Add logic for the required Essenciais consent type here');
-        },
       },
       {
         id: 'an_lise',

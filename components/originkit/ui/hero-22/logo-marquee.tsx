@@ -1,8 +1,6 @@
 // Delivered by Originkit · stack: nextjs · styling: tailwind
 "use client";
 
-import { preload } from "react-dom";
-
 // Inlined directly (instead of a mask-image url()) so there's zero network
 // request for these - a CSS mask-image is never discovered by the browser's
 // preload scanner from the initial HTML the way an <img src> is, so on a
@@ -44,7 +42,9 @@ const EDGE_MASK =
 
 // RD Station's icon is a raster PNG (no vector source on hand), so it stays
 // on the mask-image technique - that's still what lets a flat color tint it
-// on hover. It's tiny (~19KB) and already preloaded below.
+// on hover. It's tiny (~19KB); a <link rel=preload> for it was tried but
+// dropped because Chrome's preload scanner and a CSS mask-image url() fetch
+// this with different credentials modes, so the preload was flagged unused.
 function maskStyle(file) {
   return {
     maskImage: `url(/logos/${file})`,
@@ -59,8 +59,6 @@ function maskStyle(file) {
 }
 
 export const LogoMarquee = () => {
-  preload("/logos/rdstation-icon.png", { as: "image" });
-
   return (
   <div
     className="relative w-full overflow-hidden"
