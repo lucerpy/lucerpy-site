@@ -65,15 +65,8 @@ const PROJECTS = [
     image: '/cases/financeira.jpg',
     imagePlaceholder: 'linear-gradient(45deg, #14532d, #064e3b)',
   },
-  {
-    category: 'SAAS',
-    tag: 'CONCEITO · SAAS',
-    title: 'Inventário de TI',
-    description: 'Exercício autoral: dashboard para controle de ativos de TI em tempo real, com gestão de colaboradores, kits de boas-vindas e devoluções.',
-    image: '/cases/inventario-ti.jpg',
-    imagePlaceholder: 'linear-gradient(45deg, #1e3a8a, #0f172a)',
-    href: '/projetos/inventario-ti',
-  },
+  // Inventário de TI is featured (below, alongside Cavent) instead of
+  // living in this grid - it has its own case page like Cavent does.
 ];
 
 export default function ProjectsSection() {
@@ -110,6 +103,22 @@ export default function ProjectsSection() {
             metrics={[
               { value: '+180%', label: 'leads qualificados' },
               { value: '3x', label: 'mais rápido' }
+            ]}
+          />
+        </div>
+
+        <div className={styles.featuredCard}>
+          <Card
+            type="project"
+            tag="DESTAQUE"
+            title="Inventário de TI"
+            description="Exercício autoral: dashboard para controle de ativos de TI em tempo real, com gestão de colaboradores, kits de boas-vindas e devoluções."
+            image="/cases/inventario-ti.jpg"
+            imagePlaceholder="linear-gradient(45deg, #1e3a8a, #0f172a)"
+            href="/projetos/inventario-ti"
+            metrics={[
+              { value: '6', label: 'módulos integrados' },
+              { value: '100%', label: 'responsivo' }
             ]}
           />
         </div>

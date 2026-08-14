@@ -9,7 +9,11 @@
 }
 
 .backLink {
-  display: inline-block;
+  /* Must be block, not inline-block: inline-block still lets the tag badge
+     that follows sit on the same line right next to it (margin-bottom does
+     nothing against a neighbor on the same line). */
+  display: block;
+  width: fit-content;
   color: var(--color-text-muted);
   margin-bottom: 32px;
   font-size: 0.875rem;
