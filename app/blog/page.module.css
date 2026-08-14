@@ -101,9 +101,9 @@
 
 .ctaSection {
   background:
-    radial-gradient(ellipse at center, rgba(204, 236, 123, 0.94) 0%, rgba(204, 236, 123, 0.78) 55%, rgba(204, 236, 123, 0.55) 100%),
-    url('/cta/leaves-1.jpg') center/cover;
-  color: var(--color-bg);
+    radial-gradient(ellipse at center, rgba(30, 14, 8, 0.35) 0%, rgba(15, 8, 6, 0.72) 65%, rgba(10, 6, 5, 0.85) 100%),
+    url('/cta/warm-1.jpg') center/cover;
+  color: #FFFFFF;
   padding: 80px 0;
   text-align: center;
   border-radius: 24px;
