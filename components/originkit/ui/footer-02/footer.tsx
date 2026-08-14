@@ -51,9 +51,13 @@ export function Footer() {
         Desktop (Figma 2168:5):  brand | links side-by-side
       */}
       <div className="relative z-10 flex flex-col gap-8 px-6 pt-10 pb-[280px] ipad:gap-12 ipad:px-12 ipad:pt-12 ipad:pb-[290px] desktop-sm:px-16 desktop-sm:pt-[72px] desktop-sm:pb-[280px]">
-      <div className="flex flex-col gap-8 ipad:gap-12 desktop-sm:flex-row desktop-sm:items-start desktop-sm:justify-between desktop-sm:gap-8">
+      {/* 5-column grid on desktop: Brand | Newsletter | Páginas | Contato |
+          Legal. Each track has its own min/max rule (grid-template-columns
+          below) so the browser computes every width and gap on its own -
+          no more manually budgeting fixed pixel widths per breakpoint. */}
+      <div className="flex flex-col gap-8 ipad:gap-12 desktop-sm:grid desktop-sm:grid-cols-[minmax(180px,220px)_minmax(240px,440px)_repeat(3,minmax(120px,170px))] desktop-sm:items-start desktop-sm:justify-between desktop-sm:gap-x-10">
         {/* Brand */}
-        <div className="flex w-full flex-col gap-8 ipad:gap-10 desktop-sm:w-[220px] desktop-sm:shrink-0">
+        <div className="flex w-full flex-col gap-8 ipad:gap-10">
           <div className="flex flex-col gap-2 ipad:gap-4">
             <Logo />
             <p className="font-sans text-[14px] leading-[1.4] text-[#c2c2c2]">
@@ -93,7 +97,7 @@ export function Footer() {
             between the narrow brand column and the link columns on desktop.
             Reuses the blog CTA's existing HubSpot-backed form
             (app/blog/NewsletterForm.js) instead of a new one. */}
-        <div className="flex w-full flex-col gap-3 desktop-sm:flex-1">
+        <div className="flex w-full flex-col gap-3">
           <div className="flex flex-col gap-2">
             <p className="font-outfit text-[18px] leading-normal text-white">
               Receba novidades
@@ -105,15 +109,19 @@ export function Footer() {
           <NewsletterForm compact />
         </div>
 
-        {/* Link columns */}
+        {/* Link columns - `contents` on desktop drops this <nav> out of the
+            box tree so its 3 children become direct items of the outer
+            grid (one grid track each), while keeping the element itself
+            for its aria-label landmark. Below desktop it's a real grid
+            container again for the 2/3-col mobile/tablet layout. */}
         <nav
           aria-label="Rodapé"
-          className="grid w-full grid-cols-2 gap-x-8 gap-y-8 ipad:grid-cols-3 ipad:gap-8 desktop-sm:flex desktop-sm:w-[580px] desktop-sm:shrink-0 desktop-sm:gap-10"
+          className="grid w-full grid-cols-2 gap-x-8 gap-y-8 ipad:grid-cols-3 ipad:gap-8 desktop-sm:contents"
         >
           {LINK_COLUMNS.map((column) => (
             <div
               key={column.title}
-              className="flex min-w-0 flex-col gap-4 desktop-sm:flex-1"
+              className="flex min-w-0 flex-col gap-4"
             >
               <p className="font-outfit text-[18px] leading-normal text-white">
                 {column.title}
