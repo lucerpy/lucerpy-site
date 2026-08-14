@@ -8,7 +8,9 @@ export default function CtaVideo({ src, poster }) {
   const [allowVideo, setAllowVideo] = useState(false);
 
   useEffect(() => {
-    setAllowVideo(!window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isMobile = window.matchMedia('(max-width: 767px)').matches;
+    setAllowVideo(!reducedMotion && !isMobile);
   }, []);
 
   useEffect(() => {

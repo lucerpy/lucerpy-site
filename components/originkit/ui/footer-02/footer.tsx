@@ -37,27 +37,6 @@ const LINK_COLUMNS = [
   },
 ] as const;
 
-const SOCIAL_LINKS = [
-  {
-    label: "WhatsApp",
-    href: "https://wa.me/5519936296268",
-    icon: "whatsapp.svg",
-  },
-  {
-    label: "Instagram",
-    href: "https://www.instagram.com/lucerpy.agencia/",
-    icon: "instagram.svg",
-  },
-  {
-    label: "LinkedIn",
-    href: "https://linkedin.com/company/lucerpy",
-    icon: "linkedin.svg",
-  },
-] as const;
-
-const SOCIAL_SHADOW =
-  "0px 17px 2.5px rgba(0,0,0,0), 0px 11px 2px rgba(0,0,0,0.01), 0px 6px 2px rgba(0,0,0,0.05), 0px 3px 1.5px rgba(0,0,0,0.09), 0px 1px 1px rgba(0,0,0,0.1)";
-
 export function Footer() {
   return (
     <footer
@@ -78,38 +57,6 @@ export function Footer() {
               Agência digital focada em UX/UI, desenvolvimento web e automações que entregam resultado real.
             </p>
           </div>
-
-          <ul className="flex items-center gap-4" aria-label="Redes sociais">
-            {SOCIAL_LINKS.map((social, index) => (
-              <li
-                key={social.label}
-                className="animate-social-slide-up will-change-transform"
-                style={{ animationDelay: `${index * 120}ms` }}
-              >
-                <a
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={social.label}
-                  tabIndex={0}
-                  className="relative inline-flex size-10 touch-manipulation items-center justify-center rounded-full bg-[#292929] transition-opacity duration-200 ease before:absolute before:inset-[-6px] before:content-[''] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white [-webkit-tap-highlight-color:transparent] [@media(hover:hover)_and_(pointer:fine)]:hover:opacity-80"
-                  style={{ boxShadow: SOCIAL_SHADOW }}
-                >
-                  <span className="relative size-5 overflow-clip">
-                    <img
-                      src={asset(social.icon)}
-                      alt=""
-                      width={20}
-                      height={20}
-                      loading="lazy"
-                      className="size-full"
-                      aria-hidden="true"
-                    />
-                  </span>
-                </a>
-              </li>
-            ))}
-          </ul>
         </div>
 
         {/* Link columns */}
