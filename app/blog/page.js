@@ -3,7 +3,7 @@ import Button from '@/components/Button/Button';
 import BlogPostsSection from './BlogPostsSection';
 import { getSortedPostsData } from '@/lib/blog';
 import HeroSlideshow from '@/components/HeroSlideshow/HeroSlideshow';
-import CtaVideo from '@/components/CtaVideo/CtaVideo';
+import CtaBackground from '@/components/CtaBackground/CtaBackground';
 
 const HERO_IMAGES = ['/blog-hero/1.jpg', '/blog-hero/2.jpg', '/blog-hero/3.jpg'];
 
@@ -57,7 +57,7 @@ export default function Blog() {
       </section>
 
       <section className={styles.ctaSection} id="newsletter">
-        <CtaVideo src="/cta/cta-blog.mp4" poster="/cta/poster-blog.jpg" />
+        <CtaBackground variant="blog" />
         <div className={styles.ctaOverlay} />
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div className={styles.ctaContent}>

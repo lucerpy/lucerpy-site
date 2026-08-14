@@ -2,7 +2,7 @@ import styles from './page.module.css';
 import Button from '@/components/Button/Button';
 import ProjectsSection from './ProjectsSection';
 import HeroSlideshow from '@/components/HeroSlideshow/HeroSlideshow';
-import CtaVideo from '@/components/CtaVideo/CtaVideo';
+import CtaBackground from '@/components/CtaBackground/CtaBackground';
 
 const HERO_IMAGES = ['/projetos-hero/1.jpg', '/projetos-hero/2.jpg', '/projetos-hero/3.jpg'];
 
@@ -49,7 +49,7 @@ export default function Projetos() {
       </section>
 
       <section className={styles.ctaSection} id="contato">
-        <CtaVideo src="/cta/cta-projetos.mp4" poster="/cta/poster-projetos.jpg" />
+        <CtaBackground variant="projetos" />
         <div className={styles.ctaOverlay} />
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div className={styles.ctaContent}>
