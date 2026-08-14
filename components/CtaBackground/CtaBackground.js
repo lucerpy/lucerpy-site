@@ -15,17 +15,23 @@ const DotMatrix = dynamic(
 );
 
 const BG = '#0C0D11';
-const AMBER_RAMP = ['#0C0D11', '#4A2E12', '#E8A659'];
+// The brand's --color-accent (#E8A659) is deliberately muted for use as a tiny
+// sparing highlight (tags, badges). In these WebGL/canvas backgrounds the
+// color IS the whole visual, spread thin across particles/dots/alpha, so
+// that same muted tone reads as washed-out - needs a punchier, more
+// saturated amber to actually read against the near-black background.
+const VIVID_AMBER = '#FFB347';
+const AMBER_RAMP = ['#0C0D11', '#7A4413', VIVID_AMBER];
 
 const VARIANTS = {
   home: () => (
     <RisingLines
       particles={450}
-      color="#E8A659"
+      color={VIVID_AMBER}
       horizonColor="#CCEC7B"
       riseSpeed={20}
-      opacity={85}
-      horizonOpacity={55}
+      opacity={100}
+      horizonOpacity={65}
       scale={7}
       showHorizon
     />
@@ -52,18 +58,18 @@ const VARIANTS = {
   projetos: () => (
     <PulsingDotGrid
       backgroundColor={BG}
-      dotColor="#E8A659"
+      dotColor={VIVID_AMBER}
       speed={2}
       gap={40}
       dotSize={5}
-      pulseIntensity={0.8}
+      pulseIntensity={0.9}
       radialWave
     />
   ),
   blog: () => (
     <DitherEffect
       background={BG}
-      colors={['#2B3D12', '#CCEC7B', '#E8A659']}
+      colors={['#2B3D12', '#CCEC7B', VIVID_AMBER]}
       hover={false}
       speed={25}
     />

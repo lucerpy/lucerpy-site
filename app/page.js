@@ -246,7 +246,7 @@ export default function Home() {
             <p className={styles.ctaDescription}>Vamos conversar sobre o seu projeto. A primeira call é por nossa conta.</p>
             <div className={styles.ctaButtons}>
               <Button href="/contato" variant="secondary">Falar com a Lucerpy →</Button>
-              <Button href="/projetos" variant="link" style={{ color: '#0C0D11' }}>Ver portfólio</Button>
+              <Button href="/projetos" variant="link">Ver portfólio</Button>
             </div>
           </div>
         </div>
