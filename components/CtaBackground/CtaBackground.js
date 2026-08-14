@@ -28,12 +28,10 @@ const VARIANTS = {
     <RisingLines
       particles={450}
       color={VIVID_AMBER}
-      horizonColor="#CCEC7B"
       riseSpeed={20}
       opacity={100}
-      horizonOpacity={65}
       scale={7}
-      showHorizon
+      showHorizon={false}
     />
   ),
   servicos: () => (
