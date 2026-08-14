@@ -1,11 +1,26 @@
 import { Outfit, Inter } from "next/font/google";
-import { GoogleTagManager } from "@next/third-parties/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/originkit/footer-02";
 import PageTransition from "@/components/PageTransition";
 import WhatsAppButton from "@/components/WhatsAppButton/WhatsAppButton";
+import CookieConsent from "@/components/CookieConsent/CookieConsent";
 import { LogoRevealProvider } from "@/components/Logo/LogoRevealContext";
+
+// Overrides Silktide's default theme with the site's own palette.
+const SILKTIDE_THEME_CSS = `
+#stcm-wrapper {
+  --boxShadow: -5px 5px 10px 0px #00000012, 0px 0px 50px 0px #0000001a;
+  --fontFamily: Helvetica Neue, Segoe UI, Arial, sans-serif;
+  --primaryColor: #ccec7b;
+  --backgroundColor: #0c0d11;
+  --textColor: #FFFFFF;
+  --backdropBackgroundColor: #00000033;
+  --backdropBackgroundBlur: 0px;
+  --iconColor: #CCEC7B;
+  --iconBackgroundColor: #0C0D11;
+}
+`;
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -97,18 +112,21 @@ export default function RootLayout({ children }) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        <link rel="preconnect" href="https://cdn.jsdelivr.net" crossOrigin="anonymous" />
+        <link
+          rel="stylesheet"
+          id="silktide-consent-manager-css"
+          href="https://cdn.jsdelivr.net/gh/silktide/consent-manager@v2.0.1/silktide-consent-manager.css"
+          integrity="sha384-EdMq+R+YOnsbelo08wPenoTlnxbAyxI11NMIxzugx/qAsbh64KcOkqxYqq6pfvO/"
+          crossOrigin="anonymous"
+        />
+        <style
+          id="silktide-consent-manager-overrides"
+          dangerouslySetInnerHTML={{ __html: SILKTIDE_THEME_CSS }}
+        />
       </head>
       <body suppressHydrationWarning>
-        <GoogleTagManager gtmId="GTM-KT4RRQWQ" />
-        {/* Google Tag Manager (noscript) - fallback for visitors with JS disabled */}
-        <noscript>
-          <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-KT4RRQWQ"
-            height="0"
-            width="0"
-            style={{ display: 'none', visibility: 'hidden' }}
-          />
-        </noscript>
+        <CookieConsent />
         <LogoRevealProvider>
           <Navbar />
           <main><PageTransition>{children}</PageTransition></main>
