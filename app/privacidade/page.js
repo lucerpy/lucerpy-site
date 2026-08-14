@@ -18,7 +18,7 @@ export default function Privacidade() {
     <main className={styles.container}>
       <div className={styles.tagline}>LEGAL</div>
       <h1 className={styles.title}>Política de Privacidade</h1>
-      <div className={styles.date}>Última atualização: 11 de Agosto de 2026</div>
+      <div className={styles.date}>Última atualização: 14 de Agosto de 2026</div>
 
       <div className={styles.content}>
         <p>
@@ -40,17 +40,22 @@ export default function Privacidade() {
           <li>Melhorar a experiência de navegação e desempenho do nosso site.</li>
         </ul>
 
-        <h2>3. Compartilhamento e Proteção</h2>
+        <h2>3. Compartilhamento com Terceiros</h2>
         <p>
-          Não vendemos, alugamos nem compartilhamos seus dados pessoais com terceiros para fins de marketing. Adotamos medidas de segurança técnicas e organizacionais adequadas para proteger suas informações contra acesso não autorizado.
+          Não vendemos nem alugamos seus dados pessoais. Para gerenciar contatos e o envio da nossa newsletter, utilizamos a HubSpot como plataforma de CRM: ao preencher os formulários deste site, suas informações são enviadas diretamente para essa plataforma, que atua como nossa processadora de dados. Adotamos medidas de segurança técnicas e organizacionais adequadas para proteger suas informações contra acesso não autorizado.
         </p>
 
-        <h2>4. Seus Direitos (LGPD)</h2>
+        <h2>4. Cookies</h2>
+        <p>
+          Este site pode utilizar cookies essenciais ao seu funcionamento. Quando ferramentas de análise de audiência (como Google Analytics) estiverem ativas, cookies de mensuração também poderão ser utilizados — nesses casos, solicitamos seu consentimento através de um banner de cookies antes de qualquer coleta não essencial, e você pode ajustar suas preferências a qualquer momento.
+        </p>
+
+        <h2>5. Seus Direitos (LGPD)</h2>
         <p>
           Conforme a Lei Geral de Proteção de Dados (LGPD), você tem o direito de solicitar a confirmação, acesso, correção ou eliminação dos seus dados pessoais armazenados por nós.
         </p>
 
-        <h2>5. Contato</h2>
+        <h2>6. Contato</h2>
         <p>
           Se tiver dúvidas sobre esta Política de Privacidade ou sobre o tratamento dos seus dados, entre em contato através do e-mail <strong>lucerpy@lucerpy.com.br</strong>.
         </p>
