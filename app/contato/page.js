@@ -1,6 +1,8 @@
 import styles from './page.module.css';
 import ContactForm from './ContactForm';
-import Image from 'next/image';
+import HeroSlideshow from '@/components/HeroSlideshow/HeroSlideshow';
+
+const HERO_IMAGES = ['/contato/hero-1.jpg', '/contato/hero-2.jpg', '/contato/hero-3.jpg'];
 
 export const metadata = {
   title: 'Contato',
@@ -19,20 +21,21 @@ export default function Contato() {
   return (
     <>
       <section className={`${styles.hero} container`}>
-        <div className={styles.tagline}>FALE COM A GENTE</div>
-        <h1 className={styles.heroTitle}>
-          Vamos tirar seu <span className="text-primary">projeto</span> do papel.
-        </h1>
-        <p className={styles.heroDescription}>
-          Conta pra gente o que você precisa. A primeira conversa é por nossa conta, sem compromisso.
-        </p>
-      </section>
-
-      <div className="container">
-        <div className={styles.banner}>
-          <Image src="/contato/banner.jpg" alt="" fill sizes="100vw" priority className={styles.bannerImage} />
+        <div className={styles.heroGrid}>
+          <div>
+            <div className={styles.tagline}>FALE COM A GENTE</div>
+            <h1 className={styles.heroTitle}>
+              Vamos tirar seu <span className="text-primary">projeto</span> do papel.
+            </h1>
+            <p className={styles.heroDescription}>
+              Conta pra gente o que você precisa. A primeira conversa é por nossa conta, sem compromisso.
+            </p>
+          </div>
+          <div>
+            <HeroSlideshow images={HERO_IMAGES} />
+          </div>
         </div>
-      </div>
+      </section>
 
       <section className="section-padding">
         <div className="container">

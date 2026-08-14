@@ -2,6 +2,9 @@ import styles from './page.module.css';
 import Button from '@/components/Button/Button';
 import Card from '@/components/Card/Card';
 import Image from 'next/image';
+import HeroSlideshow from '@/components/HeroSlideshow/HeroSlideshow';
+
+const HERO_IMAGES = ['/servicos/hero.jpg', '/servicos/hero-2.jpg', '/servicos/hero-3.jpg'];
 
 export const metadata = {
   title: 'Serviços',
@@ -34,15 +37,8 @@ export default function Servicos() {
               <Button href="/projetos" variant="secondary">Ver projetos</Button>
             </div>
           </div>
-          <div className={`${styles.heroImageWrap} fade-in fade-in-4`}>
-            <Image
-              src="/servicos/hero.jpg"
-              alt=""
-              fill
-              priority
-              sizes="(max-width: 992px) 100vw, 50vw"
-              className={styles.heroImage}
-            />
+          <div className="fade-in fade-in-4">
+            <HeroSlideshow images={HERO_IMAGES} />
           </div>
         </div>
       </section>

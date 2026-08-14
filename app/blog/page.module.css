@@ -9,6 +9,20 @@
   }
 }
 
+.heroGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  gap: 40px;
+}
+
+@media (min-width: 992px) {
+  .heroGrid {
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 64px;
+  }
+}
+
 .tagline {
   display: inline-block;
   font-size: 0.75rem;
