@@ -8,9 +8,7 @@ export default function ConsoleEasterEgg() {
     window.__lucerpyEasterEggShown = true;
 
     console.log(
-      '%cGostou do que viu? Entre em contato: lucerpy@lucerpy.com.br\n\n%c"O desenvolvimento de uma inteligência artificial completa pode significar o fim da raça humana."\n%c— Stephen Hawking',
-      'color:#A1A1AA; font-size:12px;',
-      'color:#FFFFFF; font-size:14px; font-style:italic;',
+      '%cGostou do que viu? Entre em contato: lucerpy@lucerpy.com.br\n\n"O desenvolvimento de uma inteligência artificial completa pode significar o fim da raça humana."\n— Stephen Hawking',
       'color:#A1A1AA; font-size:12px;'
     );
   }, []);
