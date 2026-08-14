@@ -3,8 +3,19 @@ import Button from '@/components/Button/Button';
 import Card from '@/components/Card/Card';
 import Image from 'next/image';
 import HeroSlideshow from '@/components/HeroSlideshow/HeroSlideshow';
+import BentoGrid from '@/components/BentoGrid/BentoGrid';
 
 const HERO_IMAGES = ['/quem-somos/hero-1.jpg', '/quem-somos/hero-2.jpg', '/quem-somos/hero-3.jpg'];
+
+const BENTO_IMAGES = [
+  '/quem-somos/bento-1.jpg',
+  '/quem-somos/bento-2.jpg',
+  '/quem-somos/bento-3.jpg',
+  '/quem-somos/bento-4.jpg',
+  '/quem-somos/bento-5.jpg',
+  '/quem-somos/bento-6.jpg',
+  '/quem-somos/bento-7.jpg',
+];
 
 export const metadata = {
   title: 'Quem Somos',
@@ -56,29 +67,7 @@ export default function QuemSomos() {
 
       <section className="section-padding" style={{ paddingTop: 0 }}>
         <div className="container">
-          <div className={styles.bentoGrid}>
-            <div className={`${styles.bentoCell} ${styles.bentoBig}`}>
-              <Image src="/quem-somos/bento-1.jpg" alt="" fill sizes="(max-width: 992px) 100vw, 40vw" className={styles.bentoImage} />
-            </div>
-            <div className={`${styles.bentoCell} ${styles.bentoWide}`}>
-              <Image src="/quem-somos/bento-2.jpg" alt="" fill sizes="(max-width: 992px) 50vw, 20vw" className={styles.bentoImage} />
-            </div>
-            <div className={`${styles.bentoCell} ${styles.bentoC3}`}>
-              <Image src="/quem-somos/bento-3.jpg" alt="" fill sizes="(max-width: 992px) 33vw, 13vw" className={styles.bentoImage} />
-            </div>
-            <div className={`${styles.bentoCell} ${styles.bentoC4}`}>
-              <Image src="/quem-somos/bento-4.jpg" alt="" fill sizes="(max-width: 992px) 33vw, 13vw" className={styles.bentoImage} />
-            </div>
-            <div className={`${styles.bentoCell} ${styles.bentoC5}`}>
-              <Image src="/quem-somos/bento-5.jpg" alt="" fill sizes="(max-width: 992px) 33vw, 13vw" className={styles.bentoImage} />
-            </div>
-            <div className={`${styles.bentoCell} ${styles.bentoC6}`}>
-              <Image src="/quem-somos/bento-6.jpg" alt="" fill sizes="(max-width: 992px) 50vw, 20vw" className={styles.bentoImage} />
-            </div>
-            <div className={`${styles.bentoCell} ${styles.bentoWide2}`}>
-              <Image src="/quem-somos/bento-7.jpg" alt="" fill sizes="(max-width: 992px) 50vw, 40vw" className={styles.bentoImage} />
-            </div>
-          </div>
+          <BentoGrid images={BENTO_IMAGES} />
         </div>
       </section>
 

@@ -178,7 +178,9 @@
 }
 
 .ctaSection {
-  background-color: var(--color-primary);
+  background:
+    radial-gradient(ellipse at center, rgba(204, 236, 123, 0.94) 0%, rgba(204, 236, 123, 0.78) 55%, rgba(204, 236, 123, 0.55) 100%),
+    url('/cta/leaves-3.jpg') center/cover;
   color: var(--color-bg);
   padding: 80px 0;
   text-align: center;
