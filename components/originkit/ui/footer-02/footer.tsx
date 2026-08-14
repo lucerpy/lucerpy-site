@@ -51,7 +51,7 @@ export function Footer() {
         Desktop (Figma 2168:5):  brand | links side-by-side
       */}
       <div className="relative z-10 flex flex-col gap-8 px-6 pt-10 pb-[280px] ipad:gap-12 ipad:px-12 ipad:pt-12 ipad:pb-[290px] desktop-sm:px-16 desktop-sm:pt-[72px] desktop-sm:pb-[280px]">
-      <div className="flex flex-col gap-8 ipad:gap-12 desktop-sm:flex-row desktop-sm:items-start desktop-sm:gap-8">
+      <div className="flex flex-col gap-8 ipad:gap-12 desktop-sm:mx-auto desktop-sm:max-w-[1200px] desktop-sm:flex-row desktop-sm:items-start desktop-sm:justify-between desktop-sm:gap-8">
         {/* Brand */}
         <div className="flex w-full flex-col gap-6 ipad:gap-8 desktop-sm:w-[220px] desktop-sm:shrink-0 desktop-sm:justify-between desktop-sm:gap-0">
           <div className="flex flex-col gap-2 ipad:gap-4">
