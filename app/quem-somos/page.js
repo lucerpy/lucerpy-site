@@ -4,6 +4,7 @@ import Card from '@/components/Card/Card';
 import Image from 'next/image';
 import HeroSlideshow from '@/components/HeroSlideshow/HeroSlideshow';
 import BentoGrid from '@/components/BentoGrid/BentoGrid';
+import CtaVideo from '@/components/CtaVideo/CtaVideo';
 
 const HERO_IMAGES = ['/quem-somos/hero-1.jpg', '/quem-somos/hero-2.jpg', '/quem-somos/hero-3.jpg'];
 
@@ -196,7 +197,9 @@ export default function QuemSomos() {
       </section>
 
       <section className={styles.ctaSection} id="contato">
-        <div className="container">
+        <CtaVideo src="/cta/leaves-falling.mp4" poster="/cta/warm-2.jpg" />
+        <div className={styles.ctaOverlay} />
+        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div className={styles.ctaContent}>
             <h2 className={styles.ctaTitle}>Vamos trabalhar juntos?</h2>
             <p className={styles.ctaDescription}>Conta pra gente o que você precisa. A primeira conversa é por nossa conta.</p>

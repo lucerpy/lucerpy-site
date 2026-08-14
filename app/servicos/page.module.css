@@ -94,8 +94,8 @@
 .sectionTag {
   font-size: 0.75rem;
   font-weight: 700;
-  color: var(--color-text-muted);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--color-accent);
+  border: 1px solid rgba(232, 166, 89, 0.3);
   padding: 4px 10px;
   border-radius: 4px;
   display: inline-block;
@@ -224,14 +224,20 @@
 }
 
 .ctaSection {
-  background:
-    radial-gradient(ellipse at center, rgba(204, 236, 123, 0.94) 0%, rgba(204, 236, 123, 0.78) 55%, rgba(204, 236, 123, 0.55) 100%),
-    url('/cta/leaves-2.jpg') center/cover;
+  position: relative;
+  overflow: hidden;
   color: var(--color-bg);
   padding: 80px 0;
   text-align: center;
   border-radius: 24px;
   margin: 0 24px 80px 24px;
+}
+
+.ctaOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: radial-gradient(ellipse at center, rgba(255, 214, 153, 0.9) 0%, rgba(255, 214, 153, 0.72) 55%, rgba(255, 214, 153, 0.45) 100%);
 }
 
 .ctaTitle {

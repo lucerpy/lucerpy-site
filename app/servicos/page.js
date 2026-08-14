@@ -3,6 +3,7 @@ import Button from '@/components/Button/Button';
 import Card from '@/components/Card/Card';
 import Image from 'next/image';
 import HeroSlideshow from '@/components/HeroSlideshow/HeroSlideshow';
+import CtaVideo from '@/components/CtaVideo/CtaVideo';
 
 const HERO_IMAGES = ['/servicos/hero.jpg', '/servicos/hero-2.jpg', '/servicos/hero-3.jpg'];
 
@@ -129,7 +130,9 @@ export default function Servicos() {
       </section>
 
       <section className={styles.ctaSection} id="contato">
-        <div className="container">
+        <CtaVideo src="/cta/leaves-falling.mp4" poster="/cta/warm-2.jpg" />
+        <div className={styles.ctaOverlay} />
+        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div className={styles.ctaContent}>
             <h2 className={styles.ctaTitle}>Pronto para começar?</h2>
             <p className={styles.ctaDescription}>Vamos conversar sobre o seu projeto e encontrar a melhor solução juntos.</p>
