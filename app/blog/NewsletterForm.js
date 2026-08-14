@@ -34,23 +34,8 @@ export default function NewsletterForm({ compact = false }) {
 
   return (
     <form
-      className={styles.newsletterForm}
+      className={compact ? `${styles.newsletterForm} ${styles.newsletterFormCompact}` : styles.newsletterForm}
       onSubmit={handleSubmit}
-      // The blog CTA's own CSS switches to a side-by-side row at 768px
-      // *viewport* width, assuming a wide, roomy section. In compact spots
-      // (a narrow flex column, like the footer) that same 768px viewport
-      // can still mean a container far too tight for input + button side
-      // by side - forcing a column stack here overrides that regardless of
-      // viewport, since inline styles win over the stylesheet's media query.
-      //
-      // margin is also overridden: the base CSS's `margin: 0 auto` (meant
-      // to center the form in the blog's wide section) has an auto
-      // cross-axis margin, which per the flexbox spec opts the form OUT of
-      // its flex-column parent's stretch behavior - the form shrinks to its
-      // content's width instead of filling the parent, no matter how wide
-      // that parent grows. Zeroing the margin (and setting width: 100%)
-      // lets it actually stretch to fill, capped by maxWidth.
-      style={compact ? { flexDirection: 'column', maxWidth: '440px', width: '100%', margin: 0 } : undefined}
     >
       <input
         type="email"

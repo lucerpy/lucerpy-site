@@ -95,8 +95,11 @@ export function Footer() {
         {/* Newsletter - fills the horizontal gap that otherwise sits empty
             between the narrow brand column and the link columns on desktop.
             Reuses the blog CTA's existing HubSpot-backed form
-            (app/blog/NewsletterForm.js) instead of a new one. */}
-        <div className="flex w-full flex-col gap-3">
+            (app/blog/NewsletterForm.js) instead of a new one. Named as a
+            container so NewsletterForm's compact CSS can switch to a
+            side-by-side row based on this column's own real width, not the
+            viewport - see the @container rule in app/blog/page.module.css. */}
+        <div className="flex w-full flex-col gap-3 desktop-sm:[container-type:inline-size] desktop-sm:[container-name:newsletterCol]">
           <div className="flex flex-col gap-2">
             <p className="font-outfit text-[18px] leading-normal text-white">
               Receba novidades

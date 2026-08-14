@@ -62,7 +62,7 @@ const PROJECTS = [
     tag: 'CONCEITO · INSTITUCIONAL',
     title: 'Consultoria Financeira',
     description: 'Exercício autoral: site institucional com portal do cliente e integração com sistema de gestão patrimonial.',
-    image: '/cases/saas.jpg',
+    image: '/cases/financeira.jpg',
     imagePlaceholder: 'linear-gradient(45deg, #14532d, #064e3b)',
   },
 ];

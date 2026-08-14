@@ -153,8 +153,31 @@
   }
 }
 
+/* Compact variant (footer): the row-vs-column switch is driven by the
+   column's own real width via a container query, not the viewport - a
+   viewport breakpoint can't tell whether this particular grid column is
+   currently wide enough for input+button side by side, which is exactly
+   what caused it to overflow into the next column before. */
+.newsletterFormCompact {
+  flex-direction: column;
+  max-width: 440px;
+  width: 100%;
+  margin: 0;
+}
+
+@container newsletterCol (min-width: 360px) {
+  .newsletterFormCompact {
+    flex-direction: row;
+  }
+}
+
 .input {
   flex: 1;
+  /* Without this, flex:1 alone doesn't stop the input's own natural
+     min-content width from forcing the row to overflow the container - a
+     classic flexbox gotcha (an input's UA-default min-width is "auto",
+     which resolves to its intrinsic content size, not 0). */
+  min-width: 0;
   padding: 14px 24px;
   border-radius: var(--radius-full);
   border: 1px solid rgba(12, 13, 17, 0.2);
