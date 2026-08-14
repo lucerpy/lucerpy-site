@@ -44,16 +44,13 @@ export function Footer() {
       aria-label="Lucerpy"
       className="relative isolate mx-auto w-full overflow-hidden bg-[var(--color-bg-light)]"
     >
-      {/* Wraps the main content + Tetris decoration together so the
-          copyright bar below can be a clean final row, not overlapped by
-          Tetris's own absolute bottom-0 positioning. */}
-      <div className="relative">
       {/*
         Mobile (Figma 2168:524): stacked brand → 2-col links (Legal wraps)
         iPad   (Figma 2168:264): stacked brand → 3-col links
         Desktop (Figma 2168:5):  brand | links side-by-side
       */}
-      <div className="relative z-10 flex flex-col gap-8 px-6 pt-10 pb-[240px] ipad:gap-12 ipad:px-12 ipad:pt-12 ipad:pb-[250px] desktop-sm:flex-row desktop-sm:items-stretch desktop-sm:justify-between desktop-sm:gap-0 desktop-sm:px-16 desktop-sm:pt-[72px] desktop-sm:pb-[240px]">
+      <div className="relative z-10 flex flex-col gap-8 px-6 pt-10 pb-[280px] ipad:gap-12 ipad:px-12 ipad:pt-12 ipad:pb-[290px] desktop-sm:px-16 desktop-sm:pt-[72px] desktop-sm:pb-[280px]">
+      <div className="flex flex-col gap-8 ipad:gap-12 desktop-sm:flex-row desktop-sm:items-stretch desktop-sm:justify-between desktop-sm:gap-0">
         {/* Brand */}
         <div className="flex w-full flex-col gap-6 ipad:gap-8 desktop-sm:w-[220px] desktop-sm:shrink-0 desktop-sm:justify-between desktop-sm:gap-0">
           <div className="flex flex-col gap-2 ipad:gap-4">
@@ -161,6 +158,13 @@ export function Footer() {
         </nav>
       </div>
 
+      {/* Sits above the Tetris decoration (which is absolutely positioned
+          within this same z-10 container, pinned to its bottom edge) rather
+          than as a separate bar below it. */}
+      <p className="font-sans text-[13px] text-white/50">
+        © {new Date().getFullYear()} Lucerpy Digital. Todos os direitos reservados.
+      </p>
+
       {/* Tetris board — decorative stack along the bottom */}
       <div
         aria-hidden="true"
@@ -177,13 +181,6 @@ export function Footer() {
           startFilled={true}
         />
       </div>
-      </div>
-
-      {/* Copyright bar */}
-      <div className="relative z-10 border-t border-white/10 px-6 py-6 ipad:px-12 desktop-sm:px-16">
-        <p className="font-sans text-[13px] text-white/50">
-          © {new Date().getFullYear()} Lucerpy Digital. Todos os direitos reservados.
-        </p>
       </div>
     </footer>
   );
