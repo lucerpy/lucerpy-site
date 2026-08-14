@@ -58,6 +58,21 @@ export function Footer() {
               Agência digital focada em UX/UI, desenvolvimento web e automações que entregam resultado real.
             </p>
           </div>
+
+          {/* TrustedSite inline trustmarks - static badges (not the floating
+              widget), so they live wherever we place them instead of pinned
+              to a screen corner. Render themselves once cdn.ywxi.net/js/1.js
+              (loaded sitewide in app/layout.js) finds these divs. Two
+              variants side by side for comparison - pick one and delete the
+              other once decided. */}
+          <div className="flex flex-col gap-3">
+            <div className="max-w-[220px] overflow-hidden rounded-[var(--radius-sm)]">
+              <div className="trustedsite-trustmark" data-type="1001" />
+            </div>
+            <div className="overflow-hidden rounded-[var(--radius-sm)]">
+              <div className="trustedsite-trustmark" data-type="202" data-width="120" data-height="50" />
+            </div>
+          </div>
         </div>
 
         {/* Link columns */}
