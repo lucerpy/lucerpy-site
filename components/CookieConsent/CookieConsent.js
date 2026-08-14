@@ -20,9 +20,12 @@ function initSilktide() {
         description:
           '<p>Esses cookies são necessários para o funcionamento correto do site e não podem ser desativados. Eles ajudam em coisas como login e a definição das suas preferências de privacidade.</p>',
         required: true,
+        onAccept: function () {
+          console.log('Add logic for the required Essenciais consent type here');
+        },
       },
       {
-        id: 'analise',
+        id: 'an_lise',
         label: 'Análise',
         description:
           '<p>Esses cookies nos ajudam a melhorar o site, rastreando quais páginas são mais populares e como os visitantes navegam pelo site.</p>',
@@ -52,22 +55,22 @@ function initSilktide() {
     text: {
       prompt: {
         description:
-          '<p>Usamos cookies no nosso site para melhorar sua experiência, oferecer conteúdo personalizado e analisar nosso tráfego.</p>',
+          '<p>Usamos cookies em nosso site para melhorar sua experiência de usuário, oferecer conteúdo personalizado e analisar nosso tráfego.</p>',
         acceptAllButtonText: 'Aceitar todos',
         acceptAllButtonAccessibleLabel: 'Aceitar todos os cookies',
         rejectNonEssentialButtonText: 'Rejeitar não essenciais',
-        rejectNonEssentialButtonAccessibleLabel: 'Rejeitar todos os cookies não essenciais',
+        rejectNonEssentialButtonAccessibleLabel: 'Rejeitar todos não essenciais',
         preferencesButtonText: 'Preferências',
-        preferencesButtonAccessibleLabel: 'Alternar preferências',
+        preferencesButtonAccessibleLabel: 'Alterar preferências',
       },
       preferences: {
         title: 'Personalize suas preferências de cookies',
         description:
           '<p>Respeitamos o seu direito à privacidade. Você pode optar por não permitir alguns tipos de cookies. Suas preferências de cookies serão aplicadas em todo o nosso site.</p>',
         saveButtonText: 'Salvar e fechar',
-        saveButtonAccessibleLabel: 'Salvar suas preferências de cookies',
-        creditLinkText: 'Obtenha este gerenciador de consentimento gratuitamente',
-        creditLinkAccessibleLabel: 'Obtenha este gerenciador de consentimento gratuitamente',
+        saveButtonAccessibleLabel: 'Salve suas preferências de cookies',
+        creditLinkText: 'Feito com Silktide',
+        creditLinkAccessibleLabel: 'Feito com Silktide',
       },
     },
   });
