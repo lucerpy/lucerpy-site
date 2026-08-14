@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
 import styles from './CtaVideo.module.css';
 
 export default function CtaVideo({ src, poster }) {
@@ -34,7 +35,14 @@ export default function CtaVideo({ src, poster }) {
 
   if (!allowVideo) {
     return (
-      <img src={poster} alt="" aria-hidden="true" className={styles.poster} />
+      <Image
+        src={poster}
+        alt=""
+        aria-hidden="true"
+        fill
+        sizes="100vw"
+        className={styles.poster}
+      />
     );
   }
 

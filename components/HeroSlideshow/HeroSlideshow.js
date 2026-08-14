@@ -27,7 +27,7 @@ export default function HeroSlideshow({ images, interval = 4500 }) {
           alt=""
           fill
           priority={i === 0}
-          sizes="(max-width: 992px) 100vw, 50vw"
+          sizes="100vw"
           className={`${styles.slide} ${i === active ? styles.active : ''}`}
         />
       ))}
