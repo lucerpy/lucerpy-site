@@ -138,7 +138,7 @@ export function Footer() {
                           aria-hidden="true"
                         />
                       )}
-                      <span className="desktop-sm:whitespace-nowrap">{link.label}</span>
+                      <span className="break-words">{link.label}</span>
                     </>
                   );
 

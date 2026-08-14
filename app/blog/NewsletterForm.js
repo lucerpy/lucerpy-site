@@ -42,7 +42,15 @@ export default function NewsletterForm({ compact = false }) {
       // can still mean a container far too tight for input + button side
       // by side - forcing a column stack here overrides that regardless of
       // viewport, since inline styles win over the stylesheet's media query.
-      style={compact ? { flexDirection: 'column', maxWidth: '440px' } : undefined}
+      //
+      // margin is also overridden: the base CSS's `margin: 0 auto` (meant
+      // to center the form in the blog's wide section) has an auto
+      // cross-axis margin, which per the flexbox spec opts the form OUT of
+      // its flex-column parent's stretch behavior - the form shrinks to its
+      // content's width instead of filling the parent, no matter how wide
+      // that parent grows. Zeroing the margin (and setting width: 100%)
+      // lets it actually stretch to fill, capped by maxWidth.
+      style={compact ? { flexDirection: 'column', maxWidth: '440px', width: '100%', margin: 0 } : undefined}
     >
       <input
         type="email"
