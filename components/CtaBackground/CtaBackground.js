@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
 import styles from './CtaBackground.module.css';
 
-const ChromaticWaves = dynamic(() => import('@/components/originkit/ui/chromatic-waves'), { ssr: false });
+const RisingLines = dynamic(() => import('@/components/originkit/ui/risinglines'), { ssr: false });
 const Stardust = dynamic(() => import('@/components/originkit/ui/stardust'), { ssr: false });
 const PulseLines = dynamic(() => import('@/components/originkit/ui/pulse-lines'), { ssr: false });
 const PulsingDotGrid = dynamic(() => import('@/components/originkit/ui/pulsing-dot-grid'), { ssr: false });
@@ -15,19 +15,19 @@ const DotMatrix = dynamic(
 );
 
 const BG = '#0C0D11';
-const GREEN_RAMP = ['#0C0D11', '#2B3D12', '#CCEC7B'];
 const AMBER_RAMP = ['#0C0D11', '#4A2E12', '#E8A659'];
 
 const VARIANTS = {
   home: () => (
-    <ChromaticWaves
-      bgColor={BG}
-      colors={GREEN_RAMP}
-      frequency={1.5}
-      speed={2}
-      cellSize={14}
-      gamma={5}
-      paletteBias={8}
+    <RisingLines
+      particles={450}
+      color="#E8A659"
+      horizonColor="#CCEC7B"
+      riseSpeed={20}
+      opacity={85}
+      horizonOpacity={55}
+      scale={7}
+      showHorizon
     />
   ),
   servicos: () => (
