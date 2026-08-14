@@ -22,6 +22,8 @@ const BG = '#0C0D11';
 // saturated amber to actually read against the near-black background.
 const VIVID_AMBER = '#FFB347';
 const AMBER_RAMP = ['#0C0D11', '#7A4413', VIVID_AMBER];
+// Matches the inventory dashboard's own blue UI (see /projetos/inventario-ti).
+const BLUE_RAMP = ['#0C0D11', '#1D3A8A', '#3B82F6'];
 
 const VARIANTS = {
   home: () => (
@@ -76,6 +78,17 @@ const VARIANTS = {
     <DotMatrix
       bgColor={BG}
       colors={AMBER_RAMP}
+      frequency={1.2}
+      speed={1.5}
+      cellSize={18}
+      gamma={4}
+      paletteBias={9}
+    />
+  ),
+  inventario: () => (
+    <DotMatrix
+      bgColor={BG}
+      colors={BLUE_RAMP}
       frequency={1.2}
       speed={1.5}
       cellSize={18}

@@ -72,6 +72,7 @@ const PROJECTS = [
     description: 'Exercício autoral: dashboard para controle de ativos de TI em tempo real, com gestão de colaboradores, kits de boas-vindas e devoluções.',
     image: '/cases/inventario-ti.jpg',
     imagePlaceholder: 'linear-gradient(45deg, #1e3a8a, #0f172a)',
+    href: '/projetos/inventario-ti',
   },
 ];
 
@@ -122,6 +123,7 @@ export default function ProjectsSection() {
             description={project.description}
             image={project.image}
             imagePlaceholder={project.imagePlaceholder}
+            href={project.href}
           />
         ))}
 
