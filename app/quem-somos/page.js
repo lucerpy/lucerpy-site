@@ -197,7 +197,7 @@ export default function QuemSomos() {
       </section>
 
       <section className={styles.ctaSection} id="contato">
-        <CtaVideo src="/cta/leaves-falling.mp4" poster="/cta/warm-2.jpg" />
+        <CtaVideo src="/cta/cta-quem-somos.mp4" poster="/cta/poster-quem-somos.jpg" />
         <div className={styles.ctaOverlay} />
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div className={styles.ctaContent}>

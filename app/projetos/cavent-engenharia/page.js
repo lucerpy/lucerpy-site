@@ -120,7 +120,7 @@ export default function CaventEngenharia() {
       </section>
 
       <section className={styles.ctaSection} id="contato">
-        <CtaVideo src="/cta/leaves-falling.mp4" poster="/cta/warm-1.jpg" />
+        <CtaVideo src="/cta/cta-cavent.mp4" poster="/cta/poster-cavent.jpg" />
         <div className={styles.ctaOverlay} />
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div className={styles.ctaContent}>

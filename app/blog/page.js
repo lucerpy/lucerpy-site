@@ -57,7 +57,7 @@ export default function Blog() {
       </section>
 
       <section className={styles.ctaSection} id="newsletter">
-        <CtaVideo src="/cta/leaves-falling.mp4" poster="/cta/warm-1.jpg" />
+        <CtaVideo src="/cta/cta-blog.mp4" poster="/cta/poster-blog.jpg" />
         <div className={styles.ctaOverlay} />
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div className={styles.ctaContent}>
