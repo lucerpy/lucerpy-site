@@ -1,6 +1,7 @@
 // Delivered by Originkit · stack: nextjs · styling: tailwind
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import Button from "@/components/Button/Button";
@@ -19,20 +20,44 @@ function asset(file: string) {
   return `/originkit/hero-22/${file}`;
 }
 
-export const Section27Hero = () => (
+export const Section27Hero = () => {
+  // The WebGL init (shader compile, context setup) competes with the
+  // browser's first paint of the hero text for main-thread time, which was
+  // showing up as LCP render delay. Deferring the mount to an idle moment
+  // lets the text/CTAs paint first - the animation pops in a beat later,
+  // imperceptible to a visitor but off the critical rendering path.
+  const [showBackground, setShowBackground] = useState(false);
+
+  useEffect(() => {
+    const w = window as typeof window & {
+      requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number;
+      cancelIdleCallback?: (id: number) => void;
+    };
+    let id: number;
+    if (w.requestIdleCallback) {
+      id = w.requestIdleCallback(() => setShowBackground(true), { timeout: 1500 });
+      return () => w.cancelIdleCallback?.(id);
+    }
+    id = window.setTimeout(() => setShowBackground(true), 200);
+    return () => window.clearTimeout(id);
+  }, []);
+
+  return (
   <section className="w-full bg-[#0C0D11]">
     <div className="relative flex w-full max-w-full flex-col items-center overflow-hidden bg-[#0C0D11]">
       {/* Fundo pontilhado full-bleed (Originkit hero-26, recolorido no verde da marca) */}
       <div className="fade-in fade-in-4 pointer-events-none absolute inset-0 z-0">
-        <DottedBackground
-          bgColor="#0C0D11"
-          colors={["#0C0D11", "#2B3D12", "#CCEC7B"]}
-          frequency={1.5}
-          speed={2}
-          cellSize={10}
-          gamma={5}
-          paletteBias={8}
-        />
+        {showBackground && (
+          <DottedBackground
+            bgColor="#0C0D11"
+            colors={["#0C0D11", "#2B3D12", "#CCEC7B"]}
+            frequency={1.5}
+            speed={2}
+            cellSize={10}
+            gamma={5}
+            paletteBias={8}
+          />
+        )}
         <div
           className="absolute inset-0"
           style={{
@@ -111,4 +136,5 @@ export const Section27Hero = () => (
       </section>
     </div>
   </section>
-);
+  );
+};
