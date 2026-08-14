@@ -5,52 +5,13 @@ import { motion } from 'motion/react';
 import Image from 'next/image';
 import styles from './BentoGrid.module.css';
 
-// Four genuinely different 4-col x 3-row tilings — not just the same shape
-// rotated to a different corner. Some have one big cell, some have two
-// medium verticals, some have two medium horizontals, some have none at all
-// (just a mosaic of mid and small pieces), so the grid's whole rhythm
-// changes between ticks, not just which photo happens to be the big one.
-const TEMPLATES = [
-  // One big 2x2 cell (top-left), rest wide + small.
-  [
-    { gridColumn: '1 / 3', gridRow: '1 / 3' },
-    { gridColumn: '3 / 5', gridRow: '1 / 2' },
-    { gridColumn: '3 / 4', gridRow: '2 / 3' },
-    { gridColumn: '4 / 5', gridRow: '2 / 3' },
-    { gridColumn: '1 / 2', gridRow: '3 / 4' },
-    { gridColumn: '2 / 3', gridRow: '3 / 4' },
-    { gridColumn: '3 / 5', gridRow: '3 / 4' },
-  ],
-  // Two tall verticals on the left, no single dominant cell.
-  [
-    { gridColumn: '1 / 2', gridRow: '1 / 4' },
-    { gridColumn: '2 / 3', gridRow: '1 / 4' },
-    { gridColumn: '3 / 5', gridRow: '1 / 2' },
-    { gridColumn: '3 / 4', gridRow: '2 / 3' },
-    { gridColumn: '4 / 5', gridRow: '2 / 3' },
-    { gridColumn: '3 / 4', gridRow: '3 / 4' },
-    { gridColumn: '4 / 5', gridRow: '3 / 4' },
-  ],
-  // Two horizontal (landscape) mediums stacked on the left.
-  [
-    { gridColumn: '1 / 3', gridRow: '1 / 2' },
-    { gridColumn: '1 / 3', gridRow: '2 / 3' },
-    { gridColumn: '3 / 5', gridRow: '1 / 2' },
-    { gridColumn: '3 / 4', gridRow: '2 / 3' },
-    { gridColumn: '4 / 5', gridRow: '2 / 3' },
-    { gridColumn: '1 / 3', gridRow: '3 / 4' },
-    { gridColumn: '3 / 5', gridRow: '3 / 4' },
-  ],
-  // Mosaic: two mediums up top, four tiny squares, one full-width strip.
-  [
-    { gridColumn: '1 / 3', gridRow: '1 / 2' },
-    { gridColumn: '3 / 5', gridRow: '1 / 2' },
-    { gridColumn: '1 / 2', gridRow: '2 / 3' },
-    { gridColumn: '2 / 3', gridRow: '2 / 3' },
-    { gridColumn: '3 / 4', gridRow: '2 / 3' },
-    { gridColumn: '4 / 5', gridRow: '2 / 3' },
-    { gridColumn: '1 / 5', gridRow: '3 / 4' },
-  ],
+const COLS = 4;
+const ROWS = 3;
+const SHAPES = [
+  [2, 2], // big square
+  [2, 1], // wide
+  [1, 2], // tall
+  [1, 1], // small
 ];
 
 function shuffle(list) {
@@ -62,31 +23,102 @@ function shuffle(list) {
   return copy;
 }
 
-function pickTemplate(currentIndex) {
-  if (TEMPLATES.length < 2) return 0;
-  let next = Math.floor(Math.random() * TEMPLATES.length);
-  while (next === currentIndex) {
-    next = Math.floor(Math.random() * TEMPLATES.length);
+// Randomly tiles a COLS x ROWS grid into exactly `pieceCount` non-overlapping
+// rectangles, each a 2x2, 2x1, 1x2 or 1x1, with no fixed favorite shape or
+// position — every call can land on a different mix (sometimes a big block
+// appears, sometimes none do; a domino here is vertical, there horizontal).
+// Backtracks when a random pick paints it into a corner it can't tile.
+function generateLayout(pieceCount) {
+  const occupied = new Array(COLS * ROWS).fill(false);
+  const pieces = [];
+  const key = (c, r) => r * COLS + c;
+
+  function firstEmpty() {
+    for (let r = 0; r < ROWS; r++) {
+      for (let c = 0; c < COLS; c++) {
+        if (!occupied[key(c, r)]) return [c, r];
+      }
+    }
+    return null;
   }
-  return next;
+
+  function canPlace(c, r, w, h) {
+    if (c + w > COLS || r + h > ROWS) return false;
+    for (let dy = 0; dy < h; dy++) {
+      for (let dx = 0; dx < w; dx++) {
+        if (occupied[key(c + dx, r + dy)]) return false;
+      }
+    }
+    return true;
+  }
+
+  function setOccupied(c, r, w, h, value) {
+    for (let dy = 0; dy < h; dy++) {
+      for (let dx = 0; dx < w; dx++) {
+        occupied[key(c + dx, r + dy)] = value;
+      }
+    }
+  }
+
+  function emptyCount() {
+    return occupied.filter((v) => !v).length;
+  }
+
+  function backtrack() {
+    if (pieces.length === pieceCount) return emptyCount() === 0;
+
+    const spot = firstEmpty();
+    if (!spot) return false;
+    const [c, r] = spot;
+    const piecesLeftAfter = pieceCount - pieces.length - 1;
+
+    for (const [w, h] of shuffle(SHAPES)) {
+      if (!canPlace(c, r, w, h)) continue;
+
+      setOccupied(c, r, w, h, true);
+      const left = emptyCount();
+
+      if (left >= piecesLeftAfter * 1 && left <= piecesLeftAfter * 4) {
+        pieces.push({ gridColumn: `${c + 1} / ${c + 1 + w}`, gridRow: `${r + 1} / ${r + 1 + h}` });
+        if (backtrack()) return true;
+        pieces.pop();
+      }
+
+      setOccupied(c, r, w, h, false);
+    }
+
+    return false;
+  }
+
+  return backtrack() ? pieces : null;
+}
+
+// Deterministic fallback so server and client render the same markup before
+// hydration — actual randomization only kicks in client-side, after mount.
+function fallbackLayout(pieceCount) {
+  const layout = [];
+  for (let i = 0; i < pieceCount; i++) {
+    layout.push({ gridColumn: `${(i % COLS) + 1} / ${(i % COLS) + 2}`, gridRow: `${Math.floor(i / COLS) + 1} / ${Math.floor(i / COLS) + 2}` });
+  }
+  return layout;
 }
 
 export default function BentoGrid({ images, interval = 5000 }) {
   const [order, setOrder] = useState(images);
-  const [templateIndex, setTemplateIndex] = useState(0);
+  const [layout, setLayout] = useState(() => fallbackLayout(images.length));
 
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-    const id = setInterval(() => {
+    function reshuffle() {
       setOrder((current) => shuffle(current));
-      setTemplateIndex((current) => pickTemplate(current));
-    }, interval);
+      setLayout(generateLayout(images.length) ?? fallbackLayout(images.length));
+    }
 
+    reshuffle();
+    const id = setInterval(reshuffle, interval);
     return () => clearInterval(id);
-  }, [interval]);
-
-  const template = TEMPLATES[templateIndex];
+  }, [images.length, interval]);
 
   return (
     <div className={styles.bentoGrid}>
@@ -96,7 +128,7 @@ export default function BentoGrid({ images, interval = 5000 }) {
           layout
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
           className={styles.bentoCell}
-          style={template[i]}
+          style={layout[i]}
         >
           <Image
             src={src}
