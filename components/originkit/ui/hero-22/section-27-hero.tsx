@@ -3,7 +3,6 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import dynamic from "next/dynamic";
 import Button from "@/components/Button/Button";
 
@@ -31,10 +30,6 @@ export const Section27Hero = () => {
   // animation pops in a beat after everything essential is already on
   // screen, imperceptible to a visitor.
   const [showBackground, setShowBackground] = useState(false);
-  // Flips a beat after showBackground, once the canvas has actually had a
-  // frame or two to render - crossfades from the static poster into the
-  // live animation instead of popping in over a blank/mismatched frame.
-  const [revealed, setRevealed] = useState(false);
 
   useEffect(() => {
     const w = window as typeof window & {
@@ -66,44 +61,21 @@ export const Section27Hero = () => {
     };
   }, []);
 
-  useEffect(() => {
-    if (!showBackground) return;
-    const raf = requestAnimationFrame(() => requestAnimationFrame(() => setRevealed(true)));
-    return () => cancelAnimationFrame(raf);
-  }, [showBackground]);
-
   return (
   <section className="w-full bg-[#0C0D11]">
     <div className="relative flex w-full max-w-full flex-col items-center overflow-hidden bg-[#0C0D11]">
       {/* Fundo pontilhado full-bleed (Originkit hero-26, recolorido no verde da marca) */}
       <div className="fade-in fade-in-4 pointer-events-none absolute inset-0 z-0">
-        {/* Poster estático (frame real capturado da animação) - aparece
-            instantaneamente, sem esperar o WebGL. A animação de verdade
-            entra em crossfade por cima assim que estiver pronta. */}
-        <Image
-          src="/originkit/hero-22/hero-bg-poster.jpg"
-          alt=""
-          aria-hidden="true"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover"
-        />
         {showBackground && (
-          <div
-            className="absolute inset-0 transition-opacity duration-1000 ease-out"
-            style={{ opacity: revealed ? 1 : 0 }}
-          >
-            <DottedBackground
-              bgColor="#0C0D11"
-              colors={["#0C0D11", "#2B3D12", "#CCEC7B"]}
-              frequency={1.5}
-              speed={2}
-              cellSize={10}
-              gamma={5}
-              paletteBias={8}
-            />
-          </div>
+          <DottedBackground
+            bgColor="#0C0D11"
+            colors={["#0C0D11", "#2B3D12", "#CCEC7B"]}
+            frequency={1.5}
+            speed={2}
+            cellSize={10}
+            gamma={5}
+            paletteBias={8}
+          />
         )}
         <div
           className="absolute inset-0"
