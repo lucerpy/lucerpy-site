@@ -48,13 +48,40 @@
   object-fit: contain;
 }
 
-.logoLime {
-  opacity: 0;
-  transition: opacity 500ms ease;
+/* Same green -> white wipe as the header/footer logo's click reveal (see
+   Logo.module.css), just expressed in percentages instead of fixed px so it
+   scales cleanly with this box, which is much bigger and responsive. Covers
+   everything left of the dot at rest; clip-path eats it away from the left
+   edge, left-to-right. The right inset (10%) stays clear of the dot's own
+   territory (already lime in the base layer beneath), same as the header
+   logo's version. */
+.logoWipe {
+  clip-path: inset(0 10% 0 0%);
+  transition: clip-path 950ms cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
-.logoFlying .logoLime {
-  opacity: 1;
+.logoWipeDone {
+  clip-path: inset(0 10% 0 90%);
+}
+
+/* Positioned over the dot in the wordmark art (same 86.59%/53.85% measured
+   spot as Logo.module.css's fixed-px version, converted to percentages of
+   this box's width/height so it lands correctly at any size while staying a
+   perfect circle - the width/height % pair below both resolve to the same
+   physical size because the box's aspect-ratio is locked). */
+.logoDot {
+  position: absolute;
+  left: 86.59%;
+  top: 53.85%;
+  width: 3.91%;
+  height: 13.46%;
+  border-radius: 50%;
+  background: var(--color-primary, #CCEC7B);
+  transform: scale(1);
+}
+
+.logoDotBounce {
+  animation: logoDotBounce 450ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
 @keyframes logoIntro {
@@ -64,6 +91,24 @@
   }
   to {
     opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes logoDotBounce {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.6);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  85% {
+    transform: scale(1.08);
+  }
+  100% {
     transform: scale(1);
   }
 }

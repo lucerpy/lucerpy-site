@@ -6,13 +6,17 @@ import styles from './Preloader.module.css';
 const WHITE_DOT = '/logo/lucerpy-wordmark-white-lime-dot-transparent.png';
 const LIME = '/logo/lucerpy-wordmark-lime-transparent.png';
 
-// Timeline (ms from mount):
-//   0     overlay + big centered logo fade/scale in
-//   400   hold
-//   1000  fly toward the real header logo's measured position, crossfading
-//         white -> lime and fading the backdrop out at the same time
-//   1700  overlay removed entirely
-const HOLD_UNTIL = 1000;
+// Timeline (ms from mount) - reuses the same green -> white wipe + dot
+// bounce as the header/footer logo's click reveal (Logo.js/LogoRevealContext),
+// just bigger and centered, then flies into the header logo's exact spot.
+//   0      overlay + big centered logo fade/scale in (starts fully green)
+//   500    intro finished, wipe to white starts
+//   1450   wipe finished, dot bounces
+//   1750   fly toward the real header logo's measured position
+//   2450   overlay removed entirely
+const WIPE_DELAY = 500;
+const WIPE_DURATION = 950; // must match .logoWipe's transition duration in CSS
+const HOLD_AFTER_WIPE = 300;
 const FLY_DURATION = 700;
 
 export default function Preloader() {
@@ -22,7 +26,8 @@ export default function Preloader() {
   // the overlay invisible from the very first paint when it should skip.
   // Defaulting to 'intro' here matches the SSR markup (no window/attribute
   // access is possible during SSR), so hydration never mismatches.
-  const [phase, setPhase] = useState('intro'); // intro | flying | done
+  const [phase, setPhase] = useState('intro'); // intro | wiped | flying | done
+  const [bounced, setBounced] = useState(false);
   const logoRef = useRef(null);
   // React StrictMode re-runs effects twice in development - the ref makes
   // the decision idempotent across that double-invocation.
@@ -39,6 +44,14 @@ export default function Preloader() {
 
   useEffect(() => {
     if (phase !== 'intro') return;
+    const wipeTimer = setTimeout(() => setPhase('wiped'), WIPE_DELAY);
+    return () => clearTimeout(wipeTimer);
+  }, [phase]);
+
+  useEffect(() => {
+    if (phase !== 'wiped') return;
+
+    const bounceTimer = setTimeout(() => setBounced(true), WIPE_DURATION);
 
     const flyTimer = setTimeout(() => {
       const target = document.querySelector('header a[href="/"]');
@@ -54,9 +67,12 @@ export default function Preloader() {
         logo.style.setProperty('--scale', String(scale));
       }
       setPhase('flying');
-    }, HOLD_UNTIL);
+    }, WIPE_DURATION + HOLD_AFTER_WIPE);
 
-    return () => clearTimeout(flyTimer);
+    return () => {
+      clearTimeout(bounceTimer);
+      clearTimeout(flyTimer);
+    };
   }, [phase]);
 
   useEffect(() => {
@@ -67,6 +83,8 @@ export default function Preloader() {
 
   if (phase === 'done') return null;
 
+  const wiped = phase === 'wiped' || phase === 'flying';
+
   return (
     <div className={`${styles.overlay} ${phase === 'flying' ? styles.overlayHidden : ''}`}>
       <div ref={logoRef} className={`${styles.logo} ${phase === 'flying' ? styles.logoFlying : ''}`}>
@@ -75,8 +93,9 @@ export default function Preloader() {
           src={LIME}
           alt=""
           aria-hidden="true"
-          className={`${styles.logoImage} ${styles.logoLime}`}
+          className={`${styles.logoImage} ${styles.logoWipe} ${wiped ? styles.logoWipeDone : ''}`}
         />
+        <span className={`${styles.logoDot} ${bounced ? styles.logoDotBounce : ''}`} />
       </div>
     </div>
   );
