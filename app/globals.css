@@ -191,3 +191,71 @@
     animation-duration: 0s;
   }
 }
+
+/* 404 page (app/not-found.js). Kept here instead of its own CSS Module: the
+   not-found boundary is always present in the root layout's tree (so it can
+   render without a reload on a bad route), which made Next/Turbopack
+   preload its CSS on every single page - unused on the ~100% of visits that
+   never hit a 404, triggering a "preloaded but not used" console warning.
+   globals.css is already loaded and applied on every page regardless, so
+   folding these rules in here means nothing extra gets preloaded. */
+.notFoundContainer {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 180px 24px 120px 24px;
+  text-align: center;
+}
+
+.notFoundTagline {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  border: 1px solid rgba(232, 166, 89, 0.3);
+  padding: 6px 12px;
+  border-radius: 4px;
+  margin-bottom: 24px;
+  letter-spacing: 0.05em;
+}
+
+.notFoundCode {
+  font-family: var(--font-outfit);
+  font-size: 5rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--color-primary);
+  margin-bottom: 8px;
+}
+
+.notFoundTitle {
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+}
+
+.notFoundDescription {
+  font-size: 1.05rem;
+  color: var(--color-text-muted);
+  margin-bottom: 40px;
+}
+
+.notFoundActions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+@media (min-width: 480px) {
+  .notFoundCode {
+    font-size: 6.5rem;
+  }
+
+  .notFoundTitle {
+    font-size: 1.75rem;
+  }
+
+  .notFoundActions {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
