@@ -2,10 +2,17 @@
 "use client";
 
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import Button from "@/components/Button/Button";
 
 import { LogoMarquee } from "@/components/originkit/ui/hero-22/logo-marquee";
-import { DottedBackground } from "@/components/originkit/ui/hero-26/dotmatrix-hero";
+
+// Pulls in the ogl WebGL library - keep it out of the home page's initial
+// bundle and fetch it only in the browser, same pattern as CtaBackground.
+const DottedBackground = dynamic(
+  () => import("@/components/originkit/ui/hero-26/dotmatrix-hero").then((m) => m.DottedBackground),
+  { ssr: false }
+);
 
 /** Public asset under /originkit/hero-22/ */
 function asset(file: string) {
