@@ -11,6 +11,7 @@
     "gen:images": "node scripts/generate-images.js"
   },
   "dependencies": {
+    "@next/third-parties": "^16.3.1",
     "@tailwindcss/postcss": "^4.3.3",
     "framer-motion": "^13.1.0",
     "gray-matter": "^4.0.3",

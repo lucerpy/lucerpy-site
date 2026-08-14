@@ -1,4 +1,5 @@
 import { Outfit, Inter } from "next/font/google";
+import { GoogleTagManager } from "@next/third-parties/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/originkit/footer-02";
@@ -98,6 +99,16 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body suppressHydrationWarning>
+        <GoogleTagManager gtmId="GTM-KT4RRQWQ" />
+        {/* Google Tag Manager (noscript) - fallback for visitors with JS disabled */}
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-KT4RRQWQ"
+            height="0"
+            width="0"
+            style={{ display: 'none', visibility: 'hidden' }}
+          />
+        </noscript>
         <LogoRevealProvider>
           <Navbar />
           <main><PageTransition>{children}</PageTransition></main>
