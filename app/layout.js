@@ -110,6 +110,15 @@ export default function RootLayout({ children }) {
   return (
     <html lang="pt-BR" className={`${outfit.variable} ${inter.variable}`}>
       <head>
+        {/* Runs synchronously before the body paints, so the preloader's
+            visibility is decided (and set as a DOM attribute) before the
+            first frame - otherwise the SSR'd page paints first and the
+            preloader only appears after hydration, flashing the real site. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var r=window.matchMedia('(prefers-reduced-motion: reduce)').matches;var s=sessionStorage.getItem('lucerpy-intro-shown');if(r||s){document.documentElement.setAttribute('data-preloader','skip');}else{document.documentElement.setAttribute('data-preloader','show');sessionStorage.setItem('lucerpy-intro-shown','1');}}catch(e){document.documentElement.setAttribute('data-preloader','skip');}})();`,
+          }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

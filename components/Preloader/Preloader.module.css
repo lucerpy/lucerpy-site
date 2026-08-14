@@ -4,12 +4,20 @@
   /* Must beat Silktide's own very high z-index (it has its own backdrop),
      so the intro isn't visible bleeding through the consent banner. */
   z-index: 2147483647;
-  display: flex;
+  /* Hidden by default (no JS, or the blocking head script decided to skip)
+     so the real site never has a dead overlay sitting on top of it. Only
+     shown once the html[data-preloader="show"] attribute is set, which
+     happens synchronously before first paint - see app/layout.js. */
+  display: none;
   align-items: center;
   justify-content: center;
   background: var(--color-bg, #0C0D11);
   opacity: 1;
   transition: opacity 700ms ease;
+}
+
+:global(html[data-preloader="show"]) .overlay {
+  display: flex;
 }
 
 .overlayHidden {

@@ -16,29 +16,25 @@ const HOLD_UNTIL = 1000;
 const FLY_DURATION = 700;
 
 export default function Preloader() {
-  const [phase, setPhase] = useState('pending'); // pending | intro | flying | done
+  // The show/skip decision (reduced motion + sessionStorage) is already made
+  // synchronously by the blocking script in app/layout.js before this ever
+  // hydrates, via the html[data-preloader] attribute - CSS uses it to keep
+  // the overlay invisible from the very first paint when it should skip.
+  // Defaulting to 'intro' here matches the SSR markup (no window/attribute
+  // access is possible during SSR), so hydration never mismatches.
+  const [phase, setPhase] = useState('intro'); // intro | flying | done
   const logoRef = useRef(null);
-  // React StrictMode re-runs effects twice in development - without this
-  // guard, the 2nd run would see the sessionStorage flag the 1st run just
-  // set and immediately decide "already shown", cancelling the intro before
-  // it ever renders. The ref survives that double-invocation since it's the
-  // same component instance.
+  // React StrictMode re-runs effects twice in development - the ref makes
+  // the decision idempotent across that double-invocation.
   const decided = useRef(false);
 
   useEffect(() => {
     if (decided.current) return;
     decided.current = true;
 
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    if (document.documentElement.getAttribute('data-preloader') !== 'show') {
       setPhase('done');
-      return;
     }
-    if (sessionStorage.getItem('lucerpy-intro-shown')) {
-      setPhase('done');
-      return;
-    }
-    sessionStorage.setItem('lucerpy-intro-shown', '1');
-    setPhase('intro');
   }, []);
 
   useEffect(() => {
@@ -69,7 +65,7 @@ export default function Preloader() {
     return () => clearTimeout(doneTimer);
   }, [phase]);
 
-  if (phase === 'pending' || phase === 'done') return null;
+  if (phase === 'done') return null;
 
   return (
     <div className={`${styles.overlay} ${phase === 'flying' ? styles.overlayHidden : ''}`}>
