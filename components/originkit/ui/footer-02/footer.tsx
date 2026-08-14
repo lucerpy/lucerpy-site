@@ -59,42 +59,32 @@ export function Footer() {
             </p>
           </div>
 
-          {/* TrustedSite inline trustmarks - static badges (not the floating
-              widget), so they live wherever we place them instead of pinned
-              to a screen corner. Render themselves once cdn.ywxi.net/js/1.js
-              (loaded sitewide in app/layout.js) finds these divs. Two
-              variants side by side for comparison - pick one and delete the
-              other once decided. */}
-          <div className="flex flex-col gap-3">
-            <div className="max-w-[220px] overflow-hidden rounded-[var(--radius-sm)]">
-              <div className="trustedsite-trustmark" data-type="1001" />
-            </div>
-            <div className="overflow-hidden rounded-[var(--radius-sm)]">
-              <div className="trustedsite-trustmark" data-type="202" data-width="120" data-height="50" />
-            </div>
+          {/* TrustedSite's static/inline trustmark needs their paid Pro
+              plan (this account is free), so that's the floating widget
+              instead now (configured in TrustedSiteBadge.js) - nothing
+              placed here for it.
 
-            {/* Static badge (Qualys has no login/account system, so there's
-                no official live-verified seal like TrustedSite's - this is
-                just an image). Links out to the live public report so
-                anyone can check the current grade themselves; re-check and
-                swap the image if the SSL config ever changes. */}
-            <a
-              href="https://www.ssllabs.com/ssltest/analyze.html?d=lucerpy.com.br"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Ver relatório SSL Labs (nota A+)"
-              className="max-w-[220px] overflow-hidden rounded-[var(--radius-sm)]"
-            >
-              <img
-                src="/badges/ssl-labs-a-plus.webp"
-                alt="Qualys SSL Labs: nota A+"
-                width={440}
-                height={113}
-                loading="lazy"
-                className="w-full"
-              />
-            </a>
-          </div>
+              Static badge (Qualys has no login/account system, so there's
+              no official live-verified seal like TrustedSite's - this is
+              just an image). Links out to the live public report so anyone
+              can check the current grade themselves; re-check and swap the
+              image if the SSL config ever changes. */}
+          <a
+            href="https://www.ssllabs.com/ssltest/analyze.html?d=lucerpy.com.br"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Ver relatório SSL Labs (nota A+)"
+            className="w-[130px] overflow-hidden rounded-[var(--radius-sm)]"
+          >
+            <img
+              src="/badges/ssl-labs-a-plus.webp"
+              alt="Qualys SSL Labs: nota A+"
+              width={440}
+              height={113}
+              loading="lazy"
+              className="w-full"
+            />
+          </a>
         </div>
 
         {/* Link columns */}
