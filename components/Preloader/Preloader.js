@@ -12,11 +12,11 @@ const LIME = '/logo/lucerpy-wordmark-lime-transparent.png';
 //   0      overlay + big centered logo fade/scale in (starts fully green)
 //   500    intro finished, wipe to white starts
 //   1450   wipe finished, dot bounces
-//   1750   fly toward the real header logo's measured position
-//   2450   overlay removed entirely
+//   2100   bounce has settled, fly toward the real header logo's position
+//   2800   overlay removed entirely
 const WIPE_DELAY = 500;
 const WIPE_DURATION = 950; // must match .logoWipe's transition duration in CSS
-const HOLD_AFTER_WIPE = 300;
+const HOLD_AFTER_WIPE = 650; // must clear .logoDotBounce's 600ms duration in CSS
 const FLY_DURATION = 700;
 
 export default function Preloader() {

@@ -81,7 +81,7 @@
 }
 
 .logoDotBounce {
-  animation: logoDotBounce 450ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  animation: logoDotBounce 600ms ease-out forwards;
 }
 
 @keyframes logoIntro {
@@ -95,20 +95,29 @@
   }
 }
 
+/* Squash-and-stretch instead of a uniform scale pulse - reads as an actual
+   droplet landing (widens on impact, rebounds tall and thin, settles with
+   two small decaying oscillations) rather than a single up-down pop. */
 @keyframes logoDotBounce {
   0% {
-    transform: scale(1);
+    transform: scale(1, 1);
   }
-  50% {
-    transform: scale(1.6);
+  25% {
+    transform: scale(1.55, 1.55);
+  }
+  40% {
+    transform: scale(1.25, 0.8);
+  }
+  55% {
+    transform: scale(0.88, 1.14);
   }
   70% {
-    transform: scale(0.9);
+    transform: scale(1.06, 0.96);
   }
   85% {
-    transform: scale(1.08);
+    transform: scale(0.97, 1.02);
   }
   100% {
-    transform: scale(1);
+    transform: scale(1, 1);
   }
 }
