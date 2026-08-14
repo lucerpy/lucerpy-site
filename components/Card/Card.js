@@ -40,7 +40,9 @@ export default function Card({
       
       <div className={styles.content}>
         {isService && number && <span className={styles.number}>{number}</span>}
-        {!isService && tag && <span className={styles.tag}>{tag}</span>}
+        {!isService && tag && (
+          <span className={`${styles.tag} ${tag === 'DESTAQUE' ? styles.tagAccent : ''}`}>{tag}</span>
+        )}
         
         <h3 className={styles.title}>{title}</h3>
         <p className={styles.description}>{description}</p>

@@ -3,6 +3,7 @@ import Button from '@/components/Button/Button';
 import BlogPostsSection from './BlogPostsSection';
 import { getSortedPostsData } from '@/lib/blog';
 import HeroSlideshow from '@/components/HeroSlideshow/HeroSlideshow';
+import CtaVideo from '@/components/CtaVideo/CtaVideo';
 
 const HERO_IMAGES = ['/blog-hero/1.jpg', '/blog-hero/2.jpg', '/blog-hero/3.jpg'];
 
@@ -56,7 +57,9 @@ export default function Blog() {
       </section>
 
       <section className={styles.ctaSection} id="newsletter">
-        <div className="container">
+        <CtaVideo src="/cta/leaves-falling.mp4" poster="/cta/warm-1.jpg" />
+        <div className={styles.ctaOverlay} />
+        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div className={styles.ctaContent}>
             <h2 className={styles.ctaTitle}>Quer receber conteúdo<br/>toda semana?</h2>
             <p className={styles.ctaDescription}>Assine a newsletter e receba insights exclusivos sobre design e digital.</p>

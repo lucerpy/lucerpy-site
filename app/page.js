@@ -4,6 +4,7 @@ import Card from '@/components/Card/Card';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import Hero22 from '@/components/originkit/hero-22';
+import CtaVideo from '@/components/CtaVideo/CtaVideo';
 import { getSortedPostsData } from '@/lib/blog';
 
 // Carrega a esfera de particulas (e o three.js que ela traz junto) so
@@ -237,7 +238,9 @@ export default function Home() {
       </section>
 
       <section className={styles.ctaSection} id="contato">
-        <div className="container">
+        <CtaVideo src="/cta/leaves-falling.mp4" poster="/cta/warm-2.jpg" />
+        <div className={styles.ctaOverlay} />
+        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div className={styles.ctaContent}>
             <h2 className={styles.ctaTitle}>Pronto para o próximo<br/>nível?</h2>
             <p className={styles.ctaDescription}>Vamos conversar sobre o seu projeto. A primeira call é por nossa conta.</p>

@@ -2,6 +2,7 @@ import styles from './page.module.css';
 import Button from '@/components/Button/Button';
 import Link from 'next/link';
 import Image from 'next/image';
+import CtaVideo from '@/components/CtaVideo/CtaVideo';
 
 export const metadata = {
   title: 'Case Cavent Engenharia',
@@ -119,7 +120,9 @@ export default function CaventEngenharia() {
       </section>
 
       <section className={styles.ctaSection} id="contato">
-        <div className="container">
+        <CtaVideo src="/cta/leaves-falling.mp4" poster="/cta/warm-1.jpg" />
+        <div className={styles.ctaOverlay} />
+        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div className={styles.ctaContent}>
             <h2 className={styles.ctaTitle}>Quer resultados como este?</h2>
             <p className={styles.ctaDescription}>Vamos conversar sobre as metas da sua empresa e como o design pode te ajudar a alcançá-las.</p>
