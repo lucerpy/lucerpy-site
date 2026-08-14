@@ -6,18 +6,14 @@ import Script from 'next/script';
 // </body> on every page - in the App Router, the root layout's <body> is
 // that single template, so one instance here covers the whole site.
 //
-// The static/inline trustmark (a fixed-position badge instead of a floating
-// one) requires TrustedSite's paid Pro plan, which this account doesn't
-// have - so this is the free floating trustmark instead, pinned to the
-// bottom-left with an offset from the edge (their recommended value) so
-// it's less obtrusive and doesn't collide with the WhatsApp button, which
-// sits bottom-right (see WhatsAppButton.module.css). If these query params
-// turn out not to be honored, the same position/offset can be set directly
-// in the TrustedSite account dashboard instead.
+// Position/color for the floating trustmark are configured directly in the
+// TrustedSite account dashboard (their inline/fixed-position badge needs a
+// paid Pro plan this account doesn't have) - keep this to just the plain
+// install snippet, not URL params we can't confirm actually work.
 export default function TrustedSiteBadge() {
   return (
     <Script
-      src="https://cdn.ywxi.net/js/1.js?position=bottomLeft&offset=15"
+      src="https://cdn.ywxi.net/js/1.js"
       strategy="afterInteractive"
     />
   );

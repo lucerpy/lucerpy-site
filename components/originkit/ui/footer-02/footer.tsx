@@ -44,6 +44,10 @@ export function Footer() {
       aria-label="Lucerpy"
       className="relative isolate mx-auto w-full overflow-hidden bg-[var(--color-bg-light)]"
     >
+      {/* Wraps the main content + Tetris decoration together so the
+          copyright bar below can be a clean final row, not overlapped by
+          Tetris's own absolute bottom-0 positioning. */}
+      <div className="relative">
       {/*
         Mobile (Figma 2168:524): stacked brand → 2-col links (Legal wraps)
         iPad   (Figma 2168:264): stacked brand → 3-col links
@@ -172,6 +176,14 @@ export function Footer() {
           movement={2}
           startFilled={true}
         />
+      </div>
+      </div>
+
+      {/* Copyright bar */}
+      <div className="relative z-10 border-t border-white/10 px-6 py-6 ipad:px-12 desktop-sm:px-16">
+        <p className="font-sans text-[13px] text-white/50">
+          © {new Date().getFullYear()} Lucerpy Digital. Todos os direitos reservados.
+        </p>
       </div>
     </footer>
   );

@@ -1,7 +1,11 @@
 .button {
   position: fixed;
-  right: 20px;
-  bottom: 20px;
+  /* Mirrors the Silktide cookie icon's own offsets (left: 10px; bottom:
+     45px; see #stcm-icon override in app/layout.js) so both floating
+     buttons sit at the same height and edge distance, just on opposite
+     corners. */
+  right: 10px;
+  bottom: 45px;
   z-index: 90;
   display: flex;
   align-items: center;
@@ -12,13 +16,6 @@
   background-color: #25d366;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-@media (min-width: 768px) {
-  .button {
-    right: 32px;
-    bottom: 32px;
-  }
 }
 
 @media (hover: hover) and (pointer: fine) {

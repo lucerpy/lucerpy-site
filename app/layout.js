@@ -20,8 +20,16 @@ const SILKTIDE_THEME_CSS = `
   --textColor: #FFFFFF;
   --backdropBackgroundColor: #00000033;
   --backdropBackgroundBlur: 0px;
-  --iconColor: #CCEC7B;
-  --iconBackgroundColor: #0C0D11;
+  /* Silktide's naming is swapped from what it implies: --iconColor actually
+     drives the button's own background, and --iconBackgroundColor drives
+     the cookie glyph's fill - confirmed empirically via computed styles,
+     not documented anywhere. */
+  --iconColor: #E8A659;
+  --iconBackgroundColor: #000000;
+}
+
+#stcm-icon {
+  bottom: 45px !important;
 }
 `;
 
