@@ -15,11 +15,6 @@ const DottedBackground = dynamic(
   { ssr: false }
 );
 
-/** Public asset under /originkit/hero-22/ */
-function asset(file: string) {
-  return `/originkit/hero-22/${file}`;
-}
-
 export const Section27Hero = () => {
   // The WebGL init competes with the hero's own text/CTAs for main-thread
   // time at the exact moment they're painting, so it still needs to be
@@ -75,24 +70,6 @@ export const Section27Hero = () => {
           }}
         />
       </div>
-
-      {/* Texturas laterais */}
-      {["left-0", "right-0"].map((side) => (
-        <span
-          key={side}
-          aria-hidden
-          className={`pointer-events-none absolute top-0 z-0 block h-[817px] w-4 border-x border-solid border-[#2D3039] ipad:h-[1077px] ipad:w-8 desktop-sm:h-[817px] desktop-sm:w-[38px] ${side}`}
-        >
-          <span
-            className="absolute inset-0 opacity-[0.07]"
-            style={{
-              backgroundImage: `url(${asset("texture.png")})`,
-              backgroundSize: "600px 621.6px",
-              backgroundPosition: "top left",
-            }}
-          />
-        </span>
-      ))}
 
       {/* Headline + CTAs */}
       <section className="z-20 mt-12 mb-16 flex w-full max-w-[367px] flex-col items-center gap-5 px-4 ipad:mt-[74px] ipad:mb-24 ipad:max-w-[603px] desktop-sm:mt-20 desktop-sm:mb-32 ipad:gap-[50px] ipad:p-[10px]">
