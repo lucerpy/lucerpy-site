@@ -66,8 +66,8 @@ function initSilktide() {
           '<p>Respeitamos o seu direito à privacidade. Você pode optar por não permitir alguns tipos de cookies. Suas preferências de cookies serão aplicadas em todo o nosso site.</p>',
         saveButtonText: 'Salvar e fechar',
         saveButtonAccessibleLabel: 'Salvar suas preferências de cookies',
-        creditLinkText: 'Obtenha este banner gratuitamente',
-        creditLinkAccessibleLabel: 'Obtenha este banner gratuitamente',
+        creditLinkText: 'Obtenha este gerenciador de consentimento gratuitamente',
+        creditLinkAccessibleLabel: 'Obtenha este gerenciador de consentimento gratuitamente',
       },
     },
   });
