@@ -108,7 +108,11 @@ const jsonLd = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="pt-BR" className={`${outfit.variable} ${inter.variable}`}>
+    <html
+      lang="pt-BR"
+      className={`${outfit.variable} ${inter.variable}`}
+      suppressHydrationWarning
+    >
       <head>
         {/* Runs synchronously before the body paints, so the preloader's
             visibility is decided (and set as a DOM attribute) before the
