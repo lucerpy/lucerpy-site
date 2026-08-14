@@ -5,7 +5,7 @@ import Button from '@/components/Button/Button';
 import { submitHubspotForm, HUBSPOT_FORMS } from '@/lib/hubspot';
 import styles from './page.module.css';
 
-export default function NewsletterForm() {
+export default function NewsletterForm({ compact = false }) {
   const [email, setEmail] = useState('');
   const [honeypot, setHoneypot] = useState('');
   const [status, setStatus] = useState('idle'); // idle | sending | sent | error
@@ -33,7 +33,17 @@ export default function NewsletterForm() {
   }
 
   return (
-    <form className={styles.newsletterForm} onSubmit={handleSubmit}>
+    <form
+      className={styles.newsletterForm}
+      onSubmit={handleSubmit}
+      // The blog CTA's own CSS switches to a side-by-side row at 768px
+      // *viewport* width, assuming a wide, roomy section. In compact spots
+      // (a narrow flex column, like the footer) that same 768px viewport
+      // can still mean a container far too tight for input + button side
+      // by side - forcing a column stack here overrides that regardless of
+      // viewport, since inline styles win over the stylesheet's media query.
+      style={compact ? { flexDirection: 'column', maxWidth: 'none' } : undefined}
+    >
       <input
         type="email"
         placeholder="Seu melhor e-mail"

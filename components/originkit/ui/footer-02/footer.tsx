@@ -4,6 +4,7 @@
 import Link from "next/link";
 import Logo from "@/components/Logo/Logo";
 import Tetris from "@/components/originkit/ui/footer-02/tetris";
+import NewsletterForm from "@/app/blog/NewsletterForm";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 
 function asset(file: string) {
@@ -50,7 +51,7 @@ export function Footer() {
         Desktop (Figma 2168:5):  brand | links side-by-side
       */}
       <div className="relative z-10 flex flex-col gap-8 px-6 pt-10 pb-[280px] ipad:gap-12 ipad:px-12 ipad:pt-12 ipad:pb-[290px] desktop-sm:px-16 desktop-sm:pt-[72px] desktop-sm:pb-[280px]">
-      <div className="flex flex-col gap-8 ipad:gap-12 desktop-sm:flex-row desktop-sm:items-stretch desktop-sm:justify-between desktop-sm:gap-0">
+      <div className="flex flex-col gap-8 ipad:gap-12 desktop-sm:flex-row desktop-sm:items-start desktop-sm:gap-8">
         {/* Brand */}
         <div className="flex w-full flex-col gap-6 ipad:gap-8 desktop-sm:w-[220px] desktop-sm:shrink-0 desktop-sm:justify-between desktop-sm:gap-0">
           <div className="flex flex-col gap-2 ipad:gap-4">
@@ -88,10 +89,26 @@ export function Footer() {
           </a>
         </div>
 
+        {/* Newsletter - fills the horizontal gap that otherwise sits empty
+            between the narrow brand column and the link columns on desktop.
+            Reuses the blog CTA's existing HubSpot-backed form
+            (app/blog/NewsletterForm.js) instead of a new one. */}
+        <div className="flex w-full flex-col gap-3 desktop-sm:max-w-[240px] desktop-sm:flex-1">
+          <div className="flex flex-col gap-2">
+            <p className="font-outfit text-[18px] leading-normal text-white">
+              Receba novidades
+            </p>
+            <p className="font-sans text-[14px] leading-[1.4] text-[#c2c2c2]">
+              Dicas de UX, performance e conversão direto no seu e-mail. Sem spam.
+            </p>
+          </div>
+          <NewsletterForm compact />
+        </div>
+
         {/* Link columns */}
         <nav
           aria-label="Rodapé"
-          className="grid w-full grid-cols-2 gap-x-8 gap-y-8 ipad:grid-cols-3 ipad:gap-8 desktop-sm:flex desktop-sm:w-[680px] desktop-sm:shrink-0 desktop-sm:gap-14"
+          className="grid w-full grid-cols-2 gap-x-8 gap-y-8 ipad:grid-cols-3 ipad:gap-8 desktop-sm:flex desktop-sm:w-[580px] desktop-sm:shrink-0 desktop-sm:gap-10"
         >
           {LINK_COLUMNS.map((column) => (
             <div
