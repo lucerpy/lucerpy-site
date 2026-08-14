@@ -42,7 +42,7 @@ export default function NewsletterForm({ compact = false }) {
       // can still mean a container far too tight for input + button side
       // by side - forcing a column stack here overrides that regardless of
       // viewport, since inline styles win over the stylesheet's media query.
-      style={compact ? { flexDirection: 'column', maxWidth: 'none' } : undefined}
+      style={compact ? { flexDirection: 'column', maxWidth: '440px' } : undefined}
     >
       <input
         type="email"
