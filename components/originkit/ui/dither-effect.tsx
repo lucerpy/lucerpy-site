@@ -1123,9 +1123,19 @@ export default function DitherEffect(props: DitherEffectProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const isInView = useInView(containerRef, { amount: 0 });
 
+  // isInView only tracks scroll position - a backgrounded tab still counts
+  // as "in view" since intersection doesn't change, so the render loop
+  // would keep running for a tab nobody's looking at without this.
+  const [isTabVisible, setIsTabVisible] = useState(true);
+  useEffect(() => {
+    const onVisibilityChange = () => setIsTabVisible(!document.hidden);
+    document.addEventListener("visibilitychange", onVisibilityChange);
+    return () => document.removeEventListener("visibilitychange", onVisibilityChange);
+  }, []);
+
   const S = settingsFor({ background, colors, size, density, speed, scale, hover, hoverRadius });
 
-  const effectiveSpeed = isInView ? S.speed : 0;
+  const effectiveSpeed = isInView && isTabVisible ? S.speed : 0;
 
   const hoverEnabled = S.hover;
   const liveRef = useRef(S);

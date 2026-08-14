@@ -170,7 +170,10 @@ export default function Sparkles({
         if (!ctx) return;
 
         const resize = () => {
-            const dpr = window.devicePixelRatio || 1;
+            // Capped at 1 (no retina supersampling) - ambient background,
+            // not detail-critical, and this alone cuts fill work up to 4x
+            // on high-DPI screens.
+            const dpr = Math.min(window.devicePixelRatio || 1, 1);
             const width = container.clientWidth || container.offsetWidth || 1;
             const height =
                 container.clientHeight || container.offsetHeight || 1;
@@ -213,8 +216,19 @@ export default function Sparkles({
             ctx.globalAlpha = 1;
         };
 
-        const animate = () => {
-            const dpr = window.devicePixelRatio || 1;
+        // Drifting/flickering particles don't need 60fps - throttling to
+        // ~24fps roughly halves (or more, on high-refresh displays) the
+        // per-second draw cost with no visible difference for this motion.
+        const frameInterval = 1000 / 24;
+        let lastFrameT = 0;
+        const animate = (t: number = 0) => {
+            if (t - lastFrameT < frameInterval) {
+                animationRef.current = requestAnimationFrame(animate);
+                return;
+            }
+            lastFrameT = t;
+
+            const dpr = Math.min(window.devicePixelRatio || 1, 1);
             const width = canvas.width / dpr;
             const height = canvas.height / dpr;
 
@@ -238,13 +252,30 @@ export default function Sparkles({
 
             animationRef.current = requestAnimationFrame(animate);
         };
-        animate();
+
+        // Pauses the loop entirely when the tab isn't visible - no reason to
+        // keep drawing frames nobody can see.
+        const onVisibilityChange = () => {
+            if (document.hidden) {
+                if (animationRef.current) cancelAnimationFrame(animationRef.current);
+                animationRef.current = null;
+            } else if (!animationRef.current) {
+                lastFrameT = 0;
+                animationRef.current = requestAnimationFrame(animate);
+            }
+        };
+        document.addEventListener("visibilitychange", onVisibilityChange);
+
+        if (!document.hidden) {
+            animationRef.current = requestAnimationFrame(animate);
+        }
 
         window.addEventListener("resize", resize);
 
         return () => {
             if (animationRef.current) cancelAnimationFrame(animationRef.current);
             window.removeEventListener("resize", resize);
+            document.removeEventListener("visibilitychange", onVisibilityChange);
         };
     }, [
         background,

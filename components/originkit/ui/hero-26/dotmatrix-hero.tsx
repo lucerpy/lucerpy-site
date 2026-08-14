@@ -4,7 +4,7 @@
 "use client";
 
 /* —— Dotted WebGL background (inlined; avoids nested ui/ publish) —— */
-import { useEffect, useRef, type CSSProperties } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import {
     Renderer,
     Camera,
@@ -386,7 +386,13 @@ export function DottedBackground({
         return sanitized.length > 0 ? sanitized : DEFAULT_CHARACTERS;
     })();
 
-    const effectivePlay = true;
+    // Pauses the render loop when the tab isn't visible (Page Visibility)
+    // or when the canvas has scrolled off-screen (IntersectionObserver) -
+    // a continuously-animating WebGL background is expensive per frame,
+    // and there's no reason to pay that cost for a tab in the background
+    // or a section nobody's looking at.
+    const [isVisible, setIsVisible] = useState(true);
+    const effectivePlay = isVisible;
 
     const containerRef = useRef<HTMLDivElement>(null);
     const perlinProgramRef = useRef<any>(null);
@@ -403,6 +409,36 @@ export function DottedBackground({
     const glyphTextureRef = useRef<any>(null);
     const glyphGridRef = useRef<any>(null);
     const dummyGlyphTextureRef = useRef<any>(null);
+
+    useEffect(() => {
+        const container = containerRef.current;
+        if (!container) return;
+
+        let tabVisible = !document.hidden;
+        let inViewport = true;
+
+        const sync = () => setIsVisible(tabVisible && inViewport);
+
+        const onVisibilityChange = () => {
+            tabVisible = !document.hidden;
+            sync();
+        };
+        document.addEventListener("visibilitychange", onVisibilityChange);
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                inViewport = entry.isIntersecting;
+                sync();
+            },
+            { threshold: 0 }
+        );
+        observer.observe(container);
+
+        return () => {
+            document.removeEventListener("visibilitychange", onVisibilityChange);
+            observer.disconnect();
+        };
+    }, []);
 
     const renderOnce = () => {
         const renderer = rendererRef.current;
@@ -437,7 +473,10 @@ export function DottedBackground({
         if (!container) return;
 
         const renderer = new Renderer({
-            dpr: Math.min(window.devicePixelRatio || 1, 2),
+            // Capped at 1 (no retina supersampling) - this is a soft ambient
+            // background, not detail-critical content, and this alone cuts
+            // fragment-shader work up to 4x on high-DPI screens.
+            dpr: Math.min(window.devicePixelRatio || 1, 1),
             alpha: true,
             premultipliedAlpha: false,
         });
@@ -453,7 +492,7 @@ export function DottedBackground({
         const doResize = () => {
             const width = container.clientWidth || window.innerWidth;
             const height = container.clientHeight || window.innerHeight;
-            renderer.dpr = Math.min(window.devicePixelRatio || 1, 2);
+            renderer.dpr = Math.min(window.devicePixelRatio || 1, 1);
             renderer.setSize(width, height);
             camera.perspective({ aspect: gl.canvas.width / gl.canvas.height });
             if (renderTargetRef.current && renderTargetRef.current.setSize) {
@@ -590,7 +629,9 @@ export function DottedBackground({
             dotProgram.uniforms.uUseGlyphAtlas.value = 1;
         }
 
-        const frameInterval = 1e3 / 30;
+        // Slow ambient motion doesn't need 30fps - half the frame rate,
+        // half the per-second render cost.
+        const frameInterval = 1e3 / 15;
         const update = (time: number) => {
             if (!isPlayingRef.current) {
                 rafIdRef.current = null;
@@ -805,7 +846,9 @@ export function DottedBackground({
                         return;
                     }
                     const last = lastTimeRef.current;
-                    const frameInterval = 1e3 / 30;
+                    // Slow ambient motion doesn't need 30fps - half the frame rate,
+        // half the per-second render cost.
+        const frameInterval = 1e3 / 15;
                     if (time - last < frameInterval) {
                         rafIdRef.current = requestAnimationFrame(update);
                         return;

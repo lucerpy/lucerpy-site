@@ -215,7 +215,10 @@ export default function RisingLines(props: Props) {
         }
 
         const resize = (entry?: ResizeObserverEntry) => {
-            const dpr = Math.min(window.devicePixelRatio || 1, 2)
+            // Capped at 1 (no retina supersampling) - ambient background,
+            // not detail-critical, and this alone cuts fill work up to 4x
+            // on high-DPI screens.
+            const dpr = Math.min(window.devicePixelRatio || 1, 1)
             // Prefer the observer's contentRect, then layout box (clientWidth),
             // then getBoundingClientRect. On the Framer canvas
             // getBoundingClientRect can read 0 at setup, pinning the field to
@@ -400,17 +403,45 @@ export default function RisingLines(props: Props) {
             }
         }
 
+        // Slow rising particles don't need a full 60fps - throttling to ~24fps
+        // roughly halves (or more, on high-refresh displays) the per-second
+        // draw cost with no visible difference for this kind of motion.
+        const frameInterval = 1000 / 24
         let lastT = performance.now()
+        let lastFrameT = lastT
         const loop = (t: number) => {
+            if (t - lastFrameT < frameInterval) {
+                rafRef.current = requestAnimationFrame(loop)
+                return
+            }
             const deltaSec = (t - lastT) / 1000
             lastT = t
+            lastFrameT = t
             drawFrame(deltaSec)
             rafRef.current = requestAnimationFrame(loop)
         }
-        rafRef.current = requestAnimationFrame(loop)
+
+        // Pauses the loop entirely when the tab isn't visible - no reason to
+        // keep drawing frames nobody can see.
+        const onVisibilityChange = () => {
+            if (document.hidden) {
+                if (rafRef.current != null) cancelAnimationFrame(rafRef.current)
+                rafRef.current = null
+            } else if (rafRef.current == null) {
+                lastT = performance.now()
+                lastFrameT = lastT
+                rafRef.current = requestAnimationFrame(loop)
+            }
+        }
+        document.addEventListener("visibilitychange", onVisibilityChange)
+
+        if (!document.hidden) {
+            rafRef.current = requestAnimationFrame(loop)
+        }
 
         return () => {
             if (rafRef.current != null) cancelAnimationFrame(rafRef.current)
+            document.removeEventListener("visibilitychange", onVisibilityChange)
             ro.disconnect()
         }
     }, [
