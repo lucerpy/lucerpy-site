@@ -21,14 +21,13 @@ function asset(file: string) {
 }
 
 export const Section27Hero = () => {
-  // The WebGL init (shader compile, context setup) and its ongoing render
-  // loop compete with everything essential for main-thread time, which was
-  // showing up as LCP render delay and a large Total Blocking Time. Waiting
-  // for the page to fully finish loading (not just an idle moment - the
-  // actual `load` event, so images/fonts/scripts are all done) before even
-  // scheduling the mount keeps it fully off the loading-phase metrics. The
-  // animation pops in a beat after everything essential is already on
-  // screen, imperceptible to a visitor.
+  // The WebGL init competes with the hero's own text/CTAs for main-thread
+  // time at the exact moment they're painting, so it still needs to be
+  // deferred a beat. But waiting for the whole page's `load` event (every
+  // image/script on the page, including stuff far below the fold) made the
+  // background sit blank for however long the *entire* page took on a real
+  // connection - it just needs a short, fixed head start over the critical
+  // content, not to wait for everything else too.
   const [showBackground, setShowBackground] = useState(false);
 
   useEffect(() => {
@@ -40,22 +39,13 @@ export const Section27Hero = () => {
     let idleId: number | undefined;
     let timeoutId: number | undefined;
 
-    const scheduleReveal = () => {
-      if (w.requestIdleCallback) {
-        idleId = w.requestIdleCallback(() => setShowBackground(true), { timeout: 1500 });
-      } else {
-        timeoutId = window.setTimeout(() => setShowBackground(true), 200);
-      }
-    };
-
-    if (document.readyState === "complete") {
-      scheduleReveal();
+    if (w.requestIdleCallback) {
+      idleId = w.requestIdleCallback(() => setShowBackground(true), { timeout: 400 });
     } else {
-      window.addEventListener("load", scheduleReveal, { once: true });
+      timeoutId = window.setTimeout(() => setShowBackground(true), 300);
     }
 
     return () => {
-      window.removeEventListener("load", scheduleReveal);
       if (idleId !== undefined) w.cancelIdleCallback?.(idleId);
       if (timeoutId !== undefined) window.clearTimeout(timeoutId);
     };
