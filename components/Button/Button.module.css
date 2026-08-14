@@ -14,6 +14,11 @@
   transition: transform 0.2s ease-out, box-shadow 0.2s ease-out, background-color 0.2s ease-out, color 0.2s ease-out, border-color 0.2s ease-out;
 }
 
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 /* 1. Primary: Fundo verde (#CCEC7B), texto escuro (#0C0D11) */
 .primary {
   background-color: var(--color-primary, #CCEC7B);

@@ -102,9 +102,20 @@
   border-color: var(--color-primary);
 }
 
-.formNote {
-  font-size: 0.8125rem;
-  color: var(--color-text-muted);
+.formSuccess {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.formError {
+  font-size: 0.875rem;
+  color: #F87171;
+}
+
+.formError a {
+  color: inherit;
+  text-decoration: underline;
 }
 
 .contactInfo {

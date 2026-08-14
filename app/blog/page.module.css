@@ -168,3 +168,15 @@
   outline: 2px solid var(--color-bg);
   outline-offset: 2px;
 }
+
+.newsletterSuccess {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.newsletterError {
+  flex-basis: 100%;
+  font-size: 0.8125rem;
+  color: #F87171;
+}

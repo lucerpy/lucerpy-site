@@ -4,6 +4,7 @@ import BlogPostsSection from './BlogPostsSection';
 import { getSortedPostsData } from '@/lib/blog';
 import HeroSlideshow from '@/components/HeroSlideshow/HeroSlideshow';
 import CtaBackground from '@/components/CtaBackground/CtaBackground';
+import NewsletterForm from './NewsletterForm';
 
 const HERO_IMAGES = ['/blog-hero/1.jpg', '/blog-hero/2.jpg', '/blog-hero/3.jpg'];
 
@@ -63,10 +64,7 @@ export default function Blog() {
           <div className={styles.ctaContent}>
             <h2 className={styles.ctaTitle}>Quer receber conteúdo<br/>toda semana?</h2>
             <p className={styles.ctaDescription}>Assine a newsletter e receba insights exclusivos sobre design e digital.</p>
-            <form className={styles.newsletterForm}>
-               <input type="email" placeholder="Seu melhor e-mail" className={styles.input} required />
-               <Button type="submit" variant="secondary">Assinar newsletter →</Button>
-            </form>
+            <NewsletterForm />
           </div>
         </div>
       </section>
