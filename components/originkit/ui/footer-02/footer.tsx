@@ -72,6 +72,28 @@ export function Footer() {
             <div className="overflow-hidden rounded-[var(--radius-sm)]">
               <div className="trustedsite-trustmark" data-type="202" data-width="120" data-height="50" />
             </div>
+
+            {/* Static badge (Qualys has no login/account system, so there's
+                no official live-verified seal like TrustedSite's - this is
+                just an image). Links out to the live public report so
+                anyone can check the current grade themselves; re-check and
+                swap the image if the SSL config ever changes. */}
+            <a
+              href="https://www.ssllabs.com/ssltest/analyze.html?d=lucerpy.com.br"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Ver relatório SSL Labs (nota A+)"
+              className="max-w-[220px] overflow-hidden rounded-[var(--radius-sm)]"
+            >
+              <img
+                src="/badges/ssl-labs-a-plus.webp"
+                alt="Qualys SSL Labs: nota A+"
+                width={440}
+                height={113}
+                loading="lazy"
+                className="w-full"
+              />
+            </a>
           </div>
         </div>
 
