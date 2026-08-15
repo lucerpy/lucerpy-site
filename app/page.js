@@ -46,7 +46,7 @@ const faqJsonLd = {
 };
 
 export default function Home() {
-  const latestPosts = getSortedPostsData().slice(0, 2);
+  const latestPosts = getSortedPostsData().slice(0, 3);
 
   return (
     <>
@@ -131,19 +131,29 @@ export default function Home() {
             />
             <Card
               type="project"
-              tag="CONCEITO · LANDING PAGE"
-              title="Lançamento imobiliário"
-              description="Exercício autoral: alta conversão para lançamento residencial com integração CRM e automação de leads."
-              image="/cases/imobiliario.jpg"
-              imagePlaceholder="linear-gradient(45deg, #2e1065, #4c1d95)"
+              tag="DESTAQUE"
+              title="Inventário de TI"
+              description="Exercício autoral: dashboard para controle de ativos de TI em tempo real, com gestão de colaboradores, kits de boas-vindas e devoluções."
+              image="/cases/inventario-ti.jpg"
+              imagePlaceholder="linear-gradient(45deg, #1e3a8a, #0f172a)"
+              href="/projetos/inventario-ti"
+              metrics={[
+                { value: '6', label: 'módulos integrados' },
+                { value: '100%', label: 'responsivo' }
+              ]}
             />
             <Card
               type="project"
-              tag="CONCEITO · E-COMMERCE"
-              title="Loja Streetwear"
-              description="Exercício autoral: e-commerce completo com integrações de pagamento e logística automatizada."
-              image="/cases/streetwear.jpg"
-              imagePlaceholder="linear-gradient(45deg, #064e3b, #047857)"
+              tag="DESTAQUE"
+              title="Torqx"
+              description="Loja Shopify internacional para a Torqx Testing Equipment, distribuidora exclusiva da AW Dynamometer na América Latina."
+              image="/cases/torqx/torqx-top.jpg"
+              imagePlaceholder="linear-gradient(45deg, #7A1230, #0C0D11)"
+              href="/projetos/torqx"
+              metrics={[
+                { value: '12 anos', label: 'de mercado' },
+                { value: '5 marcas', label: 'confiam nos equipamentos' }
+              ]}
             />
           </div>
         </div>
