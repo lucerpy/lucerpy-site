@@ -24,6 +24,8 @@ const VIVID_AMBER = '#FFB347';
 const AMBER_RAMP = ['#0C0D11', '#7A4413', VIVID_AMBER];
 // Matches the inventory dashboard's own blue UI (see /projetos/inventario-ti).
 const BLUE_RAMP = ['#0C0D11', '#1D3A8A', '#3B82F6'];
+// Matches Torqx's own red/pink CTA color (see /projetos/torqx).
+const RED_RAMP = ['#0C0D11', '#7A1230', '#E91E63'];
 
 const VARIANTS = {
   home: () => (
@@ -89,6 +91,17 @@ const VARIANTS = {
     <DotMatrix
       bgColor={BG}
       colors={BLUE_RAMP}
+      frequency={1.2}
+      speed={1.5}
+      cellSize={18}
+      gamma={4}
+      paletteBias={9}
+    />
+  ),
+  torqx: () => (
+    <DotMatrix
+      bgColor={BG}
+      colors={RED_RAMP}
       frequency={1.2}
       speed={1.5}
       cellSize={18}

@@ -123,6 +123,22 @@ export default function ProjectsSection() {
           />
         </div>
 
+        <div className={styles.featuredCard}>
+          <Card
+            type="project"
+            tag="DESTAQUE"
+            title="Torqx"
+            description="Loja Shopify internacional para a Torqx Testing Equipment, distribuidora exclusiva da AW Dynamometer na América Latina."
+            image="/cases/torqx/torqx-top.jpg"
+            imagePlaceholder="linear-gradient(45deg, #7A1230, #0C0D11)"
+            href="/projetos/torqx"
+            metrics={[
+              { value: '12 anos', label: 'de mercado' },
+              { value: '5 marcas', label: 'confiam nos equipamentos' }
+            ]}
+          />
+        </div>
+
         {filteredProjects.map((project) => (
           <Card
             key={project.title}
