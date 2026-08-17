@@ -4,8 +4,11 @@ import Link from 'next/link';
 import styles from './Logo.module.css';
 import { useLogoReveal } from './LogoRevealContext';
 
-const WHITE_DOT = '/logo/lucerpy-wordmark-white-lime-dot-transparent.png';
-const LIME = '/logo/lucerpy-wordmark-lime-transparent.png';
+// WebP instead of PNG - same files the Preloader uses, roughly half the
+// bytes. This renders on every page (Navbar + Footer, eager-loaded), so
+// it's a bigger win site-wide than the one-time preloader intro.
+const WHITE_DOT = '/logo/lucerpy-wordmark-white-lime-dot-transparent.webp';
+const LIME = '/logo/lucerpy-wordmark-lime-transparent.webp';
 
 export default function Logo({ className }) {
   const { wiped, bounced, bounceKey, replay } = useLogoReveal();
