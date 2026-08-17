@@ -1,47 +1,61 @@
+'use client';
+
+import { useState } from 'react';
 import styles from './CtaBackground.module.css';
 
 // Was 6 different live WebGL/canvas effects (RisingLines, Stardust,
 // PulseLines, PulsingDotGrid, DitherEffect, DotMatrix x5), each shipping
 // its own JS chunk and paying real render cost on every page that had a
 // CTA section - all of it below the fold and purely decorative. Replaced
-// with a static abstract photo per color family (Pexels, free license),
-// picked to match each page's existing accent color. One <img> now, zero
-// JS, zero WebGL.
+// with a static abstract photo per page (Pexels, free license). AVIF
+// first (smallest, ~30-60% lighter than the WebP here), WebP as the
+// fallback <picture> source for browsers without AVIF decoding.
+//
 // These files get overwritten in place (same filename, new bytes) during
-// active iteration - and next.config.mjs caches .webp for 30 days at the
-// browser level, so a same-URL swap doesn't reach anyone with a warm
-// cache without this version tag busting it. Bump it whenever any file
-// in public/cta/ actually changes content.
-const ASSET_VERSION = 'v3';
+// active iteration - and next.config.mjs caches images for 30 days at the
+// browser level, so a same-URL content swap never reaches an already-
+// cached visitor. Bump ASSET_VERSION whenever any file in public/cta/
+// actually changes content.
+const ASSET_VERSION = 'v4';
 
-const IMAGE_BY_VARIANT = {
-  home: `/cta/home.webp?${ASSET_VERSION}`,
-  cavent: `/cta/cavent.webp?${ASSET_VERSION}`,
-  projetos: `/cta/projetos.webp?${ASSET_VERSION}`,
-  servicos: `/cta/servicos.webp?${ASSET_VERSION}`,
-  quemSomos: `/cta/quemSomos.webp?${ASSET_VERSION}`,
-  blog: `/cta/blog.webp?${ASSET_VERSION}`,
-  inventario: `/cta/inventario.webp?${ASSET_VERSION}`,
-  torqx: `/cta/torqx.webp?${ASSET_VERSION}`,
-  guialms: `/cta/guialms.webp?${ASSET_VERSION}`,
-};
+const VARIANTS = [
+  'home', 'cavent', 'projetos', 'servicos', 'quemSomos', 'blog',
+  'inventario', 'torqx', 'guialms',
+];
+
+const AVIF_BY_VARIANT = Object.fromEntries(
+  VARIANTS.map((v) => [v, `/cta/${v}.avif?${ASSET_VERSION}`])
+);
+const WEBP_BY_VARIANT = Object.fromEntries(
+  VARIANTS.map((v) => [v, `/cta/${v}.webp?${ASSET_VERSION}`])
+);
 
 export default function CtaBackground({ variant }) {
-  const src = IMAGE_BY_VARIANT[variant];
+  const avifSrc = AVIF_BY_VARIANT[variant];
+  const webpSrc = WEBP_BY_VARIANT[variant];
+  const [loaded, setLoaded] = useState(false);
 
-  if (!src) {
+  if (!avifSrc) {
     return <div className={styles.fallback} aria-hidden="true" />;
   }
 
   return (
     <div className={styles.wrap} aria-hidden="true">
-      <img
-        src={src}
-        alt=""
-        loading="lazy"
-        decoding="async"
-        className={styles.image}
-      />
+      <picture>
+        <source srcSet={avifSrc} type="image/avif" />
+        <img
+          src={webpSrc}
+          alt=""
+          loading="lazy"
+          decoding="async"
+          // scale, not opacity: an opacity:0 start can disqualify an
+          // element from being the LCP candidate (bit us on the hero h1
+          // earlier this session) - transform doesn't touch layout size,
+          // so it's paint-safe while still giving the pop-in motion.
+          className={`${styles.image} ${loaded ? styles.imagePopped : ''}`}
+          onLoad={() => setLoaded(true)}
+        />
+      </picture>
     </div>
   );
 }
