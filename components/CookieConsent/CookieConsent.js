@@ -98,11 +98,15 @@ function initSilktide() {
 }
 
 export default function CookieConsent() {
+  // Self-hosted (public/vendor/silktide/) instead of cdn.jsdelivr.net - a
+  // third-party origin means its own DNS lookup + TLS handshake before the
+  // first byte, on top of whatever the CDN's own latency is. Same-origin
+  // reuses the connection the page itself is already using, and no
+  // integrity/crossOrigin attributes are needed since it's not cross-origin
+  // anymore.
   return (
     <Script
-      src="https://cdn.jsdelivr.net/gh/silktide/consent-manager@v2.0.1/silktide-consent-manager.js"
-      integrity="sha384-5Pt34uiIbCsvfiiZXoLi4HRf/YBXjr9c8e+gYeVo9smUaInNHYVtc8NZ8wUnXJIq"
-      crossOrigin="anonymous"
+      src="/vendor/silktide/silktide-consent-manager.js"
       strategy="afterInteractive"
       onLoad={initSilktide}
     />

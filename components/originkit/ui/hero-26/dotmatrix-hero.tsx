@@ -271,6 +271,22 @@ function mapPaletteBiasUiToShader(ui: number): number {
     return ui * 0.05;
 }
 
+// The dot pass only ever samples the noise texture once per grid cell (at
+// each cell's center - see cellCenter/uResolution in dotFragmentShader), so
+// rendering the noise pass at full canvas resolution burns the expensive
+// simplex-noise math on hundreds of pixels nobody reads for every one that
+// gets used. Sizing the render target to one texel per cell instead cuts
+// that pass by roughly cellPx^2 - the single largest main-thread cost this
+// component had. Free: doesn't change what's on screen, since the dot
+// shader was already collapsing every cell to one sample.
+function noiseTargetSize(canvasWidth: number, canvasHeight: number, cellPx: number) {
+    const cell = Math.max(1, cellPx);
+    return [
+        Math.max(1, Math.round(canvasWidth / cell)),
+        Math.max(1, Math.round(canvasHeight / cell)),
+    ];
+}
+
 type FontSettings = { family: string; weight: string | number; sizePx: number };
 
 function deriveFontSettings(
@@ -490,12 +506,12 @@ export function DottedBackground({
         if (!container) return;
 
         const renderer = new Renderer({
-            // Capped at 2 (not 1) - capping at 1 was rendering this at
-            // quarter (or worse) resolution on any retina/4K screen, which
-            // read as visibly blurry/pixelated next to the crisp text and
-            // UI around it. 2 still bounds the cost on a genuinely huge
-            // 3x+ display without looking soft on common hardware.
-            dpr: Math.min(window.devicePixelRatio || 1, 2) * RENDER_SCALE,
+            // Capped at 1.5 - lower than the display's real dpr on most
+            // phones/retina screens, trading a little edge sharpness on the
+            // dots for meaningfully less per-frame GPU/shader work. Load
+            // time matters more here than pixel-perfect edges on a
+            // decorative background.
+            dpr: Math.min(window.devicePixelRatio || 1, 1.5) * RENDER_SCALE,
             alpha: true,
             premultipliedAlpha: false,
         });
@@ -511,20 +527,30 @@ export function DottedBackground({
         const doResize = () => {
             const width = container.clientWidth || window.innerWidth;
             const height = container.clientHeight || window.innerHeight;
-            renderer.dpr = Math.min(window.devicePixelRatio || 1, 2) * RENDER_SCALE;
+            renderer.dpr = Math.min(window.devicePixelRatio || 1, 1.5) * RENDER_SCALE;
             renderer.setSize(width, height);
             camera.perspective({ aspect: gl.canvas.width / gl.canvas.height });
             if (renderTargetRef.current && renderTargetRef.current.setSize) {
-                renderTargetRef.current.setSize(
+                const [noiseW, noiseH] = noiseTargetSize(
                     gl.canvas.width,
-                    gl.canvas.height
+                    gl.canvas.height,
+                    mapCellSizeUiToShader(cellSize) * renderer.dpr
                 );
+                renderTargetRef.current.setSize(noiseW, noiseH);
             }
             if (perlinProgramRef.current) {
                 perlinProgramRef.current.uniforms.uResolution.value = [
                     gl.canvas.width,
                     gl.canvas.height,
                 ];
+            }
+            // uCellSize is read against gl_FragCoord, which is in device
+            // pixels - without rescaling by dpr here, the same CSS-visible
+            // dot size shrinks on any screen with a higher dpr than the one
+            // it was tuned on (mobile vs desktop).
+            if (dotProgramRef.current) {
+                dotProgramRef.current.uniforms.uCellSize.value =
+                    mapCellSizeUiToShader(cellSize) * renderer.dpr;
             }
         };
 
@@ -583,7 +609,17 @@ export function DottedBackground({
         });
         perlinMeshRef.current = perlinMesh;
 
-        const renderTarget = new OglRenderTarget(gl);
+        const [noiseW, noiseH] = noiseTargetSize(
+            gl.canvas.width,
+            gl.canvas.height,
+            mapCellSizeUiToShader(cellSize) * renderer.dpr
+        );
+        const renderTarget = new OglRenderTarget(gl, {
+            width: noiseW,
+            height: noiseH,
+            minFilter: gl.NEAREST,
+            magFilter: gl.NEAREST,
+        });
         renderTargetRef.current = renderTarget;
 
         const dummyGlyphTexture = new Texture(gl, {
@@ -603,7 +639,7 @@ export function DottedBackground({
                 uPaletteCount: { value: effPaletteCount },
                 uPalette: { value: palette.rgb },
                 uPaletteA: { value: palette.alpha },
-                uCellSize: { value: mapCellSizeUiToShader(cellSize) },
+                uCellSize: { value: mapCellSizeUiToShader(cellSize) * renderer.dpr },
                 uGamma: { value: mapGammaUiToShader(gamma) },
                 uPaletteBias: { value: mapPaletteBiasUiToShader(paletteBias) },
                 uUseGlyphAtlas: { value: useGlyphAtlasFlag ? 1 : 0 },
@@ -750,7 +786,21 @@ export function DottedBackground({
             dot.uniforms.uPaletteCount.value = effPaletteCount;
             dot.uniforms.uPalette.value = palette.rgb;
             dot.uniforms.uPaletteA.value = palette.alpha;
-            dot.uniforms.uCellSize.value = mapCellSizeUiToShader(cellSize);
+            dot.uniforms.uCellSize.value =
+                mapCellSizeUiToShader(cellSize) *
+                (rendererRef.current?.dpr ?? 1);
+            if (
+                renderTargetRef.current?.setSize &&
+                glRef.current &&
+                rendererRef.current
+            ) {
+                const [noiseW, noiseH] = noiseTargetSize(
+                    glRef.current.canvas.width,
+                    glRef.current.canvas.height,
+                    mapCellSizeUiToShader(cellSize) * rendererRef.current.dpr
+                );
+                renderTargetRef.current.setSize(noiseW, noiseH);
+            }
             dot.uniforms.uGamma.value = mapGammaUiToShader(gamma);
             dot.uniforms.uPaletteBias.value =
                 mapPaletteBiasUiToShader(paletteBias);

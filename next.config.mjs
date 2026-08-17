@@ -3,8 +3,14 @@ const nextConfig = {
   images: {
     formats: ['image/avif', 'image/webp'],
   },
-  // Strict-Transport-Security and X-Content-Type-Options already come from
-  // the host. Content-Security-Policy is left out for now - it needs every
+  // Tried experimental.cssChunking: { type: 'graph', requestCost: 200000 }
+  // to merge the home page's several small render-blocking CSS chunks into
+  // fewer requests - didn't meaningfully reduce the count, and introduced a
+  // real bug instead: Next started preloading a CSS chunk the route never
+  // actually used (browser console: "preloaded ... but not used within a
+  // few seconds"), wasting a request rather than saving one. Not worth the
+  // trade - back to the default chunking behavior.
+  // Content-Security-Policy is left out for now - it needs every
   // third-party origin the site loads (Silktide, Google Tag Manager,
   // TrustedSite, jsdelivr, Google Fonts) allow-listed first, or it'll break
   // them instead of just tightening security.
@@ -16,6 +22,8 @@ const nextConfig = {
           { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
           { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
           { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' },
+          { key: 'Strict-Transport-Security', value: 'max-age=63072000; includeSubDomains; preload' },
+          { key: 'Cross-Origin-Opener-Policy', value: 'same-origin' },
         ],
       },
       // Files under /public (logos, badges, footer icons, blog cover images)

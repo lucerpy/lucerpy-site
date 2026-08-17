@@ -5,19 +5,8 @@ import Footer from "@/components/originkit/footer-02";
 import PageTransition from "@/components/PageTransition";
 import WhatsAppButton from "@/components/WhatsAppButton/WhatsAppButton";
 import CookieConsent from "@/components/CookieConsent/CookieConsent";
-import Preloader from "@/components/Preloader/Preloader";
 import { LogoRevealProvider } from "@/components/Logo/LogoRevealContext";
 import ConsoleEasterEgg from "@/components/ConsoleEasterEgg/ConsoleEasterEgg";
-
-// Re-enabled as a real loading gate rather than a fixed decorative delay:
-// the Preloader now waits for the hero's own "ready" signal (see
-// Preloader.js) before wiping away, capped at a max wait so it can't hang.
-// Known trade-off: PageSpeed/Lighthouse measures paint timestamps
-// regardless of what's covering them, and this component's own hydration
-// still competes for main-thread time with the hero - so this intentionally
-// costs some PSI score in exchange for the reveal never looking premature
-// for a real visitor. Flip back to false if that trade stops being worth it.
-const PRELOADER_ENABLED = true;
 
 // Overrides Silktide's default theme with the site's own palette.
 const SILKTIDE_THEME_CSS = `
@@ -38,7 +27,8 @@ const SILKTIDE_THEME_CSS = `
 }
 
 #stcm-icon {
-  bottom: 45px !important;
+  left: 20px !important;
+  bottom: 20px !important;
 }
 `;
 
@@ -131,51 +121,22 @@ export default function RootLayout({ children }) {
       suppressHydrationWarning
     >
       <head>
-        {/* Runs synchronously before the body paints, so the preloader's
-            visibility is decided (and set as a DOM attribute) before the
-            first frame - otherwise the SSR'd page paints first and the
-            preloader only appears after hydration, flashing the real site. */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){try{var r=window.matchMedia('(prefers-reduced-motion: reduce)').matches;var s=sessionStorage.getItem('lucerpy-intro-shown');if(r||s){document.documentElement.setAttribute('data-preloader','skip');}else{document.documentElement.setAttribute('data-preloader','show');sessionStorage.setItem('lucerpy-intro-shown','1');}}catch(e){document.documentElement.setAttribute('data-preloader','skip');}})();`,
-          }}
-        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        {/* Preloader's two logo images - preloaded so the fetch starts
-            immediately instead of waiting on Preloader.js to hydrate first.
-            type="image/avif" means a browser that can't decode AVIF skips
-            the preload entirely (no wasted fetch) - it'll just load the
-            WebP <picture> fallback normally, without the head start.
-            Still fetched (~19KB combined) even on a skipped preloader run,
-            since this script can't know that yet - small enough to accept. */}
-        <link
-          rel="preload"
-          as="image"
-          type="image/avif"
-          href="/logo/lucerpy-wordmark-white-lime-dot-transparent.avif"
-          fetchPriority="high"
-        />
-        <link
-          rel="preload"
-          as="image"
-          type="image/avif"
-          href="/logo/lucerpy-wordmark-lime-transparent.avif"
-          fetchPriority="high"
-        />
-        <link rel="preconnect" href="https://cdn.jsdelivr.net" crossOrigin="anonymous" />
-        {/* media="print" + onLoad swap is the standard non-blocking stylesheet
-            trick: browser fetches it at low priority without blocking first
-            paint, then flips to "all" once it's actually loaded. Cookie
-            banner isn't needed for the first frame anyway. */}
+        {/* Self-hosted (public/vendor/silktide/), not cdn.jsdelivr.net - one
+            fewer external origin (DNS + TLS handshake) on the critical
+            path; no preconnect or integrity/crossOrigin needed anymore
+            since it's same-origin now.
+            media="print" + onLoad swap is the standard non-blocking
+            stylesheet trick: browser fetches it at low priority without
+            blocking first paint, then flips to "all" once it's actually
+            loaded. Cookie banner isn't needed for the first frame anyway. */}
         <link
           rel="stylesheet"
           id="silktide-consent-manager-css"
-          href="https://cdn.jsdelivr.net/gh/silktide/consent-manager@v2.0.1/silktide-consent-manager.css"
-          integrity="sha384-EdMq+R+YOnsbelo08wPenoTlnxbAyxI11NMIxzugx/qAsbh64KcOkqxYqq6pfvO/"
-          crossOrigin="anonymous"
+          href="/vendor/silktide/silktide-consent-manager.css"
           media="print"
           suppressHydrationWarning
         />
@@ -191,9 +152,7 @@ export default function RootLayout({ children }) {
         <noscript>
           <link
             rel="stylesheet"
-            href="https://cdn.jsdelivr.net/gh/silktide/consent-manager@v2.0.1/silktide-consent-manager.css"
-            integrity="sha384-EdMq+R+YOnsbelo08wPenoTlnxbAyxI11NMIxzugx/qAsbh64KcOkqxYqq6pfvO/"
-            crossOrigin="anonymous"
+            href="/vendor/silktide/silktide-consent-manager.css"
           />
         </noscript>
         <style
@@ -203,7 +162,6 @@ export default function RootLayout({ children }) {
       </head>
       <body suppressHydrationWarning>
         <ConsoleEasterEgg />
-        {PRELOADER_ENABLED && <Preloader />}
         <CookieConsent />
         <LogoRevealProvider>
           <Navbar />

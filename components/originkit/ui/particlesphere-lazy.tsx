@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
+import { isSlowConnection } from '@/lib/connection';
 
 // The sphere (and the three.js it drags in) used to hydrate and mount its
 // scene immediately alongside everything else on the page, even though
@@ -22,6 +23,7 @@ export default function ParticleSphereLazy() {
 
   useEffect(() => {
     if (inView) return;
+    if (isSlowConnection()) return;
     const el = wrapperRef.current;
     if (!el) return;
     const observer = new IntersectionObserver(

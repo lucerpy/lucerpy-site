@@ -1,0 +1,29 @@
+[
+  {
+    "id": "case-consultoria-financeira",
+    "prompt": "High-end mockup screenshot of a financial consulting company website homepage on a laptop browser, dark modern UI, deep green and gold accents, elegant serif and sans-serif typography, minimalist layout with charts and trust badges, professional corporate aesthetic, studio lighting",
+    "out": "public/cases/consultoria-financeira.jpg",
+    "aspect": "widescreen_16_9",
+    "resolution": "2k",
+    "model": "realism",
+    "note": "Substitui o placeholder duplicado (hoje reaproveita /cases/saas.jpg) no card 'Consultoria Financeira' em app/projetos/page.js"
+  },
+  {
+    "id": "blog-site-lento-afasta-clientes",
+    "prompt": "Editorial blog cover illustration about a slow, confusing website losing customers, dark navy background matching a modern SaaS brand, abstract browser window with a loading spinner and a frustrated cursor leaving, minimalist flat design, subtle grid lines, no text",
+    "out": "public/blog/por-que-seu-site-afasta-clientes.jpg",
+    "aspect": "widescreen_16_9",
+    "resolution": "2k",
+    "model": "flexible",
+    "note": "Substitui o /og-image.jpg reaproveitado no frontmatter de _posts/por-que-seu-site-afasta-clientes.md"
+  },
+  {
+    "id": "blog-nextjs-vs-wordpress",
+    "prompt": "Editorial blog cover illustration comparing two website technologies side by side, one sleek and fast (modern React/Next.js style, geometric, deep purple), one older and cluttered (WordPress style, muted gray), abstract split-screen composition, minimalist flat design, no text, no logos",
+    "out": "public/blog/nextjs-vs-wordpress.jpg",
+    "aspect": "widescreen_16_9",
+    "resolution": "2k",
+    "model": "flexible",
+    "note": "Substitui o /cases/saas.jpg reaproveitado no frontmatter de _posts/nextjs-vs-wordpress-qual-escolher.md"
+  }
+]

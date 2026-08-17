@@ -105,7 +105,7 @@ export default function Home() {
               <div className={styles.sectionTag}>PORTFÓLIO</div>
               <h2 className={styles.sectionTitle}>Projetos em destaque</h2>
             </div>
-            <Button href="/projetos" variant="link">Ver todos →</Button>
+            <Button href="/projetos" variant="link" aria-label="Ver todos os projetos">Ver todos →</Button>
           </div>
           
           <div className={styles.cardsGrid}>
@@ -193,7 +193,7 @@ export default function Home() {
               <div className={styles.sectionTag}>BLOG</div>
               <h2 className={styles.sectionTitle}>Últimos artigos</h2>
             </div>
-            <Button href="/blog" variant="link">Ver todos →</Button>
+            <Button href="/blog" variant="link" aria-label="Ver todos os artigos do blog">Ver todos →</Button>
           </div>
           
           <div className={styles.cardsGrid}>

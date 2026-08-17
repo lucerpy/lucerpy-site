@@ -476,7 +476,7 @@ function __OriginkitBase_Tetris(props: TetrisProps) {
     }
 
     function build() {
-      dpr = Math.min(2, window.devicePixelRatio || 1);
+      dpr = Math.min(1.5, window.devicePixelRatio || 1);
       // The board is whatever size the frame gives it — clientWidth, not
       // the bounding rect, so a zoomed canvas doesn't shrink the grid.
       const w = Math.max(1, Math.round(canvas.clientWidth));

@@ -7,6 +7,7 @@ import dynamic from "next/dynamic";
 import Logo from "@/components/Logo/Logo";
 import NewsletterForm from "@/app/blog/NewsletterForm";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
+import { isSlowConnection } from "@/lib/connection";
 
 // Footer sits in the root layout, so it hydrates on every page's initial
 // load - but Tetris's board setup (scatterInitialStack) runs a real
@@ -61,6 +62,7 @@ export function Footer() {
 
   useEffect(() => {
     if (showTetris) return;
+    if (isSlowConnection()) return;
     const el = footerRef.current;
     if (!el) return;
     const observer = new IntersectionObserver(

@@ -55,20 +55,36 @@
    edge, left-to-right. The right inset (10%) stays clear of the dot's own
    territory (already lime in the base layer beneath), same as the header
    logo's version. */
+/* Runs as a self-contained @keyframes + animation-delay instead of a
+   transition toggled by a React state change - a transition needs a JS
+   effect to flip the class at the right moment, and if page hydration is
+   slow (React + every other client component on the page competing for the
+   same thread), that flip - and the wipe with it - just sits waiting. This
+   animation starts counting from paint, not from whenever JS gets a turn,
+   so the logo never looks frozen green even on a slow hydrate. */
 .logoWipe {
   clip-path: inset(0 10% 0 0%);
-  transition: clip-path 950ms cubic-bezier(0.215, 0.61, 0.355, 1);
+  animation: logoWipeReveal 950ms cubic-bezier(0.215, 0.61, 0.355, 1) 500ms both;
 }
 
-.logoWipeDone {
-  clip-path: inset(0 10% 0 90%);
+@keyframes logoWipeReveal {
+  from {
+    clip-path: inset(0 10% 0 0%);
+  }
+  to {
+    clip-path: inset(0 10% 0 90%);
+  }
 }
 
 /* Positioned over the dot in the wordmark art (same 86.59%/53.85% measured
    spot as Logo.module.css's fixed-px version, converted to percentages of
    this box's width/height so it lands correctly at any size while staying a
    perfect circle - the width/height % pair below both resolve to the same
-   physical size because the box's aspect-ratio is locked). */
+   physical size because the box's aspect-ratio is locked).
+   Hidden until the fly-away starts (2100ms = the wipe's own 500+950 + the
+   650ms hold) - .loadingDots stands in for it before then, so the single
+   dot only appears once it matches the static header logo it's about to
+   land on. */
 .logoDot {
   position: absolute;
   left: 86.59%;
@@ -78,10 +94,85 @@
   border-radius: 50%;
   background: var(--color-primary, #CCEC7B);
   transform: scale(1);
+  opacity: 0;
+  animation: logoDotReveal 150ms ease-out 2100ms both,
+    logoDotBounce 600ms ease-out 2100ms both;
 }
 
-.logoDotBounce {
-  animation: logoDotBounce 600ms ease-out forwards;
+/* Loading cue for the gap between the wipe finishing and the logo flying to
+   the header - otherwise a fully static frame that reads as the page having
+   stalled. Three copies of the brand's own dot (same size as .logoDot, just
+   scaled down slightly to fit three side by side), bouncing in place of the
+   single dot at its exact spot - reads as the mark itself having fun rather
+   than a generic spinner bolted on. Visible only for that gap
+   (1450ms-2100ms): fades in right as the wipe finishes, out right as
+   .logoDot takes back its spot for the fly-away. */
+.loadingDots {
+  position: absolute;
+  left: 86.59%;
+  top: 53.85%;
+  /* Height matches .logoDot's own (13.46% of the logo box) so the three
+     dots sit at the same vertical scale/position as the single dot they
+     replace. Width is wider to fit three side by side - percentages below
+     on .loadingDot are worked out against THIS box, not the logo box, so
+     they stay true circles regardless of this box's own aspect ratio. */
+  width: 9.5%;
+  height: 13.46%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  opacity: 0;
+  animation: loadingDotsPulse 650ms ease-out 1450ms forwards;
+}
+
+.loadingDot {
+  /* 50% of .loadingDots' own height x 20.6% of its width - worked out so
+     each renders as a true circle at roughly half the brand dot's
+     diameter, same math .logoDot itself uses against the logo box. */
+  width: 20.6%;
+  height: 50%;
+  border-radius: 50%;
+  background: var(--color-primary, #CCEC7B);
+  animation: loadingDotBounce 700ms ease-in-out 1450ms infinite;
+}
+
+.loadingDot:nth-child(2) {
+  animation-delay: 1600ms;
+}
+
+.loadingDot:nth-child(3) {
+  animation-delay: 1750ms;
+}
+
+@keyframes loadingDotsPulse {
+  0% {
+    opacity: 0;
+  }
+  15%,
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes loadingDotBounce {
+  0%, 60%, 100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.6;
+  }
+  30% {
+    transform: translateY(-35%) scale(1.1);
+    opacity: 1;
+  }
+}
+
+@keyframes logoDotReveal {
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes logoIntro {

@@ -7,6 +7,7 @@ import dynamic from "next/dynamic";
 import Button from "@/components/Button/Button";
 
 import { LogoMarquee } from "@/components/originkit/ui/hero-22/logo-marquee";
+import { isSlowConnection } from "@/lib/connection";
 
 // Pulls in the ogl WebGL library - keep it out of the home page's initial
 // bundle and fetch it only in the browser, same pattern as CtaBackground.
@@ -23,13 +24,6 @@ const DottedBackground = dynamic(
 const DOTTED_BACKGROUND_ENABLED = true;
 
 export const Section27Hero = () => {
-  // Mounting this immediately let its synchronous shader-compile work
-  // block the main thread hard enough to delay the Preloader's own timers
-  // by several real seconds (JS timers can't fire while the thread is
-  // busy) - visitors sat on a static green preloader logo far longer than
-  // any of its own delay values, because THIS is what was actually
-  // blocking it. Deferred past the Preloader's fixed reveal window
-  // (WIPE_DELAY=500ms in Preloader.js) so the two never compete.
   const [showBackground, setShowBackground] = useState(false);
   // Drives a crossfade instead of a hard swap: the section's own dark
   // background shows during the defer, and the WebGL canvas fades in once
@@ -40,7 +34,18 @@ export const Section27Hero = () => {
   const [bgReady, setBgReady] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => setShowBackground(true), 700);
+    if (isSlowConnection()) return;
+
+    // Deferred past the current frame via requestIdleCallback so the WebGL
+    // mount (shader compile, ogl init - real main-thread work) doesn't
+    // compete with the hero text's own first paint. Safari has no
+    // requestIdleCallback, so it falls back to a short fixed delay there.
+    const mount = () => setShowBackground(true);
+    if (typeof window.requestIdleCallback === "function") {
+      const id = window.requestIdleCallback(mount, { timeout: 700 });
+      return () => window.cancelIdleCallback(id);
+    }
+    const timer = setTimeout(mount, 700);
     return () => clearTimeout(timer);
   }, []);
 
@@ -59,7 +64,7 @@ export const Section27Hero = () => {
               colors={["#0C0D11", "#2B3D12", "#CCEC7B"]}
               frequency={1.5}
               speed={2}
-              cellSize={10}
+              cellSize={20}
               gamma={5}
               paletteBias={8}
               onReady={() => setBgReady(true)}
@@ -98,8 +103,11 @@ export const Section27Hero = () => {
             Seu digital no <span className="text-primary">próximo nível.</span>
           </h1>
 
+          {/* No fade-in here either, same reason as the h1 above: this is
+              the actual LCP text (confirmed by Lighthouse), so opacity must
+              be 1 at first paint or Chrome skips it as an LCP candidate. */}
           <p
-            className="fade-in fade-in-3 w-full max-w-[320px] text-center font-inter text-[15px] sm:text-[16px] leading-[1.5] font-normal tracking-[-0.32px] text-[#A1A1AA] ipad:max-w-none ipad:w-full ipad:text-[17px] ipad:tracking-[-0.34px]"
+            className="w-full max-w-[320px] text-center font-inter text-[15px] sm:text-[16px] leading-[1.5] font-normal tracking-[-0.32px] text-[#A1A1AA] ipad:max-w-none ipad:w-full ipad:text-[17px] ipad:tracking-[-0.34px]"
             style={{ textShadow: "0 2px 10px rgba(0,0,0,0.7)" }}
           >
             UX/UI, sites, landing pages e automações construídas com estratégia
