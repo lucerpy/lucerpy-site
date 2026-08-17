@@ -90,7 +90,14 @@ export function Footer() {
         iPad   (Figma 2168:264): stacked brand → 3-col links
         Desktop (Figma 2168:5):  brand | links side-by-side
       */}
-      <div className="relative z-10 flex flex-col gap-8 px-8 pt-10 pb-[280px] ipad:gap-12 ipad:px-12 ipad:pt-12 ipad:pb-[290px] desktop-sm:px-16 desktop-sm:pt-[72px] desktop-sm:pb-[280px]">
+      {/* max-w caps the content block on wide/ultrawide screens - without
+          it, the grid's justify-between (needed to spread the 5 tracks out
+          nicely at desktop-sm/laptop widths) just keeps spreading them
+          further apart as the viewport grows past that, until "Legal" sits
+          alone at the far right edge of a 2560px+ monitor with a canyon of
+          empty space in the middle. mx-auto keeps the whole block centered
+          once it hits that cap instead of hugging the left edge. */}
+      <div className="relative z-10 mx-auto flex w-full max-w-[1440px] flex-col gap-8 px-8 pt-10 pb-[280px] ipad:gap-12 ipad:px-12 ipad:pt-12 ipad:pb-[290px] desktop-sm:px-16 desktop-sm:pt-[72px] desktop-sm:pb-[280px]">
       {/* 5-column grid on desktop: Brand | Newsletter | Páginas | Contato |
           Legal. Each track has its own min/max rule (grid-template-columns
           below) so the browser computes every width and gap on its own -
