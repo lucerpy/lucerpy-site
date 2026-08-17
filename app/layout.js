@@ -5,6 +5,7 @@ import Footer from "@/components/originkit/footer-02";
 import PageTransition from "@/components/PageTransition";
 import WhatsAppButton from "@/components/WhatsAppButton/WhatsAppButton";
 import CookieConsent from "@/components/CookieConsent/CookieConsent";
+import Preloader from "@/components/Preloader/Preloader";
 import { LogoRevealProvider } from "@/components/Logo/LogoRevealContext";
 import ConsoleEasterEgg from "@/components/ConsoleEasterEgg/ConsoleEasterEgg";
 
@@ -121,9 +122,39 @@ export default function RootLayout({ children }) {
       suppressHydrationWarning
     >
       <head>
+        {/* Runs synchronously before the body paints, so the preloader's
+            visibility is decided (and set as a DOM attribute) before the
+            first frame - otherwise the SSR'd page paints first and the
+            preloader only appears after hydration, flashing the real site. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var r=window.matchMedia('(prefers-reduced-motion: reduce)').matches;var s=sessionStorage.getItem('lucerpy-intro-shown');if(r||s){document.documentElement.setAttribute('data-preloader','skip');}else{document.documentElement.setAttribute('data-preloader','show');sessionStorage.setItem('lucerpy-intro-shown','1');}}catch(e){document.documentElement.setAttribute('data-preloader','skip');}})();`,
+          }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        {/* Preloader's two logo images - preloaded so the fetch starts
+            immediately instead of waiting on Preloader.js to hydrate first.
+            type="image/avif" means a browser that can't decode AVIF skips
+            the preload entirely (no wasted fetch) - it'll just load the
+            WebP <picture> fallback normally, without the head start.
+            Still fetched (~19KB combined) even on a skipped preloader run,
+            since this script can't know that yet - small enough to accept. */}
+        <link
+          rel="preload"
+          as="image"
+          type="image/avif"
+          href="/logo/lucerpy-wordmark-white-lime-dot-transparent-preloader.avif"
+          fetchPriority="high"
+        />
+        <link
+          rel="preload"
+          as="image"
+          type="image/avif"
+          href="/logo/lucerpy-wordmark-lime-transparent-preloader.avif"
+          fetchPriority="high"
         />
         {/* Self-hosted (public/vendor/silktide/), not cdn.jsdelivr.net - one
             fewer external origin (DNS + TLS handshake) on the critical
@@ -162,6 +193,7 @@ export default function RootLayout({ children }) {
       </head>
       <body suppressHydrationWarning>
         <ConsoleEasterEgg />
+        <Preloader />
         <CookieConsent />
         <LogoRevealProvider>
           <Navbar />
