@@ -211,13 +211,17 @@ export function Footer() {
       </div>
 
       {/* Sits above the Tetris decoration (which is absolutely positioned
-          within this same z-10 container, pinned to its bottom edge) rather
+          against the footer itself, pinned to its bottom edge) rather
           than as a separate bar below it. */}
       <p className="text-center font-sans text-[13px] text-white/50 desktop-sm:text-left">
         © {new Date().getFullYear()} Lucerpy Digital. Todos os direitos reservados.
       </p>
+      </div>
 
-      {/* Tetris board — decorative stack along the bottom. Invisible (not
+      {/* Tetris board — decorative stack along the bottom. Positioned
+          against the footer itself (not the max-w-[1440px] content column
+          above) so it spans the full viewport width on wide/ultrawide
+          screens instead of stopping at the content cap. Invisible (not
           just empty) until it's actually mounted, so there's never a flat
           rectangle showing where the board should be. */}
       <div
@@ -236,7 +240,6 @@ export function Footer() {
             startFilled={true}
           />
         )}
-      </div>
       </div>
     </footer>
   );
