@@ -1,41 +1,159 @@
+'use client';
+
+import { useEffect, useRef, useState } from 'react';
+import dynamic from 'next/dynamic';
 import styles from './CtaBackground.module.css';
 
-// Was 6 different live WebGL/canvas effects (RisingLines, Stardust,
-// PulseLines, PulsingDotGrid, DitherEffect, DotMatrix x5), each shipping
-// its own JS chunk and paying real render cost on every page that had a
-// CTA section - all of them below the fold, decorative, and never
-// interactive. Replaced with one static WebP per page, captured from the
-// actual live effect (frame-sequence screenshot, same technique as the
-// hero background) so the look is unchanged - just a single <img> now,
-// zero JS, zero WebGL, zero per-frame cost.
-const IMAGE_BY_VARIANT = {
-  home: '/cta/home.webp',
-  servicos: '/cta/servicos.webp',
-  quemSomos: '/cta/quemSomos.webp',
-  projetos: '/cta/projetos.webp',
-  blog: '/cta/blog.webp',
-  cavent: '/cta/cavent.webp',
-  inventario: '/cta/inventario.webp',
-  torqx: '/cta/torqx.webp',
-  guialms: '/cta/guialms.webp',
+const RisingLines = dynamic(() => import('@/components/originkit/ui/risinglines'), { ssr: false });
+const Stardust = dynamic(() => import('@/components/originkit/ui/stardust'), { ssr: false });
+const PulseLines = dynamic(() => import('@/components/originkit/ui/pulse-lines'), { ssr: false });
+const PulsingDotGrid = dynamic(() => import('@/components/originkit/ui/pulsing-dot-grid'), { ssr: false });
+const DitherEffect = dynamic(() => import('@/components/originkit/ui/dither-effect'), { ssr: false });
+const DotMatrix = dynamic(
+  () => import('@/components/originkit/ui/hero-26/dotmatrix-hero').then((m) => ({ default: m.DottedBackground })),
+  { ssr: false }
+);
+
+const BG = '#0C0D11';
+// The brand's --color-accent (#E8A659) is deliberately muted for use as a tiny
+// sparing highlight (tags, badges). In these WebGL/canvas backgrounds the
+// color IS the whole visual, spread thin across particles/dots/alpha, so
+// that same muted tone reads as washed-out - needs a punchier, more
+// saturated amber to actually read against the near-black background.
+const VIVID_AMBER = '#FFB347';
+const AMBER_RAMP = ['#0C0D11', '#7A4413', VIVID_AMBER];
+// Matches the inventory dashboard's own blue UI (see /projetos/inventario-ti).
+const BLUE_RAMP = ['#0C0D11', '#1D3A8A', '#3B82F6'];
+// Matches Torqx's own red/pink CTA color (see /projetos/torqx).
+const RED_RAMP = ['#0C0D11', '#7A1230', '#E91E63'];
+// Matches GuiaLMS's own indigo brand color (see /projetos/guialms).
+const PURPLE_RAMP = ['#0C0D11', '#3A2E7A', '#6C63FF'];
+
+const VARIANTS = {
+  home: () => (
+    <RisingLines
+      particles={450}
+      color={VIVID_AMBER}
+      riseSpeed={20}
+      opacity={100}
+      scale={7}
+      showHorizon={false}
+    />
+  ),
+  servicos: () => (
+    <Stardust
+      background={BG}
+      particleColor="#CCEC7B"
+      particleDensity={40}
+      speed={1}
+      particleSpeed={0.4}
+    />
+  ),
+  quemSomos: () => (
+    <PulseLines
+      backgroundColor={BG}
+      shape="line"
+      type="vertical"
+      speed={40}
+      colors={{ paletteCount: 3, color1: '#0C0D11', color2: '#4A6B1F', color3: '#CCEC7B' }}
+      lineColor="#1A2410"
+    />
+  ),
+  projetos: () => (
+    <PulsingDotGrid
+      backgroundColor={BG}
+      dotColor={VIVID_AMBER}
+      speed={2}
+      gap={40}
+      dotSize={5}
+      pulseIntensity={0.9}
+      radialWave
+    />
+  ),
+  blog: () => (
+    <DitherEffect
+      background={BG}
+      colors={['#2B3D12', '#CCEC7B', VIVID_AMBER]}
+      hover={false}
+      speed={25}
+    />
+  ),
+  cavent: () => (
+    <DotMatrix
+      bgColor={BG}
+      colors={AMBER_RAMP}
+      frequency={1.2}
+      speed={1.5}
+      cellSize={18}
+      gamma={4}
+      paletteBias={9}
+    />
+  ),
+  inventario: () => (
+    <DotMatrix
+      bgColor={BG}
+      colors={BLUE_RAMP}
+      frequency={1.2}
+      speed={1.5}
+      cellSize={18}
+      gamma={4}
+      paletteBias={9}
+    />
+  ),
+  torqx: () => (
+    <DotMatrix
+      bgColor={BG}
+      colors={RED_RAMP}
+      frequency={1.2}
+      speed={1.5}
+      cellSize={18}
+      gamma={4}
+      paletteBias={9}
+    />
+  ),
+  guialms: () => (
+    <DotMatrix
+      bgColor={BG}
+      colors={PURPLE_RAMP}
+      frequency={1.2}
+      speed={1.5}
+      cellSize={18}
+      gamma={4}
+      paletteBias={9}
+    />
+  ),
 };
 
 export default function CtaBackground({ variant }) {
-  const src = IMAGE_BY_VARIANT[variant];
+  const wrapperRef = useRef(null);
+  const [allowMotion, setAllowMotion] = useState(false);
+  const [inView, setInView] = useState(false);
 
-  if (!src) {
-    return <div className={styles.fallback} aria-hidden="true" />;
+  useEffect(() => {
+    setAllowMotion(!window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  }, []);
+
+  useEffect(() => {
+    const el = wrapperRef.current;
+    if (!el || !allowMotion) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setInView(entry.isIntersecting),
+      { threshold: 0.1, rootMargin: '200px 0px' }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [allowMotion]);
+
+  const render = VARIANTS[variant];
+
+  if (!allowMotion || !render) {
+    return <div ref={wrapperRef} className={styles.fallback} aria-hidden="true" />;
   }
 
   return (
-    <div className={styles.wrap} aria-hidden="true">
-      <img
-        src={src}
-        alt=""
-        loading="lazy"
-        decoding="async"
-        className={styles.image}
-      />
+    <div ref={wrapperRef} className={styles.wrap} aria-hidden="true" data-capture={`cta-${variant}`}>
+      {inView && render()}
     </div>
   );
 }
