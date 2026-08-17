@@ -403,29 +403,13 @@ export function DottedBackground({
     // and there's no reason to pay that cost for a tab in the background
     // or a section nobody's looking at.
     const [isVisible, setIsVisible] = useState(true);
-    // Mount renders one static frame right away (cheap, looks intentional
-    // instead of blank) and holds there - the per-frame rAF animation loop
-    // only starts once the page has had a moment to settle, so the ongoing
-    // render cost doesn't stack on top of the shader compile + hydration
-    // that's already competing for main-thread time right after load.
-    const [warmedUp, setWarmedUp] = useState(false);
-    const effectivePlay = isVisible && warmedUp;
-
-    useEffect(() => {
-        const w = window as typeof window & {
-            requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number;
-        };
-        const id = w.requestIdleCallback
-            ? w.requestIdleCallback(() => setWarmedUp(true), { timeout: 2000 })
-            : window.setTimeout(() => setWarmedUp(true), 1500);
-        return () => {
-            if (w.requestIdleCallback) {
-                (window as typeof window & { cancelIdleCallback?: (id: number) => void }).cancelIdleCallback?.(id as number);
-            } else {
-                window.clearTimeout(id as number);
-            }
-        };
-    }, []);
+    // Used to hold the animation loop off for a beat after mount ("warm up"
+    // before moving), on the theory that it'd protect main-thread time
+    // right after load. In practice that produced a visible hitch - motion
+    // suddenly kicking in after sitting still read as a stutter, not as
+    // smooth. Animating continuously from the first frame looks and feels
+    // better than that pause ever saved in load cost.
+    const effectivePlay = isVisible;
 
     const containerRef = useRef<HTMLDivElement>(null);
     const perlinProgramRef = useRef<any>(null);
@@ -506,12 +490,12 @@ export function DottedBackground({
         if (!container) return;
 
         const renderer = new Renderer({
-            // Rendered at 0.6x the CSS size (not 1x) and upscaled by the
-            // browser - this is a soft, blurry dot-noise background, so the
-            // softness costs nothing visually, but it cuts fragment-shader
-            // pixel count (and GPU cost) by more than half versus native
-            // resolution, on top of the retina-supersampling cap.
-            dpr: Math.min(window.devicePixelRatio || 1, 1) * RENDER_SCALE,
+            // Capped at 2 (not 1) - capping at 1 was rendering this at
+            // quarter (or worse) resolution on any retina/4K screen, which
+            // read as visibly blurry/pixelated next to the crisp text and
+            // UI around it. 2 still bounds the cost on a genuinely huge
+            // 3x+ display without looking soft on common hardware.
+            dpr: Math.min(window.devicePixelRatio || 1, 2) * RENDER_SCALE,
             alpha: true,
             premultipliedAlpha: false,
         });
@@ -527,7 +511,7 @@ export function DottedBackground({
         const doResize = () => {
             const width = container.clientWidth || window.innerWidth;
             const height = container.clientHeight || window.innerHeight;
-            renderer.dpr = Math.min(window.devicePixelRatio || 1, 1) * RENDER_SCALE;
+            renderer.dpr = Math.min(window.devicePixelRatio || 1, 2) * RENDER_SCALE;
             renderer.setSize(width, height);
             camera.perspective({ aspect: gl.canvas.width / gl.canvas.height });
             if (renderTargetRef.current && renderTargetRef.current.setSize) {

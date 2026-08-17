@@ -32,6 +32,12 @@ export const Section27Hero = () => {
   // takes to fetch the ogl chunk and compile the shaders - waiting an
   // extra 400ms before even starting that only made it slower to appear.
   const [showBackground, setShowBackground] = useState(true);
+  // Drives a crossfade instead of a hard swap: the CSS dot pattern stays
+  // put, and the WebGL canvas fades in over it once its first frame is
+  // drawn. A background layer (CSS or canvas) is invisible to the LCP
+  // algorithm either way - only actual <img>/text nodes count - so opacity
+  // here carries none of the risk it did on the hero h1.
+  const [bgReady, setBgReady] = useState(false);
 
   return (
   <section className="w-full bg-[#0C0D11]">
@@ -53,20 +59,29 @@ export const Section27Hero = () => {
           }}
         />
         {DOTTED_BACKGROUND_ENABLED && showBackground && (
-          <DottedBackground
-            bgColor="#0C0D11"
-            colors={["#0C0D11", "#2B3D12", "#CCEC7B"]}
-            frequency={1.5}
-            speed={2}
-            cellSize={10}
-            gamma={5}
-            paletteBias={8}
-            // Lets the Preloader (app/layout.js) know the real background
-            // has drawn its first frame, so it can hold its reveal until
-            // this - rather than the hero and the intro finishing on
-            // unrelated fixed timers that may or may not line up.
-            onReady={() => window.dispatchEvent(new Event("lucerpy:hero-ready"))}
-          />
+          <div
+            className="absolute inset-0 transition-opacity duration-700 ease-out"
+            style={{ opacity: bgReady ? 1 : 0 }}
+          >
+            <DottedBackground
+              bgColor="#0C0D11"
+              colors={["#0C0D11", "#2B3D12", "#CCEC7B"]}
+              frequency={1.5}
+              speed={2}
+              cellSize={10}
+              gamma={5}
+              paletteBias={8}
+              // Lets the Preloader (app/layout.js) know the real background
+              // has drawn its first frame, so it can hold its reveal until
+              // this - rather than the hero and the intro finishing on
+              // unrelated fixed timers that may or may not line up. Also
+              // triggers the local crossfade below.
+              onReady={() => {
+                window.dispatchEvent(new Event("lucerpy:hero-ready"));
+                setBgReady(true);
+              }}
+            />
+          </div>
         )}
         <div
           className="absolute inset-0"
