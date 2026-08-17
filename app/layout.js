@@ -67,7 +67,7 @@ export const metadata = {
     images: [
       {
         url: "/og-image.jpg",
-        width: 1200,
+        width: 630,
         height: 630,
         alt: "Lucerpy Digital Agency",
       },
