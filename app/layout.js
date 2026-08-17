@@ -144,20 +144,25 @@ export default function RootLayout({ children }) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        {/* Preloader's two logo SVGs - preloaded so the fetch starts
+        {/* Preloader's two logo images - preloaded so the fetch starts
             immediately instead of waiting on Preloader.js to hydrate first.
-            Still fetched (~4.6KB combined) even on a skipped preloader run,
+            type="image/avif" means a browser that can't decode AVIF skips
+            the preload entirely (no wasted fetch) - it'll just load the
+            WebP <picture> fallback normally, without the head start.
+            Still fetched (~19KB combined) even on a skipped preloader run,
             since this script can't know that yet - small enough to accept. */}
         <link
           rel="preload"
           as="image"
-          href="/logo/lucerpy-wordmark-white-lime-dot.svg"
+          type="image/avif"
+          href="/logo/lucerpy-wordmark-white-lime-dot-transparent.avif"
           fetchPriority="high"
         />
         <link
           rel="preload"
           as="image"
-          href="/logo/lucerpy-wordmark-lime.svg"
+          type="image/avif"
+          href="/logo/lucerpy-wordmark-lime-transparent.avif"
           fetchPriority="high"
         />
         <link rel="preconnect" href="https://cdn.jsdelivr.net" crossOrigin="anonymous" />
