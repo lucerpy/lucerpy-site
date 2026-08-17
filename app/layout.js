@@ -128,7 +128,7 @@ export default function RootLayout({ children }) {
             preloader only appears after hydration, flashing the real site. */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var r=window.matchMedia('(prefers-reduced-motion: reduce)').matches;var s=sessionStorage.getItem('lucerpy-intro-shown');if(r||s){document.documentElement.setAttribute('data-preloader','skip');}else{document.documentElement.setAttribute('data-preloader','show');sessionStorage.setItem('lucerpy-intro-shown','1');}}catch(e){document.documentElement.setAttribute('data-preloader','skip');}})();`,
+            __html: `(function(){try{var r=window.matchMedia('(prefers-reduced-motion: reduce)').matches;var KEY='lucerpy-intro-last-shown';var THIRTY_DAYS=30*24*60*60*1000;var last=localStorage.getItem(KEY);var recent=last&&(Date.now()-parseInt(last,10)<THIRTY_DAYS);if(r||recent){document.documentElement.setAttribute('data-preloader','skip');}else{document.documentElement.setAttribute('data-preloader','show');localStorage.setItem(KEY,String(Date.now()));}}catch(e){document.documentElement.setAttribute('data-preloader','skip');}})();`,
           }}
         />
         <script
