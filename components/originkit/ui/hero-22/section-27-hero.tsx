@@ -15,6 +15,13 @@ const DottedBackground = dynamic(
   { ssr: false }
 );
 
+// Confirmed via A/B: the WebGL background was the biggest single perf
+// cost on the hero. Back on now that it renders one static frame on
+// mount and only starts animating after the page settles (see the
+// `warmedUp` gate in dotmatrix-hero.tsx) - static-then-animate, not
+// silent the whole time.
+const DOTTED_BACKGROUND_ENABLED = true;
+
 export const Section27Hero = () => {
   // The WebGL init competes with the hero's own text/CTAs for main-thread
   // time at the exact moment they're painting, so it still needs to be
@@ -51,7 +58,7 @@ export const Section27Hero = () => {
     <div className="relative flex w-full max-w-full flex-col items-center overflow-hidden bg-[#0C0D11]">
       {/* Fundo pontilhado full-bleed (Originkit hero-26, recolorido no verde da marca) */}
       <div className="fade-in fade-in-4 pointer-events-none absolute inset-0 z-0">
-        {showBackground && (
+        {DOTTED_BACKGROUND_ENABLED && showBackground && (
           <DottedBackground
             bgColor="#0C0D11"
             colors={["#0C0D11", "#2B3D12", "#CCEC7B"]}

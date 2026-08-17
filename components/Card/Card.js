@@ -44,7 +44,7 @@ export default function Card({
           observer.disconnect();
         }
       },
-      { rootMargin: '200px 0px' }
+      { rootMargin: '50px 0px' }
     );
     observer.observe(el);
     return () => observer.disconnect();

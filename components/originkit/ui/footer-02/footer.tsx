@@ -1,7 +1,7 @@
 // Delivered by Originkit · stack: nextjs · styling: tailwind
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import Logo from "@/components/Logo/Logo";
@@ -50,34 +50,35 @@ const LINK_COLUMNS = [
 ] as const;
 
 export function Footer() {
-  // Same idle-callback deferral as the hero's DottedBackground - gives
-  // hydration of the rest of the page a head start before Tetris's board
-  // setup (a real synchronous grid-packing loop) runs.
+  // Footer sits in the root layout, so it's in the DOM on every page from
+  // first paint - but nobody sees it (or the Tetris board inside it) until
+  // they actually scroll near the bottom. Mounting Tetris only once the
+  // footer is close to the viewport means its setup cost (a real
+  // synchronous grid-packing loop) never competes with anything above the
+  // fold at all, on any page.
   const [showTetris, setShowTetris] = useState(false);
+  const footerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const w = window as typeof window & {
-      requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number;
-      cancelIdleCallback?: (id: number) => void;
-    };
-
-    let idleId: number | undefined;
-    let timeoutId: number | undefined;
-
-    if (w.requestIdleCallback) {
-      idleId = w.requestIdleCallback(() => setShowTetris(true), { timeout: 1500 });
-    } else {
-      timeoutId = window.setTimeout(() => setShowTetris(true), 800);
-    }
-
-    return () => {
-      if (idleId !== undefined) w.cancelIdleCallback?.(idleId);
-      if (timeoutId !== undefined) window.clearTimeout(timeoutId);
-    };
-  }, []);
+    if (showTetris) return;
+    const el = footerRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShowTetris(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "300px 0px" }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [showTetris]);
 
   return (
     <footer
+      ref={footerRef}
       aria-label="Lucerpy"
       className="relative isolate mx-auto w-full overflow-hidden bg-[var(--color-bg-light)]"
     >

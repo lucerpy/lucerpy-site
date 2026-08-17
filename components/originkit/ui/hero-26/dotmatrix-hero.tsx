@@ -15,9 +15,11 @@ import {
     Texture,
 } from "ogl";
 
-// Internal render resolution multiplier for DottedBackground - see the
-// Renderer dpr comment below for why a soft background can render this small.
-const RENDER_SCALE = 0.6;
+// Internal render resolution multiplier for DottedBackground. Reverted to
+// 1 - the dots are crisp discrete shapes (not a blurry noise texture), so
+// downscaling and letting CSS upscale made them visibly soft/pixelated.
+// Not a resolution lever worth using for this effect.
+const RENDER_SCALE = 1;
 
 const INTRINSIC_WIDTH = 600;
 const INTRINSIC_HEIGHT = 400;
@@ -396,7 +398,29 @@ export function DottedBackground({
     // and there's no reason to pay that cost for a tab in the background
     // or a section nobody's looking at.
     const [isVisible, setIsVisible] = useState(true);
-    const effectivePlay = isVisible;
+    // Mount renders one static frame right away (cheap, looks intentional
+    // instead of blank) and holds there - the per-frame rAF animation loop
+    // only starts once the page has had a moment to settle, so the ongoing
+    // render cost doesn't stack on top of the shader compile + hydration
+    // that's already competing for main-thread time right after load.
+    const [warmedUp, setWarmedUp] = useState(false);
+    const effectivePlay = isVisible && warmedUp;
+
+    useEffect(() => {
+        const w = window as typeof window & {
+            requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number;
+        };
+        const id = w.requestIdleCallback
+            ? w.requestIdleCallback(() => setWarmedUp(true), { timeout: 2000 })
+            : window.setTimeout(() => setWarmedUp(true), 1500);
+        return () => {
+            if (w.requestIdleCallback) {
+                (window as typeof window & { cancelIdleCallback?: (id: number) => void }).cancelIdleCallback?.(id as number);
+            } else {
+                window.clearTimeout(id as number);
+            }
+        };
+    }, []);
 
     const containerRef = useRef<HTMLDivElement>(null);
     const perlinProgramRef = useRef<any>(null);
