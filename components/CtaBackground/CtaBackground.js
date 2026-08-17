@@ -152,7 +152,7 @@ export default function CtaBackground({ variant }) {
   }
 
   return (
-    <div ref={wrapperRef} className={styles.wrap} aria-hidden="true" data-capture={`cta-${variant}`}>
+    <div ref={wrapperRef} className={styles.wrap} aria-hidden="true">
       {inView && render()}
     </div>
   );
