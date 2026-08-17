@@ -38,6 +38,20 @@ export const Section27Hero = () => {
     <div className="relative flex w-full max-w-full flex-col items-center overflow-hidden bg-[#0C0D11]">
       {/* Fundo pontilhado full-bleed (Originkit hero-26, recolorido no verde da marca) */}
       <div className="fade-in fade-in-4 pointer-events-none absolute inset-0 z-0">
+        {/* Pure-CSS approximation of the dot pattern, server-rendered with
+            zero JS cost - covers the gap while the WebGL version is still
+            fetching its chunk and compiling shaders, so there's never a
+            flat, backgroundless moment behind the headline. The real
+            DottedBackground draws on top of this once it's ready. */}
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundColor: "#0C0D11",
+            backgroundImage:
+              "radial-gradient(circle, rgba(204,236,123,0.35) 1px, transparent 1.6px)",
+            backgroundSize: "18px 18px",
+          }}
+        />
         {DOTTED_BACKGROUND_ENABLED && showBackground && (
           <DottedBackground
             bgColor="#0C0D11"
