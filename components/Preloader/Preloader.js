@@ -28,8 +28,11 @@ const WIPE_DURATION = 950; // must match .logoWipe's transition duration in CSS
 const HOLD_AFTER_WIPE = 650; // must clear .logoDotBounce's 600ms duration in CSS
 const FLY_DURATION = 700;
 // Never hold the page hostage to a background that fails to signal ready
-// (slow device, WebGL unsupported, event never fires for any reason).
-const MAX_WAIT_MS = 3000;
+// (slow device, WebGL unsupported, event never fires for any reason) -
+// and don't make a visitor stare at a static green logo doing nothing for
+// too long even in the normal case. 3000ms felt stuck; the animation
+// should start reading as "happening" almost immediately.
+const MAX_WAIT_MS = 900;
 const HERO_READY_EVENT = 'lucerpy:hero-ready';
 
 export default function Preloader() {
