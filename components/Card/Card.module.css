@@ -32,7 +32,21 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  /* Starts slightly shrunk, not hidden - transform doesn't affect the
+     element's layout size, so it never delays LCP the way opacity:0 did. */
+  transform: scale(0.92);
   transition: transform 0.5s ease;
+}
+
+.imagePopped {
+  /* Bounce past 1.0 and settle - same springy personality as the logo's
+     bounce reveal, timed to when the image actually finishes loading. */
+  transition: transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform: scale(1);
+}
+
+.card:hover .imagePopped {
+  transform: scale(1.05);
 }
 
 .card:hover .imagePlaceholder,
