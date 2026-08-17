@@ -27,12 +27,15 @@ const LIME_WEBP = '/logo/lucerpy-wordmark-lime-transparent.webp';
 const WIPE_DURATION = 950; // must match .logoWipe's transition duration in CSS
 const HOLD_AFTER_WIPE = 650; // must clear .logoDotBounce's 600ms duration in CSS
 const FLY_DURATION = 700;
-// Never hold the page hostage to a background that fails to signal ready
-// (slow device, WebGL unsupported, event never fires for any reason) -
-// and don't make a visitor stare at a static green logo doing nothing for
-// too long even in the normal case. 3000ms felt stuck; the animation
-// should start reading as "happening" almost immediately.
-const MAX_WAIT_MS = 900;
+// Was 3000ms, then 900ms - still read as stuck on a static green logo.
+// The hero's WebGL background realistically takes longer than any of
+// these caps to actually signal ready (chunk fetch + shader compile), so
+// in practice this timeout is what fires almost every time, not the real
+// event - meaning the cap itself IS the perceived wait. Cut hard: the
+// wipe starts fast and reliably now, at the cost of not being perfectly
+// synced to the hero's own readiness (which the crossfade in the hero
+// component already smooths over on its own).
+const MAX_WAIT_MS = 350;
 const HERO_READY_EVENT = 'lucerpy:hero-ready';
 
 export default function Preloader() {
