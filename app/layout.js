@@ -146,19 +146,23 @@ export default function RootLayout({ children }) {
         />
         {/* Preloader's two logo images - preloaded so the fetch starts
             immediately instead of waiting on Preloader.js to hydrate first.
-            Still fetched (10-22KB combined) even on a skipped preloader
-            run, since this script can't know that yet - small enough to
-            accept for the sessions where it does show. */}
+            type="image/avif" means a browser that can't decode AVIF skips
+            the preload entirely (no wasted fetch) - it'll just load the
+            WebP <picture> fallback normally, without the head start.
+            Still fetched (~19KB combined) even on a skipped preloader run,
+            since this script can't know that yet - small enough to accept. */}
         <link
           rel="preload"
           as="image"
-          href="/logo/lucerpy-wordmark-white-lime-dot-transparent.webp"
+          type="image/avif"
+          href="/logo/lucerpy-wordmark-white-lime-dot-transparent.avif"
           fetchPriority="high"
         />
         <link
           rel="preload"
           as="image"
-          href="/logo/lucerpy-wordmark-lime-transparent.webp"
+          type="image/avif"
+          href="/logo/lucerpy-wordmark-lime-transparent.avif"
           fetchPriority="high"
         />
         <link rel="preconnect" href="https://cdn.jsdelivr.net" crossOrigin="anonymous" />

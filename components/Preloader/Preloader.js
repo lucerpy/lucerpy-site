@@ -3,11 +3,14 @@
 import { useEffect, useRef, useState } from 'react';
 import styles from './Preloader.module.css';
 
-// WebP instead of the original PNGs - same transparency, roughly half the
-// bytes (see app/layout.js for the matching <link rel="preload"> that gets
-// the fetch started before this component even hydrates).
-const WHITE_DOT = '/logo/lucerpy-wordmark-white-lime-dot-transparent.webp';
-const LIME = '/logo/lucerpy-wordmark-lime-transparent.webp';
+// AVIF now (was PNG, then WebP) - same transparency, roughly half the
+// WebP bytes again. WebP kept as <picture> fallback for browsers without
+// AVIF decoding. See app/layout.js for the matching <link rel="preload">
+// that gets the fetch started before this component even hydrates.
+const WHITE_DOT_AVIF = '/logo/lucerpy-wordmark-white-lime-dot-transparent.avif';
+const WHITE_DOT_WEBP = '/logo/lucerpy-wordmark-white-lime-dot-transparent.webp';
+const LIME_AVIF = '/logo/lucerpy-wordmark-lime-transparent.avif';
+const LIME_WEBP = '/logo/lucerpy-wordmark-lime-transparent.webp';
 
 // Timeline (ms from mount) - reuses the same green -> white wipe + dot
 // bounce as the header/footer logo's click reveal (Logo.js/LogoRevealContext),
@@ -115,21 +118,27 @@ export default function Preloader() {
   return (
     <div className={`${styles.overlay} ${phase === 'flying' ? styles.overlayHidden : ''}`}>
       <div ref={logoRef} className={`${styles.logo} ${phase === 'flying' ? styles.logoFlying : ''}`}>
-        <img
-          src={WHITE_DOT}
-          alt="Lucerpy"
-          className={styles.logoImage}
-          fetchPriority="high"
-          decoding="sync"
-        />
-        <img
-          src={LIME}
-          alt=""
-          aria-hidden="true"
-          fetchPriority="high"
-          decoding="sync"
-          className={`${styles.logoImage} ${styles.logoWipe} ${wiped ? styles.logoWipeDone : ''}`}
-        />
+        <picture>
+          <source srcSet={WHITE_DOT_AVIF} type="image/avif" />
+          <img
+            src={WHITE_DOT_WEBP}
+            alt="Lucerpy"
+            className={styles.logoImage}
+            fetchPriority="high"
+            decoding="sync"
+          />
+        </picture>
+        <picture>
+          <source srcSet={LIME_AVIF} type="image/avif" />
+          <img
+            src={LIME_WEBP}
+            alt=""
+            aria-hidden="true"
+            fetchPriority="high"
+            decoding="sync"
+            className={`${styles.logoImage} ${styles.logoWipe} ${wiped ? styles.logoWipeDone : ''}`}
+          />
+        </picture>
         <span className={`${styles.logoDot} ${bounced ? styles.logoDotBounce : ''}`} />
       </div>
     </div>
