@@ -33,6 +33,13 @@ function clearExpiredConsent() {
   }
 }
 
+function hideIcon() {
+  const icon = document.querySelector('#stcm-icon');
+  if (icon instanceof HTMLElement) {
+    icon.style.display = 'none';
+  }
+}
+
 function hideIconOnDecision() {
   document.addEventListener('click', (event) => {
     const target = event.target instanceof Element ? event.target.closest('button') : null;
@@ -40,10 +47,7 @@ function hideIconOnDecision() {
     const text = target.textContent?.trim();
     if (!text || !DECISION_BUTTON_LABELS.some((label) => text.includes(label))) return;
 
-    const icon = document.querySelector('#stcm-icon');
-    if (icon instanceof HTMLElement) {
-      icon.style.display = 'none';
-    }
+    hideIcon();
 
     try {
       localStorage.setItem(CONSENT_TIMESTAMP_KEY, String(Date.now()));
@@ -127,6 +131,21 @@ function initSilktide() {
   });
 
   hideIconOnDecision();
+
+  // Silktide shows the floating icon again on every single page load once
+  // a decision has been made, so people can reopen preferences later - by
+  // design, not a bug. hideIconOnDecision only covers the page the decision
+  // was made on though; a returning visitor with a still-valid consent
+  // would see it pop back up on their very next reload. Hide it up front
+  // whenever a decision already exists, so it only ever shows again once
+  // clearExpiredConsent() has actually wiped it (after CONSENT_TTL_MS).
+  try {
+    if (localStorage.getItem('stcm.hasConsented') === '1') {
+      hideIcon();
+    }
+  } catch (e) {
+    // localStorage unavailable - Silktide's own fallback applies.
+  }
 }
 
 export default function CookieConsent() {
