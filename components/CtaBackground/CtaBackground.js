@@ -7,16 +7,23 @@ import styles from './CtaBackground.module.css';
 // with a static abstract photo per color family (Pexels, free license),
 // picked to match each page's existing accent color. One <img> now, zero
 // JS, zero WebGL.
+// These files get overwritten in place (same filename, new bytes) during
+// active iteration - and next.config.mjs caches .webp for 30 days at the
+// browser level, so a same-URL swap doesn't reach anyone with a warm
+// cache without this version tag busting it. Bump it whenever any file
+// in public/cta/ actually changes content.
+const ASSET_VERSION = 'v3';
+
 const IMAGE_BY_VARIANT = {
-  home: '/cta/home.webp',
-  cavent: '/cta/cavent.webp',
-  projetos: '/cta/projetos.webp',
-  servicos: '/cta/servicos.webp',
-  quemSomos: '/cta/quemSomos.webp',
-  blog: '/cta/blog.webp',
-  inventario: '/cta/inventario.webp',
-  torqx: '/cta/torqx.webp',
-  guialms: '/cta/guialms.webp',
+  home: `/cta/home.webp?${ASSET_VERSION}`,
+  cavent: `/cta/cavent.webp?${ASSET_VERSION}`,
+  projetos: `/cta/projetos.webp?${ASSET_VERSION}`,
+  servicos: `/cta/servicos.webp?${ASSET_VERSION}`,
+  quemSomos: `/cta/quemSomos.webp?${ASSET_VERSION}`,
+  blog: `/cta/blog.webp?${ASSET_VERSION}`,
+  inventario: `/cta/inventario.webp?${ASSET_VERSION}`,
+  torqx: `/cta/torqx.webp?${ASSET_VERSION}`,
+  guialms: `/cta/guialms.webp?${ASSET_VERSION}`,
 };
 
 export default function CtaBackground({ variant }) {
