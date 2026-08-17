@@ -10,6 +10,29 @@ import Script from 'next/script';
 // expose a "decision made" callback of its own to hook into.
 const DECISION_BUTTON_LABELS = ['Aceitar todos', 'Rejeitar não essenciais', 'Salvar e fechar'];
 
+// Silktide's own localStorage flag (stcm.hasConsented) never expires on its
+// own - once set, the banner stays gone forever. We want it to come back
+// periodically instead, so this layers our own timestamp on top: if it's
+// older than CONSENT_TTL_MS (or missing), Silktide's consent keys are wiped
+// before init() runs, so the library sees a "fresh" visitor and prompts
+// again. Same button-click hook as hideIconOnDecision, since that's the
+// only reliable "a decision was made" signal Silktide exposes.
+const CONSENT_TIMESTAMP_KEY = 'lucerpy-cookie-consent-ts';
+const CONSENT_TTL_MS = 180 * 24 * 60 * 60 * 1000; // 6 months
+
+function clearExpiredConsent() {
+  try {
+    const ts = localStorage.getItem(CONSENT_TIMESTAMP_KEY);
+    if (ts && Date.now() - parseInt(ts, 10) < CONSENT_TTL_MS) return;
+    Object.keys(localStorage)
+      .filter((key) => key.startsWith('stcm.') || key.startsWith('silktideCookie'))
+      .forEach((key) => localStorage.removeItem(key));
+  } catch (e) {
+    // localStorage unavailable - Silktide falls back to always showing the
+    // prompt on its own, nothing extra to do here.
+  }
+}
+
 function hideIconOnDecision() {
   document.addEventListener('click', (event) => {
     const target = event.target instanceof Element ? event.target.closest('button') : null;
@@ -21,10 +44,19 @@ function hideIconOnDecision() {
     if (icon instanceof HTMLElement) {
       icon.style.display = 'none';
     }
+
+    try {
+      localStorage.setItem(CONSENT_TIMESTAMP_KEY, String(Date.now()));
+    } catch (e) {
+      // localStorage unavailable - nothing to persist, same as Silktide's
+      // own fallback behaviour.
+    }
   });
 }
 
 function initSilktide() {
+  clearExpiredConsent();
+
   window.silktideConsentManager.init({
     backdrop: {
       show: true,
