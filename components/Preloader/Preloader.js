@@ -10,14 +10,21 @@ const LIME = '/logo/lucerpy-wordmark-lime-transparent.png';
 // bounce as the header/footer logo's click reveal (Logo.js/LogoRevealContext),
 // just bigger and centered, then flies into the header logo's exact spot.
 //   0      overlay + big centered logo fade/scale in (starts fully green)
-//   500    intro finished, wipe to white starts
-//   1450   wipe finished, dot bounces
-//   2100   bounce has settled, fly toward the real header logo's position
-//   2800   overlay removed entirely
-const WIPE_DELAY = 500;
+//   ready  hero background signals its first frame is drawn (or MAX_WAIT
+//          elapses, whichever comes first) - wipe to white starts
+//   +950   wipe finished, dot bounces
+//   +1600  bounce has settled, fly toward the real header logo's position
+//   +2300  overlay removed entirely
+// The point of the wait is to spend the intro's screen time on real
+// loading instead of a fixed decorative delay - so by the time the wipe
+// reveals the page, the hero behind it is actually ready to look at.
 const WIPE_DURATION = 950; // must match .logoWipe's transition duration in CSS
 const HOLD_AFTER_WIPE = 650; // must clear .logoDotBounce's 600ms duration in CSS
 const FLY_DURATION = 700;
+// Never hold the page hostage to a background that fails to signal ready
+// (slow device, WebGL unsupported, event never fires for any reason).
+const MAX_WAIT_MS = 3000;
+const HERO_READY_EVENT = 'lucerpy:hero-ready';
 
 export default function Preloader() {
   // The show/skip decision (reduced motion + sessionStorage) is already made
@@ -42,11 +49,28 @@ export default function Preloader() {
     }
   }, []);
 
+  // Holds the intro open until the hero signals it's actually ready to be
+  // seen, instead of a fixed guess - capped so a background that never
+  // reports ready can't hold the page hostage.
+  const [heroReady, setHeroReady] = useState(false);
+
   useEffect(() => {
-    if (phase !== 'intro') return;
-    const wipeTimer = setTimeout(() => setPhase('wiped'), WIPE_DELAY);
-    return () => clearTimeout(wipeTimer);
-  }, [phase]);
+    if (phase !== 'intro' || heroReady) return;
+
+    const onHeroReady = () => setHeroReady(true);
+    window.addEventListener(HERO_READY_EVENT, onHeroReady);
+    const maxWaitTimer = setTimeout(() => setHeroReady(true), MAX_WAIT_MS);
+
+    return () => {
+      window.removeEventListener(HERO_READY_EVENT, onHeroReady);
+      clearTimeout(maxWaitTimer);
+    };
+  }, [phase, heroReady]);
+
+  useEffect(() => {
+    if (phase !== 'intro' || !heroReady) return;
+    setPhase('wiped');
+  }, [phase, heroReady]);
 
   useEffect(() => {
     if (phase !== 'wiped') return;

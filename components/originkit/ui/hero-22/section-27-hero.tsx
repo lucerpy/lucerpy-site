@@ -61,6 +61,11 @@ export const Section27Hero = () => {
             cellSize={10}
             gamma={5}
             paletteBias={8}
+            // Lets the Preloader (app/layout.js) know the real background
+            // has drawn its first frame, so it can hold its reveal until
+            // this - rather than the hero and the intro finishing on
+            // unrelated fixed timers that may or may not line up.
+            onReady={() => window.dispatchEvent(new Event("lucerpy:hero-ready"))}
           />
         )}
         <div

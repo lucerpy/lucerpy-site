@@ -206,10 +206,12 @@ export function Footer() {
         © {new Date().getFullYear()} Lucerpy Digital. Todos os direitos reservados.
       </p>
 
-      {/* Tetris board — decorative stack along the bottom */}
+      {/* Tetris board — decorative stack along the bottom. Invisible (not
+          just empty) until it's actually mounted, so there's never a flat
+          rectangle showing where the board should be. */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-[200px] overflow-hidden"
+        className={`pointer-events-none absolute inset-x-0 bottom-0 z-0 h-[200px] overflow-hidden ${showTetris ? '' : 'invisible'}`}
       >
         {showTetris && (
           <Tetris

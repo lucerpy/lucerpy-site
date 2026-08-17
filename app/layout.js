@@ -9,10 +9,15 @@ import Preloader from "@/components/Preloader/Preloader";
 import { LogoRevealProvider } from "@/components/Logo/LogoRevealContext";
 import ConsoleEasterEgg from "@/components/ConsoleEasterEgg/ConsoleEasterEgg";
 
-// Disabled to cut LCP (it held the whole viewport for ~2.8s on every fresh
-// session, which is exactly what PageSpeed Insights always tests). Flip
-// back to true to restore it if trimming this alone doesn't get LCP green.
-const PRELOADER_ENABLED = false;
+// Re-enabled as a real loading gate rather than a fixed decorative delay:
+// the Preloader now waits for the hero's own "ready" signal (see
+// Preloader.js) before wiping away, capped at a max wait so it can't hang.
+// Known trade-off: PageSpeed/Lighthouse measures paint timestamps
+// regardless of what's covering them, and this component's own hydration
+// still competes for main-thread time with the hero - so this intentionally
+// costs some PSI score in exchange for the reveal never looking premature
+// for a real visitor. Flip back to false if that trade stops being worth it.
+const PRELOADER_ENABLED = true;
 
 // Overrides Silktide's default theme with the site's own palette.
 const SILKTIDE_THEME_CSS = `

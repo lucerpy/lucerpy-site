@@ -357,6 +357,10 @@ interface DottedBackgroundProps {
     fontFamily?: string;
     fontWeight?: string | number;
     fontSizePx?: number;
+    // Fires once the first frame has actually been drawn (shaders compiled,
+    // programs linked) - lets a caller know the background is visually
+    // ready rather than guessing with a timer.
+    onReady?: () => void;
 }
 
 export function DottedBackground({
@@ -373,6 +377,7 @@ export function DottedBackground({
     fontFamily = "monospace",
     fontWeight = 400,
     fontSizePx = 42,
+    onReady,
 }: DottedBackgroundProps) {
     const useGlyphAtlasFlag = useGlyphAtlas === true;
     const paletteColors =
@@ -692,6 +697,7 @@ export function DottedBackground({
         };
 
         renderOnce();
+        onReady?.();
         isPlayingRef.current = effectivePlay;
         if (effectivePlay && rafIdRef.current == null) {
             lastTimeRef.current = 0;
