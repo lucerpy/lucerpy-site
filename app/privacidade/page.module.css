@@ -4,6 +4,12 @@
   padding: 140px 24px 80px 24px;
 }
 
+@media (max-width: 767px) {
+  .container {
+    padding: 100px 20px 40px 20px;
+  }
+}
+
 .tagline {
   display: inline-block;
   font-size: 0.75rem;
