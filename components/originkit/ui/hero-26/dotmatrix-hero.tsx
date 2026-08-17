@@ -15,6 +15,10 @@ import {
     Texture,
 } from "ogl";
 
+// Internal render resolution multiplier for DottedBackground - see the
+// Renderer dpr comment below for why a soft background can render this small.
+const RENDER_SCALE = 0.6;
+
 const INTRINSIC_WIDTH = 600;
 const INTRINSIC_HEIGHT = 400;
 const DEFAULT_GLYPH_PADDING_PX = 2;
@@ -473,10 +477,12 @@ export function DottedBackground({
         if (!container) return;
 
         const renderer = new Renderer({
-            // Capped at 1 (no retina supersampling) - this is a soft ambient
-            // background, not detail-critical content, and this alone cuts
-            // fragment-shader work up to 4x on high-DPI screens.
-            dpr: Math.min(window.devicePixelRatio || 1, 1),
+            // Rendered at 0.6x the CSS size (not 1x) and upscaled by the
+            // browser - this is a soft, blurry dot-noise background, so the
+            // softness costs nothing visually, but it cuts fragment-shader
+            // pixel count (and GPU cost) by more than half versus native
+            // resolution, on top of the retina-supersampling cap.
+            dpr: Math.min(window.devicePixelRatio || 1, 1) * RENDER_SCALE,
             alpha: true,
             premultipliedAlpha: false,
         });
@@ -492,7 +498,7 @@ export function DottedBackground({
         const doResize = () => {
             const width = container.clientWidth || window.innerWidth;
             const height = container.clientHeight || window.innerHeight;
-            renderer.dpr = Math.min(window.devicePixelRatio || 1, 1);
+            renderer.dpr = Math.min(window.devicePixelRatio || 1, 1) * RENDER_SCALE;
             renderer.setSize(width, height);
             camera.perspective({ aspect: gl.canvas.width / gl.canvas.height });
             if (renderTargetRef.current && renderTargetRef.current.setSize) {
