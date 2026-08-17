@@ -23,35 +23,15 @@ const DottedBackground = dynamic(
 const DOTTED_BACKGROUND_ENABLED = true;
 
 export const Section27Hero = () => {
-  // The WebGL init competes with the hero's own text/CTAs for main-thread
-  // time at the exact moment they're painting, so it still needs to be
-  // deferred a beat. But waiting for the whole page's `load` event (every
-  // image/script on the page, including stuff far below the fold) made the
-  // background sit blank for however long the *entire* page took on a real
-  // connection - it just needs a short, fixed head start over the critical
-  // content, not to wait for everything else too.
-  const [showBackground, setShowBackground] = useState(false);
-
-  useEffect(() => {
-    const w = window as typeof window & {
-      requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number;
-      cancelIdleCallback?: (id: number) => void;
-    };
-
-    let idleId: number | undefined;
-    let timeoutId: number | undefined;
-
-    if (w.requestIdleCallback) {
-      idleId = w.requestIdleCallback(() => setShowBackground(true), { timeout: 400 });
-    } else {
-      timeoutId = window.setTimeout(() => setShowBackground(true), 300);
-    }
-
-    return () => {
-      if (idleId !== undefined) w.cancelIdleCallback?.(idleId);
-      if (timeoutId !== undefined) window.clearTimeout(timeoutId);
-    };
-  }, []);
+  // Used to wait a beat here so the WebGL init wouldn't compete with the
+  // h1/CTAs for main-thread time at the exact moment they painted. That's
+  // no longer the risk it was: the h1 fade-in that was making Chrome
+  // misidentify the LCP candidate is gone, and DottedBackground itself now
+  // renders one static frame immediately and only starts animating once
+  // the page settles. So the actual bottleneck left is just how long it
+  // takes to fetch the ogl chunk and compile the shaders - waiting an
+  // extra 400ms before even starting that only made it slower to appear.
+  const [showBackground, setShowBackground] = useState(true);
 
   return (
   <section className="w-full bg-[#0C0D11]">

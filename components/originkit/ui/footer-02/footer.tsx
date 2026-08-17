@@ -70,7 +70,10 @@ export function Footer() {
           observer.disconnect();
         }
       },
-      { rootMargin: "300px 0px" }
+      // Board setup is cheap (small grid) - a wide lead here just gives it
+      // time to finish mounting before the footer scrolls into view, so
+      // there's no empty gap where the board should be.
+      { rootMargin: "800px 0px" }
     );
     observer.observe(el);
     return () => observer.disconnect();
