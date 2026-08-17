@@ -10,3 +10,9 @@
 .fallback {
   background: linear-gradient(135deg, #0C0D11, #1A2410);
 }
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
