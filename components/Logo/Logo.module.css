@@ -33,18 +33,22 @@
   clip-path: inset(0 10% 0 90%);
 }
 
-/* Positioned exactly over the dot in the wordmark art (measured: center at
-   88.7%/61.5% of the 179x52 box), sized to match that same natural dot so
-   it's indistinguishable from it at rest. Visible at natural size from the
-   very start (the wipe's own dot is clipped away, so this is the only dot
-   on screen); once the wipe finishes it pulses up and settles back to this
-   same natural size, rather than popping in from nothing. */
+/* Positioned exactly over the dot in the wordmark art - measured from the
+   current SVG export's own path bounding box (public/logo/lucerpy-wordmark-
+   lime.svg, viewBox 127.5 9.5 2341.9 734.9: dot spans roughly x 2254-2344,
+   y 419-509), converted to px in this 179x52 box. Re-measure this if the
+   SVG source is ever re-exported - it does not track automatically. Sized
+   to match that same natural dot so it's indistinguishable from it at
+   rest. Visible at natural size from the very start (the wipe's own dot is
+   clipped away, so this is the only dot on screen); once the wipe finishes
+   it pulses up and settles back to this same natural size, rather than
+   popping in from nothing. */
 .logoDot {
   position: absolute;
-  left: 155px;
-  top: 28px;
-  width: 7px;
-  height: 7px;
+  left: 162.5px;
+  top: 29px;
+  width: 6.9px;
+  height: 6.4px;
   border-radius: 50%;
   background: var(--color-primary, #CCEC7B);
   transform: scale(1);

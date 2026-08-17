@@ -28,7 +28,11 @@
 .logo {
   position: relative;
   width: min(70vw, 560px);
-  aspect-ratio: 179 / 52;
+  /* Matches the SVG's own viewBox ratio (2341.9 / 734.9) exactly, not the
+     179/52 the old raster crop used - object-fit:contain below only
+     letterboxes when this ratio doesn't match the image's intrinsic one,
+     and any mismatch throws off the %-based .logoDot position beneath. */
+  aspect-ratio: 2341.9 / 734.9;
   transform-origin: center center;
   animation: logoIntro 500ms cubic-bezier(0.22, 1, 0.36, 1) both;
   transition: transform 700ms cubic-bezier(0.65, 0, 0.35, 1);
@@ -64,17 +68,17 @@
   clip-path: inset(0 10% 0 90%);
 }
 
-/* Positioned over the dot in the wordmark art (same 86.59%/53.85% measured
-   spot as Logo.module.css's fixed-px version, converted to percentages of
-   this box's width/height so it lands correctly at any size while staying a
-   perfect circle - the width/height % pair below both resolve to the same
-   physical size because the box's aspect-ratio is locked). */
+/* Positioned over the dot in the wordmark art - same measured spot as
+   Logo.module.css's fixed-px version (see that file's comment for how it
+   was derived), expressed as percentages of this box's viewBox-matched
+   aspect ratio so it lands correctly at any size while staying a perfect
+   circle. */
 .logoDot {
   position: absolute;
-  left: 86.59%;
-  top: 53.85%;
-  width: 3.91%;
-  height: 13.46%;
+  left: 90.81%;
+  top: 55.73%;
+  width: 3.84%;
+  height: 12.25%;
   border-radius: 50%;
   background: var(--color-primary, #CCEC7B);
   transform: scale(1);
