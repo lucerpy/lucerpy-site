@@ -23,21 +23,26 @@ const DottedBackground = dynamic(
 const DOTTED_BACKGROUND_ENABLED = true;
 
 export const Section27Hero = () => {
-  // Used to wait a beat here so the WebGL init wouldn't compete with the
-  // h1/CTAs for main-thread time at the exact moment they painted. That's
-  // no longer the risk it was: the h1 fade-in that was making Chrome
-  // misidentify the LCP candidate is gone, and DottedBackground itself now
-  // renders one static frame immediately and only starts animating once
-  // the page settles. So the actual bottleneck left is just how long it
-  // takes to fetch the ogl chunk and compile the shaders - waiting an
-  // extra 400ms before even starting that only made it slower to appear.
-  const [showBackground, setShowBackground] = useState(true);
-  // Drives a crossfade instead of a hard swap: the CSS dot pattern stays
-  // put, and the WebGL canvas fades in over it once its first frame is
-  // drawn. A background layer (CSS or canvas) is invisible to the LCP
-  // algorithm either way - only actual <img>/text nodes count - so opacity
-  // here carries none of the risk it did on the hero h1.
+  // Mounting this immediately let its synchronous shader-compile work
+  // block the main thread hard enough to delay the Preloader's own timers
+  // by several real seconds (JS timers can't fire while the thread is
+  // busy) - visitors sat on a static green preloader logo far longer than
+  // any of its own delay values, because THIS is what was actually
+  // blocking it. Deferred past the Preloader's fixed reveal window
+  // (WIPE_DELAY=500ms in Preloader.js) so the two never compete.
+  const [showBackground, setShowBackground] = useState(false);
+  // Drives a crossfade instead of a hard swap: the section's own dark
+  // background shows during the defer, and the WebGL canvas fades in once
+  // its first frame is drawn. A background layer (CSS or canvas) is
+  // invisible to the LCP algorithm either way - only actual <img>/text
+  // nodes count - so opacity here carries none of the risk it did on the
+  // hero h1.
   const [bgReady, setBgReady] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setShowBackground(true), 700);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
   <section className="w-full bg-[#0C0D11]">
@@ -57,15 +62,7 @@ export const Section27Hero = () => {
               cellSize={10}
               gamma={5}
               paletteBias={8}
-              // Lets the Preloader (app/layout.js) know the real background
-              // has drawn its first frame, so it can hold its reveal until
-              // this - rather than the hero and the intro finishing on
-              // unrelated fixed timers that may or may not line up. Also
-              // triggers the local crossfade below.
-              onReady={() => {
-                window.dispatchEvent(new Event("lucerpy:hero-ready"));
-                setBgReady(true);
-              }}
+              onReady={() => setBgReady(true)}
             />
           </div>
         )}

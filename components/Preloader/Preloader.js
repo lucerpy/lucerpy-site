@@ -16,27 +16,26 @@ const LIME_WEBP = '/logo/lucerpy-wordmark-lime-transparent.webp';
 // bounce as the header/footer logo's click reveal (Logo.js/LogoRevealContext),
 // just bigger and centered, then flies into the header logo's exact spot.
 //   0      overlay + big centered logo fade/scale in (starts fully green)
-//   ready  hero background signals its first frame is drawn (or MAX_WAIT
-//          elapses, whichever comes first) - wipe to white starts
-//   +950   wipe finished, dot bounces
-//   +1600  bounce has settled, fly toward the real header logo's position
-//   +2300  overlay removed entirely
-// The point of the wait is to spend the intro's screen time on real
-// loading instead of a fixed decorative delay - so by the time the wipe
-// reveals the page, the hero behind it is actually ready to look at.
+//   500    intro finished, wipe to white starts
+//   1450   wipe finished, dot bounces
+//   2100   bounce has settled, fly toward the real header logo's position
+//   2800   overlay removed entirely
+//
+// This used to wait for a "hero ready" signal instead of the fixed
+// WIPE_DELAY below, capped by a max-wait timer - the idea being: spend
+// the intro's screen time on real loading, not a decorative delay. In
+// practice it made things worse: the hero's WebGL background compiling
+// shaders synchronously blocks the main thread hard enough that even a
+// short setTimeout for the cap doesn't fire on time (JS timers can't run
+// while the thread is busy) - so visitors sat on a static green logo for
+// several real seconds no matter how low the cap was set. A fixed delay
+// has no such dependency; see section-27-hero.tsx for the matching fix
+// (WebGL mount now deferred so it can't block this intro in the first
+// place).
+const WIPE_DELAY = 500;
 const WIPE_DURATION = 950; // must match .logoWipe's transition duration in CSS
 const HOLD_AFTER_WIPE = 650; // must clear .logoDotBounce's 600ms duration in CSS
 const FLY_DURATION = 700;
-// Was 3000ms, then 900ms - still read as stuck on a static green logo.
-// The hero's WebGL background realistically takes longer than any of
-// these caps to actually signal ready (chunk fetch + shader compile), so
-// in practice this timeout is what fires almost every time, not the real
-// event - meaning the cap itself IS the perceived wait. Cut hard: the
-// wipe starts fast and reliably now, at the cost of not being perfectly
-// synced to the hero's own readiness (which the crossfade in the hero
-// component already smooths over on its own).
-const MAX_WAIT_MS = 350;
-const HERO_READY_EVENT = 'lucerpy:hero-ready';
 
 export default function Preloader() {
   // The show/skip decision (reduced motion + sessionStorage) is already made
@@ -61,28 +60,11 @@ export default function Preloader() {
     }
   }, []);
 
-  // Holds the intro open until the hero signals it's actually ready to be
-  // seen, instead of a fixed guess - capped so a background that never
-  // reports ready can't hold the page hostage.
-  const [heroReady, setHeroReady] = useState(false);
-
   useEffect(() => {
-    if (phase !== 'intro' || heroReady) return;
-
-    const onHeroReady = () => setHeroReady(true);
-    window.addEventListener(HERO_READY_EVENT, onHeroReady);
-    const maxWaitTimer = setTimeout(() => setHeroReady(true), MAX_WAIT_MS);
-
-    return () => {
-      window.removeEventListener(HERO_READY_EVENT, onHeroReady);
-      clearTimeout(maxWaitTimer);
-    };
-  }, [phase, heroReady]);
-
-  useEffect(() => {
-    if (phase !== 'intro' || !heroReady) return;
-    setPhase('wiped');
-  }, [phase, heroReady]);
+    if (phase !== 'intro') return;
+    const wipeTimer = setTimeout(() => setPhase('wiped'), WIPE_DELAY);
+    return () => clearTimeout(wipeTimer);
+  }, [phase]);
 
   useEffect(() => {
     if (phase !== 'wiped') return;
