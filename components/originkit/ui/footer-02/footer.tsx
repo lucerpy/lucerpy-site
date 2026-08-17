@@ -49,7 +49,7 @@ export function Footer() {
         iPad   (Figma 2168:264): stacked brand → 3-col links
         Desktop (Figma 2168:5):  brand | links side-by-side
       */}
-      <div className="relative z-10 flex flex-col gap-8 px-6 pt-10 pb-[280px] ipad:gap-12 ipad:px-12 ipad:pt-12 ipad:pb-[290px] desktop-sm:px-16 desktop-sm:pt-[72px] desktop-sm:pb-[280px]">
+      <div className="relative z-10 flex flex-col gap-8 px-8 pt-10 pb-[280px] ipad:gap-12 ipad:px-12 ipad:pt-12 ipad:pb-[290px] desktop-sm:px-16 desktop-sm:pt-[72px] desktop-sm:pb-[280px]">
       {/* 5-column grid on desktop: Brand | Newsletter | Páginas | Contato |
           Legal. Each track has its own min/max rule (grid-template-columns
           below) so the browser computes every width and gap on its own -
@@ -63,33 +63,6 @@ export function Footer() {
               Agência digital focada em UX/UI, desenvolvimento web e automações que entregam resultado real.
             </p>
           </div>
-
-          {/* TrustedSite's static/inline trustmark needs their paid Pro
-              plan (this account is free), so that's the floating widget
-              instead now (configured in TrustedSiteBadge.js) - nothing
-              placed here for it.
-
-              Static badge (Qualys has no login/account system, so there's
-              no official live-verified seal like TrustedSite's - this is
-              just an image). Links out to the live public report so anyone
-              can check the current grade themselves; re-check and swap the
-              image if the SSL config ever changes. */}
-          <a
-            href="https://www.ssllabs.com/ssltest/analyze.html?d=lucerpy.com.br"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Ver relatório SSL Labs (nota A+)"
-            className="w-[130px] overflow-hidden rounded-[var(--radius-sm)]"
-          >
-            <img
-              src="/badges/ssl-labs-a-plus.webp"
-              alt="Qualys SSL Labs: nota A+"
-              width={440}
-              height={113}
-              loading="lazy"
-              className="w-full"
-            />
-          </a>
         </div>
 
         {/* Newsletter - fills the horizontal gap that otherwise sits empty
@@ -118,7 +91,7 @@ export function Footer() {
             container again for the 2/3-col mobile/tablet layout. */}
         <nav
           aria-label="Rodapé"
-          className="grid w-full grid-cols-2 gap-x-8 gap-y-8 ipad:grid-cols-3 ipad:gap-8 desktop-sm:contents"
+          className="grid w-full grid-cols-2 gap-x-6 gap-y-8 ipad:grid-cols-3 ipad:gap-8 desktop-sm:contents"
         >
           {LINK_COLUMNS.map((column) => (
             <div
