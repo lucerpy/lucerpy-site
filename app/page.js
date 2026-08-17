@@ -2,17 +2,10 @@ import styles from './page.module.css';
 import Button from '@/components/Button/Button';
 import Card from '@/components/Card/Card';
 import Link from 'next/link';
-import dynamic from 'next/dynamic';
 import Hero22 from '@/components/originkit/hero-22';
 import CtaBackground from '@/components/CtaBackground/CtaBackground';
+import ParticleSphere from '@/components/originkit/ui/particlesphere-lazy';
 import { getSortedPostsData } from '@/lib/blog';
-
-// Carrega a esfera de particulas (e o three.js que ela traz junto) so
-// quando necessario, em vez de incluir no bundle inicial da home --
-// ela fica abaixo da dobra, depois dos cards de servico.
-const ParticleSphere = dynamic(() =>
-  import('@/components/originkit/ui/particlesphere-lucerpy-style')
-);
 const faqs = [
   {
     question: "Quanto tempo leva para desenvolver um site ou landing page?",
