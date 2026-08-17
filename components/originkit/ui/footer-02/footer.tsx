@@ -103,9 +103,11 @@ export function Footer() {
           below) so the browser computes every width and gap on its own -
           no more manually budgeting fixed pixel widths per breakpoint. */}
       <div className="flex flex-col gap-8 ipad:gap-12 desktop-sm:grid desktop-sm:grid-cols-[minmax(180px,220px)_minmax(240px,440px)_repeat(3,minmax(120px,170px))] desktop-sm:items-start desktop-sm:justify-between desktop-sm:gap-x-10">
-        {/* Brand */}
-        <div className="flex w-full flex-col gap-8 ipad:gap-10">
-          <div className="flex flex-col gap-2 ipad:gap-4">
+        {/* Brand - centered on mobile/tablet (short blurb, single logo, reads
+            fine centered), back to left-aligned once it sits in its own
+            narrow column beside the others at desktop-sm. */}
+        <div className="flex w-full flex-col items-center gap-8 text-center ipad:gap-10 desktop-sm:items-start desktop-sm:text-left">
+          <div className="flex flex-col items-center gap-2 text-center ipad:gap-4 desktop-sm:items-start desktop-sm:text-left">
             <Logo />
             <p className="font-sans text-[14px] leading-[1.4] text-[#c2c2c2]">
               Agência digital focada em UX/UI, desenvolvimento web e automações que entregam resultado real.
@@ -120,8 +122,8 @@ export function Footer() {
             container so NewsletterForm's compact CSS can switch to a
             side-by-side row based on this column's own real width, not the
             viewport - see the @container rule in app/blog/page.module.css. */}
-        <div className="flex w-full flex-col gap-3 desktop-sm:[container-type:inline-size] desktop-sm:[container-name:newsletterCol]">
-          <div className="flex flex-col gap-2">
+        <div className="flex w-full flex-col items-center gap-3 text-center desktop-sm:items-start desktop-sm:text-left desktop-sm:[container-type:inline-size] desktop-sm:[container-name:newsletterCol]">
+          <div className="flex flex-col items-center gap-2 text-center desktop-sm:items-start desktop-sm:text-left">
             <p className="font-outfit text-[18px] leading-normal text-white">
               Receba novidades
             </p>
@@ -209,7 +211,7 @@ export function Footer() {
       {/* Sits above the Tetris decoration (which is absolutely positioned
           within this same z-10 container, pinned to its bottom edge) rather
           than as a separate bar below it. */}
-      <p className="font-sans text-[13px] text-white/50">
+      <p className="text-center font-sans text-[13px] text-white/50 desktop-sm:text-left">
         © {new Date().getFullYear()} Lucerpy Digital. Todos os direitos reservados.
       </p>
 
