@@ -144,6 +144,23 @@ export default function RootLayout({ children }) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        {/* Preloader's two logo images - preloaded so the fetch starts
+            immediately instead of waiting on Preloader.js to hydrate first.
+            Still fetched (10-22KB combined) even on a skipped preloader
+            run, since this script can't know that yet - small enough to
+            accept for the sessions where it does show. */}
+        <link
+          rel="preload"
+          as="image"
+          href="/logo/lucerpy-wordmark-white-lime-dot-transparent.webp"
+          fetchPriority="high"
+        />
+        <link
+          rel="preload"
+          as="image"
+          href="/logo/lucerpy-wordmark-lime-transparent.webp"
+          fetchPriority="high"
+        />
         <link rel="preconnect" href="https://cdn.jsdelivr.net" crossOrigin="anonymous" />
         {/* media="print" + onLoad swap is the standard non-blocking stylesheet
             trick: browser fetches it at low priority without blocking first

@@ -3,8 +3,11 @@
 import { useEffect, useRef, useState } from 'react';
 import styles from './Preloader.module.css';
 
-const WHITE_DOT = '/logo/lucerpy-wordmark-white-lime-dot-transparent.png';
-const LIME = '/logo/lucerpy-wordmark-lime-transparent.png';
+// WebP instead of the original PNGs - same transparency, roughly half the
+// bytes (see app/layout.js for the matching <link rel="preload"> that gets
+// the fetch started before this component even hydrates).
+const WHITE_DOT = '/logo/lucerpy-wordmark-white-lime-dot-transparent.webp';
+const LIME = '/logo/lucerpy-wordmark-lime-transparent.webp';
 
 // Timeline (ms from mount) - reuses the same green -> white wipe + dot
 // bounce as the header/footer logo's click reveal (Logo.js/LogoRevealContext),
@@ -112,11 +115,19 @@ export default function Preloader() {
   return (
     <div className={`${styles.overlay} ${phase === 'flying' ? styles.overlayHidden : ''}`}>
       <div ref={logoRef} className={`${styles.logo} ${phase === 'flying' ? styles.logoFlying : ''}`}>
-        <img src={WHITE_DOT} alt="Lucerpy" className={styles.logoImage} />
+        <img
+          src={WHITE_DOT}
+          alt="Lucerpy"
+          className={styles.logoImage}
+          fetchPriority="high"
+          decoding="sync"
+        />
         <img
           src={LIME}
           alt=""
           aria-hidden="true"
+          fetchPriority="high"
+          decoding="sync"
           className={`${styles.logoImage} ${styles.logoWipe} ${wiped ? styles.logoWipeDone : ''}`}
         />
         <span className={`${styles.logoDot} ${bounced ? styles.logoDotBounce : ''}`} />
