@@ -26,6 +26,8 @@ const AMBER_RAMP = ['#0C0D11', '#7A4413', VIVID_AMBER];
 const BLUE_RAMP = ['#0C0D11', '#1D3A8A', '#3B82F6'];
 // Matches Torqx's own red/pink CTA color (see /projetos/torqx).
 const RED_RAMP = ['#0C0D11', '#7A1230', '#E91E63'];
+// Matches GuiaLMS's own indigo brand color (see /projetos/guialms).
+const PURPLE_RAMP = ['#0C0D11', '#3A2E7A', '#6C63FF'];
 
 const VARIANTS = {
   home: () => (
@@ -102,6 +104,17 @@ const VARIANTS = {
     <DotMatrix
       bgColor={BG}
       colors={RED_RAMP}
+      frequency={1.2}
+      speed={1.5}
+      cellSize={18}
+      gamma={4}
+      paletteBias={9}
+    />
+  ),
+  guialms: () => (
+    <DotMatrix
+      bgColor={BG}
+      colors={PURPLE_RAMP}
       frequency={1.2}
       speed={1.5}
       cellSize={18}

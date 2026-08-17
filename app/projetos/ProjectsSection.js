@@ -139,6 +139,22 @@ export default function ProjectsSection() {
           />
         </div>
 
+        <div className={styles.featuredCard}>
+          <Card
+            type="project"
+            tag="DESTAQUE"
+            title="GuiaLMS"
+            description="Portal de conteúdo sobre plataformas de treinamento corporativo (LMS): editorial estruturado, categorias temáticas e captura de newsletter."
+            image="/cases/guialms/guialms-home.jpg"
+            imagePlaceholder="linear-gradient(45deg, #3A2E7A, #0C0D11)"
+            href="/projetos/guialms"
+            metrics={[
+              { value: '6 seções', label: 'de conteúdo' },
+              { value: 'Editorial', label: 'que também converte' }
+            ]}
+          />
+        </div>
+
         {filteredProjects.map((project) => (
           <Card
             key={project.title}
