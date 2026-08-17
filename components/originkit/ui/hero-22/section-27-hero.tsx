@@ -81,8 +81,14 @@ export const Section27Hero = () => {
             Agência digital
           </p>
 
+          {/* No fade-in here on purpose: an opacity:0 keyframe start makes
+              Chrome skip this h1 as an LCP candidate at first paint, so the
+              browser was picking a later, lower element as "largest
+              contentful paint" instead - one that had to wait for the whole
+              hero section above it to finish loading first. This is the
+              actual LCP text, so it must render at full opacity immediately. */}
           <h1
-            className="fade-in fade-in-2 relative w-full text-balance text-center font-outfit text-[32px] min-[480px]:text-[40px] leading-[38px] min-[480px]:leading-[48px] font-bold tracking-[-0.8px] text-white ipad:text-[52px] ipad:leading-[57.6px] ipad:tracking-[-0.96px]"
+            className="relative w-full text-balance text-center font-outfit text-[32px] min-[480px]:text-[40px] leading-[38px] min-[480px]:leading-[48px] font-bold tracking-[-0.8px] text-white ipad:text-[52px] ipad:leading-[57.6px] ipad:tracking-[-0.96px]"
             style={{ textShadow: "0 2px 16px rgba(0,0,0,0.7)" }}
           >
             Seu digital no <span className="text-primary">próximo nível.</span>

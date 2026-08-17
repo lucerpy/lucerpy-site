@@ -9,6 +9,11 @@ import Preloader from "@/components/Preloader/Preloader";
 import { LogoRevealProvider } from "@/components/Logo/LogoRevealContext";
 import ConsoleEasterEgg from "@/components/ConsoleEasterEgg/ConsoleEasterEgg";
 
+// Disabled to cut LCP (it held the whole viewport for ~2.8s on every fresh
+// session, which is exactly what PageSpeed Insights always tests). Flip
+// back to true to restore it if trimming this alone doesn't get LCP green.
+const PRELOADER_ENABLED = false;
+
 // Overrides Silktide's default theme with the site's own palette.
 const SILKTIDE_THEME_CSS = `
 #stcm-wrapper {
@@ -135,13 +140,36 @@ export default function RootLayout({ children }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <link rel="preconnect" href="https://cdn.jsdelivr.net" crossOrigin="anonymous" />
+        {/* media="print" + onLoad swap is the standard non-blocking stylesheet
+            trick: browser fetches it at low priority without blocking first
+            paint, then flips to "all" once it's actually loaded. Cookie
+            banner isn't needed for the first frame anyway. */}
         <link
           rel="stylesheet"
           id="silktide-consent-manager-css"
           href="https://cdn.jsdelivr.net/gh/silktide/consent-manager@v2.0.1/silktide-consent-manager.css"
           integrity="sha384-EdMq+R+YOnsbelo08wPenoTlnxbAyxI11NMIxzugx/qAsbh64KcOkqxYqq6pfvO/"
           crossOrigin="anonymous"
+          media="print"
+          suppressHydrationWarning
         />
+        {/* JSX onLoad on a <link> must be a real function, which requires a
+            client component - a plain string attribute (what actually works
+            in raw HTML) gets rejected by React. This inline script is the
+            server-safe equivalent of that same trick. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){var l=document.getElementById('silktide-consent-manager-css');if(l)l.onload=function(){l.media='all';};})();`,
+          }}
+        />
+        <noscript>
+          <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/gh/silktide/consent-manager@v2.0.1/silktide-consent-manager.css"
+            integrity="sha384-EdMq+R+YOnsbelo08wPenoTlnxbAyxI11NMIxzugx/qAsbh64KcOkqxYqq6pfvO/"
+            crossOrigin="anonymous"
+          />
+        </noscript>
         <style
           id="silktide-consent-manager-overrides"
           dangerouslySetInnerHTML={{ __html: SILKTIDE_THEME_CSS }}
@@ -149,7 +177,7 @@ export default function RootLayout({ children }) {
       </head>
       <body suppressHydrationWarning>
         <ConsoleEasterEgg />
-        <Preloader />
+        {PRELOADER_ENABLED && <Preloader />}
         <CookieConsent />
         <LogoRevealProvider>
           <Navbar />

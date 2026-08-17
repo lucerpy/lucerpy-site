@@ -1,3 +1,6 @@
+'use client';
+
+import { useState } from 'react';
 import styles from './Card.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -19,18 +22,20 @@ export default function Card({
   // leads to "#" is a false affordance, not a real link.
   const Wrapper = href ? Link : 'div';
   const wrapperProps = href ? { href } : {};
+  const [loaded, setLoaded] = useState(false);
 
   return (
     <Wrapper {...wrapperProps} className={`${styles.card} ${styles[type]}`}>
       {!isService && (
         <div className={styles.imageWrapper}>
            {image ? (
-             <Image 
-               src={image} 
-               alt={title} 
-               fill 
-               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" 
-               className={styles.image} 
+             <Image
+               src={image}
+               alt={title}
+               fill
+               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+               className={`${styles.image} ${loaded ? styles.imageLoaded : ''}`}
+               onLoad={() => setLoaded(true)}
              />
            ) : (
              <div className={styles.imagePlaceholder} style={{ background: imagePlaceholder || 'linear-gradient(to bottom right, #1a1c23, #0C0D11)' }}></div>

@@ -1,11 +1,22 @@
 // Delivered by Originkit · stack: nextjs · styling: tailwind
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import Logo from "@/components/Logo/Logo";
-import Tetris from "@/components/originkit/ui/footer-02/tetris";
 import NewsletterForm from "@/app/blog/NewsletterForm";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
+
+// Footer sits in the root layout, so it hydrates on every page's initial
+// load - but Tetris's board setup (scatterInitialStack) runs a real
+// synchronous grid-packing loop on mount, and it's decorative content in
+// the footer, below the fold on first paint. Same dynamic + idle-defer
+// pattern as the hero's DottedBackground: keep it off the critical path.
+const Tetris = dynamic(
+  () => import("@/components/originkit/ui/footer-02/tetris"),
+  { ssr: false }
+);
 
 function asset(file: string) {
   return `/originkit/footer-02/${file}`;
@@ -39,13 +50,39 @@ const LINK_COLUMNS = [
 ] as const;
 
 export function Footer() {
+  // Same idle-callback deferral as the hero's DottedBackground - gives
+  // hydration of the rest of the page a head start before Tetris's board
+  // setup (a real synchronous grid-packing loop) runs.
+  const [showTetris, setShowTetris] = useState(false);
+
+  useEffect(() => {
+    const w = window as typeof window & {
+      requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number;
+      cancelIdleCallback?: (id: number) => void;
+    };
+
+    let idleId: number | undefined;
+    let timeoutId: number | undefined;
+
+    if (w.requestIdleCallback) {
+      idleId = w.requestIdleCallback(() => setShowTetris(true), { timeout: 1500 });
+    } else {
+      timeoutId = window.setTimeout(() => setShowTetris(true), 800);
+    }
+
+    return () => {
+      if (idleId !== undefined) w.cancelIdleCallback?.(idleId);
+      if (timeoutId !== undefined) window.clearTimeout(timeoutId);
+    };
+  }, []);
+
   return (
     <footer
       aria-label="Lucerpy"
       className="relative isolate mx-auto w-full overflow-hidden bg-[var(--color-bg-light)]"
     >
       {/*
-        Mobile (Figma 2168:524): stacked brand → 2-col links (Legal wraps)
+        Mobile (Figma 2168:524): stacked brand → 1-col links (all stacked)
         iPad   (Figma 2168:264): stacked brand → 3-col links
         Desktop (Figma 2168:5):  brand | links side-by-side
       */}
@@ -91,7 +128,7 @@ export function Footer() {
             container again for the 2/3-col mobile/tablet layout. */}
         <nav
           aria-label="Rodapé"
-          className="grid w-full grid-cols-2 gap-x-6 gap-y-8 ipad:grid-cols-3 ipad:gap-8 desktop-sm:contents"
+          className="grid w-full grid-cols-1 gap-y-8 ipad:grid-cols-3 ipad:gap-8 desktop-sm:contents"
         >
           {LINK_COLUMNS.map((column) => (
             <div
@@ -170,16 +207,18 @@ export function Footer() {
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-[200px] overflow-hidden"
       >
-        <Tetris
-          boardColor="#16181F"
-          colors={["#CCEC7B"]}
-          cellSize={20}
-          gap={0}
-          rounded={20}
-          dropSpeed={1}
-          movement={2}
-          startFilled={true}
-        />
+        {showTetris && (
+          <Tetris
+            boardColor="#16181F"
+            colors={["#CCEC7B"]}
+            cellSize={20}
+            gap={0}
+            rounded={20}
+            dropSpeed={1}
+            movement={2}
+            startFilled={true}
+          />
+        )}
       </div>
       </div>
     </footer>
