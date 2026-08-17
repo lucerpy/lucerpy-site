@@ -46,7 +46,10 @@ export default function CtaBackground({ variant }) {
         <img
           src={webpSrc}
           alt=""
-          loading="lazy"
+          // Now that these are 10-54KB (AVIF), the native lazy-load
+          // deferral was buying nothing but a visible empty box while
+          // scrolling toward it - not worth it for a single small image
+          // per page. Loads immediately alongside the rest of the page.
           decoding="async"
           // scale, not opacity: an opacity:0 start can disqualify an
           // element from being the LCP candidate (bit us on the hero h1
