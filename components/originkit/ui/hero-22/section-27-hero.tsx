@@ -1,88 +1,33 @@
 // Delivered by Originkit · stack: nextjs · styling: tailwind
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
-import dynamic from "next/dynamic";
 import Button from "@/components/Button/Button";
 
 import { LogoMarquee } from "@/components/originkit/ui/hero-22/logo-marquee";
 
-// Pulls in the ogl WebGL library - keep it out of the home page's initial
-// bundle and fetch it only in the browser, same pattern as CtaBackground.
-const DottedBackground = dynamic(
-  () => import("@/components/originkit/ui/hero-26/dotmatrix-hero").then((m) => m.DottedBackground),
-  { ssr: false }
-);
-
-// Confirmed via A/B: the WebGL background was the biggest single perf
-// cost on the hero. Back on now that it renders one static frame on
-// mount and only starts animating after the page settles (see the
-// `warmedUp` gate in dotmatrix-hero.tsx) - static-then-animate, not
-// silent the whole time.
-const DOTTED_BACKGROUND_ENABLED = true;
+// Was the live WebGL dot-noise effect (ogl) - same call as the CTA
+// backgrounds: a static abstract photo instead of a live canvas/WebGL
+// effect. No shader compile, no ogl chunk, just an <img>.
+const HERO_BG_IMAGE = "/hero-bg.webp";
 
 export const Section27Hero = () => {
-  // Used to wait a beat here so the WebGL init wouldn't compete with the
-  // h1/CTAs for main-thread time at the exact moment they painted. That's
-  // no longer the risk it was: the h1 fade-in that was making Chrome
-  // misidentify the LCP candidate is gone, and DottedBackground itself now
-  // renders one static frame immediately and only starts animating once
-  // the page settles. So the actual bottleneck left is just how long it
-  // takes to fetch the ogl chunk and compile the shaders - waiting an
-  // extra 400ms before even starting that only made it slower to appear.
-  const [showBackground, setShowBackground] = useState(true);
-  // Drives a crossfade instead of a hard swap: the CSS dot pattern stays
-  // put, and the WebGL canvas fades in over it once its first frame is
-  // drawn. A background layer (CSS or canvas) is invisible to the LCP
-  // algorithm either way - only actual <img>/text nodes count - so opacity
-  // here carries none of the risk it did on the hero h1.
-  const [bgReady, setBgReady] = useState(false);
-
   return (
   <section className="w-full bg-[#0C0D11]">
     <div className="relative flex w-full max-w-full flex-col items-center overflow-hidden bg-[#0C0D11]">
-      {/* Fundo pontilhado full-bleed (Originkit hero-26, recolorido no verde da marca) */}
+      {/* Fundo full-bleed (foto abstrata estática, mesma família visual dos CTAs) */}
       <div className="fade-in fade-in-4 pointer-events-none absolute inset-0 z-0">
-        {/* Pure-CSS approximation of the dot pattern, server-rendered with
-            zero JS cost - covers the gap while the WebGL version is still
-            fetching its chunk and compiling shaders, so there's never a
-            flat, backgroundless moment behind the headline. The real
-            DottedBackground draws on top of this once it's ready. */}
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundColor: "#0C0D11",
-            backgroundImage:
-              "radial-gradient(circle, rgba(204,236,123,0.35) 1px, transparent 1.6px)",
-            backgroundSize: "18px 18px",
-          }}
+        <img
+          src={HERO_BG_IMAGE}
+          alt=""
+          aria-hidden="true"
+          fetchPriority="high"
+          // Lets the Preloader (app/layout.js) know the hero is actually
+          // ready to be seen, instead of always burning its 3s max-wait
+          // safety timeout now that there's no WebGL onReady signal.
+          onLoad={() => window.dispatchEvent(new Event("lucerpy:hero-ready"))}
+          className="absolute inset-0 h-full w-full object-cover"
         />
-        {DOTTED_BACKGROUND_ENABLED && showBackground && (
-          <div
-            className="absolute inset-0 transition-opacity duration-700 ease-out"
-            style={{ opacity: bgReady ? 1 : 0 }}
-          >
-            <DottedBackground
-              bgColor="#0C0D11"
-              colors={["#0C0D11", "#2B3D12", "#CCEC7B"]}
-              frequency={1.5}
-              speed={2}
-              cellSize={10}
-              gamma={5}
-              paletteBias={8}
-              // Lets the Preloader (app/layout.js) know the real background
-              // has drawn its first frame, so it can hold its reveal until
-              // this - rather than the hero and the intro finishing on
-              // unrelated fixed timers that may or may not line up. Also
-              // triggers the local crossfade below.
-              onReady={() => {
-                window.dispatchEvent(new Event("lucerpy:hero-ready"));
-                setBgReady(true);
-              }}
-            />
-          </div>
-        )}
         <div
           className="absolute inset-0"
           style={{
