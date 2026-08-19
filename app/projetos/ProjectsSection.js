@@ -91,15 +91,6 @@ const ALL_PROJECTS = [
     ],
   },
   {
-    featured: false,
-    category: 'LANDING PAGE',
-    tag: 'CONCEITO · LANDING PAGE',
-    title: 'Prestige Imóveis',
-    description: 'Exercício autoral: portal imobiliário de alto padrão com busca por localização, tipo e faixa de preço, e vitrine de imóveis em destaque.',
-    image: '/cases/imobiliario.jpg',
-    imagePlaceholder: 'linear-gradient(45deg, #1a2e22, #0d1a14)',
-  },
-  {
     featured: true,
     category: 'E-COMMERCE',
     tag: 'DESTAQUE',
@@ -112,6 +103,15 @@ const ALL_PROJECTS = [
       { value: '3', label: 'categorias integradas' },
       { value: '100%', label: 'identidade autoral' }
     ],
+  },
+  {
+    featured: false,
+    category: 'LANDING PAGE',
+    tag: 'CONCEITO · LANDING PAGE',
+    title: 'Prestige Imóveis',
+    description: 'Exercício autoral: portal imobiliário de alto padrão com busca por localização, tipo e faixa de preço, e vitrine de imóveis em destaque.',
+    image: '/cases/imobiliario.jpg',
+    imagePlaceholder: 'linear-gradient(45deg, #1a2e22, #0d1a14)',
   },
   {
     featured: false,
