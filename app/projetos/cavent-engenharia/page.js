@@ -115,6 +115,24 @@ export default function CaventEngenharia() {
                 <p>Um carrossel dinâmico exibe os serviços e projetos de forma imersiva, mantendo a atenção do usuário e encorajando a navegação.</p>
               </div>
             </div>
+
+            {/* Imagem 4 - Site atual no ar */}
+            <div className={styles.presentationItem}>
+              <div className={styles.imagePlaceholder}>
+                <Image
+                  src="/cases/cavent/tela4.jpeg"
+                  alt="Cavent Engenharia - Site atual no ar"
+                  width={1200}
+                  height={800}
+                  sizes="(max-width: 768px) 100vw, 1200px"
+                  className={styles.caseImage}
+                />
+              </div>
+              <div className={styles.itemInfo}>
+                <h3>No ar e gerando resultado</h3>
+                <p>O site está no ar em caventengenharia.com.br, recebendo visitantes e convertendo leads todos os dias desde o lançamento.</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>

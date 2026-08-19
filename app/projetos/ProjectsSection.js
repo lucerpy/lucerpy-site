@@ -13,11 +13,81 @@ const FILTERS = [
   { label: 'SaaS', tag: 'SAAS' },
 ];
 
-// Exercícios autorais — não têm cliente real por trás nem case a mostrar,
-// por isso levam "CONCEITO" na tag e não abrem link nenhum (Card.js só
-// renderiza como link quando recebe href de verdade).
-const PROJECTS = [
+// Every card lives in one filterable list - featured (real cases, with a
+// case page) and concept (autoral exercises, no client behind them) alike.
+// Keeping the featured cards out of this list used to mean the filter
+// buttons only ever touched the 6 concept cards below, while Cavent/
+// Inventário/Torqx/GuiaLMS stayed pinned at the top regardless of which
+// filter was active - looked broken, since "E-commerce" would still show
+// three cards that have nothing to do with e-commerce.
+const ALL_PROJECTS = [
   {
+    featured: true,
+    category: 'INSTITUCIONAL',
+    tag: 'DESTAQUE',
+    title: 'Cavent Engenharia',
+    description: 'Redesign completo do site institucional focado em conversão de leads B2B. Resultado: +180% em contatos qualificados em apenas 3 meses após o lançamento.',
+    image: '/cases/cavent/tela1.jpeg',
+    imagePlaceholder: 'linear-gradient(45deg, #0f172a, #1e293b)',
+    href: '/projetos/cavent-engenharia',
+    metrics: [
+      { value: '+180%', label: 'leads qualificados' },
+      { value: '3x', label: 'mais rápido' }
+    ],
+  },
+  {
+    featured: true,
+    category: 'APP',
+    tag: 'DESTAQUE',
+    title: 'Inventário de TI',
+    description: 'Exercício autoral: dashboard para controle de ativos de TI em tempo real, com gestão de colaboradores, kits de boas-vindas e devoluções.',
+    image: '/cases/inventario-ti.jpg',
+    imagePlaceholder: 'linear-gradient(45deg, #1e3a8a, #0f172a)',
+    href: '/projetos/inventario-ti',
+    metrics: [
+      { value: '6', label: 'módulos integrados' },
+      { value: '100%', label: 'responsivo' }
+    ],
+  },
+  {
+    featured: true,
+    category: 'E-COMMERCE',
+    tag: 'DESTAQUE',
+    title: 'Torqx',
+    description: 'Loja Shopify internacional para a Torqx Testing Equipment, distribuidora exclusiva da AW Dynamometer na América Latina.',
+    image: '/cases/torqx/torqx-top.jpg',
+    imagePlaceholder: 'linear-gradient(45deg, #7A1230, #0C0D11)',
+    href: '/projetos/torqx',
+    metrics: [
+      { value: '12 anos', label: 'de mercado' },
+      { value: '5 marcas', label: 'confiam nos equipamentos' }
+    ],
+  },
+  {
+    featured: true,
+    category: 'INSTITUCIONAL',
+    tag: 'DESTAQUE',
+    title: 'GuiaLMS',
+    description: 'Portal de conteúdo sobre plataformas de treinamento corporativo (LMS): editorial estruturado, categorias temáticas e captura de newsletter.',
+    image: '/cases/guialms/guialms-home.jpg',
+    imagePlaceholder: 'linear-gradient(45deg, #3A2E7A, #0C0D11)',
+    href: '/projetos/guialms',
+    metrics: [
+      { value: '6 seções', label: 'de conteúdo' },
+      { value: 'Editorial', label: 'que também converte' }
+    ],
+  },
+  {
+    featured: false,
+    category: 'INSTITUCIONAL',
+    tag: 'CLIENTE · INSTITUCIONAL',
+    title: 'NK3IT',
+    description: 'Site institucional para empresa de infraestrutura e suporte de TI, com foco em geração de leads corporativos: gestão de cloud, backup, segurança e Microsoft 365.',
+    image: '/cases/nk3it.jpg',
+    imagePlaceholder: 'linear-gradient(45deg, #0a1a3a, #050b1a)',
+  },
+  {
+    featured: false,
     category: 'LANDING PAGE',
     tag: 'CONCEITO · LANDING PAGE',
     title: 'Lançamento imobiliário',
@@ -26,14 +96,16 @@ const PROJECTS = [
     imagePlaceholder: 'linear-gradient(45deg, #2e1065, #4c1d95)',
   },
   {
+    featured: false,
     category: 'E-COMMERCE',
-    tag: 'CONCEITO · E-COMMERCE',
-    title: 'Loja Streetwear',
-    description: 'Exercício autoral: e-commerce completo com integrações de pagamento e logística automatizada.',
-    image: '/cases/streetwear.jpg',
-    imagePlaceholder: 'linear-gradient(45deg, #064e3b, #047857)',
+    tag: 'CLIENTE · E-COMMERCE',
+    title: 'Weaver',
+    description: 'E-commerce de streetwear e cultura skate: shapes, apparel e sneakers com identidade forte de marca e navegação por categoria.',
+    image: '/cases/weaver.jpg',
+    imagePlaceholder: 'linear-gradient(45deg, #C2410C, #1c1917)',
   },
   {
+    featured: false,
     category: 'INSTITUCIONAL',
     tag: 'CONCEITO · INSTITUCIONAL',
     title: 'Escritório de Advocacia',
@@ -42,6 +114,7 @@ const PROJECTS = [
     imagePlaceholder: 'linear-gradient(45deg, #78350f, #451a03)',
   },
   {
+    featured: false,
     category: 'APP',
     tag: 'CONCEITO · APP',
     title: 'Clínica de Estética',
@@ -50,6 +123,7 @@ const PROJECTS = [
     imagePlaceholder: 'linear-gradient(45deg, #1e3a8a, #172554)',
   },
   {
+    featured: false,
     category: 'SAAS',
     tag: 'CONCEITO · SAAS',
     title: 'SaaS B2B',
@@ -58,6 +132,7 @@ const PROJECTS = [
     imagePlaceholder: 'linear-gradient(45deg, #4c1d95, #2e1065)',
   },
   {
+    featured: false,
     category: 'INSTITUCIONAL',
     tag: 'CONCEITO · INSTITUCIONAL',
     title: 'Consultoria Financeira',
@@ -65,16 +140,14 @@ const PROJECTS = [
     image: '/cases/financeira.jpg',
     imagePlaceholder: 'linear-gradient(45deg, #14532d, #064e3b)',
   },
-  // Inventário de TI is featured (below, alongside Cavent) instead of
-  // living in this grid - it has its own case page like Cavent does.
 ];
 
 export default function ProjectsSection() {
   const [activeTag, setActiveTag] = useState(null);
 
   const filteredProjects = activeTag
-    ? PROJECTS.filter((project) => project.category === activeTag)
-    : PROJECTS;
+    ? ALL_PROJECTS.filter((project) => project.category === activeTag)
+    : ALL_PROJECTS;
 
   return (
     <>
@@ -91,82 +164,28 @@ export default function ProjectsSection() {
       </div>
 
       <div className={styles.cardsGrid}>
-        <div className={styles.featuredCard}>
-          <Card
-            type="project"
-            tag="DESTAQUE"
-            title="Cavent Engenharia"
-            description="Redesign completo do site institucional focado em conversão de leads B2B. Resultado: +180% em contatos qualificados em apenas 3 meses após o lançamento."
-            image="/cases/cavent/tela1.jpeg"
-            imagePlaceholder="linear-gradient(45deg, #0f172a, #1e293b)"
-            href="/projetos/cavent-engenharia"
-            metrics={[
-              { value: '+180%', label: 'leads qualificados' },
-              { value: '3x', label: 'mais rápido' }
-            ]}
-          />
-        </div>
+        {filteredProjects.map((project) => {
+          const card = (
+            <Card
+              type="project"
+              tag={project.tag}
+              title={project.title}
+              description={project.description}
+              image={project.image}
+              imagePlaceholder={project.imagePlaceholder}
+              href={project.href}
+              metrics={project.metrics}
+            />
+          );
 
-        <div className={styles.featuredCard}>
-          <Card
-            type="project"
-            tag="DESTAQUE"
-            title="Inventário de TI"
-            description="Exercício autoral: dashboard para controle de ativos de TI em tempo real, com gestão de colaboradores, kits de boas-vindas e devoluções."
-            image="/cases/inventario-ti.jpg"
-            imagePlaceholder="linear-gradient(45deg, #1e3a8a, #0f172a)"
-            href="/projetos/inventario-ti"
-            metrics={[
-              { value: '6', label: 'módulos integrados' },
-              { value: '100%', label: 'responsivo' }
-            ]}
-          />
-        </div>
-
-        <div className={styles.featuredCard}>
-          <Card
-            type="project"
-            tag="DESTAQUE"
-            title="Torqx"
-            description="Loja Shopify internacional para a Torqx Testing Equipment, distribuidora exclusiva da AW Dynamometer na América Latina."
-            image="/cases/torqx/torqx-top.jpg"
-            imagePlaceholder="linear-gradient(45deg, #7A1230, #0C0D11)"
-            href="/projetos/torqx"
-            metrics={[
-              { value: '12 anos', label: 'de mercado' },
-              { value: '5 marcas', label: 'confiam nos equipamentos' }
-            ]}
-          />
-        </div>
-
-        <div className={styles.featuredCard}>
-          <Card
-            type="project"
-            tag="DESTAQUE"
-            title="GuiaLMS"
-            description="Portal de conteúdo sobre plataformas de treinamento corporativo (LMS): editorial estruturado, categorias temáticas e captura de newsletter."
-            image="/cases/guialms/guialms-home.jpg"
-            imagePlaceholder="linear-gradient(45deg, #3A2E7A, #0C0D11)"
-            href="/projetos/guialms"
-            metrics={[
-              { value: '6 seções', label: 'de conteúdo' },
-              { value: 'Editorial', label: 'que também converte' }
-            ]}
-          />
-        </div>
-
-        {filteredProjects.map((project) => (
-          <Card
-            key={project.title}
-            type="project"
-            tag={project.tag}
-            title={project.title}
-            description={project.description}
-            image={project.image}
-            imagePlaceholder={project.imagePlaceholder}
-            href={project.href}
-          />
-        ))}
+          return project.featured ? (
+            <div key={project.title} className={styles.featuredCard}>
+              {card}
+            </div>
+          ) : (
+            <div key={project.title}>{card}</div>
+          );
+        })}
 
         {filteredProjects.length === 0 && (
           <p>Nenhum projeto encontrado nessa categoria.</p>
