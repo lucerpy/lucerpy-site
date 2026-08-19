@@ -61,67 +61,31 @@ export default function CaventEngenharia() {
           </div>
 
           <div className={styles.presentationGallery}>
-            {/* Imagem 1 - Resultados sólidos */}
+            {/* Imagem 1 - Hero + parceiros */}
             <div className={styles.presentationItem}>
               <div className={styles.imagePlaceholder}>
-                <Image 
-                  src="/cases/cavent/tela1.jpeg" 
-                  alt="Cavent Engenharia - Resultados Sólidos" 
+                <Image
+                  src="/cases/cavent/tela1.jpeg"
+                  alt="Cavent Engenharia - Página inicial"
                   width={1200}
                   height={800}
                   sizes="(max-width: 768px) 100vw, 1200px"
                   priority
-                  className={styles.caseImage} 
+                  className={styles.caseImage}
                 />
               </div>
               <div className={styles.itemInfo}>
-                <h3>Clareza nos Diferenciais</h3>
-                <p>Comparamos o "Mercado comum" com o que a Cavent entrega, evidenciando o valor e justificando o investimento antes mesmo do contato.</p>
+                <h3>Autoridade logo na primeira dobra</h3>
+                <p>O hero já entrega a proposta de valor (“Engenharia com Precisão e Inteligência”) e, na sequência, os logos dos parceiros — prova social antes mesmo do visitante rolar a página.</p>
               </div>
             </div>
 
-            {/* Imagem 2 - Hero / Home */}
-            <div className={styles.presentationItem}>
-              <div className={styles.imagePlaceholder}>
-                <Image 
-                  src="/cases/cavent/tela2.jpeg" 
-                  alt="Cavent Engenharia - Hero Section" 
-                  width={1200}
-                  height={800}
-                  sizes="(max-width: 768px) 100vw, 1200px"
-                  className={styles.caseImage} 
-                />
-              </div>
-              <div className={styles.itemInfo}>
-                <h3>Primeira Impressão Impactante</h3>
-                <p>Uma seção inicial escura transmite solidez e confiança, contrastando elegantemente com as seções de conteúdo.</p>
-              </div>
-            </div>
-
-            {/* Imagem 3 - Serviços */}
-            <div className={styles.presentationItem}>
-              <div className={styles.imagePlaceholder}>
-                <Image 
-                  src="/cases/cavent/tela3.jpeg" 
-                  alt="Cavent Engenharia - Serviços de Engenharia" 
-                  width={1200}
-                  height={800}
-                  sizes="(max-width: 768px) 100vw, 1200px"
-                  className={styles.caseImage} 
-                />
-              </div>
-              <div className={styles.itemInfo}>
-                <h3>Exibição de Portfólio Integrada</h3>
-                <p>Um carrossel dinâmico exibe os serviços e projetos de forma imersiva, mantendo a atenção do usuário e encorajando a navegação.</p>
-              </div>
-            </div>
-
-            {/* Imagem 4 - Site atual no ar */}
+            {/* Imagem 2 - Mercado comum vs Com a Cavent */}
             <div className={styles.presentationItem}>
               <div className={styles.imagePlaceholder}>
                 <Image
-                  src="/cases/cavent/tela4.jpeg"
-                  alt="Cavent Engenharia - Site atual no ar"
+                  src="/cases/cavent/tela2.jpeg"
+                  alt="Cavent Engenharia - Comparativo mercado comum vs Cavent"
                   width={1200}
                   height={800}
                   sizes="(max-width: 768px) 100vw, 1200px"
@@ -129,8 +93,62 @@ export default function CaventEngenharia() {
                 />
               </div>
               <div className={styles.itemInfo}>
-                <h3>No ar e gerando resultado</h3>
-                <p>O site está no ar em caventengenharia.com.br, recebendo visitantes e convertendo leads todos os dias desde o lançamento.</p>
+                <h3>Clareza nos diferenciais</h3>
+                <p>Comparamos o “Mercado comum” com o que a Cavent entrega, evidenciando o valor e justificando o investimento antes mesmo do contato.</p>
+              </div>
+            </div>
+
+            {/* Imagem 3 - Serviços */}
+            <div className={styles.presentationItem}>
+              <div className={styles.imagePlaceholder}>
+                <Image
+                  src="/cases/cavent/tela3.jpeg"
+                  alt="Cavent Engenharia - Serviços de engenharia"
+                  width={1200}
+                  height={800}
+                  sizes="(max-width: 768px) 100vw, 1200px"
+                  className={styles.caseImage}
+                />
+              </div>
+              <div className={styles.itemInfo}>
+                <h3>Serviços com contexto técnico</h3>
+                <p>Um carrossel apresenta cada frente de atuação (drenagem urbana, projeto elétrico e mais) com a foto da obra real, não um ícone genérico.</p>
+              </div>
+            </div>
+
+            {/* Imagem 4 - Projetos */}
+            <div className={styles.presentationItem}>
+              <div className={styles.imagePlaceholder}>
+                <Image
+                  src="/cases/cavent/tela4.jpeg"
+                  alt="Cavent Engenharia - Portfólio de projetos"
+                  width={1200}
+                  height={800}
+                  sizes="(max-width: 768px) 100vw, 1200px"
+                  className={styles.caseImage}
+                />
+              </div>
+              <div className={styles.itemInfo}>
+                <h3>Portfólio técnico em destaque</h3>
+                <p>Projetos executados (como o Hidrossanitário Residencial) aparecem com nome do cliente e escopo real, reforçando a capacidade de entrega da Cavent.</p>
+              </div>
+            </div>
+
+            {/* Imagem 5 - Nosso progresso / história */}
+            <div className={styles.presentationItem}>
+              <div className={styles.imagePlaceholder}>
+                <Image
+                  src="/cases/cavent/tela5.jpeg"
+                  alt="Cavent Engenharia - Linha do tempo institucional"
+                  width={1200}
+                  height={800}
+                  sizes="(max-width: 768px) 100vw, 1200px"
+                  className={styles.caseImage}
+                />
+              </div>
+              <div className={styles.itemInfo}>
+                <h3>A história por trás da entrega</h3>
+                <p>Uma linha do tempo institucional conta quem é a Cavent, seu diferencial e sua abordagem de infraestrutura — humanizando uma marca técnica sem perder a autoridade.</p>
               </div>
             </div>
           </div>
