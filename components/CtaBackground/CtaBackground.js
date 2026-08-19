@@ -20,7 +20,7 @@ const ASSET_VERSION = 'v4';
 
 const VARIANTS = [
   'home', 'cavent', 'projetos', 'servicos', 'quemSomos', 'blog',
-  'inventario', 'torqx', 'guialms',
+  'inventario', 'torqx', 'guialms', 'nk3it', 'weaver',
 ];
 
 const AVIF_BY_VARIANT = Object.fromEntries(
