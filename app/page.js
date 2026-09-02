@@ -20,6 +20,10 @@ const faqs = [
     answer: "Sim! Conectamos seu site a qualquer plataforma: RD Station, HubSpot, Pipedrive, WhatsApp Webhooks, gateways de pagamento e sistemas internos customizados."
   },
   {
+    question: "Vocês fazem chatbot de atendimento no WhatsApp com IA?",
+    answer: "Sim! Implementamos automação de atendimento no WhatsApp — do menu de triagem simples ao chatbot com IA integrado ao seu CRM — para responder o cliente na hora sem perder o toque humano nos casos que precisam de atenção real."
+  },
+  {
     question: "Como funciona a primeira conversa de diagnóstico?",
     answer: "A primeira reunião é 100% gratuita. Analisamos os objetivos do seu negócio, identificamos gargalos de conversão no seu digital e apresentamos um plano de ação claro com prazos e investimento transparente."
   }
@@ -72,7 +76,7 @@ export default function Home() {
               type="service"
               number="03"
               title="Automações & CRMs"
-              description="Conectamos suas ferramentas de vendas e marketing para você não perder nenhum lead e otimizar processos."
+              description="Chatbots de atendimento no WhatsApp com IA, integrações com CRM e fluxos que conectam suas ferramentas de vendas para você não perder nenhum lead."
             />
           </div>
         </div>

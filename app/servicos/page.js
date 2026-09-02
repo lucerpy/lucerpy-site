@@ -57,7 +57,7 @@ export default function Servicos() {
             <Card type="service" number="01" title="UX/UI Design" description="Interfaces que convertem. Criamos experiências intuitivas e bonitas que guiam seus usuários até a ação desejada com elegância." />
             <Card type="service" number="02" title="Sites & Landing Pages" description="Do portfólio institucional à landing de alta conversão. Rápidos, responsivos e otimizados para SEO desde o primeiro deploy." />
             <Card type="service" number="03" title="Integrações" description="Conectamos seu site a qualquer plataforma: CRM, ERP, APIs de pagamento, e-mail marketing e ferramentas customizadas." />
-            <Card type="service" number="04" title="Automações" description="Chega de processos manuais. Automatizamos fluxos que economizam horas da sua equipe todo mês sem aumentar headcount." />
+            <Card type="service" number="04" title="Automações" description="Chatbot de atendimento no WhatsApp com IA, integrações e fluxos automatizados que economizam horas da sua equipe todo mês sem aumentar headcount." />
             <Card type="service" number="05" title="Consultoria Digital" description="Não sabe por onde começar? Mapeamos o melhor caminho para o seu digital com estratégia clara e orientada a resultado." />
             <Card type="service" number="06" title="Manutenção & Suporte" description="Planos de suporte contínuo para manter tudo sempre atualizado e funcionando com excelência e segurança." />
           </div>

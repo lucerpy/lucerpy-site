@@ -50,8 +50,8 @@ export const metadata = {
     default: "Lucerpy | Agência Digital",
     template: "%s | Lucerpy",
   },
-  description: "Desenvolvimento de sites, landing pages e automações construídas com estratégia para transformar visitantes em clientes reais.",
-  keywords: ["agência digital", "desenvolvimento web", "UX/UI design", "landing pages", "automações", "Next.js", "sites de alta conversão"],
+  description: "Desenvolvimento de sites, landing pages e automação de atendimento no WhatsApp com IA, construídos com estratégia para transformar visitantes em clientes reais.",
+  keywords: ["agência digital", "desenvolvimento web", "UX/UI design", "landing pages", "automações", "chatbot whatsapp", "automação de atendimento", "Next.js", "sites de alta conversão"],
   authors: [{ name: "Lucerpy Digital", url: "https://lucerpy.com.br" }],
   creator: "Lucerpy Digital",
   publisher: "Lucerpy Digital",
@@ -60,7 +60,7 @@ export const metadata = {
   },
   openGraph: {
     title: "Lucerpy | Agência Digital",
-    description: "Desenvolvimento de sites, landing pages e automações construídas com estratégia para transformar visitantes em clientes reais.",
+    description: "Desenvolvimento de sites, landing pages e automação de atendimento no WhatsApp com IA, construídos com estratégia para transformar visitantes em clientes reais.",
     url: "https://lucerpy.com.br",
     siteName: "Lucerpy",
     locale: "pt_BR",
@@ -77,7 +77,7 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Lucerpy | Agência Digital",
-    description: "Desenvolvimento de sites, landing pages e automações construídas com estratégia para transformar visitantes em clientes reais.",
+    description: "Desenvolvimento de sites, landing pages e automação de atendimento no WhatsApp com IA, construídos com estratégia para transformar visitantes em clientes reais.",
     images: ["/og-image.jpg"],
   },
   robots: {
@@ -99,7 +99,7 @@ const jsonLd = {
   "name": "Lucerpy Digital",
   "url": "https://lucerpy.com.br",
   "logo": "https://lucerpy.com.br/favicon.ico",
-  "description": "Agência digital focada em UX/UI, desenvolvimento web de alta performance e automações para negócios.",
+  "description": "Agência digital focada em UX/UI, desenvolvimento web de alta performance e automação de atendimento no WhatsApp com IA para negócios.",
   "sameAs": [
     "https://www.instagram.com/lucerpy.agencia/"
   ],
