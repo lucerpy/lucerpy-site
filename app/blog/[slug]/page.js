@@ -4,6 +4,11 @@ import Link from 'next/link';
 import Image from 'next/image';
 import ShareButtons from './ShareButtons';
 
+const AUTHOR = {
+  name: 'Eduardo Serpa',
+  photo: '/team/eduardo-serpa.png',
+};
+
 export async function generateMetadata({ params }) {
   const { slug } = await params;
   const postData = await getPostData(slug);
@@ -65,10 +70,11 @@ export default async function Post({ params }) {
     "description": postData.description,
     "datePublished": postData.date,
     "image": postData.image ? [`https://lucerpy.com.br${postData.image}`] : undefined,
+    "dateModified": postData.updated || postData.date,
     "author": {
-      "@type": "Organization",
-      "name": "Lucerpy Digital",
-      "url": "https://lucerpy.com.br"
+      "@type": "Person",
+      "name": AUTHOR.name,
+      "url": "https://lucerpy.com.br/quem-somos"
     },
     "publisher": {
       "@type": "Organization",
@@ -96,8 +102,17 @@ export default async function Post({ params }) {
           <div className={styles.tag}>{postData.tag || 'ARTIGO'}</div>
           <h1 className={styles.title}>{postData.title}</h1>
           <p className={styles.description}>{postData.description}</p>
-          <div className={styles.meta}>
-            Publicado em: {new Date(postData.date).toLocaleDateString('pt-BR')}
+          <div className={styles.authorRow}>
+            <Image src={AUTHOR.photo} alt={AUTHOR.name} width={40} height={40} className={styles.authorAvatar} />
+            <div>
+              <div className={styles.authorName}>{AUTHOR.name}</div>
+              <div className={styles.meta}>
+                Publicado em {new Date(postData.date).toLocaleDateString('pt-BR')}
+                {postData.updated && postData.updated !== postData.date && (
+                  <> · Atualizado em {new Date(postData.updated).toLocaleDateString('pt-BR')}</>
+                )}
+              </div>
+            </div>
           </div>
           <ShareButtons title={postData.title} url={`https://lucerpy.com.br/blog/${slug}`} />
         </div>
