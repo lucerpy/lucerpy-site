@@ -2,7 +2,8 @@ import styles from './page.module.css';
 import Button from '@/components/Button/Button';
 import Card from '@/components/Card/Card';
 import Link from 'next/link';
-import Hero22 from '@/components/originkit/hero-22';
+import LiquidMetalHero from '@/components/originkit/liquid-metal-hero';
+import { LogoMarquee } from '@/components/originkit/ui/hero-22/logo-marquee';
 import CtaBackground from '@/components/CtaBackground/CtaBackground';
 import ParticleSphere from '@/components/originkit/ui/particlesphere-lazy';
 import { getSortedPostsData } from '@/lib/blog';
@@ -47,6 +48,12 @@ export default function Home() {
 
   return (
     <>
+      <LiquidMetalHero />
+
+      <section className="z-20 flex w-full flex-col items-center overflow-hidden border-t border-[#2D3039] bg-[#16181F] py-2 ipad:py-3">
+        <LogoMarquee />
+      </section>
+
       <section className="section-padding">
         <div className="container">
           <div className={styles.orbGrid}>
@@ -120,8 +127,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      <Hero22 />
 
       <section className="section-padding">
         <div className="container">

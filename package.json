@@ -11,6 +11,7 @@
     "gen:images": "node scripts/generate-images.js"
   },
   "dependencies": {
+    "@paper-design/shaders-react": "^0.0.80",
     "@tailwindcss/postcss": "^4.3.3",
     "@vercel/speed-insights": "^2.0.0",
     "framer-motion": "^13.1.0",
