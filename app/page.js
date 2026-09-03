@@ -47,41 +47,6 @@ export default function Home() {
 
   return (
     <>
-      <Hero22 />
-
-      <section className="section-padding">
-        <div className="container">
-          <div className={styles.sectionHeader}>
-            <div>
-              <div className={styles.sectionTag}>O QUE FAZEMOS</div>
-              <h2 className={styles.sectionTitle}>Tudo que o seu digital precisa</h2>
-            </div>
-            <Button href="/servicos" variant="link">Ver todos os serviços →</Button>
-          </div>
-          
-          <div className={styles.cardsGrid}>
-            <Card 
-              type="service"
-              number="01"
-              title="UX/UI Design"
-              description="Interfaces que convertem. Criamos experiências intuitivas e bonitas que guiam seus usuários até a ação desejada com elegância."
-            />
-            <Card 
-              type="service"
-              number="02"
-              title="Desenvolvimento Web"
-              description="Sites institucionais, landing pages e aplicações web ultra rápidas. Performance real e código limpo."
-            />
-            <Card 
-              type="service"
-              number="03"
-              title="Automações & CRMs"
-              description="Chatbots de atendimento no WhatsApp com IA, integrações com CRM e fluxos que conectam suas ferramentas de vendas para você não perder nenhum lead."
-            />
-          </div>
-        </div>
-      </section>
-
       <section className="section-padding">
         <div className="container">
           <div className={styles.orbGrid}>
@@ -111,9 +76,9 @@ export default function Home() {
             </div>
             <Button href="/projetos" variant="link" aria-label="Ver todos os projetos">Ver todos →</Button>
           </div>
-          
+
           <div className={styles.cardsGrid}>
-            <Card 
+            <Card
               type="project"
               tag="DESTAQUE"
               title="Cavent Engenharia"
@@ -151,6 +116,41 @@ export default function Home() {
                 { value: '12 anos', label: 'de mercado' },
                 { value: '5 marcas', label: 'confiam nos equipamentos' }
               ]}
+            />
+          </div>
+        </div>
+      </section>
+
+      <Hero22 />
+
+      <section className="section-padding">
+        <div className="container">
+          <div className={styles.sectionHeader}>
+            <div>
+              <div className={styles.sectionTag}>O QUE FAZEMOS</div>
+              <h2 className={styles.sectionTitle}>Tudo que o seu digital precisa</h2>
+            </div>
+            <Button href="/servicos" variant="link">Ver todos os serviços →</Button>
+          </div>
+
+          <div className={styles.cardsGrid}>
+            <Card
+              type="service"
+              number="01"
+              title="UX/UI Design"
+              description="Interfaces que convertem. Criamos experiências intuitivas e bonitas que guiam seus usuários até a ação desejada com elegância."
+            />
+            <Card
+              type="service"
+              number="02"
+              title="Desenvolvimento Web"
+              description="Sites institucionais, landing pages e aplicações web construídos com performance real e código limpo."
+            />
+            <Card
+              type="service"
+              number="03"
+              title="Automações & CRMs"
+              description="Chatbots de atendimento no WhatsApp com IA, integrações com CRM e fluxos que conectam suas ferramentas de vendas para você não perder nenhum lead."
             />
           </div>
         </div>

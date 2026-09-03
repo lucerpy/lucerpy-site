@@ -16,6 +16,28 @@
   height: 80px;
 }
 
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.tagline {
+  display: none;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  padding-left: 12px;
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
+  white-space: nowrap;
+}
+
+@media (min-width: 640px) {
+  .tagline {
+    display: inline-block;
+  }
+}
+
 .nav {
   display: none;
 }

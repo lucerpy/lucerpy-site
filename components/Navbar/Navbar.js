@@ -21,7 +21,10 @@ export default function Navbar() {
   return (
     <header className={styles.header} style={{ viewTransitionName: 'site-header' }}>
       <div className={`container ${styles.navContainer}`}>
-        <Logo />
+        <div className={styles.brand}>
+          <Logo />
+          <span className={styles.tagline}>Tecnologia &amp; Design</span>
+        </div>
 
         <nav className={styles.nav}>
           {LINKS.map((link) => (

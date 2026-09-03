@@ -100,7 +100,7 @@ export const Section27Hero = () => {
             className="relative w-full text-balance text-center font-outfit text-[32px] min-[480px]:text-[40px] leading-[38px] min-[480px]:leading-[48px] font-bold tracking-[-0.8px] text-white ipad:text-[52px] ipad:leading-[57.6px] ipad:tracking-[-0.96px]"
             style={{ textShadow: "0 2px 16px rgba(0,0,0,0.7)" }}
           >
-            Seu digital no <span className="text-primary">próximo nível.</span>
+            Sites construídos pra carregar <span className="text-primary">rápido.</span>
           </h1>
 
           {/* No fade-in here either, same reason as the h1 above: this is
