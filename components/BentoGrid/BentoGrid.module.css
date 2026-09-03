@@ -4,6 +4,12 @@
   grid-template-rows: repeat(3, 1fr);
   gap: 12px;
   aspect-ratio: 16 / 9;
+  /* Framer Motion's layout animation briefly changes each cell's box
+     during the FLIP measurement, which Chrome's scroll anchoring reads
+     as "content above the viewport shifted" and compensates for by
+     nudging window scroll - this is what read as the grid "pulling" the
+     page scroll toward it on every reshuffle. */
+  overflow-anchor: none;
 }
 
 @media (max-width: 767px) {
