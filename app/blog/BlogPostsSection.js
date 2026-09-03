@@ -41,6 +41,7 @@ export default function BlogPostsSection({ posts }) {
             href={`/blog/${post.slug}`}
             image={post.image}
             imagePlaceholder={post.gradient || "linear-gradient(45deg, #1e293b, #0f172a)"}
+            date={post.date}
           />
         ))}
 

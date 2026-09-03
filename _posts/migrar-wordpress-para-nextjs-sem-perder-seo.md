@@ -1,7 +1,7 @@
 ---
 title: "Como migrar seu site de WordPress para Next.js sem perder SEO"
 description: "Redirecionamentos, dados estruturados, sitemap e o que checar antes de trocar de tecnologia sem jogar fora anos de posicionamento no Google."
-date: "2026-08-24"
+date: "2026-08-25"
 tag: "TECNOLOGIA"
 image: "/blog/migrar-wordpress-para-nextjs.jpg"
 gradient: "linear-gradient(45deg, #1a2438, #0C0D11)"

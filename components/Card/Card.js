@@ -14,7 +14,8 @@ export default function Card({
   image,
   imagePlaceholder,
   href,
-  metrics
+  metrics,
+  date
 }) {
   const isService = type === 'service';
   // Cards without a real destination (service cards, concept projects with
@@ -79,7 +80,12 @@ export default function Card({
         
         <h3 className={styles.title}>{title}</h3>
         <p className={styles.description}>{description}</p>
-        
+        {date && (
+          <time dateTime={date} className={styles.date}>
+            {new Date(date).toLocaleDateString('pt-BR', { timeZone: 'UTC' })}
+          </time>
+        )}
+
         {metrics && (
           <div className={styles.metrics}>
             {metrics.map((metric, i) => (

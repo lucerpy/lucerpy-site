@@ -93,6 +93,14 @@
   line-height: 1.5;
 }
 
+.date {
+  display: block;
+  margin-top: 16px;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  opacity: 0.7;
+}
+
 .metrics {
   display: flex;
   gap: 24px;
