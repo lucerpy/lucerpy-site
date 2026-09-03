@@ -51,8 +51,8 @@ export default function Logo({ className }) {
       <motion.span
         key={spinKey}
         className={styles.logoStack}
-        initial={spinKey === 0 ? undefined : { rotateX: 0, rotateY: 0 }}
-        animate={spinKey === 0 ? undefined : { rotateX: 360, rotateY: 720 }}
+        initial={spinKey === 0 ? undefined : { rotateX: 0 }}
+        animate={spinKey === 0 ? undefined : { rotateX: 720 }}
         transition={{ duration: 1.4, ease: [0.65, 0, 0.35, 1] }}
       >
         {/* Resting state underneath: white letters, lime dot */}
