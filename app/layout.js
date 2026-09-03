@@ -105,8 +105,15 @@ const jsonLd = {
   ],
   "address": {
     "@type": "PostalAddress",
+    "addressLocality": "Indaiatuba",
+    "addressRegion": "SP",
     "addressCountry": "BR"
   },
+  "areaServed": [
+    { "@type": "City", "name": "Indaiatuba" },
+    { "@type": "City", "name": "Campinas" },
+    { "@type": "AdministrativeArea", "name": "Região Metropolitana de Campinas" }
+  ],
   "contactPoint": {
     "@type": "ContactPoint",
     "email": "lucerpy@lucerpy.com.br",

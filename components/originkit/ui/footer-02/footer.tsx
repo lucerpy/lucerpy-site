@@ -112,7 +112,7 @@ export function Footer() {
           <div className="flex flex-col items-center gap-2 text-center ipad:gap-4 desktop-sm:items-start desktop-sm:text-left">
             <Logo />
             <p className="font-sans text-[14px] leading-[1.4] text-[#c2c2c2]">
-              Agência digital focada em UX/UI, desenvolvimento web e automações que entregam resultado real.
+              Agência digital em Indaiatuba, atendendo empresas de Campinas e região com UX/UI, desenvolvimento web e automações.
             </p>
           </div>
         </div>

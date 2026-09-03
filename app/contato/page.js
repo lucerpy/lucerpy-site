@@ -7,13 +7,13 @@ const HERO_IMAGES = ['/contato/hero-1.jpg', '/contato/hero-2.jpg', '/contato/her
 
 export const metadata = {
   title: 'Contato',
-  description: 'Fale com a Lucerpy sobre o seu projeto. Preencha o formulário ou entre em contato direto por e-mail e redes sociais.',
+  description: 'Fale com a Lucerpy, agência digital em Indaiatuba que atende Campinas e região. Preencha o formulário ou entre em contato direto por e-mail e redes sociais.',
   alternates: {
     canonical: 'https://lucerpy.com.br/contato',
   },
   openGraph: {
     title: 'Contato | Lucerpy',
-    description: 'Fale com a Lucerpy sobre o seu projeto. Preencha o formulário ou entre em contato direto por e-mail e redes sociais.',
+    description: 'Fale com a Lucerpy, agência digital em Indaiatuba que atende Campinas e região. Preencha o formulário ou entre em contato direto por e-mail e redes sociais.',
     url: 'https://lucerpy.com.br/contato',
   },
 };
@@ -66,6 +66,11 @@ export default function Contato() {
                   <img src="/originkit/footer-02/instagram.svg" alt="" width={20} height={20} className={styles.infoIcon} aria-hidden="true" />
                   @lucerpy.agencia
                 </a>
+              </div>
+
+              <div className={styles.infoBlock}>
+                <span className={styles.infoLabel}>Localização</span>
+                <p>Indaiatuba, SP — atendemos empresas de Campinas e região.</p>
               </div>
 
               <div className={styles.infoBlock}>
