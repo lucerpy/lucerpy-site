@@ -20,13 +20,13 @@ const BENTO_IMAGES = [
 
 export const metadata = {
   title: 'Quem Somos',
-  description: 'Uma equipe movida por resultados reais. Conheça a Lucerpy e nossos valores.',
+  description: 'Uma equipe movida por resultados reais. Conheça a Lucerpy, agência digital sediada em Indaiatuba que atende Campinas e região.',
   alternates: {
     canonical: 'https://lucerpy.com.br/quem-somos',
   },
   openGraph: {
     title: 'Quem Somos | Lucerpy',
-    description: 'Uma equipe movida por resultados reais. Conheça a Lucerpy e nossos valores.',
+    description: 'Uma equipe movida por resultados reais. Conheça a Lucerpy, agência digital sediada em Indaiatuba que atende Campinas e região.',
     url: 'https://lucerpy.com.br/quem-somos',
   },
 };
@@ -60,6 +60,7 @@ export default function QuemSomos() {
               <p>A Lucerpy nasceu da convicção de que o digital pode ser mais humano, estratégico e eficaz. Não acreditamos em fórmulas prontas.</p>
               <p>Cada projeto começa com escuta ativa: entendemos o negócio, o público e os objetivos antes de criar qualquer pixel ou linha de código.</p>
               <p>O resultado é um produto digital que não só parece bonito — mas que converte visitantes em clientes e ideias em receita concreta.</p>
+              <p>Somos sediados em Indaiatuba (SP) e atendemos empresas de Campinas e região — 100% remoto, o que significa reunião por chamada de vídeo e nenhum tempo perdido em deslocamento, mas com a mesma proximidade de quem entende o negócio de perto.</p>
             </div>
             <Button href="/projetos" variant="primary">Ver nosso portfólio →</Button>
           </div>
