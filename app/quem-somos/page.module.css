@@ -190,7 +190,6 @@
 }
 
 .sectionTitle {
-  font-size: 1.75rem;
   margin-bottom: 32px;
 }
 
@@ -199,7 +198,7 @@
   flex-direction: column;
   gap: 24px;
   color: var(--color-text-muted);
-  font-size: 1.05rem;
+  font-size: var(--text-body);
   margin-bottom: 40px;
 }
 

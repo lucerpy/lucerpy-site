@@ -17,6 +17,18 @@
   --font-heading: var(--font-outfit), sans-serif;
   --font-body: var(--font-inter), sans-serif;
 
+  /* Type scale - one h1/h2/h3/body size for the whole site instead of each
+     page inventing its own. Responsive steps at the same 480px/768px
+     breakpoints already used everywhere else (mobile / tablet / desktop). */
+  --text-h1-sm: 2rem;      /* 32px */
+  --text-h1-md: 2.5rem;    /* 40px */
+  --text-h1-lg: 3.25rem;   /* 52px */
+  --text-h2-sm: 1.75rem;   /* 28px */
+  --text-h2-md: 2rem;      /* 32px */
+  --text-h2-lg: 2.25rem;   /* 36px */
+  --text-h3: 1.25rem;      /* 20px */
+  --text-body: 1.125rem;   /* 18px */
+
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 16px;
@@ -52,6 +64,7 @@
     background-color: var(--color-bg);
     color: var(--color-text);
     font-family: var(--font-body);
+    font-size: var(--text-body);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
   }
@@ -61,6 +74,20 @@
     font-weight: 700;
     line-height: 1.2;
     letter-spacing: -0.02em;
+  }
+
+  h1 { font-size: var(--text-h1-sm); }
+  h2 { font-size: var(--text-h2-sm); }
+  h3 { font-size: var(--text-h3); }
+
+  @media (min-width: 480px) {
+    h1 { font-size: var(--text-h1-md); }
+    h2 { font-size: var(--text-h2-md); }
+  }
+
+  @media (min-width: 768px) {
+    h1 { font-size: var(--text-h1-lg); }
+    h2 { font-size: var(--text-h2-lg); }
   }
 
   a {

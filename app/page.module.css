@@ -24,7 +24,7 @@
   flex-direction: column;
   gap: 24px;
   color: var(--color-text-muted);
-  font-size: 1.05rem;
+  font-size: var(--text-body);
   margin: 24px 0 32px;
 }
 
@@ -284,14 +284,14 @@
 }
 
 .faqQuestion {
-  font-size: 1rem;
+  font-size: var(--text-body);
   font-weight: 600;
   color: var(--color-text);
   margin-bottom: 12px;
 }
 
 .faqAnswer {
-  font-size: 0.95rem;
+  font-size: var(--text-body);
   color: var(--color-text-muted);
   line-height: 1.6;
 }
@@ -316,7 +316,7 @@
 }
 
 .orbText {
-  font-size: 1.05rem;
+  font-size: var(--text-body);
   color: var(--color-text-muted);
   line-height: 1.7;
   margin: 24px 0 32px;

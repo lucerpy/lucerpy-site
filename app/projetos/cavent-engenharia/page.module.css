@@ -43,15 +43,8 @@
 }
 
 .heroTitle {
-  font-size: 3rem;
   margin-bottom: 24px;
   line-height: 1.1;
-}
-
-@media (min-width: 768px) {
-  .heroTitle {
-    font-size: 4rem;
-  }
 }
 
 .heroDescription {
@@ -106,7 +99,6 @@
 }
 
 .galleryHeader h2 {
-  font-size: 2rem;
   margin-bottom: 16px;
 }
 
@@ -217,7 +209,6 @@
 }
 
 .ctaTitle {
-  font-size: 3rem;
   margin-bottom: 16px;
 }
 

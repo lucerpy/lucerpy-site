@@ -87,7 +87,6 @@
 }
 
 .sectionTitle {
-  font-size: 2.5rem;
   margin-bottom: 16px;
 }
 
@@ -187,7 +186,7 @@
 }
 
 .processStep p {
-  font-size: 0.875rem;
+  font-size: var(--text-body);
   color: var(--color-text-muted);
 }
 
