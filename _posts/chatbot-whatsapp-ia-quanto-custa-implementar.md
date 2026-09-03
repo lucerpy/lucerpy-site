@@ -1,7 +1,7 @@
 ---
 title: "Chatbot de IA no WhatsApp: como funciona e quanto custa implementar"
 description: "Menu fixo, IA generativa ou os dois juntos? Entenda os modelos de chatbot para WhatsApp, o que muda o custo e como decidir o que faz sentido pro seu negócio."
-date: "2026-08-25"
+date: "2026-09-02"
 tag: "AUTOMAÇÃO"
 image: "/blog/chatbot-whatsapp-ia-custo.jpg"
 gradient: "linear-gradient(45deg, #14321f, #0C0D11)"

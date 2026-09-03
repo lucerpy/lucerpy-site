@@ -1,7 +1,7 @@
 ---
 title: "Checklist completo do Perfil da Empresa no Google para aparecer nas buscas locais"
 description: "16 itens práticos para revisar hoje mesmo — categoria, fotos, horário, avaliações e o que a maioria das empresas deixa incompleto sem perceber."
-date: "2026-08-25"
+date: "2026-09-02"
 tag: "SEO"
 image: "/blog/perfil-empresa-google-checklist.jpg"
 gradient: "linear-gradient(45deg, #14321f, #1a0a0a)"
