@@ -6,7 +6,7 @@ import ShareButtons from './ShareButtons';
 
 const AUTHOR = {
   name: 'Eduardo Serpa',
-  photo: '/team/eduardo-serpa.png',
+  photo: '/team/eduardo-serpa-v2.png',
 };
 
 export async function generateMetadata({ params }) {

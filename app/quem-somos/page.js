@@ -84,7 +84,7 @@ export default function QuemSomos() {
             <div className={styles.teamCard}>
               <div className={styles.teamPhotoWrap}>
                 <Image
-                  src="/team/eduardo-serpa.png"
+                  src="/team/eduardo-serpa-v2.png"
                   alt="Eduardo Serpa"
                   width={320}
                   height={320}
