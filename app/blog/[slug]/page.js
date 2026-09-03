@@ -108,8 +108,8 @@ export default async function Post({ params }) {
               <div className={styles.authorName}>{AUTHOR.name}</div>
               <div className={styles.meta}>
                 Publicado em {new Date(postData.date).toLocaleDateString('pt-BR', { timeZone: 'UTC' })}
-                {postData.updated && postData.updated !== postData.date && (
-                  <> · Atualizado em {new Date(postData.updated).toLocaleDateString('pt-BR', { timeZone: 'UTC' })}</>
+                {postData.updated && (
+                  <> · Atualizado em {postData.updated.slice(0, 10).split('-').reverse().join('/')}</>
                 )}
               </div>
             </div>
