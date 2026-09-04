@@ -18,14 +18,15 @@
   --font-body: var(--font-inter), sans-serif;
 
   /* Type scale - one h1/h2/h3/body size for the whole site instead of each
-     page inventing its own. Responsive steps at the same 480px/768px
-     breakpoints already used everywhere else (mobile / tablet / desktop). */
-  --text-h1-sm: 2rem;      /* 32px */
-  --text-h1-md: 2.5rem;    /* 40px */
-  --text-h1-lg: 3.25rem;   /* 52px */
+     page inventing its own. Anchored on the home hero's h1 (72px desktop),
+     which uses the 768px/1280px breakpoints from its own Tailwind classes -
+     every other h1/h2 on the site follows that same anchor and steps. */
+  --text-h1-sm: 2.5rem;    /* 40px */
+  --text-h1-md: 3.75rem;   /* 60px @768px */
+  --text-h1-lg: 4.5rem;    /* 72px @1280px */
   --text-h2-sm: 1.75rem;   /* 28px */
-  --text-h2-md: 2rem;      /* 32px */
-  --text-h2-lg: 2.25rem;   /* 36px */
+  --text-h2-md: 2.25rem;   /* 36px @768px */
+  --text-h2-lg: 2.75rem;   /* 44px @1280px */
   --text-h3: 1.25rem;      /* 20px */
   --text-body: 1.125rem;   /* 18px */
 

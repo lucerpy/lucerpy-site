@@ -4,6 +4,7 @@ import Card from '@/components/Card/Card';
 import Link from 'next/link';
 import LiquidMetalHero from '@/components/originkit/liquid-metal-hero';
 import { LogoMarquee } from '@/components/originkit/ui/hero-22/logo-marquee';
+import '@/components/originkit/hero-22.css';
 import CtaBackground from '@/components/CtaBackground/CtaBackground';
 import ParticleSphere from '@/components/originkit/ui/particlesphere-lazy';
 import { getSortedPostsData } from '@/lib/blog';
