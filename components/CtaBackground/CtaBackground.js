@@ -35,6 +35,15 @@ export default function CtaBackground({ variant }) {
   const webpSrc = WEBP_BY_VARIANT[variant];
   const [loaded, setLoaded] = useState(false);
 
+  // If the image is already in the browser cache, the load event can fire
+  // before React finishes attaching onLoad (or has already fired by the
+  // time this node mounts) - leaving `loaded` stuck false and the image
+  // stuck at its pre-pop scale(0.92) forever. Checking .complete on the
+  // ref covers that race; onLoad still handles the normal first-visit case.
+  const handleImageRef = (img) => {
+    if (img && img.complete) setLoaded(true);
+  };
+
   if (!avifSrc) {
     return <div className={styles.fallback} aria-hidden="true" />;
   }
@@ -44,6 +53,7 @@ export default function CtaBackground({ variant }) {
       <picture>
         <source srcSet={avifSrc} type="image/avif" />
         <img
+          ref={handleImageRef}
           src={webpSrc}
           alt=""
           // Now that these are 10-54KB (AVIF), the native lazy-load

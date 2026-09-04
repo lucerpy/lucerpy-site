@@ -81,12 +81,12 @@
   h2 { font-size: var(--text-h2-sm); }
   h3 { font-size: var(--text-h3); }
 
-  @media (min-width: 480px) {
+  @media (min-width: 768px) {
     h1 { font-size: var(--text-h1-md); }
     h2 { font-size: var(--text-h2-md); }
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 1280px) {
     h1 { font-size: var(--text-h1-lg); }
     h2 { font-size: var(--text-h2-lg); }
   }
