@@ -1,7 +1,7 @@
 ---
 title: "Seu site gera lead, mas ele se perde depois? O problema é a integração"
 description: "Formulário respondido por e-mail avulso é lead que se perde. Veja como a integração entre site e CRM muda isso e o que configurar primeiro."
-date: "2026-09-02"
+date: "2026-09-03"
 tag: "AUTOMAÇÃO"
 image: "/blog/site-sem-crm-perde-lead.jpg"
 gradient: "linear-gradient(45deg, #0a2540, #1a0a0a)"

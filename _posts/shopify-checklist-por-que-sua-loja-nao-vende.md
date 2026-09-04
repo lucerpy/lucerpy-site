@@ -1,7 +1,7 @@
 ---
 title: "Checklist: por que sua loja Shopify não está vendendo"
 description: "Catálogo bonito não é sinônimo de loja que converte. Veja os pontos técnicos e de UX que mais derrubam a taxa de conversão em lojas Shopify."
-date: "2026-09-02"
+date: "2026-09-03"
 tag: "E-COMMERCE"
 image: "/blog/shopify-checklist-nao-vende.jpg"
 gradient: "linear-gradient(45deg, #14321f, #0a2540)"
