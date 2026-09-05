@@ -115,14 +115,14 @@ export default function Home() {
             <Card
               type="project"
               tag="DESTAQUE"
-              title="Torqx"
-              description="Loja Shopify internacional para a Torqx Testing Equipment, distribuidora exclusiva da AW Dynamometer na América Latina."
-              image="/cases/torqx/torqx-top.jpg"
-              imagePlaceholder="linear-gradient(45deg, #7A1230, #0C0D11)"
-              href="/projetos/torqx"
+              title="Conceito Metais"
+              description="Rebranding e novo e-commerce para fabricante de barras de apoio e acessórios de acessibilidade certificados na NBR 9050, com fluxo de compra B2B e B2C."
+              image="/cases/conceito-metais/home-hero.jpeg"
+              imagePlaceholder="linear-gradient(45deg, #3A2A0A, #0C0D11)"
+              href="/projetos/conceito-metais"
               metrics={[
-                { value: '12 anos', label: 'de mercado' },
-                { value: '5 marcas', label: 'confiam nos equipamentos' }
+                { value: '11', label: 'páginas mapeadas' },
+                { value: 'NBR 9050', label: 'conformidade técnica' }
               ]}
             />
           </div>

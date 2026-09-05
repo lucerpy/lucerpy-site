@@ -30,7 +30,7 @@ const ALL_PROJECTS = [
     imagePlaceholder: 'linear-gradient(45deg, #3A2A0A, #0C0D11)',
     href: '/projetos/conceito-metais',
     metrics: [
-      { value: '11 páginas', label: 'mapeadas e desenhadas' },
+      { value: '11', label: 'páginas mapeadas' },
       { value: 'NBR 9050', label: 'conformidade técnica' }
     ],
   },
