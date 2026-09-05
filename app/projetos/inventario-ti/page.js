@@ -1,8 +1,7 @@
 import styles from './page.module.css';
-import Button from '@/components/Button/Button';
 import Link from 'next/link';
 import Image from 'next/image';
-import CtaBackground from '@/components/CtaBackground/CtaBackground';
+import CtaMarquee from '@/components/CtaMarquee/CtaMarquee';
 
 export const metadata = {
   title: 'Case Inventário de TI',
@@ -155,19 +154,21 @@ export default function InventarioTI() {
         </div>
       </section>
 
-      <section className={styles.ctaSection} id="contato">
-        <CtaBackground variant="inventario" />
-        <div className={styles.ctaOverlay} />
-        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-          <div className={styles.ctaContent}>
-            <h2 className={styles.ctaTitle}>Sua empresa também perde tempo com planilha?</h2>
-            <p className={styles.ctaDescription}>Sistemas internos como este resolvem dores específicas do seu negócio — vamos conversar sobre o que faria sentido pra você.</p>
-            <div className={styles.ctaButtons}>
-              <Button href="/contato" variant="secondary">Falar com a equipe →</Button>
-            </div>
-          </div>
-        </div>
-      </section>
+      <CtaMarquee
+        title="Sua empresa também perde tempo com planilha?"
+        description="Sistemas internos como este resolvem dores específicas do seu negócio — vamos conversar sobre o que faria sentido pra você."
+        buttonText="Falar com a equipe →"
+        buttonHref="/contato"
+        imagesTop={[
+          { src: '/cases/inventario/tela1.jpg', alt: 'Inventário de TI - Dashboard geral' },
+          { src: '/cases/inventario/tela2.jpg', alt: 'Inventário de TI - Gestão de ativos' },
+          { src: '/cases/inventario/tela3.jpg', alt: 'Inventário de TI - Kits de boas-vindas' },
+        ]}
+        imagesBottom={[
+          { src: '/cases/inventario/tela4.jpg', alt: 'Inventário de TI - Histórico e auditoria' },
+          { src: '/cases/inventario/tela5.jpg', alt: 'Inventário de TI - Versão mobile' },
+        ]}
+      />
     </article>
   );
 }

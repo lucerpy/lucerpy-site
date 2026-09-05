@@ -1,8 +1,7 @@
 import styles from './page.module.css';
-import Button from '@/components/Button/Button';
 import Link from 'next/link';
 import Image from 'next/image';
-import CtaBackground from '@/components/CtaBackground/CtaBackground';
+import CtaMarquee from '@/components/CtaMarquee/CtaMarquee';
 
 export const metadata = {
   title: 'Case GuiaLMS',
@@ -95,19 +94,20 @@ export default function GuiaLMS() {
         </div>
       </section>
 
-      <section className={styles.ctaSection} id="contato">
-        <CtaBackground variant="guialms" />
-        <div className={styles.ctaOverlay} />
-        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-          <div className={styles.ctaContent}>
-            <h2 className={styles.ctaTitle}>Seu conteúdo já trabalha por você?</h2>
-            <p className={styles.ctaDescription}>Um portal editorial bem estruturado educa, gera autoridade e converte — tudo ao mesmo tempo.</p>
-            <div className={styles.ctaButtons}>
-              <Button href="/contato" variant="secondary">Falar com a equipe →</Button>
-            </div>
-          </div>
-        </div>
-      </section>
+      <CtaMarquee
+        title="Seu conteúdo já trabalha por você?"
+        description="Um portal editorial bem estruturado educa, gera autoridade e converte — tudo ao mesmo tempo."
+        buttonText="Falar com a equipe →"
+        buttonHref="/contato"
+        imagesTop={[
+          { src: '/cases/guialms/guialms-home.jpg', alt: 'GuiaLMS - Página inicial' },
+          { src: '/cases/guialms/guialms-categories.jpg', alt: 'GuiaLMS - Categorias' },
+        ]}
+        imagesBottom={[
+          { src: '/cases/guialms/guialms-article.jpg', alt: 'GuiaLMS - Página de artigo' },
+          { src: '/cases/guialms/guialms-content.jpg', alt: 'GuiaLMS - Estrutura de conteúdo' },
+        ]}
+      />
     </article>
   );
 }

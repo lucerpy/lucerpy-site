@@ -1,8 +1,7 @@
 import styles from './page.module.css';
-import Button from '@/components/Button/Button';
 import Link from 'next/link';
 import Image from 'next/image';
-import CtaBackground from '@/components/CtaBackground/CtaBackground';
+import CtaMarquee from '@/components/CtaMarquee/CtaMarquee';
 
 export const metadata = {
   title: 'Case Torqx Testing Equipment',
@@ -155,19 +154,21 @@ export default function Torqx() {
         </div>
       </section>
 
-      <section className={styles.ctaSection} id="contato">
-        <CtaBackground variant="torqx" />
-        <div className={styles.ctaOverlay} />
-        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-          <div className={styles.ctaContent}>
-            <h2 className={styles.ctaTitle}>Seu catálogo técnico merece uma loja à altura?</h2>
-            <p className={styles.ctaDescription}>Produto complexo não precisa de site complicado — precisa de estrutura pensada pra quem decide com base em especificação, não em impulso.</p>
-            <div className={styles.ctaButtons}>
-              <Button href="/contato" variant="secondary">Falar com a equipe →</Button>
-            </div>
-          </div>
-        </div>
-      </section>
+      <CtaMarquee
+        title="Seu catálogo técnico merece uma loja à altura?"
+        description="Produto complexo não precisa de site complicado — precisa de estrutura pensada pra quem decide com base em especificação, não em impulso."
+        buttonText="Falar com a equipe →"
+        buttonHref="/contato"
+        imagesTop={[
+          { src: '/cases/torqx/torqx-top.jpg', alt: 'Torqx - Página inicial' },
+          { src: '/cases/torqx/torqx-check.jpg', alt: 'Torqx - Benefícios e características' },
+          { src: '/cases/torqx/torqx-bottom.jpg', alt: 'Torqx - Página de produto' },
+        ]}
+        imagesBottom={[
+          { src: '/cases/torqx/torqx-mid.jpg', alt: 'Torqx - Logos de clientes' },
+          { src: '/cases/torqx/torqx-form.jpg', alt: 'Torqx - Formulário de orçamento' },
+        ]}
+      />
     </article>
   );
 }

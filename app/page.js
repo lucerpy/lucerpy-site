@@ -5,7 +5,8 @@ import Link from 'next/link';
 import LiquidMetalHero from '@/components/originkit/liquid-metal-hero';
 import { LogoMarquee } from '@/components/originkit/ui/hero-22/logo-marquee';
 import '@/components/originkit/hero-22.css';
-import CtaBackground from '@/components/CtaBackground/CtaBackground';
+import CtaMarquee from '@/components/CtaMarquee/CtaMarquee';
+import { PORTFOLIO_IMAGES_TOP, PORTFOLIO_IMAGES_BOTTOM } from '@/components/CtaMarquee/portfolioImages';
 import ParticleSphere from '@/components/originkit/ui/particlesphere-lazy';
 import { getSortedPostsData } from '@/lib/blog';
 const faqs = [
@@ -249,20 +250,16 @@ export default function Home() {
         </div>
       </section>
 
-      <section className={styles.ctaSection} id="contato">
-        <CtaBackground variant="home" />
-        <div className={styles.ctaOverlay} />
-        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-          <div className={styles.ctaContent}>
-            <h2 className={styles.ctaTitle}>Pronto para o próximo<br/>nível?</h2>
-            <p className={styles.ctaDescription}>Vamos conversar sobre o seu projeto. A primeira call é por nossa conta.</p>
-            <div className={styles.ctaButtons}>
-              <Button href="/contato" variant="secondary">Falar com a Lucerpy →</Button>
-              <Button href="/projetos" variant="link">Ver portfólio</Button>
-            </div>
-          </div>
-        </div>
-      </section>
+      <CtaMarquee
+        title="Pronto para o próximo nível?"
+        description="Vamos conversar sobre o seu projeto. A primeira call é por nossa conta."
+        buttonText="Falar com a Lucerpy →"
+        buttonHref="/contato"
+        secondaryText="Ver portfólio"
+        secondaryHref="/projetos"
+        imagesTop={PORTFOLIO_IMAGES_TOP}
+        imagesBottom={PORTFOLIO_IMAGES_BOTTOM}
+      />
     </>
   );
 }

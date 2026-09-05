@@ -3,7 +3,8 @@ import Button from '@/components/Button/Button';
 import Card from '@/components/Card/Card';
 import Image from 'next/image';
 import HeroSlideshow from '@/components/HeroSlideshow/HeroSlideshow';
-import CtaBackground from '@/components/CtaBackground/CtaBackground';
+import CtaMarquee from '@/components/CtaMarquee/CtaMarquee';
+import { PORTFOLIO_IMAGES_TOP, PORTFOLIO_IMAGES_BOTTOM } from '@/components/CtaMarquee/portfolioImages';
 
 const HERO_IMAGES = ['/servicos/hero.jpg', '/servicos/hero-2.jpg', '/servicos/hero-3.jpg'];
 
@@ -129,19 +130,14 @@ export default function Servicos() {
         </div>
       </section>
 
-      <section className={styles.ctaSection} id="contato">
-        <CtaBackground variant="servicos" />
-        <div className={styles.ctaOverlay} />
-        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-          <div className={styles.ctaContent}>
-            <h2 className={styles.ctaTitle}>Pronto para começar?</h2>
-            <p className={styles.ctaDescription}>Vamos conversar sobre o seu projeto e encontrar a melhor solução juntos.</p>
-            <div className={styles.ctaButtons}>
-              <Button href="/contato" variant="secondary">Falar com a Lucerpy →</Button>
-            </div>
-          </div>
-        </div>
-      </section>
+      <CtaMarquee
+        title="Pronto para escolher o serviço certo?"
+        description="Vamos conversar sobre o seu projeto e encontrar, entre as seis frentes acima, a que faz sentido agora."
+        buttonText="Falar com a Lucerpy →"
+        buttonHref="/contato"
+        imagesTop={PORTFOLIO_IMAGES_TOP}
+        imagesBottom={PORTFOLIO_IMAGES_BOTTOM}
+      />
     </>
   );
 }

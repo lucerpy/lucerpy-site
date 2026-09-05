@@ -1,8 +1,7 @@
 import styles from './page.module.css';
-import Button from '@/components/Button/Button';
 import Link from 'next/link';
 import Image from 'next/image';
-import CtaBackground from '@/components/CtaBackground/CtaBackground';
+import CtaMarquee from '@/components/CtaMarquee/CtaMarquee';
 
 export const metadata = {
   title: 'Case Eduardo Serpa',
@@ -168,19 +167,22 @@ export default function EduardoSerpa() {
         </div>
       </section>
 
-      <section className={styles.ctaSection} id="contato">
-        <CtaBackground variant="eduardo-serpa" />
-        <div className={styles.ctaOverlay} />
-        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-          <div className={styles.ctaContent}>
-            <h2 className={styles.ctaTitle}>Precisa de um portfólio que prove o que você sabe fazer?</h2>
-            <p className={styles.ctaDescription}>Currículo em página não precisa ser PDF estático — pode ser prova de trabalho de verdade.</p>
-            <div className={styles.ctaButtons}>
-              <Button href="/contato" variant="secondary">Falar com a equipe →</Button>
-            </div>
-          </div>
-        </div>
-      </section>
+      <CtaMarquee
+        title="Precisa de um portfólio que prove o que você sabe fazer?"
+        description="Currículo em página não precisa ser PDF estático — pode ser prova de trabalho de verdade."
+        buttonText="Falar com a equipe →"
+        buttonHref="/contato"
+        imagesTop={[
+          { src: '/cases/eduardo-serpa/hero.jpeg', alt: 'Eduardo Serpa - Seção inicial' },
+          { src: '/cases/eduardo-serpa/stack.jpeg', alt: 'Eduardo Serpa - Stack técnica' },
+          { src: '/cases/eduardo-serpa/experiencia.jpeg', alt: 'Eduardo Serpa - Experiência' },
+        ]}
+        imagesBottom={[
+          { src: '/cases/eduardo-serpa/projetos.jpeg', alt: 'Eduardo Serpa - Projetos' },
+          { src: '/cases/eduardo-serpa/automacoes.jpeg', alt: 'Eduardo Serpa - Automações' },
+          { src: '/cases/eduardo-serpa/contato.jpeg', alt: 'Eduardo Serpa - Contato' },
+        ]}
+      />
     </article>
   );
 }

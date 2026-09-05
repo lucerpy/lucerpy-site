@@ -3,7 +3,8 @@ import Button from '@/components/Button/Button';
 import BlogPostsSection from './BlogPostsSection';
 import { getSortedPostsData } from '@/lib/blog';
 import HeroSlideshow from '@/components/HeroSlideshow/HeroSlideshow';
-import CtaBackground from '@/components/CtaBackground/CtaBackground';
+import CtaMarquee from '@/components/CtaMarquee/CtaMarquee';
+import { PORTFOLIO_IMAGES_TOP, PORTFOLIO_IMAGES_BOTTOM } from '@/components/CtaMarquee/portfolioImages';
 import NewsletterForm from './NewsletterForm';
 
 const HERO_IMAGES = ['/blog-hero/1.jpg', '/blog-hero/2.jpg', '/blog-hero/3.jpg'];
@@ -57,17 +58,14 @@ export default function Blog() {
         </div>
       </section>
 
-      <section className={styles.ctaSection} id="newsletter">
-        <CtaBackground variant="blog" />
-        <div className={styles.ctaOverlay} />
-        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-          <div className={styles.ctaContent}>
-            <h2 className={styles.ctaTitle}>Quer receber conteúdo<br/>toda semana?</h2>
-            <p className={styles.ctaDescription}>Assine a newsletter e receba insights exclusivos sobre design e digital.</p>
-            <NewsletterForm />
-          </div>
-        </div>
-      </section>
+      <CtaMarquee
+        id="newsletter"
+        title="Quer receber conteúdo toda semana?"
+        description="Assine a newsletter e receba insights exclusivos sobre design e digital."
+        action={<NewsletterForm />}
+        imagesTop={PORTFOLIO_IMAGES_TOP}
+        imagesBottom={PORTFOLIO_IMAGES_BOTTOM}
+      />
     </>
   );
 }

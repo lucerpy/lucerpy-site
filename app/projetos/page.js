@@ -2,7 +2,8 @@ import styles from './page.module.css';
 import Button from '@/components/Button/Button';
 import ProjectsSection from './ProjectsSection';
 import HeroSlideshow from '@/components/HeroSlideshow/HeroSlideshow';
-import CtaBackground from '@/components/CtaBackground/CtaBackground';
+import CtaMarquee from '@/components/CtaMarquee/CtaMarquee';
+import { PORTFOLIO_IMAGES_TOP, PORTFOLIO_IMAGES_BOTTOM } from '@/components/CtaMarquee/portfolioImages';
 
 const HERO_IMAGES = ['/projetos-hero/1.jpg', '/projetos-hero/2.jpg', '/projetos-hero/3.jpg'];
 
@@ -48,19 +49,14 @@ export default function Projetos() {
         </div>
       </section>
 
-      <section className={styles.ctaSection} id="contato">
-        <CtaBackground variant="projetos" />
-        <div className={styles.ctaOverlay} />
-        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-          <div className={styles.ctaContent}>
-            <h2 className={styles.ctaTitle}>Quer fazer parte desse<br/>portfólio?</h2>
-            <p className={styles.ctaDescription}>Vamos criar algo incrível juntos.</p>
-            <div className={styles.ctaButtons}>
-              <Button href="/contato" variant="secondary">Iniciar projeto →</Button>
-            </div>
-          </div>
-        </div>
-      </section>
+      <CtaMarquee
+        title="Quer fazer parte desse portfólio?"
+        description="Vamos criar algo incrível juntos — o próximo case pode ser o seu."
+        buttonText="Iniciar projeto →"
+        buttonHref="/contato"
+        imagesTop={PORTFOLIO_IMAGES_TOP}
+        imagesBottom={PORTFOLIO_IMAGES_BOTTOM}
+      />
     </>
   );
 }

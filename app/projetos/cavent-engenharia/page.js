@@ -1,8 +1,7 @@
 import styles from './page.module.css';
-import Button from '@/components/Button/Button';
 import Link from 'next/link';
 import Image from 'next/image';
-import CtaBackground from '@/components/CtaBackground/CtaBackground';
+import CtaMarquee from '@/components/CtaMarquee/CtaMarquee';
 
 export const metadata = {
   title: 'Case Cavent Engenharia',
@@ -155,19 +154,21 @@ export default function CaventEngenharia() {
         </div>
       </section>
 
-      <section className={styles.ctaSection} id="contato">
-        <CtaBackground variant="cavent" />
-        <div className={styles.ctaOverlay} />
-        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-          <div className={styles.ctaContent}>
-            <h2 className={styles.ctaTitle}>Quer resultados como este?</h2>
-            <p className={styles.ctaDescription}>Vamos conversar sobre as metas da sua empresa e como o design pode te ajudar a alcançá-las.</p>
-            <div className={styles.ctaButtons}>
-              <Button href="/contato" variant="secondary">Falar com a equipe →</Button>
-            </div>
-          </div>
-        </div>
-      </section>
+      <CtaMarquee
+        title="Quer resultados como este?"
+        description="Vamos conversar sobre as metas da sua empresa e como o design pode te ajudar a alcançá-las."
+        buttonText="Falar com a equipe →"
+        buttonHref="/contato"
+        imagesTop={[
+          { src: '/cases/cavent/tela1.jpeg', alt: 'Cavent Engenharia - Página inicial' },
+          { src: '/cases/cavent/tela2.jpeg', alt: 'Cavent Engenharia - Comparativo de mercado' },
+          { src: '/cases/cavent/tela3.jpeg', alt: 'Cavent Engenharia - Serviços' },
+        ]}
+        imagesBottom={[
+          { src: '/cases/cavent/tela4.jpeg', alt: 'Cavent Engenharia - Portfólio de projetos' },
+          { src: '/cases/cavent/tela5.jpeg', alt: 'Cavent Engenharia - Linha do tempo' },
+        ]}
+      />
     </article>
   );
 }

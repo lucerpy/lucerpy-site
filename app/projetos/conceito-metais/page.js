@@ -1,8 +1,7 @@
 import styles from './page.module.css';
-import Button from '@/components/Button/Button';
 import Link from 'next/link';
 import Image from 'next/image';
-import CtaBackground from '@/components/CtaBackground/CtaBackground';
+import CtaMarquee from '@/components/CtaMarquee/CtaMarquee';
 
 export const metadata = {
   title: 'Case Conceito Metais',
@@ -235,19 +234,24 @@ export default function ConceitoMetais() {
         </div>
       </section>
 
-      <section className={styles.ctaSection} id="contato">
-        <CtaBackground variant="conceito-metais" />
-        <div className={styles.ctaOverlay} />
-        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-          <div className={styles.ctaContent}>
-            <h2 className={styles.ctaTitle}>Seu produto técnico também merece uma marca à altura?</h2>
-            <p className={styles.ctaDescription}>Rebranding e e-commerce sob medida, pensados para quem compra com base em especificação — não só em preço.</p>
-            <div className={styles.ctaButtons}>
-              <Button href="/contato" variant="secondary">Falar com a equipe →</Button>
-            </div>
-          </div>
-        </div>
-      </section>
+      <CtaMarquee
+        title="Seu produto técnico também merece uma marca à altura?"
+        description="Rebranding e e-commerce sob medida, pensados para quem compra com base em especificação — não só em preço."
+        buttonText="Falar com a equipe →"
+        buttonHref="/contato"
+        imagesTop={[
+          { src: '/cases/conceito-metais/home-hero.jpeg', alt: 'Conceito Metais - Página inicial' },
+          { src: '/cases/conceito-metais/colecao.jpeg', alt: 'Conceito Metais - Coleção' },
+          { src: '/cases/conceito-metais/produto.jpeg', alt: 'Conceito Metais - Página de produto' },
+          { src: '/cases/conceito-metais/obras.jpeg', alt: 'Conceito Metais - Obras finalizadas' },
+        ]}
+        imagesBottom={[
+          { src: '/cases/conceito-metais/sobre.jpeg', alt: 'Conceito Metais - Sobre a empresa' },
+          { src: '/cases/conceito-metais/nbr9050.jpeg', alt: 'Conceito Metais - Guia NBR 9050' },
+          { src: '/cases/conceito-metais/blog.jpeg', alt: 'Conceito Metais - Blog' },
+          { src: '/cases/conceito-metais/contato.jpeg', alt: 'Conceito Metais - Contato' },
+        ]}
+      />
     </article>
   );
 }

@@ -4,7 +4,8 @@ import Card from '@/components/Card/Card';
 import Image from 'next/image';
 import HeroSlideshow from '@/components/HeroSlideshow/HeroSlideshow';
 import BentoGrid from '@/components/BentoGrid/BentoGrid';
-import CtaBackground from '@/components/CtaBackground/CtaBackground';
+import CtaMarquee from '@/components/CtaMarquee/CtaMarquee';
+import { PORTFOLIO_IMAGES_TOP, PORTFOLIO_IMAGES_BOTTOM } from '@/components/CtaMarquee/portfolioImages';
 
 const HERO_IMAGES = ['/quem-somos/hero-1.jpg', '/quem-somos/hero-2.jpg', '/quem-somos/hero-3.jpg'];
 
@@ -197,19 +198,14 @@ export default function QuemSomos() {
         </div>
       </section>
 
-      <section className={styles.ctaSection} id="contato">
-        <CtaBackground variant="quemSomos" />
-        <div className={styles.ctaOverlay} />
-        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-          <div className={styles.ctaContent}>
-            <h2 className={styles.ctaTitle}>Vamos trabalhar juntos?</h2>
-            <p className={styles.ctaDescription}>Conta pra gente o que você precisa. A primeira conversa é por nossa conta.</p>
-            <div className={styles.ctaButtons}>
-              <Button href="/contato" variant="secondary">Agendar conversa →</Button>
-            </div>
-          </div>
-        </div>
-      </section>
+      <CtaMarquee
+        title="Vamos trabalhar juntos?"
+        description="Agora que você já conhece a equipe, conta pra gente o que você precisa. A primeira conversa é por nossa conta."
+        buttonText="Agendar conversa →"
+        buttonHref="/contato"
+        imagesTop={PORTFOLIO_IMAGES_TOP}
+        imagesBottom={PORTFOLIO_IMAGES_BOTTOM}
+      />
     </>
   );
 }

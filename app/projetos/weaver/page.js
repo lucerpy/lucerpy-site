@@ -1,8 +1,7 @@
 import styles from './page.module.css';
-import Button from '@/components/Button/Button';
 import Link from 'next/link';
 import Image from 'next/image';
-import CtaBackground from '@/components/CtaBackground/CtaBackground';
+import CtaMarquee from '@/components/CtaMarquee/CtaMarquee';
 
 export const metadata = {
   title: 'Case Weaver',
@@ -155,19 +154,21 @@ export default function Weaver() {
         </div>
       </section>
 
-      <section className={styles.ctaSection} id="contato">
-        <CtaBackground variant="weaver" />
-        <div className={styles.ctaOverlay} />
-        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-          <div className={styles.ctaContent}>
-            <h2 className={styles.ctaTitle}>Sua marca merece essa autenticidade?</h2>
-            <p className={styles.ctaDescription}>Vamos conversar sobre como construir um e-commerce que vende identidade, não só produto.</p>
-            <div className={styles.ctaButtons}>
-              <Button href="/contato" variant="secondary">Falar com a equipe →</Button>
-            </div>
-          </div>
-        </div>
-      </section>
+      <CtaMarquee
+        title="Sua marca merece essa autenticidade?"
+        description="Vamos conversar sobre como construir um e-commerce que vende identidade, não só produto."
+        buttonText="Falar com a equipe →"
+        buttonHref="/contato"
+        imagesTop={[
+          { src: '/cases/weaver/tela1.jpg', alt: 'Weaver - Página inicial' },
+          { src: '/cases/weaver/tela2.jpg', alt: 'Weaver - A voz das ruas' },
+          { src: '/cases/weaver/tela3.jpg', alt: 'Weaver - Curadoria lifestyle' },
+        ]}
+        imagesBottom={[
+          { src: '/cases/weaver/tela4.jpg', alt: 'Weaver - Catálogo de shapes' },
+          { src: '/cases/weaver/tela5.jpg', alt: 'Weaver - Blog de cultura street' },
+        ]}
+      />
     </article>
   );
 }

@@ -1,8 +1,7 @@
 import styles from './page.module.css';
-import Button from '@/components/Button/Button';
 import Link from 'next/link';
 import Image from 'next/image';
-import CtaBackground from '@/components/CtaBackground/CtaBackground';
+import CtaMarquee from '@/components/CtaMarquee/CtaMarquee';
 
 export const metadata = {
   title: 'Case NK3IT',
@@ -155,19 +154,21 @@ export default function NK3IT() {
         </div>
       </section>
 
-      <section className={styles.ctaSection} id="contato">
-        <CtaBackground variant="nk3it" />
-        <div className={styles.ctaOverlay} />
-        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-          <div className={styles.ctaContent}>
-            <h2 className={styles.ctaTitle}>Sua empresa precisa transmitir essa confiança?</h2>
-            <p className={styles.ctaDescription}>Vamos conversar sobre como construir um site institucional que vende autoridade técnica.</p>
-            <div className={styles.ctaButtons}>
-              <Button href="/contato" variant="secondary">Falar com a equipe →</Button>
-            </div>
-          </div>
-        </div>
-      </section>
+      <CtaMarquee
+        title="Sua empresa precisa transmitir essa confiança?"
+        description="Vamos conversar sobre como construir um site institucional que vende autoridade técnica."
+        buttonText="Falar com a equipe →"
+        buttonHref="/contato"
+        imagesTop={[
+          { src: '/cases/nk3it/tela1.jpg', alt: 'NK3IT - Página inicial' },
+          { src: '/cases/nk3it/tela2.jpg', alt: 'NK3IT - Resultados e estatísticas' },
+          { src: '/cases/nk3it/tela3.jpg', alt: 'NK3IT - Como trabalhamos' },
+        ]}
+        imagesBottom={[
+          { src: '/cases/nk3it/tela4.jpg', alt: 'NK3IT - Avaliações de clientes' },
+          { src: '/cases/nk3it/tela5.jpg', alt: 'NK3IT - Chamada final' },
+        ]}
+      />
     </article>
   );
 }
