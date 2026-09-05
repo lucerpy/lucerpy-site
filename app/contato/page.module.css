@@ -1,5 +1,5 @@
 .hero {
-  padding: 170px 24px 80px 24px;
+  padding: 168px 24px 80px 24px;
   text-align: left;
 }
 
@@ -15,7 +15,7 @@
   font-weight: 700;
   color: var(--color-accent);
   border: 1px solid rgba(232, 166, 89, 0.3);
-  padding: 6px 12px;
+  padding: 8px 12px;
   border-radius: 4px;
   margin-bottom: 24px;
   letter-spacing: 0.05em;
@@ -117,7 +117,7 @@
 .infoBlock {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
 }
 
 .infoLabel {
@@ -144,7 +144,7 @@
 .infoLink {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 
 .infoIcon {

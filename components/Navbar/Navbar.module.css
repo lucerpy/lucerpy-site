@@ -50,7 +50,7 @@
 }
 
 .navLink {
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   font-weight: 500;
   color: var(--color-text-muted);
   transition: color 0.2s ease;
@@ -164,8 +164,8 @@
 }
 
 .mobileNavLink {
-  padding: 14px 0;
-  font-size: 1.05rem;
+  padding: 16px 0;
+  font-size: 1rem;
   font-weight: 500;
   color: var(--color-text-muted);
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);

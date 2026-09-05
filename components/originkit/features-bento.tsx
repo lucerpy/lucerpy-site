@@ -21,8 +21,8 @@ export function FeaturesBento() {
         <div className={ICON_WRAP}>
           <Palette size={20} className="text-primary" />
         </div>
-        <h3 className="font-outfit text-[1.25rem] font-bold text-white">Design sob medida</h3>
-        <p className="mt-2 font-inter text-[0.95rem] leading-[1.6] text-[#A1A1AA]">
+        <h3 className="font-outfit text-[1.5rem] font-bold text-white">Design sob medida</h3>
+        <p className="mt-2 font-inter text-[1rem] leading-[1.6] text-[#A1A1AA]">
           Nada de template genérico com a cor trocada. Cada interface é desenhada pensando na sua marca, no seu público e no que precisa converter.
         </p>
       </div>
@@ -31,8 +31,8 @@ export function FeaturesBento() {
         <div className={ICON_WRAP}>
           <Zap size={20} className="text-primary" />
         </div>
-        <h3 className="font-outfit text-[1.25rem] font-bold text-white">Performance real</h3>
-        <p className="mt-2 font-inter text-[0.95rem] leading-[1.6] text-[#A1A1AA]">
+        <h3 className="font-outfit text-[1.5rem] font-bold text-white">Performance real</h3>
+        <p className="mt-2 font-inter text-[1rem] leading-[1.6] text-[#A1A1AA]">
           Código enxuto, sem plugin acumulado. Medimos Core Web Vitals de verdade, não só prometemos "site rápido" na conversa de venda.
         </p>
       </div>
@@ -41,8 +41,8 @@ export function FeaturesBento() {
         <div className={ICON_WRAP}>
           <MessageSquare size={20} className="text-primary" />
         </div>
-        <h3 className="font-outfit text-[1.25rem] font-bold text-white">Automação com IA</h3>
-        <p className="mt-2 font-inter text-[0.95rem] leading-[1.6] text-[#A1A1AA]">
+        <h3 className="font-outfit text-[1.5rem] font-bold text-white">Automação com IA</h3>
+        <p className="mt-2 font-inter text-[1rem] leading-[1.6] text-[#A1A1AA]">
           Chatbot de atendimento no WhatsApp e integrações que conectam suas ferramentas de vendas.
         </p>
       </div>
@@ -51,8 +51,8 @@ export function FeaturesBento() {
         <div className={ICON_WRAP}>
           <Search size={20} className="text-primary" />
         </div>
-        <h3 className="font-outfit text-[1.25rem] font-bold text-white">SEO técnico nativo</h3>
-        <p className="mt-2 font-inter text-[0.95rem] leading-[1.6] text-[#A1A1AA]">
+        <h3 className="font-outfit text-[1.5rem] font-bold text-white">SEO técnico nativo</h3>
+        <p className="mt-2 font-inter text-[1rem] leading-[1.6] text-[#A1A1AA]">
           Metadados, sitemap e dados estruturados desde a primeira linha de código — sem depender de plugin de SEO.
         </p>
       </div>
@@ -61,8 +61,8 @@ export function FeaturesBento() {
         <div className={ICON_WRAP}>
           <Users size={20} className="text-primary" />
         </div>
-        <h3 className="font-outfit text-[1.25rem] font-bold text-white">Suporte direto</h3>
-        <p className="mt-2 font-inter text-[0.95rem] leading-[1.6] text-[#A1A1AA]">
+        <h3 className="font-outfit text-[1.5rem] font-bold text-white">Suporte direto</h3>
+        <p className="mt-2 font-inter text-[1rem] leading-[1.6] text-[#A1A1AA]">
           Você fala com quem constrói, não com um atendente terceirizado lendo script.
         </p>
       </div>

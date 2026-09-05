@@ -99,7 +99,7 @@ export function Footer() {
           alone at the far right edge of a 2560px+ monitor with a canyon of
           empty space in the middle. mx-auto keeps the whole block centered
           once it hits that cap instead of hugging the left edge. */}
-      <div className="relative z-10 mx-auto flex w-full max-w-[1440px] flex-col gap-8 px-8 pt-10 pb-[280px] ipad:gap-12 ipad:px-12 ipad:pt-12 ipad:pb-[290px] desktop-sm:px-16 desktop-sm:pt-[72px] desktop-sm:pb-[280px]">
+      <div className="relative z-10 mx-auto flex w-full max-w-[1440px] flex-col gap-8 px-8 pt-10 pb-[280px] ipad:gap-12 ipad:px-12 ipad:pt-12 ipad:pb-[288px] desktop-sm:px-16 desktop-sm:pt-[72px] desktop-sm:pb-[280px]">
       {/* 5-column grid on desktop: Brand | Newsletter | Páginas | Contato |
           Legal. Each track has its own min/max rule (grid-template-columns
           below) so the browser computes every width and gap on its own -
@@ -126,7 +126,7 @@ export function Footer() {
             viewport - see the @container rule in app/blog/page.module.css. */}
         <div className="flex w-full flex-col items-center gap-3 text-center desktop-sm:items-start desktop-sm:text-left desktop-sm:[container-type:inline-size] desktop-sm:[container-name:newsletterCol]">
           <div className="flex flex-col items-center gap-2 text-center desktop-sm:items-start desktop-sm:text-left">
-            <p className="font-outfit text-[18px] leading-normal text-white">
+            <p className="font-outfit text-[20px] leading-normal text-white">
               Receba novidades
             </p>
             <p className="font-sans text-[14px] leading-[1.4] text-[#c2c2c2]">
@@ -150,7 +150,7 @@ export function Footer() {
               key={column.title}
               className="flex min-w-0 flex-col gap-4"
             >
-              <p className="font-outfit text-[18px] leading-normal text-white">
+              <p className="font-outfit text-[20px] leading-normal text-white">
                 {column.title}
               </p>
               <ul className="flex flex-col gap-4">
@@ -213,7 +213,7 @@ export function Footer() {
       {/* Sits above the Tetris decoration (which is absolutely positioned
           against the footer itself, pinned to its bottom edge) rather
           than as a separate bar below it. */}
-      <p className="text-center font-sans text-[13px] text-white/50 desktop-sm:text-left">
+      <p className="text-center font-sans text-[12px] text-white/50 desktop-sm:text-left">
         © {new Date().getFullYear()} Lucerpy Digital. Todos os direitos reservados.
       </p>
       </div>

@@ -3,10 +3,10 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 10px 20px;
+  padding: 8px 20px;
   border-radius: 6px;
   font-weight: 600;
-  font-size: 0.9375rem;
+  font-size: 1rem;
   font-family: var(--font-outfit, var(--font-body, sans-serif));
   text-decoration: none;
   cursor: pointer;

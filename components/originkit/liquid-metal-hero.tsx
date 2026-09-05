@@ -33,7 +33,7 @@ function CyclingHeadline() {
   const current = HEADLINES[reduced ? 0 : index];
 
   return (
-    <h1 className="flex min-h-[5.6rem] w-full items-center justify-center text-balance text-center font-outfit text-[2.5rem] font-extrabold leading-[1.05] tracking-[-0.02em] text-white ipad:min-h-[8.5rem] ipad:text-[3.75rem] desktop-sm:min-h-[10.5rem] desktop-sm:text-[4.5rem]">
+    <h1 className="flex min-h-[5.6rem] w-full items-center justify-center text-balance text-center font-outfit text-[2.5rem] font-extrabold leading-[1.05] tracking-[-0.02em] text-white ipad:min-h-[8.5rem] ipad:text-[4rem] desktop-sm:min-h-[10.5rem] desktop-sm:text-[4.5rem]">
       {reduced ? (
         <span>
           {current.text}
@@ -88,13 +88,13 @@ export function LiquidMetalHero() {
         transition={{ duration: 0.6, ease: "easeOut" }}
         className="relative z-10 mx-auto flex w-full max-w-4xl flex-col items-center gap-6 py-24 text-center"
       >
-        <span className="font-outfit text-[12px] font-semibold uppercase tracking-[0.22em] text-[var(--color-primary)] ipad:text-[13px]">
+        <span className="font-outfit text-[12px] font-semibold uppercase tracking-[0.22em] text-[var(--color-primary)]">
           Agência digital
         </span>
 
         <CyclingHeadline />
 
-        <p className="max-w-lg font-inter text-[16px] leading-[1.6] text-[#A1A1AA] ipad:text-[18px]">
+        <p className="max-w-lg font-inter text-[16px] leading-[1.6] text-[#A1A1AA]">
           UX/UI, sites, landing pages e automações construídas com estratégia para transformar visitantes em clientes reais.
         </p>
 
@@ -111,7 +111,7 @@ export function LiquidMetalHero() {
           {FEATURES.map((feature, i) => (
             <span key={feature} className="flex items-center gap-6">
               {i > 0 && <span className="hidden h-1 w-1 rounded-full bg-white/20 ipad:block" />}
-              <span className="font-outfit text-[13px] font-medium text-[#c2c2c2]">{feature}</span>
+              <span className="font-outfit text-[12px] font-medium text-[#c2c2c2]">{feature}</span>
             </span>
           ))}
         </div>
