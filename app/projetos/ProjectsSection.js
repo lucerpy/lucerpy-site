@@ -22,6 +22,20 @@ const FILTERS = [
 const ALL_PROJECTS = [
   {
     featured: true,
+    category: 'E-COMMERCE',
+    tag: 'DESTAQUE',
+    title: 'Conceito Metais',
+    description: 'Rebranding e novo e-commerce para fabricante de barras de apoio e acessórios de acessibilidade certificados na NBR 9050, com fluxo de compra B2B e B2C.',
+    image: '/cases/conceito-metais/home-hero.jpeg',
+    imagePlaceholder: 'linear-gradient(45deg, #3A2A0A, #0C0D11)',
+    href: '/projetos/conceito-metais',
+    metrics: [
+      { value: '11 páginas', label: 'mapeadas e desenhadas' },
+      { value: 'NBR 9050', label: 'conformidade técnica' }
+    ],
+  },
+  {
+    featured: true,
     category: 'INSTITUCIONAL',
     tag: 'DESTAQUE',
     title: 'Cavent Engenharia',
