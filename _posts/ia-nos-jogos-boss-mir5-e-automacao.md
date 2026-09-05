@@ -15,6 +15,10 @@ Em MIR5, o próximo jogo da franquia, o boss final da primeira fase se chama **A
 
 Ou seja: a mesma estratégia dificilmente funciona duas vezes. Não existe "padrão pra decorar" — existe um oponente que está, literalmente, aprendendo com você enquanto luta.
 
+![Asterion, o boss de IA de MIR5, apresentado como "Lord of the Void"](/blog/asterion-boss-mir5-wemade.jpg)
+
+*Imagem: divulgação Wemade Next / NVIDIA.*
+
 ## Por que isso importa fora do jogo
 
 A diferença entre Asterion e um boss comum é exatamente a mesma diferença que separa uma automação de atendimento boa de uma automação decorada. Já escrevemos sobre isso em [atendimento automatizado: como usar WhatsApp e IA sem parecer um robô chato](/blog/atendimento-automatizado-whatsapp-ia) — o problema não é automatizar, é automatizar com um roteiro fixo que quebra assim que o cliente sai do script esperado.
