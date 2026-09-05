@@ -11,6 +11,8 @@ Todo mundo já passou por isso: manda mensagem no WhatsApp de uma empresa, cai n
 
 Feita direito, a automação no WhatsApp economiza horas da sua equipe por semana e responde o cliente na hora — coisa que nenhum time humano consegue fazer 24 horas por dia. Feita errado, ela transforma um lead quente em um cliente perdido.
 
+![Tela de celular mostrando o ícone do WhatsApp entre outros aplicativos](/blog/inline-whatsapp-phone.jpg)
+
 ## O que vale a pena automatizar
 
 Existem perguntas que se repetem o dia inteiro, todo dia, com respostas que não mudam: horário de funcionamento, endereço, formas de pagamento, prazo médio de entrega, se determinado serviço está disponível. Esse tipo de triagem inicial é o candidato perfeito para automação — libera a equipe humana pra conversas que realmente precisam de atenção, e o cliente recebe resposta imediata em vez de esperar alguém digitar.
@@ -27,6 +29,8 @@ Reclamação, negociação de valores, situações emocionalmente carregadas ou 
 2. **Triagem rápida** — duas ou três perguntas objetivas, não um questionário.
 3. **Handoff limpo pra humano** — o atendente que assume a conversa já vê o contexto, não precisa perguntar tudo de novo.
 4. **IA para casos ambíguos** — modelos de linguagem hoje conseguem interpretar perguntas fora do roteiro fixo com muito mais naturalidade do que os antigos chatbots de árvore de decisão, mas ainda funcionam melhor como uma camada de apoio, não como substituto total do atendimento humano em decisões importantes.
+
+![Atendente de central de atendimento sorrindo, usando headset](/blog/inline-support-headset.jpg)
 
 ## Integração é o que faz a automação valer a pena
 

@@ -15,6 +15,8 @@ Aqui está a anatomia que, na prática, mais se repete em páginas que convertem
 
 O título é a primeira e às vezes única chance de comunicar o valor da oferta. Frases genéricas como "soluções inovadoras para o seu negócio" não dizem nada e custam a atenção do visitante. Uma boa headline deixa claro, em poucas palavras, o que a pessoa ganha — e uma subheadline logo abaixo complementa com o "como" ou o diferencial, sem precisar rolar a página.
 
+![Tela em branco de computador representando o primeiro impacto visual de uma landing page](/blog/inline-website-mockup.jpg)
+
 ## 2. Call-to-action: visível, específico e repetido
 
 O CTA principal precisa aparecer logo na primeira dobra, sem exigir rolagem, e reaparecer ao longo da página em pontos estratégicos — geralmente depois de cada seção que reforça um motivo para confiar. Botões genéricos como "Enviar" ou "Clique aqui" convertem menos do que CTAs específicos ("Quero meu orçamento", "Começar agora"), porque dizem exatamente o que vai acontecer a seguir.
@@ -22,6 +24,8 @@ O CTA principal precisa aparecer logo na primeira dobra, sem exigir rolagem, e r
 ## 3. Prova social: reduzindo o risco percebido
 
 Depoimentos reais, números concretos, logos de clientes atendidos — tudo isso existe para responder a uma pergunta silenciosa que todo visitante se faz: "outras pessoas como eu já confiaram nisso, e deu certo?" Prova social bem posicionada, logo após a apresentação da oferta, reduz a hesitação antes mesmo dela virar objeção consciente.
+
+![Cinco estrelas representando avaliações e prova social](/blog/inline-star-rating.jpg)
 
 ## 4. Objeções antecipadas
 

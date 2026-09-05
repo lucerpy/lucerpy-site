@@ -17,6 +17,8 @@ Estudos do Google mostram que a probabilidade de abandono de página aumenta dra
 
 A causa mais comum é técnica: imagens não otimizadas, excesso de scripts de terceiros, hospedagem barata e, principalmente, plataformas genéricas que carregam muito mais código do que o necessário para exibir uma página simples. É exatamente esse tipo de gargalo que detalhamos no artigo sobre [Next.js vs WordPress](/blog/nextjs-vs-wordpress-qual-escolher), onde comparamos o impacto real de cada tecnologia na velocidade — e explicamos com mais detalhe o que são as [Core Web Vitals](/blog/core-web-vitals-performance), as métricas de performance que o próprio Google usa para rankear páginas nos resultados de busca.
 
+![Mulher frustrada em frente ao notebook](/blog/inline-frustrated-laptop.jpg)
+
 ## 2. Design amador
 
 O ditado diz que não se julga um livro pela capa, mas na internet é exatamente assim que funciona. Fontes inconsistentes, cores sem hierarquia, espaçamento apertado e botões que não parecem clicáveis — tudo isso transmite a ideia (consciente ou não) de que o serviço por trás daquele site também é amador. Design não é decoração: é a interface entre a sua proposta de valor e a decisão de compra do visitante, e é o núcleo do que trabalhamos em [UX/UI Design](/servicos).
@@ -38,6 +40,8 @@ Menus com termos internos da empresa, páginas órfãs sem link nenhum apontando
 ## 5. Nenhuma prova social
 
 Depoimentos, cases reais e números concretos reduzem o risco percebido pelo visitante antes de ele tomar uma decisão. Um site sem nenhuma evidência de que a empresa já entregou resultado para outras pessoas parece — e muitas vezes é — mais arriscado de contratar. Vale a pena conferir como estruturamos isso na prática nos nossos [projetos e cases](/projetos), ou ver a [anatomia completa de uma landing page que converte](/blog/anatomia-landing-page-alta-conversao) elemento por elemento.
+
+![Cadeado sobre teclado e cartões, representando confiança e segurança](/blog/inline-padlock-security.jpg)
 
 ## Como corrigir
 

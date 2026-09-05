@@ -11,6 +11,8 @@ Na hora de criar a presença digital da sua empresa, uma das primeiras decisões
 
 Não existe resposta certa para todo mundo — existe a tecnologia certa para o seu objetivo de negócio. Este artigo compara os dois cenários nos pontos que realmente importam para quem decide.
 
+![Notebook com o logo do WordPress na tela](/blog/inline-wordpress-laptop.jpg)
+
 ## 1. Desempenho e Core Web Vitals (velocidade extrema)
 
 A velocidade do seu site é um dos fatores de rankeamento mais importantes no Google, medido através dos [Core Web Vitals](/blog/core-web-vitals-performance): LCP (carregamento), INP (interatividade) e CLS (estabilidade visual). Como já detalhamos no artigo [Por que o seu site afasta clientes](/blog/por-que-seu-site-afasta-clientes), a lentidão é uma das principais razões de abandono de página.
@@ -18,6 +20,8 @@ A velocidade do seu site é um dos fatores de rankeamento mais importantes no Go
 Sites em Next.js geram HTML estático pré-renderizado (SSG/SSR), carregando de forma quase instantânea, sem depender de consultas a banco de dados a cada requisição. Recursos como otimização automática de imagens (AVIF/WebP), divisão de código por rota e cache de borda via CDN vêm prontos por padrão.
 
 No WordPress, páginas carregadas com dezenas de plugins acabam gerando layout shifts (CLS alto) e tempo de resposta elevado (TTFB), custando posições valiosas nas pesquisas e aumentando a taxa de rejeição — especialmente em conexões móveis, onde cada plugin extra pesa ainda mais.
+
+![Painel de análise de performance com gráficos de carregamento](/blog/inline-analytics-dashboard.jpg)
 
 ## 2. Segurança e vulnerabilidades
 

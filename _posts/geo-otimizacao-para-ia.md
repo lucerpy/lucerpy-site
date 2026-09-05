@@ -11,6 +11,8 @@ Cada vez mais gente não digita mais uma busca no Google e clica em dez links az
 
 Esse é o território do GEO — *Generative Engine Optimization* — a versão mais recente da eterna corrida para ser encontrado, agora adaptada para um jeito de buscar informação que não depende de uma lista de links.
 
+![Celular mostrando o aplicativo do ChatGPT na tela](/blog/inline-chatgpt-phone.jpg)
+
 ## GEO não substitui SEO, ele se apoia nele
 
 Boa notícia: tudo que já é fundamento de SEO técnico sólido — site rápido, conteúdo bem estruturado, HTML semântico, dados estruturados — continua sendo a base que os motores de busca com IA usam pra entender do que se trata uma página. GEO não é um conjunto de regras totalmente novo, é uma camada adicional de clareza em cima do que já deveria estar bem feito.
@@ -28,6 +30,8 @@ Diferente de um usuário navegando visualmente, os sistemas por trás de respost
 **Dados estruturados não são opcionais.** Marcação de artigo, organização, FAQ — tudo isso dá contexto explícito que reduz a ambiguidade de interpretação, o mesmo princípio que já discutimos sobre a vantagem técnica de frameworks modernos em [Next.js vs. WordPress](/blog/nextjs-vs-wordpress-qual-escolher).
 
 **Autoridade externa ainda conta.** Ser citado, linkado ou mencionado por outras fontes relevantes continua sinalizando confiabilidade — para buscadores tradicionais e para os sistemas de IA generativa.
+
+![Mão escrevendo em um caderno ao lado de um notebook aberto](/blog/inline-writing-content.jpg)
 
 ## O que não mudou (e nunca muda)
 

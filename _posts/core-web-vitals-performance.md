@@ -19,6 +19,8 @@ Rodar o site no PageSpeed Insights e ver uma nota vermelha é frustrante — pri
 
 Juntas, essas três métricas formam os [Core Web Vitals](https://web.dev/articles/vitals) — o conjunto de sinais de experiência de página que o Google usa como parte do algoritmo de busca desde 2021.
 
+![Painel de análise de performance mostrando gráficos de tempo de carregamento e taxa de rejeição](/blog/inline-analytics-dashboard.jpg)
+
 ## Por que o Google se importa com isso
 
 O objetivo declarado do Google é entregar os melhores resultados possíveis pra quem busca — e um site que demora, trava ou pula na tela é uma má experiência, independente de quão bom seja o conteúdo. Sites com boas métricas de Core Web Vitals têm uma vantagem competitiva real no ranqueamento, especialmente quando concorrem com páginas de qualidade de conteúdo parecida.
@@ -28,6 +30,8 @@ O objetivo declarado do Google é entregar os melhores resultados possíveis pra
 Na prática, os vilões mais comuns são sempre os mesmos: imagens não otimizadas (peso grande demais para o que realmente aparece na tela), scripts de terceiros carregando de forma bloqueante (pixels de rastreamento, chats, banners que competem com o conteúdo principal pelo processamento do navegador), fontes customizadas carregando tarde e fazendo o texto "pular" de posição, e falta de espaço reservado para imagens e vídeos antes deles carregarem completamente.
 
 A escolha da própria tecnologia por trás do site também pesa bastante nisso — como já comparamos em [Next.js vs. WordPress](/blog/nextjs-vs-wordpress-qual-escolher), plataformas com dezenas de plugins acumulam esse tipo de gargalo com muito mais facilidade do que uma stack pensada para performance desde a base.
+
+![Velocímetro de carro representando velocidade e performance](/blog/inline-speed-gauge.jpg)
 
 ## Como medir de verdade
 

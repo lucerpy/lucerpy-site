@@ -15,6 +15,8 @@ Se o seu negócio depende de clientes de uma região específica — loja físic
 
 Antes de qualquer outra coisa, verifique se sua empresa tem um [Perfil da Empresa no Google](https://support.google.com/business/) (antigo Google Meu Negócio) reivindicado e completo. Isso inclui endereço correto, categoria certa, horário de funcionamento atualizado, fotos reais do local e, principalmente, respostas às perguntas e avaliações que aparecem por lá. É esse perfil que alimenta o mapa e o painel lateral que aparece nas buscas locais — sem ele, praticamente não existe SEO local possível.
 
+![Pin do Google Maps sobre um cartão de papel](/blog/inline-google-maps-pin.jpg)
+
 ## 2. NAP consistente: nome, endereço e telefone iguais em todo lugar
 
 NAP é a sigla para *Name, Address, Phone*. Parece bobo, mas é um dos fatores que mais derruba a confiança dos mecanismos de busca: se o seu endereço está escrito de um jeito no site, de outro no Google, e de um terceiro jeito no Instagram, isso gera inconsistência — e inconsistência é sinal de alerta para os algoritmos de busca. Escolha um formato padrão para nome, endereço e telefone e replique exatamente igual em todos os lugares onde sua empresa aparece online.
@@ -22,6 +24,8 @@ NAP é a sigla para *Name, Address, Phone*. Parece bobo, mas é um dos fatores q
 ## 3. Avaliações não são só sobre reputação — são sobre ranking
 
 Empresas com mais avaliações recentes e bem respondidas tendem a aparecer melhor posicionadas nos resultados locais. Vale criar o hábito de pedir avaliação para clientes satisfeitos logo após a entrega do serviço (o momento em que a experiência ainda está fresca), e — igualmente importante — responder tanto avaliações positivas quanto negativas com atenção real, não com respostas genéricas copiadas e coladas.
+
+![Cinco estrelas representando avaliações de clientes](/blog/inline-star-rating.jpg)
 
 ## 4. Conteúdo com contexto geográfico de verdade
 
