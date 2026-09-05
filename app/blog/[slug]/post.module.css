@@ -181,7 +181,7 @@
 }
 
 .content img {
-  max-width: 100%;
+  width: 100%;
   height: auto;
   border-radius: var(--radius-lg);
   margin: 32px 0;
