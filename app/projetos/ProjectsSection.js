@@ -118,6 +118,19 @@ const ALL_PROJECTS = [
     ],
   },
   {
+    featured: true,
+    category: 'LANDING PAGE',
+    tag: 'DESTAQUE',
+    title: 'Eduardo Serpa',
+    description: 'Portfólio pessoal do fundador da Lucerpy: currículo, stack técnica, experiência, projetos e automações em código aberto, numa única página.',
+    image: '/cases/eduardo-serpa/hero.jpeg',
+    imagePlaceholder: 'linear-gradient(45deg, #1A1A0A, #0C0D11)',
+    href: '/projetos/eduardo-serpa',
+    metrics: [
+      { value: '8 repos', label: 'de automação no GitHub' }
+    ],
+  },
+  {
     featured: false,
     category: 'LANDING PAGE',
     tag: 'CONCEITO · LANDING PAGE',
