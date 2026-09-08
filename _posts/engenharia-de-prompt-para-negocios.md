@@ -11,8 +11,6 @@ gradient: "linear-gradient(45deg, #2e1a52, #0C0D11)"
 
 Isso importa além da curiosidade pessoal: toda automação de atendimento, todo chatbot, toda ferramenta interna que "usa IA" depende de um prompt bem escrito por trás. Prompt ruim não é feio — é a automação prometendo uma coisa e entregando outra.
 
-![Mão digitando em notebook com a tela de boas-vindas do ChatGPT, mostrando exemplos, capacidades e limitações](/blog/engenharia-prompt-ia.jpg)
-
 ## 1. Contexto explícito vence instrução vaga
 
 "Escreva um texto sobre nosso produto" e "Escreva uma descrição de produto de 3 frases, tom direto, destacando o diferencial de garantia de 5 anos, para um cliente que já está comparando preço" são pedidos radicalmente diferentes — mas muita gente escreve o primeiro e se frustra com o resultado genérico. A IA não sabe o que você não disse. Quanto mais contexto relevante entra no prompt (público, tom, restrição, objetivo), menos ela precisa "adivinhar" — e adivinhar é exatamente onde a resposta genérica nasce.
