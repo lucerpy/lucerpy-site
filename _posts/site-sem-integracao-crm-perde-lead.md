@@ -13,6 +13,8 @@ Um formulário de contato que cai só numa caixa de e-mail é, na prática, um l
 
 Não é só criar um contato quando o formulário é enviado. Uma integração de verdade capta, no momento em que o lead chega, informações que ajudam o time comercial a agir rápido: qual página ele estava vendo, qual serviço ele demonstrou interesse, de onde veio o tráfego (Google, Instagram, indicação). Sem isso, cada lead novo exige que o vendedor comece do zero, perguntando tudo que o próprio site já sabia.
 
+![Gráfico de linha ascendente em tela de tablet, representando crescimento do funil de vendas](/blog/crm-funil-grafico.avif)
+
 ## O custo real de não integrar
 
 Três problemas se repetem em negócios sem essa integração:
@@ -27,6 +29,8 @@ Três problemas se repetem em negócios sem essa integração:
 2. **Conecte todos os pontos de entrada**, não só o formulário principal: WhatsApp, newsletter, chat, cada canal que gera lead deveria cair no mesmo lugar.
 3. **Configure alerta imediato** pro time comercial quando um lead novo chega — e-mail não é rápido o suficiente; notificação direta (Slack, WhatsApp) fecha essa lacuna.
 4. **Meça o funil**, não só o volume de leads: quantos viram oportunidade, quantos fecham, e qual a origem dos que realmente compram. Isso é o que permite investir mais no canal certo, em vez de gerar volume às cegas.
+
+![Aperto de mão selando um acordo comercial](/blog/crm-handshake-vendas.avif)
 
 ## Isso já resolve tudo?
 

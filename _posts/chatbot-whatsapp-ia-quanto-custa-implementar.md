@@ -17,11 +17,15 @@ gradient: "linear-gradient(45deg, #14321f, #0C0D11)"
 
 **Híbrido — o que a maioria das empresas realmente precisa.** Menu fixo para triagem inicial rápida (horário, endereço, qual departamento) e IA para os casos que precisam de entendimento real da pergunta, com handoff limpo pra um humano quando a conversa sai do escopo automatizável. Já cobrimos em detalhe o que vale e o que não vale automatizar nesse fluxo em [atendimento automatizado: como usar WhatsApp e IA sem parecer um robô chato](/blog/atendimento-automatizado-whatsapp-ia).
 
+![Tela de boas-vindas do WhatsApp em um smartphone](/blog/chatbot-whatsapp-tela.avif)
+
 ## O que realmente muda o custo
 
 Não é o "ter IA ou não" que mais pesa no orçamento — é a integração. Um chatbot que só responde dentro do próprio WhatsApp é relativamente simples. Um chatbot que consulta estoque em tempo real, cria oportunidade no CRM automaticamente e atualiza status de pedido é um projeto de integração de sistemas, não só de conversa. Antes de pedir orçamento, vale mapear com quais ferramentas o chatbot precisa conversar de verdade.
 
 Outro fator é o volume de conteúdo que a IA precisa conhecer: um catálogo de 10 produtos é rápido de estruturar; um catálogo de 500 itens com variações e políticas específicas por categoria exige mais trabalho de curadoria antes mesmo de configurar o modelo.
+
+![Mão fazendo cálculo de custo com calculadora e caderno de anotações](/blog/chatbot-custo-calculadora.avif)
 
 ## Como é o processo de implementação
 

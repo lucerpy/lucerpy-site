@@ -19,6 +19,8 @@ Se o visitante precisa rolar a página pra entender o que você vende e pra quem
 
 Fotos de vários ângulos, tabela de medidas, prazo de entrega visível e política de troca clara evitam que o cliente abandone o carrinho pra "pensar mais um pouco" — e nunca volte. Se a resposta pra "isso serve pra mim?" não está na própria página, o produto não vende sozinho.
 
+![Pessoa segurando celular e cartão de crédito para finalizar compra online](/blog/shopify-checkout-cartao.avif)
+
 ## 3. Checkout com fricção desnecessária
 
 Cada campo extra no checkout é uma chance a mais de abandono. Conta de convidado habilitada, poucos campos obrigatórios e meios de pagamento que o público brasileiro realmente usa (Pix incluso) fazem diferença real na taxa de conclusão de compra.
@@ -30,6 +32,8 @@ Cada campo extra no checkout é uma chance a mais de abandono. Conta de convidad
 ## 5. Sem prova social visível
 
 Avaliação de produto, contagem de vendas, ou depoimento real — qualquer sinal de que outras pessoas já compraram e ficaram satisfeitas reduz o risco percebido de quem está decidindo. Loja nova sem nenhuma prova social compete em desvantagem, mesmo com produto melhor.
+
+![Caixas de papelão empilhadas prontas para envio, com etiqueta de encomenda](/blog/shopify-entrega-caixas.avif)
 
 ## 6. Sem estratégia de recuperação de carrinho abandonado
 

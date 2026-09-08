@@ -18,6 +18,8 @@ Já explicamos por que o [Perfil da Empresa no Google é o ponto de partida do S
 - **Área de atendimento configurada**, se o negócio atende clientes fora do endereço físico (prestadores de serviço, delivery).
 - **Horário de funcionamento atualizado**, incluindo horários especiais em feriados — perfil desatualizado nesse campo é motivo comum de reclamação em avaliação.
 
+![Placa de "Come in, we're open" pendurada na porta de vidro de um estabelecimento](/blog/perfil-google-fachada.avif)
+
 ## Prova visual
 
 - **Foto de capa e logo em boa resolução**, sem ser recorte de outra imagem maior.
@@ -31,6 +33,8 @@ Já explicamos por que o [Perfil da Empresa no Google é o ponto de partida do S
 - **Seção de perguntas e respostas preenchida proativamente** — responda as dúvidas mais comuns antes que um cliente precise perguntar, e monitore perguntas novas de outros usuários.
 - **Avaliações recentes**, não só um pico antigo de comentários de anos atrás.
 - **Todas as avaliações respondidas**, positivas e negativas, com atenção real — copiar e colar a mesma resposta genérica é pior do que não responder.
+
+![Prancheta com folha de papel escrito "to do" em letra manuscrita](/blog/perfil-google-checklist.avif)
 
 ## Conversão
 

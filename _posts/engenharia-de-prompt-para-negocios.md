@@ -15,6 +15,8 @@ Isso importa além da curiosidade pessoal: toda automação de atendimento, todo
 
 "Escreva um texto sobre nosso produto" e "Escreva uma descrição de produto de 3 frases, tom direto, destacando o diferencial de garantia de 5 anos, para um cliente que já está comparando preço" são pedidos radicalmente diferentes — mas muita gente escreve o primeiro e se frustra com o resultado genérico. A IA não sabe o que você não disse. Quanto mais contexto relevante entra no prompt (público, tom, restrição, objetivo), menos ela precisa "adivinhar" — e adivinhar é exatamente onde a resposta genérica nasce.
 
+![Mulher escrevendo ideias em um caderno ao lado do notebook](/blog/prompt-notebook-ideias.avif)
+
 ## 2. Mostre o formato que você quer (few-shot)
 
 Descrever um formato em palavras ("responda de forma objetiva") funciona pior do que mostrar um exemplo real do resultado esperado. Incluir um ou dois exemplos concretos no prompt — "aqui está uma resposta boa, siga esse padrão" — reduz drasticamente a variação entre execuções, principalmente quando o formato final importa (JSON estruturado, um tom de voz específico, um comprimento exato).
@@ -26,6 +28,8 @@ Prompt bom não é só uma lista do que fazer — é também uma lista do que ev
 ## 4. Divida tarefas complexas em passos
 
 Pedir tudo de uma vez ("analise esse texto, resuma, extraia os pontos principais e sugira um título") tende a produzir um resultado mediano em cada etapa. Quebrar em passos sequenciais — primeiro resumir, depois extrair pontos, depois sugerir título com base no resumo — geralmente produz um resultado melhor em cada parte, porque o modelo não está tentando fazer quatro coisas ao mesmo tempo com a mesma atenção.
+
+![Pessoa digitando em notebook com a tela inicial do ChatGPT aberta](/blog/prompt-chatgpt-laptop-02.avif)
 
 ## 5. Teste com o caso difícil, não só com o caso ideal
 

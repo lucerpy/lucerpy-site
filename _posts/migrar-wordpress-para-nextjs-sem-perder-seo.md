@@ -17,6 +17,8 @@ Antes de escrever uma linha de código no site novo, exporte a lista completa de
 
 Cada URL antiga que muda de endereço precisa de um redirecionamento 301 (permanente) direto para o novo endereço — nunca um 302 (temporário), que não transfere a mesma autoridade de SEO, e nunca uma cadeia de redirecionamentos (A → B → C), que perde força a cada salto e deixa o rastreamento mais lento. No Next.js, isso se configura de forma nativa no `next.config`, sem depender de plugin.
 
+![Editor de código aberto em laptop, tela escura com sintaxe colorida](/blog/migracao-codigo.avif)
+
 ## 3. Recriar metadados e dados estruturados um a um
 
 Título, meta description, Open Graph e JSON-LD de cada tipo de página (posts, produtos, páginas institucionais) precisam existir no site novo com paridade real — não uma versão genérica aplicada a tudo. Como comentamos em [Next.js vs WordPress](/blog/nextjs-vs-wordpress-qual-escolher), a vantagem do Next.js é gerar isso nativamente via `generateMetadata`, mas essa vantagem só aparece se cada rota realmente receber seus próprios metadados — migrar sem preencher isso é jogar fora um dos maiores ganhos da troca.
@@ -28,6 +30,8 @@ Gere o sitemap.xml do site novo e submeta no Google Search Console assim que o D
 ## 5. Preservar conteúdo e imagens que já rankeiam
 
 Página com bom desempenho orgânico não deve ser reescrita do zero só porque a tecnologia mudou — o texto, os títulos internos e as imagens que já geram tráfego devem ser migrados como estão, com no máximo ajustes de formatação. Reescrever conteúdo que já funciona ao mesmo tempo em que muda toda a base técnica é somar duas variáveis de risco numa migração só.
+
+![Gráfico de linha ascendente em tela de tablet, representando melhora de métrica ao longo do tempo](/blog/crm-funil-grafico.avif)
 
 ## 6. Medir performance antes e depois
 

@@ -17,6 +17,8 @@ Uma landing page de uma página, com um formulário e uma seção de produto, é
 
 Não é só "quantas páginas" — é quanto trabalho de estrutura cada página exige. Uma página de produto com filtro, variação e recomendação dá mais trabalho que uma página institucional estática. Conteúdo que já existe e só precisa ser organizado custa menos do que conteúdo que precisa ser pensado, escrito e validado do zero.
 
+![Mão calculando orçamento com calculadora, notas de dinheiro e laptop ao fundo](/blog/orcamento-calculadora.avif)
+
 ## 3. Integrações
 
 Conectar o site a CRM, gateway de pagamento, planilha, ERP ou automação de atendimento — como detalhamos em [seu site gera lead, mas ele se perde depois?](/blog/site-sem-integracao-crm-perde-lead) — é trabalho técnico real, que varia conforme a plataforma e a complexidade da integração. Um site "solto", sem nenhuma integração, é naturalmente mais barato do que um conectado a três ou quatro sistemas diferentes.
@@ -36,6 +38,8 @@ Prazo apertado quase sempre custa mais: significa reorganizar prioridades, às v
 ## 7. O que acontece depois do lançamento
 
 Site publicado não é projeto encerrado — precisa de atualização, correção eventual e, geralmente, evolução ao longo do tempo. Vale perguntar, em qualquer orçamento, se suporte pós-entrega está incluso, por quanto tempo, e o que acontece depois disso.
+
+![Aperto de mão fechando acordo comercial entre duas pessoas](/blog/orcamento-handshake.avif)
 
 ## Como pedir um orçamento que faça sentido
 

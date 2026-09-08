@@ -25,6 +25,8 @@ A diferença entre Asterion e um boss comum é exatamente a mesma diferença que
 
 Um chatbot de árvore de decisão é o boss antigo: previsível, decorável, e frustrante pra quem já passou por ali antes. Uma automação com IA de verdade — que interpreta a intenção da mensagem, entende o contexto da conversa e sabe quando escalar pra um humano — é o equivalente comercial do Asterion: se adapta ao que está acontecendo de verdade, não ao que o roteiro previu que aconteceria.
 
+![Pessoa segurando controle de videogame, focada na tela em frente](/blog/mir5-gamer-controle.avif)
+
 ## A lição pra quem decide automatizar algo
 
 Não é sobre ter "IA" no discurso de venda. É sobre a diferença entre:
