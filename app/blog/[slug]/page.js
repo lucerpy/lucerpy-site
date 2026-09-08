@@ -63,6 +63,10 @@ export default async function Post({ params }) {
     );
   }
 
+  const recentPosts = getSortedPostsData()
+    .filter((post) => post.slug !== slug)
+    .slice(0, 4);
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -134,7 +138,36 @@ export default async function Post({ params }) {
       )}
 
       <div className="container">
-        <div className={styles.content} dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
+        <div className={styles.layout}>
+          <div className={styles.content} dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
+
+          {recentPosts.length > 0 && (
+            <aside className={styles.sidebar} aria-label="Outros artigos">
+              <h2 className={styles.sidebarTitle}>Leia também</h2>
+              <ul className={styles.sidebarList}>
+                {recentPosts.map((post) => (
+                  <li key={post.slug}>
+                    <Link href={`/blog/${post.slug}`} className={styles.sidebarItem}>
+                      <div className={styles.sidebarThumb}>
+                        <Image
+                          src={post.image}
+                          alt={post.title}
+                          fill
+                          sizes="88px"
+                          style={{ objectFit: 'cover' }}
+                        />
+                      </div>
+                      <div>
+                        <span className={styles.sidebarTag}>{post.tag || 'ARTIGO'}</span>
+                        <p className={styles.sidebarItemTitle}>{post.title}</p>
+                      </div>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </aside>
+          )}
+        </div>
       </div>
     </article>
   );
