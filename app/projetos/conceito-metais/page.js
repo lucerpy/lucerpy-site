@@ -1,28 +1,85 @@
 import styles from './page.module.css';
 import Link from 'next/link';
-import Image from 'next/image';
 import CtaMarquee from '@/components/CtaMarquee/CtaMarquee';
+import BeforeAfter from '@/components/BeforeAfter/BeforeAfter';
+
+const IMG = '/cases/conceito-metais/antes-depois';
+
+const DESCRIPTION = 'Migração de WordPress para Shopify com nova identidade visual: o case da Conceito Metais, loja de acessibilidade, torneiras e itens hospitalares com a linha NBR 9050 em destaque.';
 
 export const metadata = {
-  title: 'Case Conceito Metais',
-  description: 'Rebranding e novo e-commerce para a Conceito Metais: fabricante de barras de apoio e acessórios de acessibilidade certificados na NBR 9050.',
+  title: 'Case Conceito Metais: migração para Shopify',
+  description: DESCRIPTION,
   alternates: {
     canonical: 'https://lucerpy.com.br/projetos/conceito-metais',
   },
   openGraph: {
     title: 'Case Conceito Metais | Lucerpy',
-    description: 'Rebranding e novo e-commerce para a Conceito Metais: fabricante de barras de apoio e acessórios de acessibilidade certificados na NBR 9050.',
+    description: DESCRIPTION,
     url: 'https://lucerpy.com.br/projetos/conceito-metais',
     images: [
       {
-        url: 'https://lucerpy.com.br/cases/conceito-metais/home-hero.jpeg',
+        url: `https://lucerpy.com.br${IMG}/depois-inicio.jpg`,
         width: 1440,
         height: 900,
-        alt: 'Case Conceito Metais',
+        alt: 'Case Conceito Metais: nova loja Shopify',
       },
     ],
   },
 };
+
+const COMPARISONS = [
+  {
+    slug: 'inicio',
+    label: 'Página inicial',
+    title: 'Uma primeira dobra que diz o que a loja vende',
+    text: 'Antes, a home abria com uma faixa de ícones e cards repetidos de "Soluções para...". Agora, o banner fala com cada segmento (banheiros acessíveis, clínicas, hospitais), a faixa de benefícios deixa claro que é representante de fábrica com entrega para todo o Brasil, e os produtos em destaque já aparecem na primeira rolagem.',
+  },
+  {
+    slug: 'categoria',
+    label: 'Categoria',
+    title: 'Categoria que ajuda a decidir, não só a listar',
+    text: 'Filtros por tipo de produto e faixa de preço, contagem de itens e ordenação. O texto introdutório, importante para o SEO, foi mantido, mas recolhido em um "Ler mais" para não empurrar os produtos para baixo. Logo no topo ficam os selos que tiram dúvida: venda para pessoa física e jurídica, envio rápido e garantia de fábrica.',
+  },
+  {
+    slug: 'produto',
+    label: 'Página de produto',
+    title: 'Produto técnico com um caminho claro até a cotação',
+    text: 'A descrição corrida deu lugar a uma página organizada: título com o código do produto, selo da linha NBR 9050 com link para a norma, botão de "Solicitar cotação" em destaque e as garantias que pesam na decisão (garantia de fábrica, retirada agendada, venda para PF e PJ). As especificações técnicas ficam em um bloco próprio, logo abaixo.',
+  },
+  {
+    slug: 'obras',
+    label: 'Obras entregues',
+    title: 'Obras entregues viraram prova social filtrável',
+    text: 'Quem especifica acessibilidade para uma obra quer ver quem já confiou na empresa. A página de obras ganhou um hero com fotos reais e filtros por segmento (esportivo, educação, saúde, varejo, industrial e serviço público), para o visitante achar rápido uma referência parecida com o próprio projeto.',
+  },
+  {
+    slug: 'blog-post',
+    label: 'Artigo do blog',
+    title: 'Conteúdo técnico com cara de editorial',
+    text: 'Os artigos que já traziam tráfego orgânico foram migrados com o mesmo conteúdo, agora com imagem de capa, autor, data, tempo de leitura e uma lateral de posts recentes que mantém o leitor navegando pela loja em vez de sair depois de ler.',
+  },
+  {
+    slug: 'quem-somos',
+    label: 'Quem somos',
+    title: 'Página institucional que reforça a confiança',
+    text: 'Numa categoria em que o cliente está, no fundo, confiando a segurança de alguém a um produto, a página institucional ficou objetiva: o que a empresa faz, para quem vende, selos de entrega e garantia, e dois caminhos claros: falar com a equipe ou conhecer as obras.',
+  },
+  {
+    slug: 'carrinho',
+    label: 'Carrinho',
+    title: 'Até o carrinho vazio ajuda a vender',
+    text: 'Em vez de uma tela sem saída, o carrinho vazio sugere categorias, explica como criar a conta em um minuto e mostra produtos relacionados logo abaixo. É um detalhe pequeno, mas evita que o visitante vá embora no último passo.',
+  },
+];
+
+const URL_MAP = [
+  ['/produtos/', '/collections/all'],
+  ['/produtos/categoria-produto/acessibilidade/', '/collections/acessibilidade'],
+  ['/produtos/hospitalar/barra-de-apoio/barra-de-apoio-para-banheiro-em-inox-304-reta-60cm/', '/products/barra-apoio-inox-304-reta-60cm-1042'],
+  ['/blog/barra-de-apoio-um-guia-completo/', '/blogs/novidades/barra-apoio-guia-completo'],
+  ['/politicas-de-troca-devolucao-e-reembolso/', '/policies/refund-policy'],
+];
 
 export default function ConceitoMetais() {
   return (
@@ -30,23 +87,23 @@ export default function ConceitoMetais() {
       <header className={styles.hero}>
         <div className="container">
           <Link href="/projetos" className={styles.backLink}>← Voltar para projetos</Link>
-          <div className={styles.tag}>E-COMMERCE · REBRANDING</div>
+          <div className={styles.tag}>E-COMMERCE · SHOPIFY · REBRANDING</div>
           <h1 className={styles.heroTitle}>Conceito Metais</h1>
           <p className={styles.heroDescription}>
-            Rebranding completo e novo e-commerce para a Conceito Metais, fabricante de barras de apoio, bancos articulados e acessórios de acessibilidade em aço inox, todos certificados na norma NBR 9050. O projeto saiu de uma marca genérica para uma loja própria, com fluxo de compra para consumidor final e para compra corporativa, além de um hub de conteúdo técnico sobre acessibilidade.
+            A Conceito Metais vende produtos de acessibilidade, torneiras, itens hospitalares e dispensers para obras, clínicas, escolas e residências. A loja antiga rodava em WordPress, com visual datado e um catálogo difícil de navegar. Migramos tudo para a Shopify com uma nova identidade visual, redesenhamos cada página e mapeamos cada URL antiga para o novo endereço, para a loja não perder o que já tinha conquistado no Google.
           </p>
           <div className={styles.metricsRow}>
             <div className={styles.metric}>
-              <strong>11 páginas</strong>
-              <span>Mapeadas e desenhadas do zero</span>
+              <strong>Shopify</strong>
+              <span>Nova plataforma, saindo do WordPress</span>
+            </div>
+            <div className={styles.metric}>
+              <strong>27 páginas</strong>
+              <span>Redesenhadas e migradas</span>
             </div>
             <div className={styles.metric}>
               <strong>NBR 9050</strong>
-              <span>Conformidade técnica no centro da proposta</span>
-            </div>
-            <div className={styles.metric}>
-              <strong>B2B + B2C</strong>
-              <span>Dois fluxos de compra na mesma loja</span>
+              <span>Linha de acessibilidade em destaque</span>
             </div>
           </div>
         </div>
@@ -55,201 +112,67 @@ export default function ConceitoMetais() {
       <section className={styles.gallerySection}>
         <div className="container">
           <div className={styles.galleryHeader}>
-            <h2>Um produto técnico que também precisa emocionar</h2>
-            <p>Barra de apoio é item de segurança, muitas vezes comprado num momento delicado — para um familiar, um paciente, uma obra que precisa estar em conformidade. A loja precisa transmitir confiança técnica sem perder o acolhimento.</p>
+            <h2>Antes e depois, página por página</h2>
+            <p>Barra de apoio é item de segurança, muitas vezes comprado num momento delicado: para um familiar, um paciente, uma obra que precisa estar em conformidade. A nova loja transmite confiança técnica sem perder a clareza para quem só quer comprar.</p>
+            <p className={styles.dragHint}>↔ Arraste a barra sobre cada imagem para comparar</p>
           </div>
 
           <div className={styles.presentationGallery}>
-            <div className={styles.presentationItem}>
-              <div className={styles.imagePlaceholder}>
-                <Image
-                  src="/cases/conceito-metais/home-hero.jpeg"
-                  alt="Conceito Metais - Página inicial"
-                  width={1440}
-                  height={900}
-                  sizes="(max-width: 768px) 100vw, 1200px"
-                  priority
-                  className={styles.caseImage}
-                />
+            {COMPARISONS.map((item, index) => (
+              <div key={item.slug} className={styles.presentationItem}>
+                <div className={styles.compareWrap}>
+                  <BeforeAfter
+                    before={`${IMG}/antes-${item.slug}.jpg`}
+                    after={`${IMG}/depois-${item.slug}.jpg`}
+                    alt={`Conceito Metais, ${item.label.toLowerCase()}`}
+                    priority={index === 0}
+                  />
+                </div>
+                <div className={styles.itemInfo}>
+                  <span className={styles.itemLabel}>{item.label}</span>
+                  <h3>{item.title}</h3>
+                  <p>{item.text}</p>
+                </div>
               </div>
-              <div className={styles.itemInfo}>
-                <h3>A norma vira selo de confiança, não letra miúda</h3>
-                <p>Certificado NBR 9050, garantia de 5 anos e fabricação própria aparecem já na primeira dobra, ao lado da categoria de produto — antes mesmo do visitante rolar a página, ele já sabe que está numa fabricante, não numa revenda genérica.</p>
-              </div>
-            </div>
-
-            <div className={styles.presentationItem}>
-              <div className={styles.imagePlaceholder}>
-                <Image
-                  src="/cases/conceito-metais/home-obras.jpeg"
-                  alt="Conceito Metais - Obras entregues em todo o país"
-                  width={1440}
-                  height={900}
-                  sizes="(max-width: 768px) 100vw, 1200px"
-                  className={styles.caseImage}
-                />
-              </div>
-              <div className={styles.itemInfo}>
-                <h3>Prova social em escala de obra, não de review de produto</h3>
-                <p>Quem especifica acessibilidade em obra pública ou rede de varejo quer ver quem já confiou. A home mostra logos e números de obras reais entregues, puxando o visitante para o portfólio completo.</p>
-              </div>
-            </div>
-
-            <div className={styles.presentationItem}>
-              <div className={styles.imagePlaceholder}>
-                <Image
-                  src="/cases/conceito-metais/home-b2b.jpeg"
-                  alt="Conceito Metais - Seção de compras corporativas"
-                  width={1440}
-                  height={900}
-                  sizes="(max-width: 768px) 100vw, 1200px"
-                  className={styles.caseImage}
-                />
-              </div>
-              <div className={styles.itemInfo}>
-                <h3>Comprador de obra não navega igual consumidor final</h3>
-                <p>Uma seção própria para compra corporativa — volume, orçamento sob medida, condições diferentes — evita que esse comprador se perca dentro de um catálogo pensado para quem está comprando uma unidade só.</p>
-              </div>
-            </div>
-
-            <div className={styles.presentationItem}>
-              <div className={styles.imagePlaceholder}>
-                <Image
-                  src="/cases/conceito-metais/colecao.jpeg"
-                  alt="Conceito Metais - Página de coleção de barras de apoio"
-                  width={1440}
-                  height={900}
-                  sizes="(max-width: 768px) 100vw, 1200px"
-                  className={styles.caseImage}
-                />
-              </div>
-              <div className={styles.itemInfo}>
-                <h3>Catálogo organizado por como o cliente decide, não por SKU</h3>
-                <p>Barras de apoio, bancos e assentos, torneiras PNE, acessórios de higiene, sinalização, pisos táteis — a navegação segue as categorias reais de uma obra acessível, não uma lista solta de produtos.</p>
-              </div>
-            </div>
-
-            <div className={styles.presentationItem}>
-              <div className={styles.imagePlaceholder}>
-                <Image
-                  src="/cases/conceito-metais/produto.jpeg"
-                  alt="Conceito Metais - Página de produto individual"
-                  width={1440}
-                  height={900}
-                  sizes="(max-width: 768px) 100vw, 1200px"
-                  className={styles.caseImage}
-                />
-              </div>
-              <div className={styles.itemInfo}>
-                <h3>Ficha técnica de verdade, não descrição de vitrine</h3>
-                <p>Medida do tubo, espessura, material, conformidade com a norma — a descrição do produto responde às perguntas de quem especifica uma obra, com avaliações reais logo abaixo para quem só quer confirmar que a compra vale a pena.</p>
-              </div>
-            </div>
-
-            <div className={styles.presentationItem}>
-              <div className={styles.imagePlaceholder}>
-                <Image
-                  src="/cases/conceito-metais/obras.jpeg"
-                  alt="Conceito Metais - Página de obras finalizadas"
-                  width={1440}
-                  height={900}
-                  sizes="(max-width: 768px) 100vw, 1200px"
-                  className={styles.caseImage}
-                />
-              </div>
-              <div className={styles.itemInfo}>
-                <h3>Um portfólio de obras, filtrável por segmento</h3>
-                <p>Saúde, varejo, educação, esporte e lazer, setor público — cada obra entregue vira case, com foto real do ambiente equipado. Filtrar por segmento ajuda quem procura uma referência parecida com o próprio projeto.</p>
-              </div>
-            </div>
-
-            <div className={styles.presentationItem}>
-              <div className={styles.imagePlaceholder}>
-                <Image
-                  src="/cases/conceito-metais/sobre.jpeg"
-                  alt="Conceito Metais - Página sobre a empresa"
-                  width={1440}
-                  height={900}
-                  sizes="(max-width: 768px) 100vw, 1200px"
-                  className={styles.caseImage}
-                />
-              </div>
-              <div className={styles.itemInfo}>
-                <h3>De pequena oficina a referência técnica no setor</h3>
-                <p>A página institucional conta a trajetória real da empresa e apresenta as pessoas por trás da marca — importante numa categoria onde o cliente está, no fundo, confiando a segurança de alguém a um produto.</p>
-              </div>
-            </div>
-
-            <div className={styles.presentationItem}>
-              <div className={styles.imagePlaceholder}>
-                <Image
-                  src="/cases/conceito-metais/nbr9050.jpeg"
-                  alt="Conceito Metais - Guia técnico da norma NBR 9050"
-                  width={1440}
-                  height={900}
-                  sizes="(max-width: 768px) 100vw, 1200px"
-                  className={styles.caseImage}
-                />
-              </div>
-              <div className={styles.itemInfo}>
-                <h3>Uma página pilar que também é estratégia de SEO</h3>
-                <p>Um guia completo sobre a NBR 9050 — medidas exatas, checklist de conformidade, perguntas frequentes — pensado para captar quem está pesquisando a norma antes mesmo de saber que precisa comprar uma barra de apoio.</p>
-              </div>
-            </div>
-
-            <div className={styles.presentationItem}>
-              <div className={styles.imagePlaceholder}>
-                <Image
-                  src="/cases/conceito-metais/blog.jpeg"
-                  alt="Conceito Metais - Blog sobre acessibilidade"
-                  width={1440}
-                  height={900}
-                  sizes="(max-width: 768px) 100vw, 1200px"
-                  className={styles.caseImage}
-                />
-              </div>
-              <div className={styles.itemInfo}>
-                <h3>Conteúdo técnico como canal de aquisição</h3>
-                <p>Blog dedicado a dúvidas reais sobre acessibilidade e conformidade — o mesmo tipo de conteúdo que, no nosso próprio site, já discutimos em <Link href="/blog/seo-local-para-pequenas-empresas">SEO local</Link> como forma de ser encontrado por quem já está decidido a comprar.</p>
-              </div>
-            </div>
-
-            <div className={styles.presentationItem}>
-              <div className={styles.imagePlaceholder}>
-                <Image
-                  src="/cases/conceito-metais/contato.jpeg"
-                  alt="Conceito Metais - Página de contato"
-                  width={1440}
-                  height={900}
-                  sizes="(max-width: 768px) 100vw, 1200px"
-                  className={styles.caseImage}
-                />
-              </div>
-              <div className={styles.itemInfo}>
-                <h3>Um canal direto para quem ainda tem dúvida técnica</h3>
-                <p>Nem toda dúvida sobre acessibilidade cabe num FAQ — o formulário de contato existe para quem precisa de uma resposta específica antes de fechar um pedido, especialmente em compras de maior volume.</p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
+      <section className={styles.migrationSection}>
+        <div className="container">
+          <div className={styles.galleryHeader}>
+            <h2>Migração sem jogar fora o SEO</h2>
+            <p>Trocar de plataforma muda o formato de todas as URLs. Cada página da loja antiga (produtos, categorias, artigos e políticas) foi mapeada para o equivalente na Shopify. Alguns exemplos:</p>
+          </div>
+          <ul className={styles.migrationList}>
+            {URL_MAP.map(([from, to]) => (
+              <li key={from} className={styles.migrationRow}>
+                <span className={styles.migrationOld}>{from}</span>
+                <span className={styles.migrationArrow} aria-hidden="true">→</span>
+                <span className={styles.migrationNew}>{to}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
       <CtaMarquee
-        title="Seu produto técnico também merece uma marca à altura?"
-        description="Rebranding e e-commerce sob medida, pensados para quem compra com base em especificação — não só em preço."
+        title="Sua loja também precisa de uma nova plataforma?"
+        description="Migramos e-commerces para a Shopify com design sob medida, sem perder o tráfego que você já conquistou."
         buttonText="Falar com a equipe →"
         buttonHref="/contato"
         imagesTop={[
-          { src: '/cases/conceito-metais/home-hero.jpeg', alt: 'Conceito Metais - Página inicial' },
-          { src: '/cases/conceito-metais/colecao.jpeg', alt: 'Conceito Metais - Coleção' },
-          { src: '/cases/conceito-metais/produto.jpeg', alt: 'Conceito Metais - Página de produto' },
-          { src: '/cases/conceito-metais/obras.jpeg', alt: 'Conceito Metais - Obras finalizadas' },
+          { src: `${IMG}/depois-inicio.jpg`, alt: 'Conceito Metais: página inicial' },
+          { src: `${IMG}/depois-categoria.jpg`, alt: 'Conceito Metais: categoria acessibilidade' },
+          { src: `${IMG}/depois-produto.jpg`, alt: 'Conceito Metais: página de produto' },
+          { src: `${IMG}/depois-obras.jpg`, alt: 'Conceito Metais: obras entregues' },
         ]}
         imagesBottom={[
-          { src: '/cases/conceito-metais/sobre.jpeg', alt: 'Conceito Metais - Sobre a empresa' },
-          { src: '/cases/conceito-metais/nbr9050.jpeg', alt: 'Conceito Metais - Guia NBR 9050' },
-          { src: '/cases/conceito-metais/blog.jpeg', alt: 'Conceito Metais - Blog' },
-          { src: '/cases/conceito-metais/contato.jpeg', alt: 'Conceito Metais - Contato' },
+          { src: `${IMG}/depois-quem-somos.jpg`, alt: 'Conceito Metais: quem somos' },
+          { src: `${IMG}/depois-blog-post.jpg`, alt: 'Conceito Metais: artigo do blog' },
+          { src: `${IMG}/depois-blog.jpg`, alt: 'Conceito Metais: blog' },
+          { src: `${IMG}/depois-contato.jpg`, alt: 'Conceito Metais: contato' },
         ]}
       />
     </article>

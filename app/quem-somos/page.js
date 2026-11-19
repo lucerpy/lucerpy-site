@@ -2,6 +2,7 @@ import styles from './page.module.css';
 import Button from '@/components/Button/Button';
 import Card from '@/components/Card/Card';
 import Image from 'next/image';
+import Link from 'next/link';
 import HeroSlideshow from '@/components/HeroSlideshow/HeroSlideshow';
 import BentoGrid from '@/components/BentoGrid/BentoGrid';
 import CtaMarquee from '@/components/CtaMarquee/CtaMarquee';
@@ -61,6 +62,7 @@ export default function QuemSomos() {
               <p>A Lucerpy nasceu da convicção de que o digital pode ser mais humano, estratégico e eficaz. Não acreditamos em fórmulas prontas.</p>
               <p>Cada projeto começa com escuta ativa: entendemos o negócio, o público e os objetivos antes de criar qualquer pixel ou linha de código.</p>
               <p>O resultado é um produto digital que não só parece bonito — mas que converte visitantes em clientes e ideias em receita concreta.</p>
+              <p>No e-commerce, somos especialistas em implementação de lojas virtuais: criamos lojas do zero, migramos de plataforma sem perder SEO e redesenhamos lojas que já vendem, em <Link href="/projetos/conceito-metais">Shopify</Link> e <Link href="/projetos/loren-metais">Loja Integrada</Link>.</p>
               <p>Somos sediados em Indaiatuba (SP) e atendemos empresas de Campinas e região — 100% remoto, o que significa reunião por chamada de vídeo e nenhum tempo perdido em deslocamento, mas com a mesma proximidade de quem entende o negócio de perto.</p>
             </div>
             <Button href="/projetos" variant="primary">Ver nosso portfólio →</Button>
@@ -93,14 +95,16 @@ export default function QuemSomos() {
                 />
               </div>
               <h3 className={styles.teamName}>Eduardo Serpa</h3>
-              <p className={styles.teamRole}>Especialista em soluções web</p>
-              <p className={styles.teamBio}>Cinco anos de e-commerce com Shopify, criando temas e interfaces sob medida com foco em UX/UI e conversão. Já projetou painéis administrativos completos dentro do Shopify Admin, do wireframe à entrega.</p>
+              <p className={styles.teamRole}>Especialista em e-commerce e lojas virtuais</p>
+              <p className={styles.teamBio}>Mais de cinco anos dedicados ao e-commerce, implantando, migrando e redesenhando lojas virtuais em Shopify e Loja Integrada. Cuida da loja de ponta a ponta: escolha da plataforma, migração sem perder SEO, tema sob medida, catálogo, página de produto, checkout, frete e meios de pagamento, sempre com foco em UX/UI e conversão. Na Shopify, já projetou painéis administrativos completos dentro do Shopify Admin; na Loja Integrada, refaz o tema inteiro sem mudar uma URL nem tirar a loja do ar.</p>
               <ul className={styles.teamStack}>
+                <li>Shopify</li>
+                <li>Loja Integrada</li>
+                <li>E-commerce</li>
                 <li>UI/UX</li>
                 <li>Figma</li>
                 <li>React</li>
                 <li>TypeScript</li>
-                <li>Shopify</li>
                 <li>Node.js</li>
                 <li>GraphQL</li>
                 <li>SEO</li>

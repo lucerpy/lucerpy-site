@@ -17,10 +17,16 @@
 4. **Automações**: Automação de fluxos de trabalho e nutrição de leads.
 5. **Consultoria Digital**: Diagnóstico e estratégia digital orientada a ROI.
 
-## Case em Destaque
+6. **E-commerce**: Implementação, migração e redesign de lojas virtuais em Shopify e Loja Integrada.
+
+## Cases em Destaque
 - **Cavent Engenharia**: Redesign institucional para empresa de engenharia B2B.
   - **Resultados**: +180% de leads qualificados em 3 meses, ROI acelerado e site 3x mais rápido.
   - URL do Case: https://lucerpy.com.br/projetos/cavent-engenharia
+- **Conceito Metais**: Migração de WordPress para Shopify com nova identidade visual e mapeamento de todas as URLs antigas.
+  - URL do Case: https://lucerpy.com.br/projetos/conceito-metais
+- **Loren Metais**: Redesign completo do tema na Loja Integrada, sem trocar de plataforma e sem mudar nenhuma URL.
+  - URL do Case: https://lucerpy.com.br/projetos/loren-metais
 
 ## Páginas Importantes
 - Home: https://lucerpy.com.br/

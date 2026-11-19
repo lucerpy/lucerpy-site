@@ -14,6 +14,7 @@ export default function sitemap() {
     '/projetos/nk3it',
     '/projetos/weaver',
     '/projetos/conceito-metais',
+    '/projetos/loren-metais',
     '/projetos/eduardo-serpa',
     '/quem-somos',
     '/blog',

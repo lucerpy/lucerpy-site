@@ -25,12 +25,27 @@ const ALL_PROJECTS = [
     category: 'E-COMMERCE',
     tag: 'DESTAQUE',
     title: 'Conceito Metais',
-    description: 'Rebranding e novo e-commerce para fabricante de barras de apoio e acessórios de acessibilidade certificados na NBR 9050, com fluxo de compra B2B e B2C.',
-    image: '/cases/conceito-metais/home-hero.jpeg',
+    description: 'Migração de WordPress para Shopify com nova identidade visual, para loja de acessibilidade, torneiras e itens hospitalares com a linha NBR 9050 em destaque.',
+    image: '/cases/conceito-metais/antes-depois/depois-inicio.jpg',
     imagePlaceholder: 'linear-gradient(45deg, #3A2A0A, #0C0D11)',
     href: '/projetos/conceito-metais',
     metrics: [
-      { value: 'NBR 9050', label: 'conformidade técnica' }
+      { value: 'Shopify', label: 'migração completa' },
+      { value: '27', label: 'páginas redesenhadas' }
+    ],
+  },
+  {
+    featured: true,
+    category: 'E-COMMERCE',
+    tag: 'DESTAQUE',
+    title: 'Loren Metais',
+    description: 'Redesign completo da loja na Loja Integrada para fabricante de torneiras, barras de apoio e itens hospitalares, sem trocar de plataforma e sem mudar nenhuma URL.',
+    image: '/cases/loren-metais/antes-depois/depois-inicio.jpg',
+    imagePlaceholder: 'linear-gradient(45deg, #0b4a4f, #0C0D11)',
+    href: '/projetos/loren-metais',
+    metrics: [
+      { value: 'Loja Integrada', label: 'tema refeito do zero' },
+      { value: '100%', label: 'das URLs preservadas' }
     ],
   },
   {
